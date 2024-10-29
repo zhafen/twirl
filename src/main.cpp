@@ -2,8 +2,13 @@
 
 int main()
 {
-    auto window = sf::RenderWindow({1920u, 1080u}, "CMake SFML Project");
+    auto window = sf::RenderWindow({1920u, 1080u}, "twirl");
     window.setFramerateLimit(144);
+
+    sf::CircleShape shape(50.f);
+
+    // set the shape color to green
+    shape.setFillColor(sf::Color(100, 250, 50));
 
     while (window.isOpen())
     {
@@ -15,7 +20,12 @@ int main()
             }
         }
 
-        window.clear();
+        // clear the window with black color
+        window.clear(sf::Color::Black);
+
+        window.draw(shape);
+
+        // end the current frame
         window.display();
     }
 }

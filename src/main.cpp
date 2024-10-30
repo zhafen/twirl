@@ -17,6 +17,9 @@ public:
         v += a * dt / 2.f;
     }
 
+    sf::CircleShape getShape() const { return shape; }
+
+private:
     sf::Vector2f x;
     sf::Vector2f v;
     float r;
@@ -27,7 +30,11 @@ int main()
 {
     // Window settings
     auto window = sf::RenderWindow({1920u, 1080u}, "twirl");
-    window.setFramerateLimit(144);
+    int fps = 144;
+    window.setFramerateLimit(fps);
+    // By setting dt to not vary depending on how long it took to generate a frame,
+    // our game slows down when it takes longer to render.
+    float dt = 1.f / fps;
     sf::Vector2u window_size = window.getSize();
     // d will be our length scale, and we set it to a multiple of window size
     float d(0.01f * window_size.x);
@@ -59,10 +66,11 @@ int main()
 
         // clear the window with black color
         window.clear(sf::Color::Black);
+        p.update(sf::Vector2f(d, d), 100);
 
         // draw frame
         window.draw(rectangle);
-        window.draw(p.shape);
+        window.draw(p.getShape());
 
         // end the current frame
         window.display();

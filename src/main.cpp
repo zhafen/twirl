@@ -29,16 +29,17 @@ int main()
     auto window = sf::RenderWindow({1920u, 1080u}, "twirl");
     window.setFramerateLimit(144);
     sf::Vector2u window_size = window.getSize();
+    // d will be our length scale, and we set it to a multiple of window size
+    float d(0.01f * window_size.x);
 
     // Create and activate a view
     sf::View view(sf::Vector2f(0, 0), sf::Vector2f(window_size.x, window_size.y));
     window.setView(view);
-    view.zoom(2.f);
 
-    Particle p(sf::Vector2f(0.f, 0.f), sf::Vector2f(0.f, 0.f), 50.f);
+    Particle p(sf::Vector2f(0.f, 0.f), sf::Vector2f(0.f, 0.f), d);
 
     // Reference rectangle
-    sf::RectangleShape rectangle(sf::Vector2f(100, 100));
+    sf::RectangleShape rectangle(sf::Vector2f(d, d));
     rectangle.setFillColor(sf::Color(125, 125, 125));
 
     while (window.isOpen())

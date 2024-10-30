@@ -22,7 +22,6 @@ public:
 private:
     sf::Vector2f x;
     sf::Vector2f v;
-    float r;
     sf::CircleShape shape;
 };
 

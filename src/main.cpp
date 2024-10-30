@@ -5,8 +5,8 @@
 class Particle {
 public:
     Particle(sf::Vector2f x, sf::Vector2f v, float r) : x(x), v(v), shape(r) {
-        // shape.setFillColor(sf::Color(256, 256, 256));
-        shape.setFillColor(sf::Color(255, 255, 255));
+        // Set the origin as the center of the particle
+        shape.setOrigin(r, r);
         shape.setPosition(x);
     }
 
@@ -25,12 +25,21 @@ public:
 
 int main()
 {
+    // Window settings
     auto window = sf::RenderWindow({1920u, 1080u}, "twirl");
     window.setFramerateLimit(144);
+    sf::Vector2u window_size = window.getSize();
 
-    sf::CircleShape shape(50.f);
+    // Create and activate a view
+    sf::View view(sf::Vector2f(0, 0), sf::Vector2f(window_size.x, window_size.y));
+    window.setView(view);
+    view.zoom(2.f);
 
-    Particle p(sf::Vector2f(300.f, 300.f), sf::Vector2f(0.f, 0.f), 50.f);
+    Particle p(sf::Vector2f(0.f, 0.f), sf::Vector2f(0.f, 0.f), 50.f);
+
+    // Reference rectangle
+    sf::RectangleShape rectangle(sf::Vector2f(100, 100));
+    rectangle.setFillColor(sf::Color(125, 125, 125));
 
     while (window.isOpen())
     {
@@ -51,6 +60,7 @@ int main()
         window.clear(sf::Color::Black);
 
         // draw frame
+        window.draw(rectangle);
         window.draw(p.shape);
 
         // end the current frame

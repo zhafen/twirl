@@ -19,11 +19,9 @@ class Particle {
     }
     sf::Vector2f r;
     sf::Vector2f v;
+    sf::CircleShape shape;
 
     sf::CircleShape getShape() const { return shape; }
-
-   private:
-    sf::CircleShape shape;
 };
 
 int main() {
@@ -53,10 +51,22 @@ int main() {
     rectangle.setPosition(0.f, 0.f);
     rectangle.setFillColor(sf::Color(128, 128, 128));
 
+    // set the mouse position locally (relative to a window)
+    sf::Mouse::setPosition(sf::Vector2i(0.f, 0.f), window);
+
     while (window.isOpen()) {
         for (auto event = sf::Event(); window.pollEvent(event);) {
             if (event.type == sf::Event::Closed) {
                 window.close();
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
+                // get the current mouse position in the window
+                sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+                // convert it to world coordinates
+                p2.r = window.mapPixelToCoords(pixelPos);
+                p2.shape.setPosition(p2.r);
             }
         }
 
@@ -64,7 +74,7 @@ int main() {
         sf::Vector2f r = p2.r - p.r;
         float r2 = pow(r.x, 2.f) + pow(r.y, 2.f);
         sf::Vector2f a =
-            5.f * g * (r / pow(r2 + pow(0.1f * d, 2.f), 1.5f)) * d * d;
+            5.f * g * (r / pow(r2 + pow(d, 2.f), 1.5f)) * d * d;
 
         // clear the window with black color
         window.clear(sf::Color::Black);

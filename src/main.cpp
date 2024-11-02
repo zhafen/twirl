@@ -4,34 +4,31 @@
 #include <random>
 #include <vector>
 
-class Particle {
-   public:
-    Particle(sf::Vector2f r, sf::Vector2f v, float R) : r(r), v(v), shape(R) {
-        // Set the origin as the center of the particle
-        shape.setOrigin(R, R);
-        shape.setPosition(r);
-    }
+class Particle : public sf::CircleShape {
+    public:
+     Particle(sf::Vector2f r, sf::Vector2f v, float R) : sf::CircleShape(R), r(r), v(v) {
+          // Set the origin as the center of the particle
+          setOrigin(R, R);
+          setPosition(r);
+     }
 
-    void update(sf::Vector2f a, float dt) {
-        // Update using leapfrog algorithm
-        v += a * dt / 2.f;
-        r += v * dt;
-        v += a * dt / 2.f;
-        shape.setPosition(r);
-    }
+     void update(sf::Vector2f a, float dt) {
+          // Update using leapfrog algorithm
+          v += a * dt / 2.f;
+          r += v * dt;
+          v += a * dt / 2.f;
+          setPosition(r);
+     }
 
-    void setPosition(sf::Vector2f pos) {
-        r = pos;
-        shape.setPosition(pos);
-    }
-    void move(sf::Vector2f dr) { setPosition(r + dr); }
+     void setPosition(sf::Vector2f pos) {
+          r = pos;
+          sf::CircleShape::setPosition(pos);
+     }
+     void move(sf::Vector2f dr) { setPosition(r + dr); }
 
-    sf::Vector2f r;
-    sf::Vector2f v;
-    sf::CircleShape shape;
-
-    sf::CircleShape getShape() const { return shape; }
-};
+     sf::Vector2f r;
+     sf::Vector2f v;
+};;
 
 int main() {
     // Window settings
@@ -56,9 +53,9 @@ int main() {
     Particle p(sf::Vector2f(0.f, 20.f * d), sf::Vector2f(0.f, -s), d);
 
     Particle target(p.r, p.v, d / 2.f);
-    target.shape.setFillColor(sf::Color::Black);
-    target.shape.setOutlineThickness(d / 10.f);
-    target.shape.setOutlineColor(sf::Color::White);
+    target.setFillColor(sf::Color::Black);
+    target.setOutlineThickness(d / 10.f);
+    target.setOutlineColor(sf::Color::White);
     sf::Vector2f r_pf(sf::Vector2f(0.f, 0.f));
 
     // Make enemies
@@ -78,10 +75,18 @@ int main() {
     if (!font.loadFromFile("./Arial.ttf")) {
         std::cout << "No font found." << std::endl;
     }
-    sf::Text text;
-    text.setFont(font); // font is a sf::Font
-    text.setString("Collision!");
-    text.setCharacterSize(24); 
+    sf::Text announcement;
+    announcement.setFont(font); // font is a sf::Font
+    announcement.setString("Collision!");
+    announcement.setCharacterSize(24);
+
+    // Health bar
+    float health_bar_size = window_size.x / 2.f;
+    sf::RectangleShape health_bar(sf::Vector2f(health_bar_size, d));
+    health_bar.setFillColor(sf::Color::White);
+    health_bar.setOutlineThickness(d / 10.f);
+    health_bar.setOutlineColor(sf::Color::Black);
+    health_bar.setOrigin(health_bar_size / 2.f, 0.f);
 
     // Make some circles used for orientation
     std::vector<sf::CircleShape> bkgrd_circles(100);
@@ -105,7 +110,7 @@ int main() {
                 sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
                 // convert it to world coordinates
                 target.r = window.mapPixelToCoords(pixelPos);
-                target.shape.setPosition(target.r);
+                target.setPosition(target.r);
             }
         }
 
@@ -123,6 +128,10 @@ int main() {
         }
         target.setPosition(p.r + r_pf);
 
+        // Update health bar position to always be centered in view
+        sf::Vector2f healthBarPosition(window_size.x / 2.f, d);
+        health_bar.setPosition(window.mapPixelToCoords(sf::Vector2i(healthBarPosition)));
+
         // Gravitational force
         sf::Vector2f r = target.r - p.r;
         float r2 = pow(r.x, 2.f) + pow(r.y, 2.f);
@@ -131,11 +140,12 @@ int main() {
         // Collision detection
         bool any_collision = false;
         for (int i = 0; i < enemy_circles.size(); ++i) {
-            bool is_colliding = p.shape.getGlobalBounds().intersects(
+            bool is_colliding = p.getGlobalBounds().intersects(
                 enemy_circles[i].getGlobalBounds());
             any_collision = any_collision | is_colliding;
         }
-        text.setPosition(window.mapPixelToCoords(sf::Vector2i(window_size.x / 2, 0)));
+        announcement.setPosition(window.mapPixelToCoords(sf::Vector2i(window_size.x / 2, 0)));
+
 
         // clear the window with black color
         window.clear(sf::Color::Black);
@@ -148,11 +158,12 @@ int main() {
         for (int i = 0; i < enemy_circles.size(); ++i) {
             window.draw(enemy_circles[i]);
         }
-        window.draw(p.getShape());
-        window.draw(target.getShape());
+        window.draw(p);
+        window.draw(target);
         if (any_collision) {
-            window.draw(text);
+            window.draw(announcement);
         }
+        window.draw(health_bar);
 
         // Set the view
         view.setCenter(p.r);

@@ -61,13 +61,14 @@ int main() {
     sf::Vector2f r_pf(p.r);
 
     // Make some circles used for orientation
-    std::vector<sf::CircleShape> circles;
-    for (int i = 0; i < 10; ++i) {
-        sf::CircleShape cir_i(d * i);
+    std::vector<sf::CircleShape> circles(100);
+    for (int i = 0; i < circles.size(); ++i) {
+        sf::CircleShape cir_i(10.f * d * i);
         cir_i.setFillColor(sf::Color(127, 127, 127));
         cir_i.setOutlineThickness(d / 5.f);
         cir_i.setOutlineColor(sf::Color(63, 63, 63));
-        circles.push_back(cir_i);
+        cir_i.setOrigin(cir_i.getRadius(), cir_i.getRadius());
+        circles[circles.size() - i - 1] = cir_i;
     }
 
     sf::RectangleShape rectangle(sf::Vector2f(10.f * d, 10.f * d));
@@ -119,7 +120,7 @@ int main() {
         for (int i = 0; i < circles.size(); ++i) {
             window.draw(circles[i]);
         }
-        window.draw(rectangle);
+        // window.draw(rectangle);
         window.draw(p.getShape());
         window.draw(target.getShape());
 

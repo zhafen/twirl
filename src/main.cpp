@@ -3,32 +3,7 @@
 #include <iostream>
 #include <random>
 #include <vector>
-
-class Particle : public sf::CircleShape {
-    public:
-     Particle(sf::Vector2f r, sf::Vector2f v, float R) : sf::CircleShape(R), r(r), v(v) {
-          // Set the origin as the center of the particle
-          setOrigin(R, R);
-          setPosition(r);
-     }
-
-     void update(sf::Vector2f a, float dt) {
-          // Update using leapfrog algorithm
-          v += a * dt / 2.f;
-          r += v * dt;
-          v += a * dt / 2.f;
-          setPosition(r);
-     }
-
-     void setPosition(sf::Vector2f pos) {
-          r = pos;
-          sf::CircleShape::setPosition(pos);
-     }
-     void move(sf::Vector2f dr) { setPosition(r + dr); }
-
-     sf::Vector2f r;
-     sf::Vector2f v;
-};;
+#include "particle.h"
 
 int main() {
     // Window settings

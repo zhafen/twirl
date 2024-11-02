@@ -3,17 +3,16 @@
 
 #include <SFML/Graphics.hpp>
 
-class Particle2 : public sf::CircleShape {
+class Particle : public sf::CircleShape {
 
 public:
+    Particle(sf::Vector2f r, sf::Vector2f v, float R);
 
-    Particle2(sf::Vector2f r, sf::Vector2f v, float R);
+    void setPosition(sf::Vector2f pos);
+    void update(sf::Vector2f a, float dt);
 
     sf::Vector2f r;
     sf::Vector2f v;
-
-    // void update(sf::Vector2f a, float dt);
-    // void setPosition(sf::Vector2f pos);
 };
 
 #endif

@@ -63,7 +63,7 @@ int main() {
 
     // Make enemies
     std::random_device rd;
-    std::mt19937 gen(rd()); // Standard random number generator
+    std::mt19937 gen(rd());  // Standard random number generator
     std::uniform_real_distribution<float> dist(-10.f * d, 10.f * d);
     std::vector<sf::CircleShape> enemy_circles(10);
     for (int i = 0; i < enemy_circles.size(); ++i) {
@@ -72,6 +72,16 @@ int main() {
         cir_i.setPosition(dist(gen), dist(gen));
         enemy_circles[i] = cir_i;
     }
+
+    // Announcement text
+    sf::Font font;
+    if (!font.loadFromFile("./Arial.ttf")) {
+        std::cout << "No font found." << std::endl;
+    }
+    sf::Text text;
+    text.setFont(font); // font is a sf::Font
+    text.setString("Hello world");
+    text.setCharacterSize(24); 
 
     // Make some circles used for orientation
     std::vector<sf::CircleShape> bkgrd_circles(100);
@@ -118,6 +128,14 @@ int main() {
         float r2 = pow(r.x, 2.f) + pow(r.y, 2.f);
         sf::Vector2f a = 5.f * g * (r / pow(r2 + pow(d, 2.f), 1.5f)) * d * d;
 
+        // Collision detection
+        bool any_collision = false;
+        for (int i = 0; i < enemy_circles.size(); ++i) {
+            bool is_colliding = p.shape.getGlobalBounds().intersects(
+                enemy_circles[i].getGlobalBounds());
+            any_collision = any_collision | is_colliding;
+        }
+
         // clear the window with black color
         window.clear(sf::Color::Black);
         p.update(a, dt);
@@ -131,6 +149,9 @@ int main() {
         }
         window.draw(p.getShape());
         window.draw(target.getShape());
+        if (any_collision) {
+            window.draw(text);
+        }
 
         // Set the view
         view.setCenter(p.r);

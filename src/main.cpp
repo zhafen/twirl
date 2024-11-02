@@ -3,7 +3,7 @@
 #include <iostream>
 #include <random>
 #include <vector>
-#include "particle.h"
+#include "game_objects.h"
 
 int main() {
     // Window settings

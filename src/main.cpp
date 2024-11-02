@@ -25,7 +25,7 @@ int main() {
     // Create and activate a view
     sf::View view(sf::Vector2f(0, 0), sf::Vector2f(window_size.x, window_size.y));
 
-    Particle p(sf::Vector2f(0.f, 20.f * d), sf::Vector2f(0.f, -s), d);
+    Player p(sf::Vector2f(0.f, 20.f * d), sf::Vector2f(0.f, -s), d);
 
     Particle target(p.r, p.v, d / 2.f);
     target.setFillColor(sf::Color::Black);
@@ -109,8 +109,8 @@ int main() {
 
         // Gravitational force
         sf::Vector2f r = target.r - p.r;
-        float r2 = powf(r.x, 2.f) + powf(r.y, 2.f);
-        sf::Vector2f a = 5.f * g * (r / powf(r2 + powf(d, 2.f), 1.5f)) * d * d;
+        float r2 = pow(r.x, 2.f) + pow(r.y, 2.f);
+        sf::Vector2f a = 5.f * g * (r / pow(r2 + pow(d, 2.f), 1.5f)) * d * d;
 
         // Collision detection
         bool any_collision = false;

@@ -13,6 +13,12 @@ public:
 
     sf::Vector2f r;
     sf::Vector2f v;
+    float health = 1.f;
+};
+
+class Player : public Particle {
+public:
+    Player(sf::Vector2f r, sf::Vector2f v, float R);
 };
 
 #endif

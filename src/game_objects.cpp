@@ -19,3 +19,6 @@ void Particle::applyPhysics(sf::Vector2f a, float dt) {
     v += a * dt / 2.f;
     setPosition(r);
 }
+
+Player::Player(sf::Vector2f r, sf::Vector2f v, float R) : Particle(r, v, R) {
+}

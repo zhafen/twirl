@@ -80,7 +80,7 @@ int main() {
     }
     sf::Text text;
     text.setFont(font); // font is a sf::Font
-    text.setString("Hello world");
+    text.setString("Collision!");
     text.setCharacterSize(24); 
 
     // Make some circles used for orientation
@@ -135,6 +135,7 @@ int main() {
                 enemy_circles[i].getGlobalBounds());
             any_collision = any_collision | is_colliding;
         }
+        text.setPosition(window.mapPixelToCoords(sf::Vector2i(window_size.x / 2, 0)));
 
         // clear the window with black color
         window.clear(sf::Color::Black);

@@ -124,7 +124,7 @@ int main() {
 
         // clear the window with black color
         window.clear(sf::Color::Black);
-        p.update(a, dt);
+        p.applyPhysics(a, dt);
 
         // draw frame
         for (int i = 0; i < bkgrd_circles.size(); ++i) {

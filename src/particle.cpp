@@ -12,7 +12,7 @@ void Particle::setPosition(sf::Vector2f pos) {
     sf::CircleShape::setPosition(pos);
 }
 
-void Particle::update(sf::Vector2f a, float dt) {
+void Particle::applyPhysics(sf::Vector2f a, float dt) {
     // Update using leapfrog algorithm
     v += a * dt / 2.f;
     r += v * dt;

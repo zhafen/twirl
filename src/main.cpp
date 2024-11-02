@@ -109,8 +109,8 @@ int main() {
 
         // Gravitational force
         sf::Vector2f r = target.r - p.r;
-        float r2 = pow(r.x, 2.f) + pow(r.y, 2.f);
-        sf::Vector2f a = 5.f * g * (r / pow(r2 + pow(d, 2.f), 1.5f)) * d * d;
+        float r2 = powf(r.x, 2.f) + powf(r.y, 2.f);
+        sf::Vector2f a = 5.f * g * (r / powf(r2 + powf(d, 2.f), 1.5f)) * d * d;
 
         // Collision detection
         bool any_collision = false;

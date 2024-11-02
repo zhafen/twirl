@@ -1,5 +1,5 @@
-#ifndef PARTICLE_H
-#define PARTICLE_H
+#ifndef GAMEOBJECTS_H
+#define GAMEOBJECTS_H
 
 #include <SFML/Graphics.hpp>
 

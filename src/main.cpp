@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <iostream>
+#include <vector>
 
 class Particle {
    public:
@@ -17,6 +18,13 @@ class Particle {
         v += a * dt / 2.f;
         shape.setPosition(r);
     }
+
+    void setPosition(sf::Vector2f pos) {
+        r = pos;
+        shape.setPosition(pos);
+    }
+    void move(sf::Vector2f dr) { setPosition(r + dr); }
+
     sf::Vector2f r;
     sf::Vector2f v;
     sf::CircleShape shape;
@@ -39,13 +47,28 @@ int main() {
     float t(0.1f);
     float s(d / t);
     float g(s / t);
+    float dx(s * dt);
 
     // Create and activate a view
     sf::View view(sf::Vector2f(0, 0), sf::Vector2f(window_size.x, window_size.y));
 
     Particle p(sf::Vector2f(0.f, 20.f * d), sf::Vector2f(0.f, -s), d);
 
-    Particle p2(sf::Vector2f(5.f * d, 5.f * d), sf::Vector2f(0.f, 0.f), d);
+    Particle target(p.r, p.v, d / 2.f);
+    target.shape.setFillColor(sf::Color::Black);
+    target.shape.setOutlineThickness(d / 10.f);
+    target.shape.setOutlineColor(sf::Color::White);
+    sf::Vector2f r_pf(p.r);
+
+    // Make some circles used for orientation
+    std::vector<sf::CircleShape> circles;
+    for (int i = 0; i < 10; ++i) {
+        sf::CircleShape cir_i(d * i);
+        cir_i.setFillColor(sf::Color(127, 127, 127));
+        cir_i.setOutlineThickness(d / 5.f);
+        cir_i.setOutlineColor(sf::Color(63, 63, 63));
+        circles.push_back(cir_i);
+    }
 
     sf::RectangleShape rectangle(sf::Vector2f(10.f * d, 10.f * d));
     rectangle.setPosition(0.f, 0.f);
@@ -60,30 +83,45 @@ int main() {
                 window.close();
             }
 
-            if (event.type == sf::Event::MouseButtonPressed)
-            {
+            if (event.type == sf::Event::MouseButtonPressed) {
                 // get the current mouse position in the window
                 sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
                 // convert it to world coordinates
-                p2.r = window.mapPixelToCoords(pixelPos);
-                p2.shape.setPosition(p2.r);
+                target.r = window.mapPixelToCoords(pixelPos);
+                target.shape.setPosition(target.r);
             }
         }
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right)) {
+            r_pf += sf::Vector2f(dx, 0.f);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left)) {
+            r_pf += sf::Vector2f(-dx, 0.f);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up)) {
+            r_pf += sf::Vector2f(0.f, -dx);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Down)) {
+            r_pf += sf::Vector2f(0.f, dx);
+        }
+        target.setPosition(p.r + r_pf);
+
         // Gravitational force
-        sf::Vector2f r = p2.r - p.r;
+        sf::Vector2f r = target.r - p.r;
         float r2 = pow(r.x, 2.f) + pow(r.y, 2.f);
-        sf::Vector2f a =
-            5.f * g * (r / pow(r2 + pow(d, 2.f), 1.5f)) * d * d;
+        sf::Vector2f a = 5.f * g * (r / pow(r2 + pow(d, 2.f), 1.5f)) * d * d;
 
         // clear the window with black color
         window.clear(sf::Color::Black);
         p.update(a, dt);
 
         // draw frame
+        for (int i = 0; i < circles.size(); ++i) {
+            window.draw(circles[i]);
+        }
         window.draw(rectangle);
         window.draw(p.getShape());
-        window.draw(p2.getShape());
+        window.draw(target.getShape());
 
         // Set the view
         view.setCenter(p.r);

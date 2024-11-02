@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <iostream>
+#include <random>
 #include <vector>
 
 class Particle {
@@ -58,25 +59,30 @@ int main() {
     target.shape.setFillColor(sf::Color::Black);
     target.shape.setOutlineThickness(d / 10.f);
     target.shape.setOutlineColor(sf::Color::White);
-    sf::Vector2f r_pf(p.r);
+    sf::Vector2f r_pf(sf::Vector2f(0.f, 0.f));
+
+    // Make enemies
+    std::random_device rd;
+    std::mt19937 gen(rd()); // Standard random number generator
+    std::uniform_real_distribution<float> dist(-10.f * d, 10.f * d);
+    std::vector<sf::CircleShape> enemy_circles(10);
+    for (int i = 0; i < enemy_circles.size(); ++i) {
+        sf::CircleShape cir_i(d);
+        cir_i.setFillColor(sf::Color::Red);
+        cir_i.setPosition(dist(gen), dist(gen));
+        enemy_circles[i] = cir_i;
+    }
 
     // Make some circles used for orientation
-    std::vector<sf::CircleShape> circles(100);
-    for (int i = 0; i < circles.size(); ++i) {
+    std::vector<sf::CircleShape> bkgrd_circles(100);
+    for (int i = 0; i < bkgrd_circles.size(); ++i) {
         sf::CircleShape cir_i(10.f * d * i);
         cir_i.setFillColor(sf::Color(127, 127, 127));
         cir_i.setOutlineThickness(d / 5.f);
         cir_i.setOutlineColor(sf::Color(63, 63, 63));
         cir_i.setOrigin(cir_i.getRadius(), cir_i.getRadius());
-        circles[circles.size() - i - 1] = cir_i;
+        bkgrd_circles[bkgrd_circles.size() - i - 1] = cir_i;
     }
-
-    sf::RectangleShape rectangle(sf::Vector2f(10.f * d, 10.f * d));
-    rectangle.setPosition(0.f, 0.f);
-    rectangle.setFillColor(sf::Color(128, 128, 128));
-
-    // set the mouse position locally (relative to a window)
-    sf::Mouse::setPosition(sf::Vector2i(0.f, 0.f), window);
 
     while (window.isOpen()) {
         for (auto event = sf::Event(); window.pollEvent(event);) {
@@ -117,10 +123,12 @@ int main() {
         p.update(a, dt);
 
         // draw frame
-        for (int i = 0; i < circles.size(); ++i) {
-            window.draw(circles[i]);
+        for (int i = 0; i < bkgrd_circles.size(); ++i) {
+            window.draw(bkgrd_circles[i]);
         }
-        // window.draw(rectangle);
+        for (int i = 0; i < enemy_circles.size(); ++i) {
+            window.draw(enemy_circles[i]);
+        }
         window.draw(p.getShape());
         window.draw(target.getShape());
 

@@ -1,33 +1,37 @@
 #include <SFML/Graphics.hpp>
+
+#include "game_objects.h"
+
 class Game {
-   public:
-    Game();
+    public:
+     Game();
+     void run();
+     void resetGameState();
 
-    void run();
+    private:
+     // Configuration
+     Config cfg;
 
-    void resetGameState();
+     // Window and view
+     sf::RenderWindow window;
+     sf::View view;
 
-   private:
-    // Entities
-    int entityCounter = 0;
-    Player p;
-    std::vector<Particle> enemies;
-    sf::Text announcement;
-    std::vector<sf::CircleShape> bkgrd_circles;
+     // Entities
+     int entityCounter = 0;
+     Player p;
+     std::vector<Particle> enemies;
+     std::vector<sf::CircleShape> bkgrd_circles;
 
-    Config cfg;
-    sf::RenderWindow window;
-    sf::View view;
+     // UI Elements
+     sf::Text announcement;
 
-    // RenderSystem renderSystem;
+     // Systems
+     // RenderSystem renderSystem;
 
-    int createEntity();
-
-    void initializeState();
-
-    void handleEvents();
-
-    void update();
-
-    void render();
-};
+     // Methods
+     int createEntity();
+     void initializeState();
+     void handleEvents();
+     void update();
+     void render();
+};;

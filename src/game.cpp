@@ -5,13 +5,15 @@
 #include <random>
 #include <unordered_map>
 #include <vector>
+#include <filesystem>
 
 #include "game_objects.h"
 
 Game::Game()
     : cfg(),
       window(sf::VideoMode(cfg.window_size.x, cfg.window_size.y), "twirl"),
-      view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size)) {
+      view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size)),
+      p(sf::Vector2f(0.f, 20.f * cfg.L), sf::Vector2f(0.f, -cfg.V), cfg.L, cfg) {
     window.setFramerateLimit(cfg.fps);
     initializeState();
 }
@@ -35,9 +37,6 @@ void Game::resetGameState() {
 int Game::createEntity() { return entityCounter++; }
 
 void Game::initializeState() {
-    // Player
-    p = Player(sf::Vector2f(0.f, 20.f * cfg.L), sf::Vector2f(0.f, -cfg.V), cfg.L, cfg);
-
     // Make enemies
     std::random_device rd;
     std::mt19937 gen(rd());  // Standard random number generator
@@ -48,26 +47,26 @@ void Game::initializeState() {
         enemies.emplace_back(sf::Vector2f(dist(gen), dist(gen)), sf::Vector2f(0.f, 0.f),
                              cfg.L, cfg);
         enemies[i].setFillColor(sf::Color::Red);
+    }
 
-        // Announcement text
-        sf::Font font;
-        if (!font.loadFromFile("./Arial.ttf")) {
-            std::cout << "No font found." << std::endl;
-        }
-        announcement.setFont(font);  // font is a sf::Font
-        announcement.setString("Collision!");
-        announcement.setCharacterSize(24);
+    // Announcement text
+    sf::Font font;
+    if (!font.loadFromFile("../../Arial.ttf")) {
+        std::cout << "No font found." << std::endl;
+    }
+    announcement.setFont(font);  // font is a sf::Font
+    announcement.setString("Collision!");
+    announcement.setCharacterSize(24);
 
-        // Make some circles used for orientation
-        int n_bkgrd = 100;
-        for (int i = 0; i < n_bkgrd; ++i) {
-            sf::CircleShape cir_i(10.f * cfg.L * (n_bkgrd - i));
-            cir_i.setFillColor(sf::Color(127, 127, 127));
-            cir_i.setOutlineThickness(cfg.L / 5.f);
-            cir_i.setOutlineColor(sf::Color(63, 63, 63));
-            cir_i.setOrigin(cir_i.getRadius(), cir_i.getRadius());
-            bkgrd_circles.push_back(cir_i);
-        }
+    // Make some circles used for orientation
+    int n_bkgrd = 100;
+    for (int i = 0; i < n_bkgrd; ++i) {
+        sf::CircleShape cir_i(10.f * cfg.L * (n_bkgrd - i));
+        cir_i.setFillColor(sf::Color(127, 127, 127));
+        cir_i.setOutlineThickness(cfg.L / 5.f);
+        cir_i.setOutlineColor(sf::Color(63, 63, 63));
+        cir_i.setOrigin(cir_i.getRadius(), cir_i.getRadius());
+        bkgrd_circles.push_back(cir_i);
     }
 }
 

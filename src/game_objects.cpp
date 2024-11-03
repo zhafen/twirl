@@ -51,7 +51,7 @@ void ValueBar::draw(sf::RenderWindow& window, sf::View& view) {
 
     // Resize
     float length = value / max_value * max_length;
-    bar.setSize(sf::Vector2f(length * value, cfg.L));
+    bar.setSize(sf::Vector2f(length, cfg.L));
     sf::Vector2i pixel_pos(cfg.window_size.x / 2.f - length / 2.f, cfg.L);
     bar.setPosition(window.mapPixelToCoords(pixel_pos));
 

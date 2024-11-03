@@ -56,46 +56,21 @@ int main() {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-
-            // if (event.type == sf::Event::MouseButtonPressed) {
-            //     // get the current mouse position in the window
-            //     sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
-            //     // convert it to world coordinates
-            //     target.r = window.mapPixelToCoords(pixelPos);
-            //     target.setPosition(target.r);
-            // }
         }
-
-        // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right)) {
-        //     r_pf += sf::Vector2f(cfg.dx, 0.f);
-        // }
-        // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left)) {
-        //     r_pf += sf::Vector2f(-cfg.dx, 0.f);
-        // }
-        // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up)) {
-        //     r_pf += sf::Vector2f(0.f, -cfg.dx);
-        // }
-        // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Down)) {
-        //     r_pf += sf::Vector2f(0.f, cfg.dx);
-        // }
-
-        // // Gravitational force
-        // sf::Vector2f r = target.r - p.r;
-        // float r2 = powf(r.x, 2.f) + powf(r.y, 2.f);
-        // sf::Vector2f a =
-        //     5.f * cfg.A * (r / powf(r2 + powf(cfg.L, 2.f), 1.5f)) * cfg.L * cfg.L;
 
         // Collision detection
         bool any_collision = false;
         for (int i = 0; i < enemy_circles.size(); ++i) {
             bool is_colliding =
-                p.body.getGlobalBounds().intersects(enemy_circles[i].getGlobalBounds());
+                p.body_particle.getGlobalBounds().intersects(enemy_circles[i].getGlobalBounds());
             any_collision = any_collision | is_colliding;
         }
 
+        // Update game state
+        p.update();
+
         // clear the window with black color
         window.clear(sf::Color::Black);
-        // p.body.updateState(a, cfg.dt);
 
         // draw frame
         for (int i = 0; i < bkgrd_circles.size(); ++i) {
@@ -110,7 +85,7 @@ int main() {
         p.draw(window);
 
         // Set the view
-        view.setCenter(p.body.r);
+        view.setCenter(p.body_particle.r);
         window.setView(view);
 
         // end the current frame

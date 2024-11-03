@@ -47,13 +47,43 @@ ValueBar::ValueBar(float max_value, float max_length, const Config& cfg)
 }
 
 Player::Player(sf::Vector2f r, sf::Vector2f v, float R, const Config& cfg)
-    : body(r, v, R, cfg),
+    : cfg(cfg),
+      body_particle(r, v, R, cfg),
       target_particle(r, v, R / 2, cfg),
-      health_bar(1.f, cfg.window_size.x / 2.f, cfg) {
+      health_bar(1.f, cfg.window_size.x / 2.f, cfg),
+      r_bt(sf::Vector2f(0.f, 0.f)) {
         target_particle.setFillColor(sf::Color::Black);
+        target_particle.setOutlineThickness(cfg.L / 10.f);
         target_particle.setOutlineColor(sf::Color::White);
       }
 
+void Player::update() {
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right)) {
+        r_bt += sf::Vector2f(cfg.dx, 0.f);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left)) {
+        r_bt += sf::Vector2f(-cfg.dx, 0.f);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up)) {
+        r_bt += sf::Vector2f(0.f, -cfg.dx);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Down)) {
+        r_bt += sf::Vector2f(0.f, cfg.dx);
+    }
+
+    // Directional force
+    float r2 = powf(r_bt.x, 2.f) + powf(r_bt.y, 2.f);
+    sf::Vector2f a =
+        5.f * cfg.A * (r_bt / powf(r2 + powf(cfg.L, 2.f), 1.5f)) * cfg.L * cfg.L;
+
+    // Update the player's body
+    body_particle.updateState(a, cfg.dt);
+    target_particle.setPosition(body_particle.r + r_bt);
+}
+
 void Player::draw(sf::RenderWindow& window) {
-    window.draw(body);
+    window.draw(body_particle);
+    window.draw(target_particle);
+    window.draw(health_bar);
 }

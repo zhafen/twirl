@@ -43,11 +43,16 @@ private:
 class Player {
 public:
     Player(sf::Vector2f r, sf::Vector2f v, float R, const Config& cfg);
+
+    void update();
     void draw(sf::RenderWindow& window);
+
+    Particle body_particle;
 
 private:
 
-    Particle body;
+    Config cfg;
+    sf::Vector2f r_bt;
     Particle target_particle;
     ValueBar health_bar;
 };

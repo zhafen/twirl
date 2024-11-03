@@ -3,6 +3,18 @@
 
 #include <SFML/Graphics.hpp>
 
+struct Config {
+    Config();
+    sf::Vector2u window_size;
+    float L;
+    float T;
+    float V;
+    float A;
+    float fps;
+    float dx;
+    float dt;
+};
+
 class Particle : public sf::CircleShape {
 
 public:

@@ -16,8 +16,8 @@ Config::Config()
       dt(1.f / fps),
       dx(V * dt) {}
 
-Particle::Particle(sf::Vector2f r, sf::Vector2f v, float R)
-    : sf::CircleShape(R), r(r), v(v) {
+Particle::Particle(sf::Vector2f r, sf::Vector2f v, float R, const Config& cfg)
+    : sf::CircleShape(R), r(r), v(v), cfg(cfg) {
     // Set the origin as the center of the particle
     setOrigin(R, R);
     setPosition(r);
@@ -28,7 +28,7 @@ void Particle::setPosition(sf::Vector2f position) {
     sf::CircleShape::setPosition(position);
 }
 
-void Particle::applyPhysics(sf::Vector2f a, float dt) {
+void Particle::updateState(sf::Vector2f a, float dt) {
     // Update using leapfrog algorithm
     v += a * dt / 2.f;
     r += v * dt;
@@ -36,4 +36,20 @@ void Particle::applyPhysics(sf::Vector2f a, float dt) {
     setPosition(r);
 }
 
-Player::Player(sf::Vector2f r, sf::Vector2f v, float R) : Particle(r, v, R) {}
+ValueBar::ValueBar(float max_value, float max_length, const Config& cfg)
+    : sf::RectangleShape(sf::Vector2f(max_length * max_value, cfg.L)),
+      max_value(max_value),
+      max_length(max_length),
+      cfg(cfg) {
+    setFillColor(sf::Color::White);
+    setOutlineThickness(cfg.L / 10.f);
+    setOutlineColor(sf::Color::Black);
+}
+
+Player::Player(sf::Vector2f r, sf::Vector2f v, float R, const Config& cfg)
+    : Particle(r, v, R, cfg), health_bar(1.f, cfg.window_size.x / 2.f, cfg) {
+}
+
+// void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+//     target.draw(*this);
+// }

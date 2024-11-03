@@ -19,19 +19,33 @@ struct Config {
 class Particle : public sf::CircleShape {
 
 public:
-    Particle(sf::Vector2f r, sf::Vector2f v, float R);
+    Particle(sf::Vector2f r, sf::Vector2f v, float R, const Config& cfg);
 
     void setPosition(sf::Vector2f position);
-    void applyPhysics(sf::Vector2f a, float dt);
+    void updateState(sf::Vector2f a, float dt);
 
+    Config cfg;
     sf::Vector2f r;
     sf::Vector2f v;
     float health = 1.f;
 };
 
+class ValueBar : public sf::RectangleShape {
+public:
+    ValueBar(float max_value, float max_size, const Config& cfg);
+
+private:
+    Config cfg;
+    float max_value;
+    float max_length;
+};
+
 class Player : public Particle {
 public:
-    Player(sf::Vector2f r, sf::Vector2f v, float R);
+    Player(sf::Vector2f r, sf::Vector2f v, float R, const Config& cfg);
+private:
+    ValueBar health_bar;
+    // virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
 #endif

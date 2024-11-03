@@ -16,9 +16,9 @@ int main() {
     // Create and activate a view
     sf::View view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size));
 
-    Player p(sf::Vector2f(0.f, 20.f * cfg.L), sf::Vector2f(0.f, -cfg.V), cfg.L);
+    Player p(sf::Vector2f(0.f, 20.f * cfg.L), sf::Vector2f(0.f, -cfg.V), cfg.L, cfg);
 
-    Particle target(p.r, p.v, cfg.L / 2.f);
+    Particle target(p.r, p.v, cfg.L / 2.f, cfg);
     target.setFillColor(sf::Color::Black);
     target.setOutlineThickness(cfg.L / 10.f);
     target.setOutlineColor(sf::Color::White);
@@ -45,14 +45,6 @@ int main() {
     announcement.setFont(font);  // font is a sf::Font
     announcement.setString("Collision!");
     announcement.setCharacterSize(24);
-
-    // Health bar
-    float max_health_bar_size = cfg.window_size.x / 2.f;
-    sf::RectangleShape health_bar(sf::Vector2f(max_health_bar_size, cfg.L));
-    health_bar.setFillColor(sf::Color::White);
-    health_bar.setOutlineThickness(cfg.L / 10.f);
-    health_bar.setOutlineColor(sf::Color::Black);
-    health_bar.setOrigin(max_health_bar_size / 2.f, 0.f);
 
     // Make some circles used for orientation
     std::vector<sf::CircleShape> bkgrd_circles(100);
@@ -94,11 +86,6 @@ int main() {
         }
         target.setPosition(p.r + r_pf);
 
-        // Update health bar position to always be centered in view
-        sf::Vector2f healthBarPosition(cfg.window_size.x / 2.f, cfg.L);
-        health_bar.setPosition(
-            window.mapPixelToCoords(sf::Vector2i(healthBarPosition)));
-
         // Gravitational force
         sf::Vector2f r = target.r - p.r;
         float r2 = powf(r.x, 2.f) + powf(r.y, 2.f);
@@ -112,13 +99,10 @@ int main() {
                 p.getGlobalBounds().intersects(enemy_circles[i].getGlobalBounds());
             any_collision = any_collision | is_colliding;
         }
-        if (any_collision) {
-            health_bar.setSize(health_bar.getSize() - sf::Vector2f(max_health_bar_size * cfg.health_rate * cfg.dt, 0.f));
-        }
 
         // clear the window with black color
         window.clear(sf::Color::Black);
-        p.applyPhysics(a, cfg.dt);
+        p.updateState(a, cfg.dt);
 
         // draw frame
         for (int i = 0; i < bkgrd_circles.size(); ++i) {
@@ -132,7 +116,7 @@ int main() {
         if (any_collision) {
             window.draw(announcement);
         }
-        window.draw(health_bar);
+        window.draw(p);
 
         // Set the view
         view.setCenter(p.r);

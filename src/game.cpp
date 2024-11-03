@@ -1,116 +1,120 @@
 #include "game.h"
 
 #include <SFML/Graphics.hpp>
-#include <vector>
+#include <iostream>
+#include <random>
 #include <unordered_map>
+#include <vector>
 
-// Position and Render components as before
-struct PositionComponent {
-    sf::Vector2f position;
-};
+#include "game_objects.h"
 
-struct RenderComponent {
-    sf::RectangleShape shape;
-};
+Game::Game()
+    : cfg(),
+      window(sf::VideoMode(cfg.window_size.x, cfg.window_size.y), "twirl"),
+      view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size)) {
+    window.setFramerateLimit(cfg.fps);
+    initializeState();
+}
 
-// System base class
-class System {
-public:
-    virtual void update() = 0;
-    virtual void render(sf::RenderWindow& window) = 0;
-    virtual void reset() = 0;  // Added reset method
-};
-
-// Render system to manage Position and Render components
-class RenderSystem : public System {
-public:
-    void addEntity(int entityID, const RenderComponent& renderComp, const PositionComponent& posComp) {
-        renderComponents[entityID] = renderComp;
-        positionComponents[entityID] = posComp;
+void Game::run() {
+    while (window.isOpen()) {
+        handleEvents();
+        update();
+        render();
     }
+}
 
-    void update() override {
-        // Logic to update render components if needed
-    }
+void Game::resetGameState() {
+    // Reset all systems
+    // renderSystem.reset();
 
-    void render(sf::RenderWindow& window) override {
-        for (auto& [id, renderComp] : renderComponents) {
-            renderComp.shape.setPosition(positionComponents[id].position);
-            window.draw(renderComp.shape);
+    // Reinitialize the game state
+    initializeState();
+}
+
+int Game::createEntity() { return entityCounter++; }
+
+void Game::initializeState() {
+    // Player
+    p = Player(sf::Vector2f(0.f, 20.f * cfg.L), sf::Vector2f(0.f, -cfg.V), cfg.L, cfg);
+
+    // Make enemies
+    std::random_device rd;
+    std::mt19937 gen(rd());  // Standard random number generator
+    std::uniform_real_distribution<float> dist(-10.f * cfg.L, 10.f * cfg.L);
+    int n_enemies = 10;
+    enemies.reserve(n_enemies);
+    for (int i = 0; i < n_enemies; ++i) {
+        enemies.emplace_back(sf::Vector2f(dist(gen), dist(gen)), sf::Vector2f(0.f, 0.f),
+                             cfg.L, cfg);
+        enemies[i].setFillColor(sf::Color::Red);
+
+        // Announcement text
+        sf::Font font;
+        if (!font.loadFromFile("./Arial.ttf")) {
+            std::cout << "No font found." << std::endl;
+        }
+        announcement.setFont(font);  // font is a sf::Font
+        announcement.setString("Collision!");
+        announcement.setCharacterSize(24);
+
+        // Make some circles used for orientation
+        int n_bkgrd = 100;
+        for (int i = 0; i < n_bkgrd; ++i) {
+            sf::CircleShape cir_i(10.f * cfg.L * (n_bkgrd - i));
+            cir_i.setFillColor(sf::Color(127, 127, 127));
+            cir_i.setOutlineThickness(cfg.L / 5.f);
+            cir_i.setOutlineColor(sf::Color(63, 63, 63));
+            cir_i.setOrigin(cir_i.getRadius(), cir_i.getRadius());
+            bkgrd_circles.push_back(cir_i);
         }
     }
+}
 
-    void reset() override {
-        renderComponents.clear();
-        positionComponents.clear();
-    }
-
-private:
-    std::unordered_map<int, RenderComponent> renderComponents;
-    std::unordered_map<int, PositionComponent> positionComponents;
-};
-
-class Game {
-public:
-    Game() : window(sf::VideoMode(800, 600), "ECS Pattern with Reset") {
-        initializeState();
-    }
-
-    void run() {
-        while (window.isOpen()) {
-            handleEvents();
-            update();
-            render();
+void Game::handleEvents() {
+    for (auto event = sf::Event(); window.pollEvent(event);) {
+        if (event.type == sf::Event::Closed) {
+            window.close();
         }
     }
+}
 
-    void resetGameState() {
-        // Reset all systems
-        renderSystem.reset();
-
-        // Reinitialize the game state
-        initializeState();
+void Game::update() {
+    // Collision detection
+    bool is_colliding = false;
+    for (int i = 0; i < enemies.size(); ++i) {
+        bool is_colliding_i =
+            p.body_particle.getGlobalBounds().intersects(enemies[i].getGlobalBounds());
+        is_colliding = is_colliding | is_colliding_i;
     }
+    p.updateState(is_colliding);
 
-private:
-    sf::RenderWindow window;
-    RenderSystem renderSystem;
-    int entityCounter = 0;
-
-    int createEntity() { return entityCounter++; }
-
-    void initializeState() {
-        // Create initial game entities
-        int playerID = createEntity();
-        PositionComponent playerPos = { {100, 100} };
-        RenderComponent playerRender;
-        playerRender.shape.setSize(sf::Vector2f(50, 50));
-        playerRender.shape.setFillColor(sf::Color::Green);
-
-        // Add components to the render system
-        renderSystem.addEntity(playerID, playerRender, playerPos);
-
-        // Additional initialization for other entities can go here
+    // Update game state
+    for (int i = 0; i < enemies.size(); ++i) {
+        sf::Vector2f r_et = p.body_particle.r - enemies[i].getPosition();
+        float r2 = powf(r_et.x, 2.f) + powf(r_et.y, 2.f);
+        sf::Vector2f a =
+            5.f * cfg.A * (r_et / powf(r2 + powf(cfg.L, 2.f), 1.5f)) * cfg.L * cfg.L;
+        enemies[i].updateState(a, cfg.dt);
     }
+}
 
-    void handleEvents() {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
-            else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::R) {
-                resetGameState();  // Reset game state on pressing "R"
-            }
-        }
-    }
+void Game::render() {
+    window.clear(sf::Color::Black);
 
-    void update() {
-        renderSystem.update();
-    }
+    // Set the view
+    view.setCenter(p.body_particle.r);
+    window.setView(view);
 
-    void render() {
-        window.clear();
-        renderSystem.render(window);
-        window.display();
+    // draw frame
+    for (int i = 0; i < bkgrd_circles.size(); ++i) {
+        window.draw(bkgrd_circles[i]);
     }
-};
+    for (int i = 0; i < enemies.size(); ++i) {
+        window.draw(enemies[i]);
+    }
+    p.draw(window, view);
+
+    // renderSystem.render(window);
+    window.display();
+}

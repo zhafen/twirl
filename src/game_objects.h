@@ -10,9 +10,9 @@ struct Config {
     float T;
     float V;
     float A;
-    float fps;
-    float dx;
+    uint fps;
     float dt;
+    float dx;
 };
 
 class Particle : public sf::CircleShape {

@@ -1,22 +1,22 @@
-#include <SFML/Graphics.hpp>
 #include "game_objects.h"
 
-Config::Config() {
-    sf::Vector2u window_size(1920u, 1080u);
-    // Base scales
-    float L = 0.01f * window_size.x; // Length scale
-    float T = 1.0f; // Time scale (in seconds)
-    float V = L / T; // Velocity scale
-    float A = V / T; // Acceleration scale
+#include <SFML/Graphics.hpp>
 
-    // By setting dt to not vary depending on how long it took to generate a frame,
-    // our simulation slows down when it takes longer to render.
-    float fps = 144;
-    float dt = 1.f / fps; // Time step
-    float dx = V * dt; // Displacement step
-}
+Config::Config()
+    : window_size(1920u, 1080u),
+      // Base scales
+      L(0.01f * window_size.x),
+      T(1.0f),
+      V(L / T),
+      A(V / T),
+      // By setting dt to not vary depending on how long it took to generate a frame,
+      // our simulation slows down when it takes longer to render.
+      fps(144u),
+      dt(1.f / fps),
+      dx(V * dt) {}
 
-Particle::Particle(sf::Vector2f r, sf::Vector2f v, float R) : sf::CircleShape(R), r(r), v(v) {
+Particle::Particle(sf::Vector2f r, sf::Vector2f v, float R)
+    : sf::CircleShape(R), r(r), v(v) {
     // Set the origin as the center of the particle
     setOrigin(R, R);
     setPosition(r);
@@ -35,5 +35,4 @@ void Particle::applyPhysics(sf::Vector2f a, float dt) {
     setPosition(r);
 }
 
-Player::Player(sf::Vector2f r, sf::Vector2f v, float R) : Particle(r, v, R) {
-}
+Player::Player(sf::Vector2f r, sf::Vector2f v, float R) : Particle(r, v, R) {}

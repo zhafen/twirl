@@ -30,11 +30,15 @@ public:
     float health = 1.f;
 };
 
-class ValueBar : public sf::RectangleShape {
+class ValueBar {
 public:
     ValueBar(float max_value, float max_size, const Config& cfg);
+    float value;
+    void updateState(float new_value);
+    void draw(sf::RenderWindow& window, sf::View& view);
 
 private:
+    sf::RectangleShape bar;
     Config cfg;
     float max_value;
     float max_length;
@@ -44,8 +48,8 @@ class Player {
 public:
     Player(sf::Vector2f r, sf::Vector2f v, float R, const Config& cfg);
 
-    void update();
-    void draw(sf::RenderWindow& window);
+    void updateState(bool is_colliding);
+    void draw(sf::RenderWindow& window, sf::View& view);
 
     Particle body_particle;
 

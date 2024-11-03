@@ -59,15 +59,19 @@ int main() {
         }
 
         // Collision detection
-        bool any_collision = false;
+        bool is_colliding = false;
         for (int i = 0; i < enemy_circles.size(); ++i) {
-            bool is_colliding =
+            bool is_colliding_i =
                 p.body_particle.getGlobalBounds().intersects(enemy_circles[i].getGlobalBounds());
-            any_collision = any_collision | is_colliding;
+            is_colliding = is_colliding | is_colliding_i;
         }
 
         // Update game state
-        p.update();
+        p.updateState(is_colliding);
+
+        // Set the view
+        view.setCenter(p.body_particle.r);
+        window.setView(view);
 
         // clear the window with black color
         window.clear(sf::Color::Black);
@@ -79,14 +83,10 @@ int main() {
         for (int i = 0; i < enemy_circles.size(); ++i) {
             window.draw(enemy_circles[i]);
         }
-        if (any_collision) {
+        if (is_colliding) {
             window.draw(announcement);
         }
-        p.draw(window);
-
-        // Set the view
-        view.setCenter(p.body_particle.r);
-        window.setView(view);
+        p.draw(window, view);
 
         // end the current frame
         window.display();

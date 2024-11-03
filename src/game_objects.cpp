@@ -37,13 +37,25 @@ void Particle::updateState(sf::Vector2f a, float dt) {
 }
 
 ValueBar::ValueBar(float max_value, float max_length, const Config& cfg)
-    : sf::RectangleShape(sf::Vector2f(max_length * max_value, cfg.L)),
+    : bar(sf::Vector2f(max_length * max_value, cfg.L)),
+      value(max_value),
       max_value(max_value),
       max_length(max_length),
       cfg(cfg) {
-    setFillColor(sf::Color::White);
-    setOutlineThickness(cfg.L / 10.f);
-    setOutlineColor(sf::Color::Black);
+    bar.setFillColor(sf::Color::White);
+    bar.setOutlineThickness(cfg.L / 10.f);
+    bar.setOutlineColor(sf::Color::Black);
+}
+
+void ValueBar::draw(sf::RenderWindow& window, sf::View& view) {
+
+    // Resize
+    float length = value / max_value * max_length;
+    bar.setSize(sf::Vector2f(length * value, cfg.L));
+    sf::Vector2i pixel_pos(cfg.window_size.x / 2.f - length / 2.f, cfg.L);
+    bar.setPosition(window.mapPixelToCoords(pixel_pos));
+
+    window.draw(bar);
 }
 
 Player::Player(sf::Vector2f r, sf::Vector2f v, float R, const Config& cfg)
@@ -57,7 +69,7 @@ Player::Player(sf::Vector2f r, sf::Vector2f v, float R, const Config& cfg)
         target_particle.setOutlineColor(sf::Color::White);
       }
 
-void Player::update() {
+void Player::updateState(bool is_colliding) {
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right)) {
         r_bt += sf::Vector2f(cfg.dx, 0.f);
@@ -80,10 +92,15 @@ void Player::update() {
     // Update the player's body
     body_particle.updateState(a, cfg.dt);
     target_particle.setPosition(body_particle.r + r_bt);
+
+    // Update the player's health
+    if (is_colliding) {
+        health_bar.value -= cfg.health_rate * cfg.dt;
+    }
 }
 
-void Player::draw(sf::RenderWindow& window) {
+void Player::draw(sf::RenderWindow& window, sf::View& view) {
     window.draw(body_particle);
     window.draw(target_particle);
-    window.draw(health_bar);
+    health_bar.draw(window, view);
 }

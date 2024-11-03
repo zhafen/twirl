@@ -96,6 +96,9 @@ void Player::updateState(bool is_colliding) {
     // Update the player's health
     if (is_colliding) {
         health_bar.value -= cfg.health_rate * cfg.dt;
+        if (health_bar.value < 0.f) {
+            health_bar.value = 0.f;
+        }
     }
 }
 

@@ -9,6 +9,7 @@ Config::Config()
       T(1.0f),
       V(L / T),
       A(V / T),
+      health_rate(1.f / T),
       // By setting dt to not vary depending on how long it took to generate a frame,
       // our simulation slows down when it takes longer to render.
       fps(144u),

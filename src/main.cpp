@@ -47,12 +47,12 @@ int main() {
     announcement.setCharacterSize(24);
 
     // Health bar
-    float health_bar_size = cfg.window_size.x / 2.f;
-    sf::RectangleShape health_bar(sf::Vector2f(health_bar_size, cfg.L));
+    float max_health_bar_size = cfg.window_size.x / 2.f;
+    sf::RectangleShape health_bar(sf::Vector2f(max_health_bar_size, cfg.L));
     health_bar.setFillColor(sf::Color::White);
     health_bar.setOutlineThickness(cfg.L / 10.f);
     health_bar.setOutlineColor(sf::Color::Black);
-    health_bar.setOrigin(health_bar_size / 2.f, 0.f);
+    health_bar.setOrigin(max_health_bar_size / 2.f, 0.f);
 
     // Make some circles used for orientation
     std::vector<sf::CircleShape> bkgrd_circles(100);
@@ -112,8 +112,9 @@ int main() {
                 p.getGlobalBounds().intersects(enemy_circles[i].getGlobalBounds());
             any_collision = any_collision | is_colliding;
         }
-        announcement.setPosition(
-            window.mapPixelToCoords(sf::Vector2i(cfg.window_size.x / 2, 0)));
+        if (any_collision) {
+            health_bar.setSize(health_bar.getSize() - sf::Vector2f(max_health_bar_size * cfg.health_rate * cfg.dt, 0.f));
+        }
 
         // clear the window with black color
         window.clear(sf::Color::Black);

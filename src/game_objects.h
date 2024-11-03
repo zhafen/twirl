@@ -40,12 +40,16 @@ private:
     float max_length;
 };
 
-class Player : public Particle {
+class Player {
 public:
     Player(sf::Vector2f r, sf::Vector2f v, float R, const Config& cfg);
+    void draw(sf::RenderWindow& window);
+
 private:
+
+    Particle body;
+    Particle target_particle;
     ValueBar health_bar;
-    // virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
 #endif

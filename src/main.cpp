@@ -18,12 +18,6 @@ int main() {
 
     Player p(sf::Vector2f(0.f, 20.f * cfg.L), sf::Vector2f(0.f, -cfg.V), cfg.L, cfg);
 
-    Particle target(p.r, p.v, cfg.L / 2.f, cfg);
-    target.setFillColor(sf::Color::Black);
-    target.setOutlineThickness(cfg.L / 10.f);
-    target.setOutlineColor(sf::Color::White);
-    sf::Vector2f r_pf(sf::Vector2f(0.f, 0.f));
-
     // Make enemies
     std::random_device rd;
     std::mt19937 gen(rd());  // Standard random number generator
@@ -63,46 +57,45 @@ int main() {
                 window.close();
             }
 
-            if (event.type == sf::Event::MouseButtonPressed) {
-                // get the current mouse position in the window
-                sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
-                // convert it to world coordinates
-                target.r = window.mapPixelToCoords(pixelPos);
-                target.setPosition(target.r);
-            }
+            // if (event.type == sf::Event::MouseButtonPressed) {
+            //     // get the current mouse position in the window
+            //     sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+            //     // convert it to world coordinates
+            //     target.r = window.mapPixelToCoords(pixelPos);
+            //     target.setPosition(target.r);
+            // }
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right)) {
-            r_pf += sf::Vector2f(cfg.dx, 0.f);
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left)) {
-            r_pf += sf::Vector2f(-cfg.dx, 0.f);
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up)) {
-            r_pf += sf::Vector2f(0.f, -cfg.dx);
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Down)) {
-            r_pf += sf::Vector2f(0.f, cfg.dx);
-        }
-        target.setPosition(p.r + r_pf);
+        // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right)) {
+        //     r_pf += sf::Vector2f(cfg.dx, 0.f);
+        // }
+        // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left)) {
+        //     r_pf += sf::Vector2f(-cfg.dx, 0.f);
+        // }
+        // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up)) {
+        //     r_pf += sf::Vector2f(0.f, -cfg.dx);
+        // }
+        // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Down)) {
+        //     r_pf += sf::Vector2f(0.f, cfg.dx);
+        // }
 
-        // Gravitational force
-        sf::Vector2f r = target.r - p.r;
-        float r2 = powf(r.x, 2.f) + powf(r.y, 2.f);
-        sf::Vector2f a =
-            5.f * cfg.A * (r / powf(r2 + powf(cfg.L, 2.f), 1.5f)) * cfg.L * cfg.L;
+        // // Gravitational force
+        // sf::Vector2f r = target.r - p.r;
+        // float r2 = powf(r.x, 2.f) + powf(r.y, 2.f);
+        // sf::Vector2f a =
+        //     5.f * cfg.A * (r / powf(r2 + powf(cfg.L, 2.f), 1.5f)) * cfg.L * cfg.L;
 
         // Collision detection
         bool any_collision = false;
         for (int i = 0; i < enemy_circles.size(); ++i) {
             bool is_colliding =
-                p.getGlobalBounds().intersects(enemy_circles[i].getGlobalBounds());
+                p.body.getGlobalBounds().intersects(enemy_circles[i].getGlobalBounds());
             any_collision = any_collision | is_colliding;
         }
 
         // clear the window with black color
         window.clear(sf::Color::Black);
-        p.updateState(a, cfg.dt);
+        // p.body.updateState(a, cfg.dt);
 
         // draw frame
         for (int i = 0; i < bkgrd_circles.size(); ++i) {
@@ -111,15 +104,13 @@ int main() {
         for (int i = 0; i < enemy_circles.size(); ++i) {
             window.draw(enemy_circles[i]);
         }
-        window.draw(p);
-        window.draw(target);
         if (any_collision) {
             window.draw(announcement);
         }
-        window.draw(p);
+        p.draw(window);
 
         // Set the view
-        view.setCenter(p.r);
+        view.setCenter(p.body.r);
         window.setView(view);
 
         // end the current frame

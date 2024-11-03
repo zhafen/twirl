@@ -47,9 +47,13 @@ ValueBar::ValueBar(float max_value, float max_length, const Config& cfg)
 }
 
 Player::Player(sf::Vector2f r, sf::Vector2f v, float R, const Config& cfg)
-    : Particle(r, v, R, cfg), health_bar(1.f, cfg.window_size.x / 2.f, cfg) {
-}
+    : body(r, v, R, cfg),
+      target_particle(r, v, R / 2, cfg),
+      health_bar(1.f, cfg.window_size.x / 2.f, cfg) {
+        target_particle.setFillColor(sf::Color::Black);
+        target_particle.setOutlineColor(sf::Color::White);
+      }
 
-// void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-//     target.draw(*this);
-// }
+void Player::draw(sf::RenderWindow& window) {
+    window.draw(body);
+}

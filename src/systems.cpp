@@ -8,11 +8,13 @@ RenderSystem::RenderSystem(const Config& cfg, sf::View& view) : cfg(cfg), view(v
 
 void RenderSystem::render(
     sf::RenderWindow& window,
-    const std::unordered_map<EntityId, RenderComponent>& render_components) {
+    std::unordered_map<EntityId, RenderComponent>& render_components,
+    std::unordered_map<EntityId, PhysicsComponent>& physics_components) {
     window.clear(sf::Color::Black);
 
     // draw frame
     for (auto& [id, render_comp] : render_components) {
+        render_comp.shape.setPosition(physics_components.at(id).pos);
         window.draw(render_comp.shape);
     }
 

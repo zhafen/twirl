@@ -19,8 +19,10 @@ struct PhysicsComponent {
 class RenderSystem {
    public:
     RenderSystem(const Config& cfg, sf::View& view);
-    void render(sf::RenderWindow& window,
-                const std::unordered_map<EntityId, RenderComponent>& render_components);
+    void render(
+        sf::RenderWindow& window,
+        std::unordered_map<EntityId, RenderComponent>& render_components,
+        std::unordered_map<EntityId, PhysicsComponent>& physics_components);
 
    private:
     sf::View view;

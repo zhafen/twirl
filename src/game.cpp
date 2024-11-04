@@ -50,6 +50,10 @@ void Game::initializeState() {
         rc.shape = sf::CircleShape(cfg.L);
         rc.shape.setFillColor(sf::Color::Red);
         render_components[id] = rc;
+        PhysicsComponent pc;
+        pc.pos = sf::Vector2f(dist(gen), dist(gen));
+        pc.vel = sf::Vector2f(0.f, 0.f);
+        physics_components[id] = pc;
     }
 
     // Announcement text
@@ -106,5 +110,5 @@ void Game::render() {
     view.setCenter(p.body_particle.r);
     window.setView(view);
 
-    render_system.render(window, render_components);
+    render_system.render(window, render_components, physics_components);
 }

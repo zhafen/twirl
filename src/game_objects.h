@@ -52,13 +52,13 @@ public:
     void draw(sf::RenderWindow& window, sf::View& view);
 
     Particle body_particle;
+    ValueBar health_bar;
 
 private:
 
     Config cfg;
     sf::Vector2f r_bt;
     Particle target_particle;
-    ValueBar health_bar;
 };
 
 #endif

@@ -21,7 +21,7 @@ public:
 class RenderSystem : public System {
 public:
     void addEntity(int entityID, const RenderComponent& renderComp, const PhysicsComponent& posComp) {
-        renderComponents[entityID] = renderComp;
+        render_components[entityID] = renderComp;
         physicsComponents[entityID] = posComp;
     }
 
@@ -30,19 +30,19 @@ public:
     }
 
     void render(sf::RenderWindow& window) {
-        for (auto& [id, renderComp] : renderComponents) {
+        for (auto& [id, renderComp] : render_components) {
             renderComp.shape.setPosition(physicsComponents[id].position);
             window.draw(renderComp.shape);
         }
     }
 
     void reset() override {
-        renderComponents.clear();
+        render_components.clear();
         physicsComponents.clear();
     }
 
 private:
-    std::unordered_map<int, RenderComponent> renderComponents;
+    std::unordered_map<int, RenderComponent> render_components;
     std::unordered_map<int, PhysicsComponent> physicsComponents;
 };
 

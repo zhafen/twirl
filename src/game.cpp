@@ -43,11 +43,11 @@ void Game::initializeState() {
     EntityId id = createEntity();
     RenderComponent rc;
     rc.shape = sf::CircleShape(cfg.L);
-    components.render_components[id] = rc;
+    components.render_comps[id] = rc;
     PhysicsComponent pc;
     pc.pos = sf::Vector2f(0.f, 20.f * cfg.L);
     pc.vel = sf::Vector2f(0.f, -cfg.V);
-    components.physics_components[id] = pc;
+    components.physics_comps[id] = pc;
 
     // Make enemies
     std::random_device rd;
@@ -59,11 +59,11 @@ void Game::initializeState() {
         RenderComponent rc;
         rc.shape = sf::CircleShape(cfg.L);
         rc.shape.setFillColor(sf::Color::Red);
-        components.render_components[id] = rc;
+        components.render_comps[id] = rc;
         PhysicsComponent pc;
         pc.pos = sf::Vector2f(dist(gen), dist(gen));
         pc.vel = sf::Vector2f(0.f, 0.f);
-        components.physics_components[id] = pc;
+        components.physics_comps[id] = pc;
     }
 
     // Make background
@@ -77,20 +77,20 @@ void Game::initializeState() {
         rc.shape.setOutlineColor(sf::Color(63, 63, 63));
         rc.shape.setOrigin(rc.shape.getRadius(), rc.shape.getRadius());
         rc.zorder = -i;
-        components.render_components[id] = rc;
+        components.render_comps[id] = rc;
         PhysicsComponent pc;
         pc.pos = sf::Vector2f(0.f, 0.f);
         pc.vel = sf::Vector2f(0.f, 0.f);
-        components.physics_components[id] = pc;
+        components.physics_comps[id] = pc;
     }
 
     // Create a vector of (zorder, id) pairs
-    for (const auto& [id, rc] : components.render_components) {
-        components.zorder_entities.emplace_back(rc.zorder, id);
+    for (const auto& [id, rc] : components.render_comps) {
+        components.entity_zorders.emplace_back(rc.zorder, id);
     }
 
     // Sort the vector according to zorder
-    std::sort(components.zorder_entities.begin(), components.zorder_entities.end());
+    std::sort(components.entity_zorders.begin(), components.entity_zorders.end());
 }
 
 void Game::handleEvents() {

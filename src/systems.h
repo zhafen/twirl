@@ -18,9 +18,9 @@ struct PhysicsComponent {
 };
 
 struct Components {
-    std::unordered_map<EntityId, RenderComponent> render_components;
-    std::unordered_map<EntityId, PhysicsComponent> physics_components;
-    std::vector<std::pair<int, EntityId>> zorder_entities;
+    std::unordered_map<EntityId, RenderComponent> render_comps;
+    std::unordered_map<EntityId, PhysicsComponent> physics_comps;
+    std::vector<std::pair<int, EntityId>> entity_zorders;
 };
 
 class RenderSystem {

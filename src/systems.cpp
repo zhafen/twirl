@@ -10,9 +10,9 @@ void RenderSystem::render(sf::RenderWindow& window, Components& components) {
     window.clear(sf::Color::Black);
 
     // draw frame
-    for (auto [zorder, id] : components.zorder_entities) {
-        auto& render_comp = components.render_components.at(id);
-        render_comp.shape.setPosition(components.physics_components.at(id).pos);
+    for (auto [zorder, id] : components.entity_zorders) {
+        auto& render_comp = components.render_comps.at(id);
+        render_comp.shape.setPosition(components.physics_comps.at(id).pos);
         window.draw(render_comp.shape);
     }
 

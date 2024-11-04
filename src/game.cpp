@@ -39,6 +39,16 @@ void Game::resetGameState() {
 int Game::createEntity() { return entityCounter++; }
 
 void Game::initializeState() {
+    // Make player
+    EntityId id = createEntity();
+    RenderComponent rc;
+    rc.shape = sf::CircleShape(cfg.L);
+    render_components[id] = rc;
+    PhysicsComponent pc;
+    pc.pos = sf::Vector2f(0.f, 20.f * cfg.L);
+    pc.vel = sf::Vector2f(0.f, -cfg.V);
+    physics_components[id] = pc;
+
     // Make enemies
     std::random_device rd;
     std::mt19937 gen(rd());  // Standard random number generator

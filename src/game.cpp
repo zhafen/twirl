@@ -66,24 +66,21 @@ void Game::initializeState() {
         physics_components[id] = pc;
     }
 
-    // Announcement text
-    sf::Font font;
-    if (!font.loadFromFile("../../Arial.ttf")) {
-        std::cout << "No font found." << std::endl;
-    }
-    announcement.setFont(font);  // font is a sf::Font
-    announcement.setString("Collision!");
-    announcement.setCharacterSize(24);
-
-    // Make some circles used for orientation
+    // Make background
     int n_bkgrd = 100;
     for (int i = 0; i < n_bkgrd; ++i) {
-        sf::CircleShape cir_i(10.f * cfg.L * (n_bkgrd - i));
-        cir_i.setFillColor(sf::Color(127, 127, 127));
-        cir_i.setOutlineThickness(cfg.L / 5.f);
-        cir_i.setOutlineColor(sf::Color(63, 63, 63));
-        cir_i.setOrigin(cir_i.getRadius(), cir_i.getRadius());
-        bkgrd_circles.push_back(cir_i);
+        EntityId id = createEntity();
+        RenderComponent rc;
+        rc.shape = sf::CircleShape(10.f * cfg.L * (n_bkgrd - i));
+        rc.shape.setFillColor(sf::Color(127, 127, 127));
+        rc.shape.setOutlineThickness(cfg.L / 5.f);
+        rc.shape.setOutlineColor(sf::Color(63, 63, 63));
+        rc.shape.setOrigin(rc.shape.getRadius(), rc.shape.getRadius());
+        render_components[id] = rc;
+        PhysicsComponent pc;
+        pc.pos = sf::Vector2f(0.f, 0.f);
+        pc.vel = sf::Vector2f(0.f, 0.f);
+        physics_components[id] = pc;
     }
 }
 

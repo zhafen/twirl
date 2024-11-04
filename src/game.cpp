@@ -15,7 +15,7 @@ Game::Game()
       window(sf::VideoMode(cfg.window_size.x, cfg.window_size.y), "twirl"),
       view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size)),
       p(sf::Vector2f(0.f, 20.f * cfg.L), sf::Vector2f(0.f, -cfg.V), cfg.L, cfg),
-      render_system() {
+      render_system(cfg) {
     window.setFramerateLimit(cfg.fps);
     initializeState();
 }
@@ -39,26 +39,6 @@ void Game::resetGameState() {
 int Game::createEntity() { return entityCounter++; }
 
 void Game::initializeState() {
-    // Create a RenderSystem instance and add it to the ECS
-    auto renderSystem = std::make_unique<RenderSystem>();
-    ecs.addSystem(std::move(renderSystem));
-
-    // Create a new entity
-    EntityID entityID = ecs.createEntity();
-
-    // Create a RenderComponent and set its properties
-    RenderComponent renderComponent;
-    renderComponent.shape = sf::CircleShape(50);
-    renderComponent.shape.setFillColor(sf::Color::Green);
-
-    // Add the RenderComponent to the entity
-    ecs.addComponent<RenderComponent>(entityID, renderComponent);
-
-    // Add the entity to the RenderSystem
-    RenderSystem* rs = dynamic_cast<RenderSystem*>(ecs.getComponent<System>(entityID));
-    if (rs) {
-        rs->addEntity(entityID, renderComponent);
-    }
 
     // Make enemies
     std::random_device rd;
@@ -118,10 +98,6 @@ void Game::update() {
         sf::Vector2f a =
             5.f * cfg.A * (r_et / powf(r2 + powf(cfg.L, 2.f), 1.5f)) * cfg.L * cfg.L;
         enemies[i].updateState(a, cfg.dt);
-    }
-
-    if (p.health_bar.value <= 0.f) {
-        resetGameState();
     }
 }
 

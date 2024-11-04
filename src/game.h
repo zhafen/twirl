@@ -30,7 +30,6 @@ class Game {
     sf::Text announcement;
 
     // Systems
-    ECS ecs;
     RenderSystem render_system;
 
     // Methods

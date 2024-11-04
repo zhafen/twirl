@@ -15,7 +15,7 @@ Game::Game()
       window(sf::VideoMode(cfg.window_size.x, cfg.window_size.y), "twirl"),
       view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size)),
       p(sf::Vector2f(0.f, 20.f * cfg.L), sf::Vector2f(0.f, -cfg.V), cfg.L, cfg),
-      render_system(cfg) {
+      render_system(cfg, view) {
     window.setFramerateLimit(cfg.fps);
     initializeState();
 }
@@ -39,17 +39,17 @@ void Game::resetGameState() {
 int Game::createEntity() { return entityCounter++; }
 
 void Game::initializeState() {
-
     // Make enemies
     std::random_device rd;
     std::mt19937 gen(rd());  // Standard random number generator
     std::uniform_real_distribution<float> dist(-10.f * cfg.L, 10.f * cfg.L);
     int n_enemies = 10;
-    enemies.reserve(n_enemies);
     for (int i = 0; i < n_enemies; ++i) {
-        enemies.emplace_back(sf::Vector2f(dist(gen), dist(gen)), sf::Vector2f(0.f, 0.f),
-                             cfg.L, cfg);
-        enemies[i].setFillColor(sf::Color::Red);
+        EntityId id = createEntity();
+        RenderComponent rc;
+        rc.shape = sf::CircleShape(cfg.L);
+        rc.shape.setFillColor(sf::Color::Red);
+        render_components[id] = rc;
     }
 
     // Announcement text
@@ -102,20 +102,9 @@ void Game::update() {
 }
 
 void Game::render() {
-    window.clear(sf::Color::Black);
-
     // Set the view
     view.setCenter(p.body_particle.r);
     window.setView(view);
 
-    // draw frame
-    for (int i = 0; i < bkgrd_circles.size(); ++i) {
-        window.draw(bkgrd_circles[i]);
-    }
-    for (int i = 0; i < enemies.size(); ++i) {
-        window.draw(enemies[i]);
-    }
-    p.draw(window, view);
-
-    window.display();
+    render_system.render(window, render_components);
 }

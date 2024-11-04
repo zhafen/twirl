@@ -31,6 +31,7 @@ class Game {
 
     // Systems
     RenderSystem render_system;
+    std::unordered_map<EntityId, RenderComponent> render_components;
 
     // Methods
     int createEntity();

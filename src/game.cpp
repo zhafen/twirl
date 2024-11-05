@@ -126,7 +126,7 @@ void Game::update() {
     physics_system.update(components);
 
     // Resolve collisions
-    physics_system.resolveCollisions(components);
+    // physics_system.resolveCollisions(components);
 }
 
 void Game::render() {

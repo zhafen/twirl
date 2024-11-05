@@ -13,7 +13,7 @@ void PhysicsSystem::calculateForces(Components& components) {
         auto& source_pc = components.physics_comps.at(pairforce_comp.source_entity);
 
         auto r = target_pc.pos - source_pc.pos;
-        auto r_mag = std::sqrt(r.x * r.x + r.y * r.y);
+        auto r_mag = std::sqrtf(r.x * r.x + r.y * r.y);
         auto r_hat = r / r_mag;
 
         auto r_mag_scaled = (r_mag + pairforce_comp.params.softening) / cfg.L;
@@ -26,6 +26,7 @@ void PhysicsSystem::calculateForces(Components& components) {
 
 void PhysicsSystem::update(Components& components) {
     for (auto& [id, pc] : components.physics_comps) {
+        // DEBUG: For some reason pc.force = 0
         // Update using leapfrog algorithm
         auto acc = pc.force / pc.mass;
         pc.vel += acc * cfg.dt / 2.f;

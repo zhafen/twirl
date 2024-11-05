@@ -46,9 +46,12 @@ void Game::initializeState() {
     rc.shape = sf::CircleShape(cfg.L);
     components.render_comps[player_id] = rc;
     PhysicsComponent pc;
-    pc.pos = sf::Vector2f(0.f, 20.f * cfg.L);
-    pc.vel = sf::Vector2f(0.f, -cfg.V);
+    pc.pos = sf::Vector2f(0.f, 0.f);
+    pc.vel = sf::Vector2f(0.f, 0.f);
     components.physics_comps[player_id] = pc;
+    // Pin the view to the player
+    view.setCenter(pc.pos);
+    window.setView(view);
 
     // Make enemies
     std::random_device rd;
@@ -71,7 +74,10 @@ void Game::initializeState() {
         PairwiseForceComponent pfc;
         pfc.target_entity = id;
         pfc.source_entity = player_id;
-        pfc.params.magnitude *= -1.f;
+        // Because of the r^-2 force drops off quickly if we don't scale it strongly
+        pfc.params.magnitude *= -100.f * cfg.A;
+        pfc.params.power = -2.f;
+        pfc.params.softening = cfg.L;
         components.pairforce_comps[id] = pfc;
     }
 
@@ -130,8 +136,6 @@ void Game::update() {
 
 void Game::render() {
     // Set the view
-    view.setCenter(p.body_particle.r);
-    window.setView(view);
 
     render_system.render(window, components);
 }

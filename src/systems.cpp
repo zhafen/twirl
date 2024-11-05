@@ -34,7 +34,8 @@ void PhysicsSystem::update(Components& components) {
         pc.vel += acc * cfg.dt / 2.f;
 
         // Update render component position
-        auto render_comp = components.render_comps.at(id);
+        // Setting the position of the shape here messes with the update loop somehow
+        auto& render_comp = components.render_comps.at(id);
         render_comp.shape.setPosition(pc.pos);
 
         // Reset force

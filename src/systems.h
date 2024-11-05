@@ -41,6 +41,7 @@ class PhysicsSystem {
     PhysicsSystem(const Config& cfg);
     void calculateForces(Components& components);
     void update(Components& components);
+    void resolveCollisions(Components& components);
    private:
     Config cfg;
 };

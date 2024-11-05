@@ -61,16 +61,18 @@ void Game::initializeState() {
     int n_enemies = 10;
     for (int i = 0; i < n_enemies; ++i) {
         EntityId id = createEntity();
-        // Colored circles
-        RenderComponent rc;
-        rc.shape = sf::CircleShape(cfg.L);
-        rc.shape.setFillColor(sf::Color::Red);
-        components.render_comps[id] = rc;
         // Randomly distributed in a square
         PhysicsComponent pc;
         pc.pos = sf::Vector2f(dist(gen), dist(gen) - cfg.window_size.y / 2.f);
         pc.vel = sf::Vector2f(0.f, 0.f);
         components.physics_comps[id] = pc;
+        // Colored circles
+        RenderComponent rc;
+        rc.shape = sf::CircleShape(cfg.L);
+        rc.shape.setFillColor(sf::Color::Red);
+        rc.shape.setOrigin(rc.shape.getRadius(), rc.shape.getRadius());
+        rc.shape.setPosition(pc.pos);
+        components.render_comps[id] = rc;
         // Pulled towards the player
         PairwiseForceComponent pfc;
         pfc.target_entity = id;
@@ -104,7 +106,6 @@ void Game::initializeState() {
     for (const auto& [id, rc] : components.render_comps) {
         components.entity_zorders.emplace_back(rc.zorder, id);
     }
-
     // Sort the vector according to zorder
     std::sort(components.entity_zorders.begin(), components.entity_zorders.end());
 }
@@ -118,25 +119,16 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-
     // Calculate forces
     physics_system.calculateForces(components);
 
     // Update state
     physics_system.update(components);
 
-    // // Collision detection
-    // bool is_colliding = false;
-    // for (int i = 0; i < enemies.size(); ++i) {
-    //     bool is_colliding_i =
-    //         p.body_particle.getGlobalBounds().intersects(enemies[i].getGlobalBounds());
-    //     is_colliding = is_colliding | is_colliding_i;
-    // }
-    // p.updateState(is_colliding);
+    // Resolve collisions
+    physics_system.resolveCollisions(components);
 }
 
 void Game::render() {
-    // Set the view
-
     render_system.render(window, components);
 }

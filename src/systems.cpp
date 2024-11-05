@@ -16,10 +16,9 @@ void PhysicsSystem::calculateForces(Components& components) {
         auto r_mag = std::sqrt(r.x * r.x + r.y * r.y);
         auto r_hat = r / r_mag;
 
-        auto force =
-            r_hat * pairforce_comp.params.magnitude *
-            target_pc.mass * source_pc.mass *
-            powf(r_mag + pairforce_comp.params.softening, pairforce_comp.params.power);
+        auto r_mag_scaled = (r_mag + pairforce_comp.params.softening) / cfg.L;
+        auto force = r_hat * pairforce_comp.params.magnitude * target_pc.mass *
+                     source_pc.mass * powf(r_mag_scaled, pairforce_comp.params.power);
 
         target_pc.force += force;
     }

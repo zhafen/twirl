@@ -41,14 +41,14 @@ int Game::createEntity() { return entityCounter++; }
 
 void Game::initializeState() {
     // Make player
-    EntityId id = createEntity();
+    EntityId player_id = createEntity();
     RenderComponent rc;
     rc.shape = sf::CircleShape(cfg.L);
-    components.render_comps[id] = rc;
+    components.render_comps[player_id] = rc;
     PhysicsComponent pc;
     pc.pos = sf::Vector2f(0.f, 20.f * cfg.L);
     pc.vel = sf::Vector2f(0.f, -cfg.V);
-    components.physics_comps[id] = pc;
+    components.physics_comps[player_id] = pc;
 
     // Make enemies
     std::random_device rd;
@@ -57,14 +57,22 @@ void Game::initializeState() {
     int n_enemies = 10;
     for (int i = 0; i < n_enemies; ++i) {
         EntityId id = createEntity();
+        // Colored circles
         RenderComponent rc;
         rc.shape = sf::CircleShape(cfg.L);
         rc.shape.setFillColor(sf::Color::Red);
         components.render_comps[id] = rc;
+        // Randomly distributed in a square
         PhysicsComponent pc;
         pc.pos = sf::Vector2f(dist(gen), dist(gen));
         pc.vel = sf::Vector2f(0.f, 0.f);
         components.physics_comps[id] = pc;
+        // Pulled towards the player
+        PairwiseForceComponent pfc;
+        pfc.target_entity = id;
+        pfc.source_entity = player_id;
+        pfc.params.magnitude *= -1.f;
+        components.pairforce_comps[id] = pfc;
     }
 
     // Make background
@@ -107,14 +115,17 @@ void Game::update() {
     // Calculate forces
     physics_system.calculateForces(components);
 
-    // Collision detection
-    bool is_colliding = false;
-    for (int i = 0; i < enemies.size(); ++i) {
-        bool is_colliding_i =
-            p.body_particle.getGlobalBounds().intersects(enemies[i].getGlobalBounds());
-        is_colliding = is_colliding | is_colliding_i;
-    }
-    p.updateState(is_colliding);
+    // Update state
+    physics_system.update(components);
+
+    // // Collision detection
+    // bool is_colliding = false;
+    // for (int i = 0; i < enemies.size(); ++i) {
+    //     bool is_colliding_i =
+    //         p.body_particle.getGlobalBounds().intersects(enemies[i].getGlobalBounds());
+    //     is_colliding = is_colliding | is_colliding_i;
+    // }
+    // p.updateState(is_colliding);
 }
 
 void Game::render() {

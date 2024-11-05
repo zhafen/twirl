@@ -49,6 +49,7 @@ void Game::initializeState() {
     PhysicsComponent pc;
     pc.pos = sf::Vector2f(0.f, 0.f);
     pc.vel = sf::Vector2f(0.f, 0.f);
+    pc.collisions = true;
     components.physics_comps[player_id] = pc;
     // Pin the view to the player
     view.setCenter(pc.pos);
@@ -65,6 +66,7 @@ void Game::initializeState() {
         PhysicsComponent pc;
         pc.pos = sf::Vector2f(dist(gen), dist(gen) - cfg.window_size.y / 2.f);
         pc.vel = sf::Vector2f(0.f, 0.f);
+        pc.collisions = true;
         components.physics_comps[id] = pc;
         // Colored circles
         RenderComponent rc;
@@ -126,7 +128,7 @@ void Game::update() {
     physics_system.update(components);
 
     // Resolve collisions
-    // physics_system.resolveCollisions(components);
+    physics_system.resolveCollisions(components);
 }
 
 void Game::render() {

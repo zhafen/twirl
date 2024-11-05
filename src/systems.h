@@ -17,6 +17,7 @@ struct PhysicsComponent {
     sf::Vector2f pos = {0.0f, 0.0f};
     sf::Vector2f vel = {0.0f, 0.0f};
     sf::Vector2f force = {0.0f, 0.0f};
+    bool collisions = false;
 };
 
 struct PairwiseForceComponent {

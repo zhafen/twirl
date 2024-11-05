@@ -67,9 +67,12 @@ void PhysicsSystem::update(Components& components) {
  */
 void PhysicsSystem::resolveCollisions(Components& components) {
     for (auto& [id1, pc1] : components.physics_comps) {
+        if (!pc1.collisions) {
+            continue;
+        }
         auto rc1 = components.render_comps.at(id1);
         for (auto& [id2, pc2] : components.physics_comps) {
-            if (id1 == id2) {
+            if ((id1 == id2) || !pc2.collisions) {
                 continue;
             }
             auto rc2 = components.render_comps.at(id2);

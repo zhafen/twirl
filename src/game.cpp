@@ -75,10 +75,12 @@ void Game::initializeState() {
         PairwiseForceComponent pfc;
         pfc.target_entity = id;
         pfc.source_entity = player_id;
-        // Because of the r^-2 force drops off quickly if we don't scale it strongly
-        pfc.params.magnitude *= -100.f * cfg.A;
-        pfc.params.power = -2.f;
-        pfc.params.softening = cfg.L;
+        // // Because of the r^-2 force drops off quickly if we don't scale it strongly
+        // pfc.params.magnitude *= -100.f * cfg.A;
+        // pfc.params.power = -2.f;
+        // pfc.params.softening = cfg.L;
+        // Alternate setup: springs. TODO: Add friction or this goes crazy.
+        pfc.params.magnitude *= -0.1f;
         components.pairforce_comps[id] = pfc;
     }
 

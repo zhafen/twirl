@@ -50,11 +50,11 @@ void PhysicsSystem::update(Components& components) {
  * are equal and opposite, and there is a relationship $p^2/2\mu = T$ where $p$ is
  * the magnitude of the momentum in the COM frame, $\mu$ is the reduced mass
  * $\mu = m1 m2 / (m1 + m2)$, and $T$ is the kinetic energy.
- * 
+ *
  * This is different from the common assumption that the velocities are
  * equal and opposite. Honestly I don't know where that assumption comes from,
  * but the above COM constraints can be derived easily.
- * 
+ *
  * There is not a direct constraint from the energy and momentum conservation on the
  * angle of p1 and p2. However, we employ a simple assumption that the objects
  * move parallel to the line connecting their centers. If you look on wikipedia there
@@ -77,14 +77,21 @@ void PhysicsSystem::resolveCollisions(Components& components) {
                 continue;
             }
 
-            auto r = pc1.pos - pc2.pos;
-            auto r_mag = std::sqrt(r.x * r.x + r.y * r.y);
-            auto r_hat = r / r_mag;
+            // Calculate the momentum in the COM frame
+            auto T =
+                0.5f * (pc1.mass * (pc1.vel.x * pc1.vel.x + pc1.vel.y * pc1.vel.y) +
+                        pc2.mass * (pc2.vel.x * pc2.vel.x + pc2.vel.y * pc2.vel.y));
+            auto pcom_mag =
+                sqrtf(2.0f * T * pc1.mass * pc2.mass / (pc1.mass + pc2.mass));
+            auto r_12 = pc2.pos - pc1.pos;
+            auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
+            auto p1com = -pcom_mag * r_12 / r_12_mag;
 
-            if (r_mag < 2.f * cfg.L) {
-                pc1.vel = -pc1.vel;
-                pc2.vel = -pc2.vel;
-            }
+            // Convert back to default frame
+            auto vcom =
+                (pc1.vel * pc1.mass + pc2.vel * pc2.mass) / (pc1.mass + pc2.mass);
+            pc1.vel = vcom + p1com / pc1.mass;
+            pc2.vel = vcom - p1com / pc2.mass;
         }
     }
 }

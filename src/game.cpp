@@ -44,6 +44,7 @@ void Game::initializeState() {
     EntityId player_id = createEntity();
     RenderComponent rc;
     rc.shape = sf::CircleShape(cfg.L);
+    rc.shape.setOrigin(rc.shape.getRadius(), rc.shape.getRadius());
     components.render_comps[player_id] = rc;
     PhysicsComponent pc;
     pc.pos = sf::Vector2f(0.f, 0.f);
@@ -67,7 +68,7 @@ void Game::initializeState() {
         components.render_comps[id] = rc;
         // Randomly distributed in a square
         PhysicsComponent pc;
-        pc.pos = sf::Vector2f(dist(gen), dist(gen));
+        pc.pos = sf::Vector2f(dist(gen), dist(gen) - cfg.window_size.y / 2.f);
         pc.vel = sf::Vector2f(0.f, 0.f);
         components.physics_comps[id] = pc;
         // Pulled towards the player

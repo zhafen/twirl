@@ -14,7 +14,6 @@ Game::Game()
     : cfg(),
       window(sf::VideoMode(cfg.window_size.x, cfg.window_size.y), "twirl"),
       view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size)),
-      p(sf::Vector2f(0.f, 20.f * cfg.L), sf::Vector2f(0.f, -cfg.V), cfg.L, cfg),
       render_system(cfg, view),
       physics_system(cfg) {
     window.setFramerateLimit(cfg.fps);
@@ -41,7 +40,7 @@ int Game::createEntity() { return entityCounter++; }
 
 void Game::initializeState() {
     // Make player
-    EntityId player_id = createEntity();
+    player_id = createEntity();
     RenderComponent rc;
     rc.shape = sf::CircleShape(cfg.L);
     rc.shape.setOrigin(rc.shape.getRadius(), rc.shape.getRadius());
@@ -51,9 +50,6 @@ void Game::initializeState() {
     pc.vel = sf::Vector2f(0.f, 0.f);
     pc.collisions = true;
     components.physics_comps[player_id] = pc;
-    // Pin the view to the player
-    view.setCenter(pc.pos);
-    window.setView(view);
 
     // Make enemies
     std::random_device rd;
@@ -132,5 +128,10 @@ void Game::update() {
 }
 
 void Game::render() {
+    // Pin the view to the player
+    view.setCenter(components.physics_comps.at(player_id).pos);
+    window.setView(view);
+
+    // Render
     render_system.render(window, components);
 }

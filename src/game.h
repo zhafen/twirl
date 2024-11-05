@@ -22,7 +22,7 @@ class Game {
 
     // Entities
     int entityCounter = 0;
-    Player p;
+    EntityId player_id;
     std::vector<Particle> enemies;
     std::vector<sf::CircleShape> bkgrd_circles;
 

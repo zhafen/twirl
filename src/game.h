@@ -31,6 +31,7 @@ class Game {
 
     // Systems
     RenderSystem render_system;
+    PhysicsSystem physics_system;
     Components components;
 
     // Methods

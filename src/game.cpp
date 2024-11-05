@@ -15,7 +15,8 @@ Game::Game()
       window(sf::VideoMode(cfg.window_size.x, cfg.window_size.y), "twirl"),
       view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size)),
       p(sf::Vector2f(0.f, 20.f * cfg.L), sf::Vector2f(0.f, -cfg.V), cfg.L, cfg),
-      render_system(cfg, view) {
+      render_system(cfg, view),
+      physics_system(cfg) {
     window.setFramerateLimit(cfg.fps);
     initializeState();
 }
@@ -102,6 +103,10 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
+
+    // Calculate forces
+    physics_system.calculateForces(components);
+
     // Collision detection
     bool is_colliding = false;
     for (int i = 0; i < enemies.size(); ++i) {
@@ -110,15 +115,6 @@ void Game::update() {
         is_colliding = is_colliding | is_colliding_i;
     }
     p.updateState(is_colliding);
-
-    // Update game state
-    for (int i = 0; i < enemies.size(); ++i) {
-        sf::Vector2f r_et = p.body_particle.r - enemies[i].getPosition();
-        float r2 = powf(r_et.x, 2.f) + powf(r_et.y, 2.f);
-        sf::Vector2f a =
-            5.f * cfg.A * (r_et / powf(r2 + powf(cfg.L, 2.f), 1.5f)) * cfg.L * cfg.L;
-        enemies[i].updateState(a, cfg.dt);
-    }
 }
 
 void Game::render() {

@@ -1,11 +1,17 @@
 #ifndef SYSTEMS_H
 #define SYSTEMS_H
 
+#include <string>
 #include <SFML/Graphics.hpp>
 
 #include "game_objects.h"
 
 using EntityId = int;
+
+struct MetadataComponent {
+    EntityId id;
+    std::string name;
+};
 
 struct RenderComponent {
     sf::CircleShape shape;
@@ -35,6 +41,7 @@ struct CollisionComponent {
 };
 
 struct Components {
+    std::unordered_map<EntityId, MetadataComponent> metadata_comps;
     std::unordered_map<EntityId, RenderComponent> render_comps;
     std::unordered_map<EntityId, PhysicsComponent> physics_comps;
     std::unordered_map<EntityId, PairwiseForceComponent> pairforce_comps;

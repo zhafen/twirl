@@ -43,6 +43,10 @@ int Game::createEntityRelationship() { return entityRelationshipCounter++; }
 void Game::initializeState() {
     // Make player
     player_id = createEntity();
+    MetadataComponent mc;
+    mc.id = player_id;
+    mc.name = "Player";
+    components.metadata_comps[player_id] = mc;
     RenderComponent rc;
     rc.shape = sf::CircleShape(cfg.L);
     rc.shape.setOrigin(rc.shape.getRadius(), rc.shape.getRadius());
@@ -51,6 +55,30 @@ void Game::initializeState() {
     pc.pos = sf::Vector2f(0.f, 0.f);
     pc.vel = sf::Vector2f(0.f, 0.f);
     components.physics_comps[player_id] = pc;
+
+    // Make beacon particle for player
+    EntityId beacon_id = createEntity();
+    MetadataComponent mc_beacon;
+    mc_beacon.id = beacon_id;
+    mc_beacon.name = "Beacon";
+    components.metadata_comps[beacon_id] = mc_beacon;
+    RenderComponent rc_beacon;
+    rc_beacon.shape = sf::CircleShape(cfg.L / 2.f);
+    rc_beacon.shape.setOrigin(rc_beacon.shape.getRadius(), rc_beacon.shape.getRadius());
+    rc_beacon.shape.setFillColor(sf::Color::Black);
+    rc_beacon.shape.setOutlineColor(sf::Color::White);
+    rc_beacon.shape.setOutlineThickness(cfg.L / 10.f);
+    components.render_comps[beacon_id] = rc_beacon;
+    PhysicsComponent pc_beacon;
+    pc_beacon.pos = sf::Vector2f(0.f, 0.f);
+    pc_beacon.vel = sf::Vector2f(0.f, 0.f);
+    components.physics_comps[beacon_id] = pc_beacon;
+    // EntityId rel_beacon_id = createEntityRelationship();
+    // PairwiseForceComponent pfc_beacon;
+    // pfc_beacon.target_entity = player_id;
+    // pfc_beacon.source_entity = beacon_id;
+    // pfc_beacon.params.magnitude *= -0.1f;
+    // components.pairforce_comps[rel_beacon_id] = pfc_beacon;
 
     // Make enemies
     std::random_device rd;

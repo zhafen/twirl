@@ -66,38 +66,33 @@ void PhysicsSystem::update(Components& components) {
  * components.
  */
 void PhysicsSystem::resolveCollisions(Components& components) {
-    for (auto& [id1, pc1] : components.physics_comps) {
-        if (!pc1.collisions) {
+    for (auto& [id1, cc] : components.collision_comps) {
+        // Get first entity
+        auto& rc1 = components.render_comps.at(id1);
+        auto& pc1 = components.physics_comps.at(id1);
+
+        // Get second entity
+        auto& id2 = cc.id2;
+        auto& rc2 = components.render_comps.at(id2);
+        auto& pc2 = components.physics_comps.at(id2);
+
+        // Check for collision, assuming circular shapes
+        auto r_12 = pc2.pos - pc1.pos;
+        auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
+        if (r_12_mag > rc1.shape.getRadius() + rc2.shape.getRadius()) {
             continue;
         }
-        auto rc1 = components.render_comps.at(id1);
-        for (auto& [id2, pc2] : components.physics_comps) {
-            if ((id1 == id2) || !pc2.collisions) {
-                continue;
-            }
-            auto rc2 = components.render_comps.at(id2);
 
-            // Continue if not colliding
-            if (!rc1.shape.getGlobalBounds().intersects(rc2.shape.getGlobalBounds())) {
-                continue;
-            }
+        // Calculate the momentum in the COM frame
+        auto T = 0.5f * (pc1.mass * (pc1.vel.x * pc1.vel.x + pc1.vel.y * pc1.vel.y) +
+                         pc2.mass * (pc2.vel.x * pc2.vel.x + pc2.vel.y * pc2.vel.y));
+        auto pcom_mag = sqrtf(2.0f * T * pc1.mass * pc2.mass / (pc1.mass + pc2.mass));
+        auto p1com = -pcom_mag * r_12 / r_12_mag;
 
-            // Calculate the momentum in the COM frame
-            auto T =
-                0.5f * (pc1.mass * (pc1.vel.x * pc1.vel.x + pc1.vel.y * pc1.vel.y) +
-                        pc2.mass * (pc2.vel.x * pc2.vel.x + pc2.vel.y * pc2.vel.y));
-            auto pcom_mag =
-                sqrtf(2.0f * T * pc1.mass * pc2.mass / (pc1.mass + pc2.mass));
-            auto r_12 = pc2.pos - pc1.pos;
-            auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
-            auto p1com = -pcom_mag * r_12 / r_12_mag;
-
-            // Convert back to default frame
-            auto vcom =
-                (pc1.vel * pc1.mass + pc2.vel * pc2.mass) / (pc1.mass + pc2.mass);
-            pc1.vel = vcom + p1com / pc1.mass;
-            pc2.vel = vcom - p1com / pc2.mass;
-        }
+        // Convert back to default frame
+        auto vcom = (pc1.vel * pc1.mass + pc2.vel * pc2.mass) / (pc1.mass + pc2.mass);
+        pc1.vel = vcom + p1com / pc1.mass;
+        pc2.vel = vcom - p1com / pc2.mass;
     }
 }
 

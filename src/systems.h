@@ -17,7 +17,6 @@ struct PhysicsComponent {
     sf::Vector2f pos = {0.0f, 0.0f};
     sf::Vector2f vel = {0.0f, 0.0f};
     sf::Vector2f force = {0.0f, 0.0f};
-    bool collisions = false;
 };
 
 struct PairwiseForceComponent {
@@ -30,10 +29,16 @@ struct PairwiseForceComponent {
     } params;
 };
 
+struct CollisionComponent {
+    EntityId id1;
+    EntityId id2;
+};
+
 struct Components {
     std::unordered_map<EntityId, RenderComponent> render_comps;
     std::unordered_map<EntityId, PhysicsComponent> physics_comps;
     std::unordered_map<EntityId, PairwiseForceComponent> pairforce_comps;
+    std::unordered_map<EntityId, CollisionComponent> collision_comps;
     std::vector<std::pair<int, EntityId>> entity_zorders;
 };
 

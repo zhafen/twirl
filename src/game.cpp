@@ -48,7 +48,6 @@ void Game::initializeState() {
     PhysicsComponent pc;
     pc.pos = sf::Vector2f(0.f, 0.f);
     pc.vel = sf::Vector2f(0.f, 0.f);
-    pc.collisions = true;
     components.physics_comps[player_id] = pc;
 
     // Make enemies
@@ -62,7 +61,6 @@ void Game::initializeState() {
         PhysicsComponent pc;
         pc.pos = sf::Vector2f(dist(gen), dist(gen) - cfg.window_size.y / 2.f);
         pc.vel = sf::Vector2f(0.f, 0.f);
-        pc.collisions = true;
         components.physics_comps[id] = pc;
         // Colored circles
         RenderComponent rc;
@@ -75,13 +73,18 @@ void Game::initializeState() {
         PairwiseForceComponent pfc;
         pfc.target_entity = id;
         pfc.source_entity = player_id;
-        // // Because of the r^-2 force drops off quickly if we don't scale it strongly
+        // Because of the r^-2 force drops off quickly if we don't scale it strongly
         // pfc.params.magnitude *= -100.f * cfg.A;
         // pfc.params.power = -2.f;
         // pfc.params.softening = cfg.L;
         // Alternate setup: springs. TODO: Add friction or this goes crazy.
         pfc.params.magnitude *= -0.1f;
         components.pairforce_comps[id] = pfc;
+        // Collides with the player
+        CollisionComponent cc;
+        cc.id1 = player_id;
+        cc.id2 = id;
+        components.collision_comps[id] = cc;
     }
 
     // Make background

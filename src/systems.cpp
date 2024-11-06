@@ -26,6 +26,7 @@ void PhysicsSystem::calculateForces(Components& components) {
 
 void PhysicsSystem::update(Components& components) {
     for (auto& [id, pc] : components.physics_comps) {
+        // DEBUG
         auto mc = components.metadata_comps.at(id);
         // Update using leapfrog algorithm
         auto acc = pc.force / pc.mass;
@@ -34,7 +35,6 @@ void PhysicsSystem::update(Components& components) {
         pc.vel += acc * cfg.dt / 2.f;
 
         // Update render component position
-        // Setting the position of the shape here messes with the update loop somehow
         auto& rc = components.render_comps.at(id);
         rc.shape.setPosition(pc.pos);
 
@@ -76,6 +76,10 @@ void PhysicsSystem::resolveCollisions(Components& components) {
         auto& id2 = cc.id2;
         auto& rc2 = components.render_comps.at(id2);
         auto& pc2 = components.physics_comps.at(id2);
+
+        // DEBUG
+        auto mc1 = components.metadata_comps.at(id1);
+        auto mc2 = components.metadata_comps.at(id2);
 
         // Check for collision, assuming circular shapes
         auto r_12 = pc2.pos - pc1.pos;

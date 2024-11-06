@@ -126,8 +126,11 @@ void Game::initializeState() {
     }
     // Enemies collide with each other
     for (auto& [id1, pc1] : components.physics_comps) {
+        if ((id1 == player_id) || (id1 == beacon_id)) {
+            continue;
+        }
         for (auto& [id2, pc2] : components.physics_comps) {
-            if (id1 == id2) {
+            if ((id1 == id2) || (id2 == player_id) || (id2 == beacon_id)) {
                 continue;
             }
             EntityId rel_id = createEntityRelationship();

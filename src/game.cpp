@@ -92,6 +92,19 @@ void Game::initializeState() {
         cc.id2 = player_id;
         components.collision_comps[rel_id] = cc;
     }
+    // Enemies collide with each other
+    for (auto& [id1, pc1] : components.physics_comps) {
+        for (auto& [id2, pc2] : components.physics_comps) {
+            if (id1 == id2) {
+                continue;
+            }
+            EntityId rel_id = createEntityRelationship();
+            CollisionComponent cc;
+            cc.id1 = id1;
+            cc.id2 = id2;
+            components.collision_comps[rel_id] = cc;
+        }
+    }
 
     // Make background
     int n_bkgrd = 100;

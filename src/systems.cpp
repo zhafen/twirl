@@ -26,7 +26,7 @@ void PhysicsSystem::calculateForces(Components& components) {
 
 void PhysicsSystem::update(Components& components) {
     for (auto& [id, pc] : components.physics_comps) {
-        // DEBUG: For some reason pc.force = 0
+        auto mc = components.metadata_comps.at(id);
         // Update using leapfrog algorithm
         auto acc = pc.force / pc.mass;
         pc.vel += acc * cfg.dt / 2.f;

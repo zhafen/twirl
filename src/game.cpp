@@ -88,6 +88,10 @@ void Game::initializeState() {
     for (int i = 0; i < n_enemies; ++i) {
         // Entity properties
         EntityId id = createEntity();
+        MetadataComponent mc;
+        mc.id = id;
+        mc.name = "Enemy" + std::to_string(i);
+        components.metadata_comps[id] = mc;
         // Randomly distributed in a square
         PhysicsComponent pc;
         pc.pos = sf::Vector2f(dist(gen), dist(gen) - cfg.window_size.y / 2.f);
@@ -144,12 +148,13 @@ void Game::initializeState() {
         rc.shape.setOutlineThickness(cfg.L / 5.f);
         rc.shape.setOutlineColor(sf::Color(63, 63, 63));
         rc.shape.setOrigin(rc.shape.getRadius(), rc.shape.getRadius());
+        rc.shape.setPosition(0.f, 0.f);
         rc.zorder = -i;
         components.render_comps[id] = rc;
-        PhysicsComponent pc;
-        pc.pos = sf::Vector2f(0.f, 0.f);
-        pc.vel = sf::Vector2f(0.f, 0.f);
-        components.physics_comps[id] = pc;
+        // PhysicsComponent pc;
+        // pc.pos = sf::Vector2f(0.f, 0.f);
+        // pc.vel = sf::Vector2f(0.f, 0.f);
+        // components.physics_comps[id] = pc;
     }
 
     // Create a vector of (zorder, id) pairs

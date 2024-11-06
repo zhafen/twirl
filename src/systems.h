@@ -1,12 +1,13 @@
 #ifndef SYSTEMS_H
 #define SYSTEMS_H
 
-#include <string>
 #include <SFML/Graphics.hpp>
+#include <string>
 
 #include "game_objects.h"
 
 using EntityId = int;
+using EntityRelationId = int;
 
 struct MetadataComponent {
     EntityId id;
@@ -25,6 +26,8 @@ struct PhysicsComponent {
     sf::Vector2f force = {0.0f, 0.0f};
 };
 
+struct MouseButtonReleasedComponent {};
+
 struct PairwiseForceComponent {
     EntityId target_entity;
     EntityId source_entity;
@@ -41,12 +44,17 @@ struct CollisionComponent {
 };
 
 struct Components {
+    // Single-entity components
     std::unordered_map<EntityId, MetadataComponent> metadata_comps;
     std::unordered_map<EntityId, RenderComponent> render_comps;
     std::unordered_map<EntityId, PhysicsComponent> physics_comps;
-    std::unordered_map<EntityId, PairwiseForceComponent> pairforce_comps;
-    std::unordered_map<EntityId, CollisionComponent> collision_comps;
+    std::unordered_map<EntityId, MouseButtonReleasedComponent>
+        mousebuttonreleased_comps;
     std::vector<std::pair<int, EntityId>> entity_zorders;
+
+    // Multi-entity components
+    std::unordered_map<EntityRelationId, PairwiseForceComponent> pairforce_comps;
+    std::unordered_map<EntityRelationId, CollisionComponent> collision_comps;
 };
 
 class PhysicsSystem {
@@ -55,6 +63,7 @@ class PhysicsSystem {
     void calculateForces(Components& components);
     void update(Components& components);
     void resolveCollisions(Components& components);
+
    private:
     Config cfg;
 };

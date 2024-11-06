@@ -73,7 +73,10 @@ void Game::initializeState() {
     pc_beacon.pos = sf::Vector2f(0.f, 0.f);
     pc_beacon.vel = sf::Vector2f(0.f, 0.f);
     components.physics_comps[beacon_id] = pc_beacon;
-    // EntityId rel_beacon_id = createEntityRelationship();
+    MouseButtonReleasedComponent mbrc;
+    components.mousebuttonreleased_comps[beacon_id] = mbrc;
+
+    // EntityRelationId rel_beacon_id = createEntityRelationship();
     // PairwiseForceComponent pfc_beacon;
     // pfc_beacon.target_entity = player_id;
     // pfc_beacon.source_entity = beacon_id;
@@ -107,7 +110,7 @@ void Game::initializeState() {
 
         // Relationship with other entities
         // Pulled towards the player
-        EntityId rel_id = createEntityRelationship();
+        EntityRelationId rel_id = createEntityRelationship();
         PairwiseForceComponent pfc;
         pfc.target_entity = id;
         pfc.source_entity = player_id;
@@ -172,6 +175,15 @@ void Game::handleEvents() {
     for (auto event = sf::Event(); window.pollEvent(event);) {
         if (event.type == sf::Event::Closed) {
             window.close();
+        } else if (event.type == sf::Event::MouseButtonReleased) {
+            for (auto& [id, mbrc] : components.mousebuttonreleased_comps) {
+                // get the current mouse position in the window
+                sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+
+                // convert it to world coordinates and store
+                auto& pc = components.physics_comps.at(id);
+                pc.pos = window.mapPixelToCoords(pixelPos);
+            }
         }
     }
 }

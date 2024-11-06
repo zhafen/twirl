@@ -48,7 +48,7 @@ void Game::initializeState() {
     mc.name = "Player";
     components.metadata_comps[player_id] = mc;
     RenderComponent rc;
-    rc.shape = std::make_unique<CenteredCircleShape>(cfg.L);
+    rc.shape = std::make_unique<sf::CircleShape>(cfg.L);
     components.render_comps[player_id] = rc;
     PhysicsComponent pc;
     pc.pos = sf::Vector2f(0.f, 0.f);
@@ -63,10 +63,10 @@ void Game::initializeState() {
     // components.metadata_comps[beacon_id] = mc_beacon;
     // RenderComponent rc_beacon;
     // rc_beacon.shape = sf::CircleShape(cfg.L / 2.f);
-    // rc_beacon.shape.setOrigin(rc_beacon.shape.getRadius(), rc_beacon.shape.getRadius());
-    // rc_beacon.shape.setFillColor(sf::Color::Black);
-    // rc_beacon.shape.setOutlineColor(sf::Color::White);
-    // rc_beacon.shape.setOutlineThickness(cfg.L / 10.f);
+    // rc_beacon.shape->setOrigin(rc_beacon.shape->getRadius(), rc_beacon.shape->getRadius());
+    // rc_beacon.shape->setFillColor(sf::Color::Black);
+    // rc_beacon.shape->setOutlineColor(sf::Color::White);
+    // rc_beacon.shape->setOutlineThickness(cfg.L / 10.f);
     // components.render_comps[beacon_id] = rc_beacon;
     // PhysicsComponent pc_beacon;
     // pc_beacon.pos = sf::Vector2f(0.f, 0.f);
@@ -102,9 +102,9 @@ void Game::initializeState() {
     //     // Colored circles
     //     RenderComponent rc;
     //     rc.shape = sf::CircleShape(cfg.L);
-    //     rc.shape.setFillColor(sf::Color::Red);
-    //     rc.shape.setOrigin(rc.shape.getRadius(), rc.shape.getRadius());
-    //     rc.shape.setPosition(pc.pos);
+    //     rc.shape->setFillColor(sf::Color::Red);
+    //     rc.shape->setOrigin(rc.shape->getRadius(), rc.shape->getRadius());
+    //     rc.shape->setPosition(pc.pos);
     //     components.render_comps[id] = rc;
 
     //     // Relationship with other entities
@@ -152,7 +152,7 @@ void Game::initializeState() {
     //     rc.shape->setFillColor(sf::Color(127, 127, 127));
     //     rc.shape->setOutlineThickness(cfg.L / 5.f);
     //     rc.shape->setOutlineColor(sf::Color(63, 63, 63));
-    //     rc.shape->setOrigin(rc.shape.getRadius(), rc.shape.getRadius());
+    //     rc.shape->setOrigin(rc.shape->getRadius(), rc.shape->getRadius());
     //     rc.shape->setPosition(0.f, 0.f);
     //     rc.zorder = -i;
     //     components.render_comps[id] = rc;

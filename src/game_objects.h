@@ -16,10 +16,10 @@ struct Config {
     float dx;
 };
 
-class CenteredCircleShape : public sf::CircleShape {
+class OurCircleShape : public sf::CircleShape {
    public:
     // Constructor that sets a different default origin
-    CenteredCircleShape(float radius = 0);
+    OurCircleShape(float radius = 50.f);
 };
 
-#endif // GAMEOBJECTS_H
+#endif  // GAMEOBJECTS_H

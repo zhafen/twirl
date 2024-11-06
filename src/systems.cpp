@@ -39,7 +39,7 @@ void PhysicsSystem::update(Components& components) {
 
         // Update render component position
         auto& rc = components.render_comps.at(id);
-        rc.shape.setPosition(pc.pos);
+        rc.shape->setPosition(pc.pos);
 
         // Reset force
         pc.force = {0.f, 0.f};
@@ -80,10 +80,13 @@ void PhysicsSystem::resolveCollisions(Components& components) {
         auto& rc2 = components.render_comps.at(id2);
         auto& pc2 = components.physics_comps.at(id2);
 
-        // Check for collision, assuming circular shapes
+        // Check for collision, assuming circular shapes for all objects that could
+        // collide
         auto r_12 = pc2.pos - pc1.pos;
         auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
-        if (r_12_mag > rc1.shape.getRadius() + rc2.shape.getRadius()) {
+        sf::CircleShape* rc1_shape = dynamic_cast<sf::CircleShape*>(rc1.shape.get());
+        sf::CircleShape* rc2_shape = dynamic_cast<sf::CircleShape*>(rc2.shape.get());
+        if (r_12_mag > rc1_shape->getRadius() + rc2_shape->getRadius()) {
             continue;
         }
 
@@ -108,7 +111,7 @@ void RenderSystem::render(sf::RenderWindow& window, Components& components) {
     // draw frame
     for (auto [zorder, id] : components.entity_zorders) {
         auto& rc = components.render_comps.at(id);
-        window.draw(rc.shape);
+        // window.draw(*rc.shape);
     }
 
     window.display();

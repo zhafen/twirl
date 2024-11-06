@@ -37,6 +37,8 @@ void Game::resetGameState() {
 }
 
 int Game::createEntity() { return entityCounter++; }
+// Same as createEntity, but for relationships between entities
+int Game::createEntityRelationship() { return entityRelationshipCounter++; }
 
 void Game::initializeState() {
     // Make player
@@ -56,6 +58,7 @@ void Game::initializeState() {
     std::uniform_real_distribution<float> dist(-10.f * cfg.L, 10.f * cfg.L);
     int n_enemies = 10;
     for (int i = 0; i < n_enemies; ++i) {
+        // Entity properties
         EntityId id = createEntity();
         // Randomly distributed in a square
         PhysicsComponent pc;
@@ -69,7 +72,10 @@ void Game::initializeState() {
         rc.shape.setOrigin(rc.shape.getRadius(), rc.shape.getRadius());
         rc.shape.setPosition(pc.pos);
         components.render_comps[id] = rc;
+
+        // Relationship with other entities
         // Pulled towards the player
+        EntityId rel_id = createEntityRelationship();
         PairwiseForceComponent pfc;
         pfc.target_entity = id;
         pfc.source_entity = player_id;
@@ -79,12 +85,12 @@ void Game::initializeState() {
         // pfc.params.softening = cfg.L;
         // Alternate setup: springs. TODO: Add friction or this goes crazy.
         pfc.params.magnitude *= -0.1f;
-        components.pairforce_comps[id] = pfc;
+        components.pairforce_comps[rel_id] = pfc;
         // Collides with the player
         CollisionComponent cc;
-        cc.id1 = player_id;
-        cc.id2 = id;
-        components.collision_comps[id] = cc;
+        cc.id1 = id;
+        cc.id2 = player_id;
+        components.collision_comps[rel_id] = cc;
     }
 
     // Make background

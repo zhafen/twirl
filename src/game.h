@@ -21,7 +21,8 @@ class Game {
     sf::View view;
 
     // Entities
-    int entityCounter = 0;
+    EntityId entityCounter = 0;
+    EntityId entityRelationshipCounter = 0;
     EntityId player_id;
     std::vector<Particle> enemies;
     std::vector<sf::CircleShape> bkgrd_circles;
@@ -36,6 +37,7 @@ class Game {
 
     // Methods
     int createEntity();
+    int createEntityRelationship();
     void initializeState();
     void handleEvents();
     void update();

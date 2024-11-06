@@ -8,7 +8,7 @@
 PhysicsSystem::PhysicsSystem(const Config& cfg) : cfg(cfg) {}
 
 void PhysicsSystem::calculateForces(Components& components) {
-    for (auto& [id, pairforce_comp] : components.pairforce_comps) {
+    for (auto& [rel_id, pairforce_comp] : components.pairforce_comps) {
         auto& target_pc = components.physics_comps.at(pairforce_comp.target_entity);
         auto& source_pc = components.physics_comps.at(pairforce_comp.source_entity);
 
@@ -35,8 +35,8 @@ void PhysicsSystem::update(Components& components) {
 
         // Update render component position
         // Setting the position of the shape here messes with the update loop somehow
-        auto& render_comp = components.render_comps.at(id);
-        render_comp.shape.setPosition(pc.pos);
+        auto& rc = components.render_comps.at(id);
+        rc.shape.setPosition(pc.pos);
 
         // Reset force
         pc.force = {0.f, 0.f};
@@ -66,8 +66,9 @@ void PhysicsSystem::update(Components& components) {
  * components.
  */
 void PhysicsSystem::resolveCollisions(Components& components) {
-    for (auto& [id1, cc] : components.collision_comps) {
+    for (auto& [rel_id, cc] : components.collision_comps) {
         // Get first entity
+        auto& id1 = cc.id1;
         auto& rc1 = components.render_comps.at(id1);
         auto& pc1 = components.physics_comps.at(id1);
 
@@ -103,8 +104,8 @@ void RenderSystem::render(sf::RenderWindow& window, Components& components) {
 
     // draw frame
     for (auto [zorder, id] : components.entity_zorders) {
-        auto& render_comp = components.render_comps.at(id);
-        window.draw(render_comp.shape);
+        auto& rc = components.render_comps.at(id);
+        window.draw(rc.shape);
     }
 
     window.display();

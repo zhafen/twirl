@@ -19,5 +19,7 @@ struct Config {
 class CenteredCircleShape : public sf::CircleShape {
    public:
     // Constructor that sets a different default origin
-    CenteredCircleShape(float radius = 50.f);
+    CenteredCircleShape(float radius = 0);
 };
+
+#endif // GAMEOBJECTS_H

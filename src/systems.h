@@ -15,12 +15,13 @@ struct MetadataComponent {
 };
 
 struct RenderComponent {
-    sf::CircleShape shape;
+    std::unique_ptr<sf::Shape> shape;
     int zorder = 0;
 };
 
 struct PhysicsComponent {
     float mass = 1.0f;
+    float durability = 1.0f;
     sf::Vector2f pos = {0.0f, 0.0f};
     sf::Vector2f vel = {0.0f, 0.0f};
     sf::Vector2f force = {0.0f, 0.0f};

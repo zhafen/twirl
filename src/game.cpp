@@ -149,12 +149,12 @@ void Game::initializeState() {
     for (int i = 0; i < n_bkgrd; ++i) {
         EntityId id = createEntity();
         RenderComponent rc;
-        rc.shape = sf::CircleShape(10.f * cfg.L * i);
-        rc.shape.setFillColor(sf::Color(127, 127, 127));
-        rc.shape.setOutlineThickness(cfg.L / 5.f);
-        rc.shape.setOutlineColor(sf::Color(63, 63, 63));
-        rc.shape.setOrigin(rc.shape.getRadius(), rc.shape.getRadius());
-        rc.shape.setPosition(0.f, 0.f);
+        rc.shape = std::make_unique<sf::CircleShape>(10.f * cfg.L * i);
+        rc.shape->setFillColor(sf::Color(127, 127, 127));
+        rc.shape->setOutlineThickness(cfg.L / 5.f);
+        rc.shape->setOutlineColor(sf::Color(63, 63, 63));
+        rc.shape->setOrigin(rc.shape.getRadius(), rc.shape.getRadius());
+        rc.shape->setPosition(0.f, 0.f);
         rc.zorder = -i;
         components.render_comps[id] = rc;
         // PhysicsComponent pc;
@@ -162,6 +162,11 @@ void Game::initializeState() {
         // pc.vel = sf::Vector2f(0.f, 0.f);
         // components.physics_comps[id] = pc;
     }
+
+    // Add a durability bar
+    EntityId durability_id = createEntity();
+    RenderComponent rc_durability;
+    rc.shape = sf::RectangleShape(sf::Vector2f(100.f, 10.f));
 
     // Create a vector of (zorder, id) pairs
     for (const auto& [id, rc] : components.render_comps) {

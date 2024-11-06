@@ -75,13 +75,13 @@ void Game::initializeState() {
     components.physics_comps[beacon_id] = pc_beacon;
     MouseButtonReleasedComponent mbrc;
     components.mousebuttonreleased_comps[beacon_id] = mbrc;
-
-    // EntityRelationId rel_beacon_id = createEntityRelationship();
-    // PairwiseForceComponent pfc_beacon;
-    // pfc_beacon.target_entity = player_id;
-    // pfc_beacon.source_entity = beacon_id;
-    // pfc_beacon.params.magnitude *= -0.1f;
-    // components.pairforce_comps[rel_beacon_id] = pfc_beacon;
+    // Pull the player towards the beacon
+    EntityRelationId rel_beacon_id = createEntityRelationship();
+    PairwiseForceComponent pfc_beacon;
+    pfc_beacon.target_entity = player_id;
+    pfc_beacon.source_entity = beacon_id;
+    pfc_beacon.params.magnitude *= -0.1f;
+    components.pairforce_comps[rel_beacon_id] = pfc_beacon;
 
     // Make enemies
     std::random_device rd;

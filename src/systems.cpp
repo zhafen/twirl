@@ -14,8 +14,13 @@ void PhysicsSystem::calculateForces(Components& components) {
 
         auto r = target_pc.pos - source_pc.pos;
         auto r_mag = std::sqrtf(r.x * r.x + r.y * r.y);
-        auto r_hat = r / r_mag;
 
+        // Don't calculate the distance when too close
+        if (r_mag < pairforce_comp.params.scaled_min_distance * cfg.L) {
+            continue;
+        }
+
+        auto r_hat = r / r_mag;
         auto r_mag_scaled = (r_mag + pairforce_comp.params.softening) / cfg.L;
         auto force = r_hat * pairforce_comp.params.magnitude * target_pc.mass *
                      source_pc.mass * powf(r_mag_scaled, pairforce_comp.params.power);

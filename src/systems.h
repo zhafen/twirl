@@ -35,6 +35,7 @@ struct PairwiseForceComponent {
         float magnitude = 1.0f;
         float softening = 0.0f;
         float power = 2.0f;
+        float scaled_min_distance = 0.1f;
     } params;
 };
 

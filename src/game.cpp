@@ -1,12 +1,11 @@
 #include "game.h"
 
+#include <SFML/Graphics.hpp>
 #include <filesystem>
 #include <iostream>
 #include <random>
 #include <unordered_map>
 #include <vector>
-
-#include <SFML/Graphics.hpp>
 
 #include "game_objects.h"
 #include "systems.h"
@@ -16,7 +15,8 @@ Game::Game()
       window(sf::VideoMode(cfg.window_size.x, cfg.window_size.y), "twirl"),
       view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size)),
       render_system(cfg, view),
-      physics_system(cfg) {
+      physics_system(cfg),
+      general_system(cfg) {
     window.setFramerateLimit(cfg.fps);
     initializeState();
 }
@@ -163,11 +163,11 @@ void Game::initializeState() {
     rc_bar.shape->setFillColor(sf::Color::White);
     rc_bar.shape->setOutlineThickness(cfg.L / 10.f);
     rc_bar.shape->setOutlineColor(sf::Color::Black);
+    rc_bar.size = sf::Vector2f(cfg.window_size.x / 2, cfg.L);
     // Have to convert the shape to a rectangle to set the size
     sf::RectangleShape* bar = dynamic_cast<sf::RectangleShape*>(rc_bar.shape.get());
-    sf::Vector2f bar_size(cfg.window_size.x / 2, cfg.L);
-    bar->setSize(bar_size);
-    sf::Vector2i pixel_pos(cfg.window_size.x / 2.f - bar_size.x, cfg.L);
+    bar->setSize(rc_bar.size);
+    sf::Vector2i pixel_pos(cfg.window_size.x / 2.f - rc_bar.size.x, cfg.L);
     bar->setPosition(window.mapPixelToCoords(pixel_pos));
     PairwiseFunctionComponent pfnc;
     pfnc.id1 = durability_id;
@@ -220,6 +220,9 @@ void Game::update() {
 
     // Resolve collisions
     physics_system.resolveCollisions(components);
+
+    // Call pairwise functions
+    general_system.callPairwiseFunctions(components);
 }
 
 void Game::render() {
@@ -227,7 +230,7 @@ void Game::render() {
     view.setCenter(components.physics_comps.at(player_id).pos);
     window.setView(view);
     // DEBUG
-    components.physics_comps.at(player_id).durability *= 0.9f;
+    components.physics_comps.at(player_id).durability *= 0.999f;
 
     // Render
     render_system.render(window, components);

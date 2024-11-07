@@ -5,6 +5,14 @@
 
 #include "game_objects.h"
 
+GeneralSystem::GeneralSystem(const Config& cfg) : cfg(cfg) {}
+
+void GeneralSystem::callPairwiseFunctions(Components& components) {
+    for (auto& [rel_id, pfnc] : components.pairfunc_comps) {
+        pfnc.func(pfnc.id1, pfnc.id2, components);
+    }
+}
+
 PhysicsSystem::PhysicsSystem(const Config& cfg) : cfg(cfg) {}
 
 void PhysicsSystem::calculateForces(Components& components) {

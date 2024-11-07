@@ -30,6 +30,7 @@ class Game {
     sf::Text announcement;
 
     // Systems
+    GeneralSystem general_system;
     RenderSystem render_system;
     PhysicsSystem physics_system;
     Components components;

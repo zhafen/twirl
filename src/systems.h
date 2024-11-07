@@ -1,11 +1,10 @@
 #ifndef SYSTEMS_H
 #define SYSTEMS_H
 
+#include <SFML/Graphics.hpp>
 #include <memory>
 #include <string>
 #include <unordered_map>
-
-#include <SFML/Graphics.hpp>
 
 #include "game_objects.h"
 
@@ -71,6 +70,16 @@ struct Components {
     std::unordered_map<EntityRelationId, PairwiseForceComponent> pairforce_comps;
     std::unordered_map<EntityRelationId, CollisionComponent> collision_comps;
     std::unordered_map<EntityRelationId, PairwiseFunctionComponent> pairfunc_comps;
+};
+
+// Probably best to avoid using the general system when possible
+class GeneralSystem {
+   public:
+    GeneralSystem(const Config& cfg);
+    void callPairwiseFunctions(Components& components);
+
+   private:
+    Config cfg;
 };
 
 class PhysicsSystem {

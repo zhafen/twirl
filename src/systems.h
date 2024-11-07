@@ -68,6 +68,7 @@ struct Components {
     std::unordered_map<EntityId, MouseButtonReleasedComponent>
         mousebuttonreleased_comps;
     std::vector<std::pair<int, EntityId>> entity_zorders;
+    std::vector<std::pair<int, EntityId>> ui_entity_zorders;
 
     // Multi-entity components
     std::unordered_map<EntityRelationId, PairwiseForceComponent> pairforce_comps;

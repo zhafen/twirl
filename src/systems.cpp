@@ -128,7 +128,6 @@ void RenderSystem::render(EntityId player_id, sf::RenderWindow& window,
         window.draw(*rc.shape);
     }
 
-    window.display();
 }
 
 void RenderSystem::renderUI(sf::RenderWindow& window, Components& components) {
@@ -136,10 +135,9 @@ void RenderSystem::renderUI(sf::RenderWindow& window, Components& components) {
     window.setView(ui_view);
 
     // draw frame
-    for (auto [zorder, id] : components.entity_zorders) {
+    for (auto [zorder, id] : components.ui_entity_zorders) {
         auto& uic = components.ui_comps.at(id);
         window.draw(*uic.shape);
     }
 
-    window.display();
 }

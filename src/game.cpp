@@ -173,7 +173,7 @@ void Game::initializeState() {
     pfnc.id1 = bar_id;
     pfnc.id2 = player_id;
     pfnc.func = [](EntityId id1, EntityId id2, Components& components) {
-        auto& uic_bar = components.render_comps.at(id1);
+        auto& uic_bar = components.ui_comps.at(id1);
         auto& pc_player = components.physics_comps.at(id2);
 
         // Update the size of the durability bar
@@ -191,6 +191,13 @@ void Game::initializeState() {
     }
     // Sort the vector according to zorder
     std::sort(components.entity_zorders.begin(), components.entity_zorders.end());
+
+    // Do the same for the UI
+    for (const auto& [id, uic] : components.ui_comps) {
+        components.ui_entity_zorders.emplace_back(uic.zorder, id);
+    }
+    // Sort the vector according to zorder
+    std::sort(components.ui_entity_zorders.begin(), components.ui_entity_zorders.end());
 }
 
 void Game::handleEvents() {
@@ -230,5 +237,7 @@ void Game::render() {
 
     // Render
     render_system.render(player_id, window, components);
-    // render_system.renderUI(window, components);
+    render_system.renderUI(window, components);
+
+    window.display();
 }

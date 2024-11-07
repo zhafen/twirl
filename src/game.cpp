@@ -49,7 +49,7 @@ void Game::initializeState() {
     components.metadata_comps[player_id] = mc;
     RenderComponent rc;
     rc.shape = std::make_unique<sf::CircleShape>(cfg.L);
-    components.render_comps[player_id] = rc;
+    components.render_comps[player_id] = std::move(rc);
     PhysicsComponent pc;
     pc.pos = sf::Vector2f(0.f, 0.f);
     pc.vel = sf::Vector2f(0.f, 0.f);

@@ -18,7 +18,7 @@ struct MetadataComponent {
 };
 
 struct RenderComponent {
-    std::unique_ptr<sf::Shape> shape;
+    std::shared_ptr<sf::Shape> shape;
     int zorder = 0;
 };
 

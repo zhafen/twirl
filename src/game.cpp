@@ -49,7 +49,7 @@ void Game::initializeState() {
     mc.name = "Player";
     components.metadata_comps[player_id] = mc;
     RenderComponent rc;
-    rc.shape = std::make_unique<CCCircleShape>(cfg.L);
+    rc.shape = std::make_shared<CCCircleShape>(cfg.L);
     components.render_comps[player_id] = std::move(rc);
     PhysicsComponent pc;
     pc.pos = sf::Vector2f(0.f, 0.f);
@@ -63,7 +63,7 @@ void Game::initializeState() {
     mc_beacon.name = "Beacon";
     components.metadata_comps[beacon_id] = mc_beacon;
     RenderComponent rc_beacon;
-    rc_beacon.shape = std::make_unique<CCCircleShape>(cfg.L / 2.f);
+    rc_beacon.shape = std::make_shared<CCCircleShape>(cfg.L / 2.f);
     rc_beacon.shape->setFillColor(sf::Color::Black);
     rc_beacon.shape->setOutlineColor(sf::Color::White);
     rc_beacon.shape->setOutlineThickness(cfg.L / 10.f);
@@ -101,7 +101,7 @@ void Game::initializeState() {
         components.physics_comps[id] = pc;
         // Colored circles
         RenderComponent rc;
-        rc.shape = std::make_unique<CCCircleShape>(cfg.L);
+        rc.shape = std::make_shared<CCCircleShape>(cfg.L);
         rc.shape->setFillColor(sf::Color::Red);
         rc.shape->setPosition(pc.pos);
         components.render_comps[id] = std::move(rc);
@@ -147,7 +147,7 @@ void Game::initializeState() {
     for (int i = 0; i < n_bkgrd; ++i) {
         EntityId id = createEntity();
         RenderComponent rc;
-        rc.shape = std::make_unique<CCCircleShape>(10.f * cfg.L * i);
+        rc.shape = std::make_shared<CCCircleShape>(10.f * cfg.L * i);
         rc.shape->setFillColor(sf::Color(127, 127, 127));
         rc.shape->setOutlineThickness(cfg.L / 5.f);
         rc.shape->setOutlineColor(sf::Color(63, 63, 63));
@@ -158,17 +158,18 @@ void Game::initializeState() {
 
     // Add a durability bar
     EntityId durability_id = createEntity();
-    RenderComponent rc_durability;
-    sf::RectangleShape bar(sf::Vector2f(100.f, 10.f));
-    rc.shape = std::make_unique<sf::RectangleShape>(sf::Vector2f(100.f, 10.f));
-    rc.shape->setFillColor(sf::Color::White);
-    rc.shape->setOutlineThickness(cfg.L / 10.f);
-    rc.shape->setOutlineColor(sf::Color::Black);
-    // rc.shape->setSize(sf::Vector2f(cfg.window_size.x / 2, cfg.L));
-    components.render_comps[durability_id] = std::move(rc);
-
-    // sf::Vector2i pixel_pos(cfg.window_size.x / 2.f - length / 2.f, cfg.L);
-    // bar.setPosition(window.mapPixelToCoords(pixel_pos));
+    RenderComponent rc_bar;
+    rc_bar.shape = std::make_shared<sf::RectangleShape>(sf::Vector2f(100.f, 10.f));
+    rc_bar.shape->setFillColor(sf::Color::White);
+    rc_bar.shape->setOutlineThickness(cfg.L / 10.f);
+    rc_bar.shape->setOutlineColor(sf::Color::Black);
+    // Have to convert the shape to a rectangle to set the size
+    sf::RectangleShape* bar = dynamic_cast<sf::RectangleShape*>(rc_bar.shape.get());
+    sf::Vector2f bar_size(cfg.window_size.x / 2, cfg.L);
+    bar->setSize(bar_size);
+    sf::Vector2i pixel_pos(cfg.window_size.x / 2.f - bar_size.x, cfg.L);
+    bar->setPosition(window.mapPixelToCoords(pixel_pos));
+    components.render_comps[durability_id] = std::move(rc_bar);
 
     // Create a vector of (zorder, id) pairs
     for (const auto& [id, rc] : components.render_comps) {

@@ -154,18 +154,21 @@ void Game::initializeState() {
         rc.shape->setPosition(0.f, 0.f);
         rc.zorder = -i;
         components.render_comps[id] = std::move(rc);
-        // PhysicsComponent pc;
-        // pc.pos = sf::Vector2f(0.f, 0.f);
-        // pc.vel = sf::Vector2f(0.f, 0.f);
-        // components.physics_comps[id] = pc;
     }
 
     // Add a durability bar
     EntityId durability_id = createEntity();
     RenderComponent rc_durability;
+    sf::RectangleShape bar(sf::Vector2f(100.f, 10.f));
     rc.shape = std::make_unique<sf::RectangleShape>(sf::Vector2f(100.f, 10.f));
     rc.shape->setFillColor(sf::Color::White);
+    rc.shape->setOutlineThickness(cfg.L / 10.f);
+    rc.shape->setOutlineColor(sf::Color::Black);
+    // rc.shape->setSize(sf::Vector2f(cfg.window_size.x / 2, cfg.L));
     components.render_comps[durability_id] = std::move(rc);
+
+    // sf::Vector2i pixel_pos(cfg.window_size.x / 2.f - length / 2.f, cfg.L);
+    // bar.setPosition(window.mapPixelToCoords(pixel_pos));
 
     // Create a vector of (zorder, id) pairs
     for (const auto& [id, rc] : components.render_comps) {

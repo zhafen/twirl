@@ -111,7 +111,7 @@ void RenderSystem::render(sf::RenderWindow& window, Components& components) {
     // draw frame
     for (auto [zorder, id] : components.entity_zorders) {
         auto& rc = components.render_comps.at(id);
-        // window.draw(*rc.shape);
+        window.draw(*rc.shape);
     }
 
     window.display();

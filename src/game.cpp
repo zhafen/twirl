@@ -1,11 +1,12 @@
 #include "game.h"
 
-#include <SFML/Graphics.hpp>
 #include <filesystem>
 #include <iostream>
 #include <random>
 #include <unordered_map>
 #include <vector>
+
+#include <SFML/Graphics.hpp>
 
 #include "game_objects.h"
 #include "systems.h"

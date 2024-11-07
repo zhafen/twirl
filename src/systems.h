@@ -1,8 +1,11 @@
 #ifndef SYSTEMS_H
 #define SYSTEMS_H
 
-#include <SFML/Graphics.hpp>
+#include <memory>
 #include <string>
+#include <unordered_map>
+
+#include <SFML/Graphics.hpp>
 
 #include "game_objects.h"
 

@@ -1,7 +1,7 @@
 #include "systems.h"
 
 #include <SFML/Graphics.hpp>
-#include <cmath>
+#include <math>
 
 #include "game_objects.h"
 
@@ -13,7 +13,7 @@ void PhysicsSystem::calculateForces(Components& components) {
         auto& source_pc = components.physics_comps.at(pairforce_comp.source_entity);
 
         auto r = target_pc.pos - source_pc.pos;
-        auto r_mag = std::sqrtf(r.x * r.x + r.y * r.y);
+        auto r_mag = math::sqrtf(r.x * r.x + r.y * r.y);
 
         // Don't calculate the distance when too close
         if (r_mag < pairforce_comp.params.scaled_min_distance * cfg.L) {
@@ -83,7 +83,7 @@ void PhysicsSystem::resolveCollisions(Components& components) {
         // Check for collision, assuming circular shapes for all objects that could
         // collide
         auto r_12 = pc2.pos - pc1.pos;
-        auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
+        auto r_12_mag = math::sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
         sf::CircleShape* rc1_shape = dynamic_cast<sf::CircleShape*>(rc1.shape.get());
         sf::CircleShape* rc2_shape = dynamic_cast<sf::CircleShape*>(rc2.shape.get());
         if (r_12_mag > rc1_shape->getRadius() + rc2_shape->getRadius()) {
@@ -93,7 +93,7 @@ void PhysicsSystem::resolveCollisions(Components& components) {
         // Calculate the momentum in the COM frame
         auto T = 0.5f * (pc1.mass * (pc1.vel.x * pc1.vel.x + pc1.vel.y * pc1.vel.y) +
                          pc2.mass * (pc2.vel.x * pc2.vel.x + pc2.vel.y * pc2.vel.y));
-        auto pcom_mag = sqrtf(2.0f * T * pc1.mass * pc2.mass / (pc1.mass + pc2.mass));
+        auto pcom_mag = math::sqrtf(2.0f * T * pc1.mass * pc2.mass / (pc1.mass + pc2.mass));
         auto p1com = -pcom_mag * r_12 / r_12_mag;
 
         // Convert back to default frame

@@ -22,6 +22,7 @@ struct RenderComponent {
     std::shared_ptr<sf::Shape> shape;
     int zorder = 0;
     sf::Vector2f size;
+    sf::Vector2f pos;
 };
 
 struct UIComponent : RenderComponent {};

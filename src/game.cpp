@@ -167,7 +167,7 @@ void Game::initializeState() {
     uic_bar.size = sf::Vector2f(cfg.window_size.x / 2, cfg.L);
     // Have to convert the shape to a rectangle to set the size
     sf::Vector2i pixel_pos(cfg.window_size.x / 2.f - uic_bar.size.x, cfg.L);
-    uic_bar.shape->setPosition(window.mapPixelToCoords(pixel_pos));
+    uic_bar.pos = window.mapPixelToCoords(pixel_pos);
     // The durability bar size scales with the player durability
     PairwiseFunctionComponent pfnc;
     pfnc.id1 = bar_id;

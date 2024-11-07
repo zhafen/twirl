@@ -137,6 +137,8 @@ void RenderSystem::renderUI(sf::RenderWindow& window, Components& components) {
     // draw frame
     for (auto [zorder, id] : components.ui_entity_zorders) {
         auto& uic = components.ui_comps.at(id);
+        sf::RectangleShape* bar = dynamic_cast<sf::RectangleShape*>(uic.shape.get());
+        bar->setPosition(uic.pos);
         window.draw(*uic.shape);
     }
 

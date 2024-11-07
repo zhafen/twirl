@@ -160,10 +160,12 @@ void Game::initializeState() {
         // components.physics_comps[id] = pc;
     }
 
-    // // Add a durability bar
-    // EntityId durability_id = createEntity();
-    // RenderComponent rc_durability;
-    // rc.shape = sf::RectangleShape(sf::Vector2f(100.f, 10.f));
+    // Add a durability bar
+    EntityId durability_id = createEntity();
+    RenderComponent rc_durability;
+    rc.shape = std::make_unique<sf::RectangleShape>(sf::Vector2f(100.f, 10.f));
+    rc.shape->setFillColor(sf::Color::White);
+    components.render_comps[durability_id] = std::move(rc);
 
     // Create a vector of (zorder, id) pairs
     for (const auto& [id, rc] : components.render_comps) {

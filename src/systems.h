@@ -12,6 +12,8 @@
 using EntityId = int;
 using EntityRelationId = int;
 
+struct Components;
+
 struct MetadataComponent {
     EntityId id;
     std::string name;
@@ -20,6 +22,7 @@ struct MetadataComponent {
 struct RenderComponent {
     std::shared_ptr<sf::Shape> shape;
     int zorder = 0;
+    sf::Vector2f size;
 };
 
 struct PhysicsComponent {
@@ -43,9 +46,16 @@ struct PairwiseForceComponent {
     } params;
 };
 
-struct CollisionComponent {
+struct PairwiseComponent {
     EntityId id1;
     EntityId id2;
+};
+
+struct CollisionComponent : PairwiseComponent {};
+
+// Very general component for applying a function to pairs of entities
+struct PairwiseFunctionComponent : PairwiseComponent {
+    std::function<void(EntityId id1, EntityId id2, Components& components)> func;
 };
 
 struct Components {
@@ -60,6 +70,7 @@ struct Components {
     // Multi-entity components
     std::unordered_map<EntityRelationId, PairwiseForceComponent> pairforce_comps;
     std::unordered_map<EntityRelationId, CollisionComponent> collision_comps;
+    std::unordered_map<EntityRelationId, PairwiseFunctionComponent> pairfunc_comps;
 };
 
 class PhysicsSystem {

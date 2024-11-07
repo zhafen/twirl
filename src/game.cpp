@@ -169,6 +169,21 @@ void Game::initializeState() {
     bar->setSize(bar_size);
     sf::Vector2i pixel_pos(cfg.window_size.x / 2.f - bar_size.x, cfg.L);
     bar->setPosition(window.mapPixelToCoords(pixel_pos));
+    PairwiseFunctionComponent pfnc;
+    pfnc.id1 = durability_id;
+    pfnc.id2 = player_id;
+    pfnc.func = [](EntityId id1, EntityId id2, Components& components) {
+        auto& rc_bar = components.render_comps.at(id1);
+        auto& pc_player = components.physics_comps.at(id2);
+
+        // Update the size of the durability bar
+        sf::RectangleShape* bar = dynamic_cast<sf::RectangleShape*>(rc_bar.shape.get());
+        sf::Vector2f bar_size = rc_bar.size;
+        bar_size.x *= pc_player.durability;
+        bar->setSize(bar_size);
+    };
+    components.pairfunc_comps[createEntityRelationship()] = pfnc;
+
     components.render_comps[durability_id] = std::move(rc_bar);
 
     // Create a vector of (zorder, id) pairs
@@ -211,6 +226,8 @@ void Game::render() {
     // Pin the view to the player
     view.setCenter(components.physics_comps.at(player_id).pos);
     window.setView(view);
+    // DEBUG
+    components.physics_comps.at(player_id).durability *= 0.9f;
 
     // Render
     render_system.render(window, components);

@@ -19,6 +19,7 @@ class Game {
     // Window and view
     sf::RenderWindow window;
     sf::View view;
+    sf::View ui_view;
 
     // Entities
     EntityId entityCounter = 0;

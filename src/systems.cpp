@@ -111,15 +111,34 @@ void PhysicsSystem::resolveCollisions(Components& components) {
     }
 }
 
-RenderSystem::RenderSystem(const Config& cfg, sf::View& view) : cfg(cfg), view(view) {}
+RenderSystem::RenderSystem(const Config& cfg, sf::View& view, sf::View& ui_view)
+    : cfg(cfg), view(view), ui_view(ui_view) {}
 
-void RenderSystem::render(sf::RenderWindow& window, Components& components) {
+void RenderSystem::render(EntityId player_id, sf::RenderWindow& window,
+                          Components& components) {
     window.clear(sf::Color::Black);
+
+    // Pin the view to the player
+    view.setCenter(components.physics_comps.at(player_id).pos);
+    window.setView(view);
 
     // draw frame
     for (auto [zorder, id] : components.entity_zorders) {
         auto& rc = components.render_comps.at(id);
         window.draw(*rc.shape);
+    }
+
+    window.display();
+}
+
+void RenderSystem::renderUI(sf::RenderWindow& window, Components& components) {
+
+    window.setView(ui_view);
+
+    // draw frame
+    for (auto [zorder, id] : components.entity_zorders) {
+        auto& uic = components.ui_comps.at(id);
+        window.draw(*uic.shape);
     }
 
     window.display();

@@ -24,6 +24,8 @@ struct RenderComponent {
     sf::Vector2f size;
 };
 
+struct UIComponent : RenderComponent {};
+
 struct PhysicsComponent {
     float mass = 1.0f;
     float durability = 1.0f;
@@ -61,6 +63,7 @@ struct Components {
     // Single-entity components
     std::unordered_map<EntityId, MetadataComponent> metadata_comps;
     std::unordered_map<EntityId, RenderComponent> render_comps;
+    std::unordered_map<EntityId, UIComponent> ui_comps;
     std::unordered_map<EntityId, PhysicsComponent> physics_comps;
     std::unordered_map<EntityId, MouseButtonReleasedComponent>
         mousebuttonreleased_comps;
@@ -95,11 +98,13 @@ class PhysicsSystem {
 
 class RenderSystem {
    public:
-    RenderSystem(const Config& cfg, sf::View& view);
-    void render(sf::RenderWindow& window, Components& components);
+    RenderSystem(const Config& cfg, sf::View& view, sf::View& ui_view);
+    void render(EntityId player_id, sf::RenderWindow& window, Components& components);
+    void renderUI(sf::RenderWindow& window, Components& components);
 
    private:
     sf::View view;
+    sf::View ui_view;
     Config cfg;
 };
 

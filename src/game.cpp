@@ -90,6 +90,7 @@ void Game::initializeState() {
     std::mt19937 gen(rd());  // Standard random number generator
     std::uniform_real_distribution<float> dist(-10.f * cfg.L, 10.f * cfg.L);
     int n_enemies = 10;
+    std::vector<EntityId> enemy_ids;
     for (int i = 0; i < n_enemies; ++i) {
         // Entity properties
         EntityId id = createEntity();
@@ -127,14 +128,14 @@ void Game::initializeState() {
         cc.id1 = id;
         cc.id2 = player_id;
         components.collision_comps[rel_id] = cc;
+
+        // Store the enemy id
+        enemy_ids.push_back(id);
     }
     // Enemies collide with each other
-    for (auto& [id1, pc1] : components.physics_comps) {
-        if ((id1 == player_id) || (id1 == beacon_id)) {
-            continue;
-        }
-        for (auto& [id2, pc2] : components.physics_comps) {
-            if ((id1 == id2) || (id2 == player_id) || (id2 == beacon_id)) {
+    for (auto& id1 : enemy_ids) {
+        for (auto& id2 : enemy_ids) {
+            if (id1 == id2) {
                 continue;
             }
             EntityId rel_id = createEntityRelationship();

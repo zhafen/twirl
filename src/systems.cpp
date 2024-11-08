@@ -131,7 +131,6 @@ void PhysicsSystem::updateDurability(Components& components) {
         // Cap durability at 1.0
         if (dc.durability > 1.0f) {
             dc.durability = 1.0f;
-            dc.lost_all_durability = false;
             rc.shape->setFillColor(sf::Color::White);
         } else if (dc.durability < 0.0f) {
             // When out of durability, set to 0 and change color

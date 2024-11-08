@@ -44,7 +44,6 @@ struct DurabilityComponent {
     float durability = 1.0f;
     float durability_loss_per_collision = 0.34f;
     float durability_regen_rate = 0.1f;
-    bool lost_all_durability = false;
 };
 
 struct MouseButtonReleasedComponent {};

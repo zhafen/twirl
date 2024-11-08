@@ -18,7 +18,10 @@ PhysicsSystem::PhysicsSystem(const Config& cfg) : cfg(cfg) {}
 void PhysicsSystem::calculateForces(Components& components) {
     for (auto& [id, fc] : components.force_comps) {
         auto& pc = components.physics_comps.at(id);
-        pc.force -= fc.drag_coefficient * pc.vel * cfg.A / cfg.V;
+        float vel_mag = sqrtf(pc.vel.x * pc.vel.x + pc.vel.y * pc.vel.y);
+        sf::Vector2f vel_scaling =
+            (pc.vel / cfg.V) * powf(vel_mag / cfg.V, fc.drag_power - 1.0f);
+        pc.force -= fc.drag_coefficient * cfg.A * vel_scaling;
     }
 }
 
@@ -37,8 +40,8 @@ void PhysicsSystem::calculatePairwiseForces(Components& components) {
 
         auto r_hat = r / r_mag;
         auto r_mag_scaled = (r_mag + pfc.params.softening) / cfg.L;
-        auto force = r_hat * pfc.params.magnitude * target_pc.mass *
-                     source_pc.mass * powf(r_mag_scaled, pfc.params.power);
+        auto force = r_hat * pfc.params.magnitude * target_pc.mass * source_pc.mass *
+                     powf(r_mag_scaled, pfc.params.power);
 
         target_pc.force += force;
     }

@@ -42,7 +42,8 @@ struct PhysicsComponent {
 
 struct ForceComponent {
     // In units of cfg.A / cfg.V
-    float drag_coefficient = 0.1f;
+    float drag_coefficient = 0.01f;
+    float drag_power = 2.0f;
 };
 
 struct DurabilityComponent {

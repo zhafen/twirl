@@ -91,7 +91,7 @@ void Game::initializeState() {
     std::random_device rd;
     std::mt19937 gen(rd());  // Standard random number generator
     std::uniform_real_distribution<float> dist(-10.f * cfg.L, 10.f * cfg.L);
-    int n_enemies = 0;
+    int n_enemies = 10;
     std::vector<EntityId> enemy_ids;
     for (int i = 0; i < n_enemies; ++i) {
         // Entity properties

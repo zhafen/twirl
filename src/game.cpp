@@ -56,6 +56,8 @@ void Game::initializeState() {
     pc.pos = sf::Vector2f(0.f, 0.f);
     pc.vel = sf::Vector2f(0.f, 0.f);
     components.physics_comps[player_id] = pc;
+    // Affected by drag;
+    components.force_comps[player_id] = ForceComponent();
     DurabilityComponent dc;
     components.dura_comps[player_id] = dc;
 
@@ -103,6 +105,8 @@ void Game::initializeState() {
         pc.pos = sf::Vector2f(dist(gen), dist(gen) - cfg.window_size.y / 2.f);
         pc.vel = sf::Vector2f(0.f, 0.f);
         components.physics_comps[id] = pc;
+        // Affected by drag;
+        components.force_comps[id] = ForceComponent();
         // Colored circles
         RenderComponent rc;
         rc.shape = std::make_shared<CCCircleShape>(cfg.L);
@@ -207,6 +211,7 @@ void Game::handleEvents() {
 void Game::update() {
     // Calculate forces
     physics_system.calculateForces(components);
+    physics_system.calculatePairwiseForces(components);
 
     // Update state
     physics_system.update(components);

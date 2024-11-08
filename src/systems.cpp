@@ -16,22 +16,29 @@ void GeneralSystem::callPairwiseFunctions(Components& components) {
 PhysicsSystem::PhysicsSystem(const Config& cfg) : cfg(cfg) {}
 
 void PhysicsSystem::calculateForces(Components& components) {
-    for (auto& [rel_id, pairforce_comp] : components.pairforce_comps) {
-        auto& target_pc = components.physics_comps.at(pairforce_comp.target_entity);
-        auto& source_pc = components.physics_comps.at(pairforce_comp.source_entity);
+    for (auto& [id, fc] : components.force_comps) {
+        auto& pc = components.physics_comps.at(id);
+        pc.force -= fc.drag_coefficient * pc.vel * cfg.A / cfg.V;
+    }
+}
+
+void PhysicsSystem::calculatePairwiseForces(Components& components) {
+    for (auto& [rel_id, pfc] : components.pairforce_comps) {
+        auto& target_pc = components.physics_comps.at(pfc.target_entity);
+        auto& source_pc = components.physics_comps.at(pfc.source_entity);
 
         auto r = target_pc.pos - source_pc.pos;
         auto r_mag = sqrtf(r.x * r.x + r.y * r.y);
 
         // Don't calculate the distance when too close
-        if (r_mag < pairforce_comp.params.scaled_min_distance * cfg.L) {
+        if (r_mag < pfc.params.scaled_min_distance * cfg.L) {
             continue;
         }
 
         auto r_hat = r / r_mag;
-        auto r_mag_scaled = (r_mag + pairforce_comp.params.softening) / cfg.L;
-        auto force = r_hat * pairforce_comp.params.magnitude * target_pc.mass *
-                     source_pc.mass * powf(r_mag_scaled, pairforce_comp.params.power);
+        auto r_mag_scaled = (r_mag + pfc.params.softening) / cfg.L;
+        auto force = r_hat * pfc.params.magnitude * target_pc.mass *
+                     source_pc.mass * powf(r_mag_scaled, pfc.params.power);
 
         target_pc.force += force;
     }

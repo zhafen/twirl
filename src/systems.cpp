@@ -160,10 +160,6 @@ void RenderSystem::render(EntityId player_id, sf::RenderWindow& window,
                           Components& components) {
     window.clear(sf::Color::Black);
 
-    // Pin the view to the player
-    view.setCenter(components.physics_comps.at(player_id).pos);
-    window.setView(view);
-
     // draw frame
     for (auto [zorder, id] : components.entity_zorders) {
         auto& rc = components.render_comps.at(id);

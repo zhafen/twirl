@@ -91,7 +91,7 @@ void Game::initializeState() {
     std::random_device rd;
     std::mt19937 gen(rd());  // Standard random number generator
     std::uniform_real_distribution<float> dist(-10.f * cfg.L, 10.f * cfg.L);
-    int n_enemies = 10;
+    int n_enemies = 0;
     std::vector<EntityId> enemy_ids;
     for (int i = 0; i < n_enemies; ++i) {
         // Entity properties
@@ -235,6 +235,10 @@ void Game::render() {
     // Render
     render_system.render(player_id, window, components);
     render_system.renderUI(window, components);
+
+    // Pin the view to the player
+    view.setCenter(components.physics_comps.at(player_id).pos);
+    window.setView(view);
 
     window.display();
 }

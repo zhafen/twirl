@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
+// OPTIMIZE: Consider computing these at compile time since they won't change.
 struct Config {
     Config();
     sf::Vector2u window_size;

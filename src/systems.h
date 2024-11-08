@@ -58,10 +58,11 @@ struct PairwiseForceComponent {
     EntityId target_entity;
     EntityId source_entity;
     struct Parameters {
-        float magnitude = 1.0f;
+        float magnitude = 1.0f; // In units of cfg.A
         float softening = 0.0f;
         float power = 2.0f;
-        float scaled_min_distance = 0.1f;
+        float min_distance = 0.1f; // In units of cfg.L
+        float distance_scaling = 1.0f; // in units of cfg.L
     } params;
 };
 

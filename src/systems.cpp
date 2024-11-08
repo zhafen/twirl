@@ -34,14 +34,15 @@ void PhysicsSystem::calculatePairwiseForces(Components& components) {
         auto r_mag = sqrtf(r.x * r.x + r.y * r.y);
 
         // Don't calculate the distance when too close
-        if (r_mag < pfc.params.scaled_min_distance * cfg.L) {
+        if (r_mag < pfc.params.min_distance * cfg.L) {
             continue;
         }
 
         auto r_hat = r / r_mag;
-        auto r_mag_scaled = (r_mag + pfc.params.softening) / cfg.L;
-        auto force = r_hat * pfc.params.magnitude * target_pc.mass * source_pc.mass *
-                     powf(r_mag_scaled, pfc.params.power);
+        auto r_mag_scaled = (r_mag + pfc.params.softening * cfg.L) / cfg.L /
+                            pfc.params.distance_scaling;
+        auto force = r_hat * pfc.params.magnitude * cfg.A * target_pc.mass *
+                     source_pc.mass * powf(r_mag_scaled, pfc.params.power);
 
         target_pc.force += force;
     }

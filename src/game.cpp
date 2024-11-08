@@ -121,11 +121,12 @@ void Game::initializeState() {
         pfc.target_entity = id;
         pfc.source_entity = player_id;
         // Because of the r^-2 force drops off quickly if we don't scale it strongly
-        // pfc.params.magnitude *= -100.f * cfg.A;
-        // pfc.params.power = -2.f;
-        // pfc.params.softening = cfg.L;
-        // Alternate setup: springs. TODO: Add friction or this goes crazy.
-        pfc.params.magnitude *= -0.1f;
+        pfc.params.magnitude = -1.0f;
+        pfc.params.power = -2.f;
+        pfc.params.softening = 1.0f;
+        pfc.params.distance_scaling = cfg.window_size.x / 2.0f / cfg.L;
+        // Alternate setup: springs
+        // pfc.params.magnitude *= -0.1f;
         components.pairforce_comps[rel_id] = pfc;
         // Collides with the player
         CollisionComponent cc;

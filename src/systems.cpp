@@ -49,13 +49,6 @@ void PhysicsSystem::update(Components& components) {
         auto& rc = components.render_comps.at(id);
         rc.shape->setPosition(pc.pos);
 
-        // Update durability
-        pc.durability += pc.durability_regen_rate * cfg.dt;
-        if (pc.durability > 1.0f) {
-            pc.durability = 1.0f;
-            pc.lost_all_durability = false;
-        }
-
         // Reset force
         pc.force = {0.f, 0.f};
     }
@@ -116,20 +109,36 @@ void PhysicsSystem::resolveCollisions(Components& components) {
         pc1.vel = vcom + p1com / pc1.mass;
         pc2.vel = vcom - p1com / pc2.mass;
 
-        // Apply durability loss
-        // Can optimize this by just setting a "collided" flag and updating the logic
-        // separately. Can do that for the above too.
-        pc1.durability -= pc1.durability_loss_per_collision;
-        if (pc1.durability < 0.0f) {
-            pc1.durability = 0.0f;
-            pc1.lost_all_durability = true;
-            rc1.shape->setFillColor(sf::Color(63, 63, 63));
+        // Indicate collision
+        pc1.collided = true;
+        pc2.collided = true;
+    }
+}
+
+void PhysicsSystem::updateDurability(Components& components) {
+    for (auto& [id, dc] : components.dura_comps) {
+        dc.durability += dc.durability_regen_rate * cfg.dt;
+
+        auto& rc = components.render_comps.at(id);
+
+        // Apply durability loss from collision
+        bool& collided = components.physics_comps.at(id).collided;
+        if (collided) {
+            dc.durability -= dc.durability_loss_per_collision;
+            collided = false;
         }
-        pc2.durability -= pc2.durability_loss_per_collision;
-        if (pc2.durability < 0.0f) {
-            pc2.durability = 0.0f;
-            pc2.lost_all_durability = true;
-            rc2.shape->setFillColor(sf::Color(63, 63, 63));
+
+        // Cap durability at 1.0
+        if (dc.durability > 1.0f) {
+            dc.durability = 1.0f;
+            dc.lost_all_durability = false;
+            rc.shape->setFillColor(sf::Color::White);
+        } else if (dc.durability < 0.0f) {
+            // When out of durability, set to 0 and change color
+            dc.durability = 0.0f;
+            rc.shape->setFillColor(sf::Color(63, 63, 63));
+        } else {
+            dc.durability += dc.durability_regen_rate * cfg.dt;
         }
     }
 }
@@ -150,16 +159,13 @@ void RenderSystem::render(EntityId player_id, sf::RenderWindow& window,
         auto& rc = components.render_comps.at(id);
         window.draw(*rc.shape);
     }
-
 }
 
 void RenderSystem::renderUI(sf::RenderWindow& window, Components& components) {
-
     window.setView(ui_view);
 
     // draw frame
     for (auto [zorder, id] : components.ui_entity_zorders) {
-
         auto& uic = components.ui_comps.at(id);
 
         // Get the bar out and set parameters
@@ -175,5 +181,4 @@ void RenderSystem::renderUI(sf::RenderWindow& window, Components& components) {
 
         window.draw(*uic.shape);
     }
-
 }

@@ -37,9 +37,13 @@ struct PhysicsComponent {
     sf::Vector2f pos = {0.0f, 0.0f};
     sf::Vector2f vel = {0.0f, 0.0f};
     sf::Vector2f force = {0.0f, 0.0f};
+    bool collided = false;
+};
+
+struct DurabilityComponent {
     float durability = 1.0f;
-    float durability_loss_per_collision = 0.0f;
-    float durability_regen_rate = 0.0f;
+    float durability_loss_per_collision = 0.34f;
+    float durability_regen_rate = 0.1f;
     bool lost_all_durability = false;
 };
 
@@ -74,6 +78,7 @@ struct Components {
     std::unordered_map<EntityId, RenderComponent> render_comps;
     std::unordered_map<EntityId, UIComponent> ui_comps;
     std::unordered_map<EntityId, PhysicsComponent> physics_comps;
+    std::unordered_map<EntityId, DurabilityComponent> dura_comps;
     std::unordered_map<EntityId, MouseButtonReleasedComponent>
         mousebuttonreleased_comps;
     std::vector<std::pair<int, EntityId>> entity_zorders;
@@ -101,6 +106,7 @@ class PhysicsSystem {
     void calculateForces(Components& components);
     void update(Components& components);
     void resolveCollisions(Components& components);
+    void updateDurability(Components& components);
 
    private:
     Config cfg;

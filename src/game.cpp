@@ -55,9 +55,9 @@ void Game::initializeState() {
     PhysicsComponent pc;
     pc.pos = sf::Vector2f(0.f, 0.f);
     pc.vel = sf::Vector2f(0.f, 0.f);
-    pc.durability_regen_rate = 1.0f / 10.f / cfg.T;
-    pc.durability_loss_per_collision = 0.34f;
     components.physics_comps[player_id] = pc;
+    DurabilityComponent dc;
+    components.dura_comps[player_id] = dc;
 
     // Make beacon particle for player
     EntityId beacon_id = createEntity();
@@ -161,7 +161,7 @@ void Game::initializeState() {
 
     // Add a durability bar
     EntityId bar_id = createEntity();
-    UIComponent uic_bar(components.physics_comps.at(player_id).durability);
+    UIComponent uic_bar(components.dura_comps.at(player_id).durability);
     uic_bar.shape = std::make_shared<sf::RectangleShape>(sf::Vector2f(100.f, 10.f));
     uic_bar.shape->setFillColor(sf::Color::White);
     uic_bar.shape->setOutlineThickness(cfg.L / 10.f);
@@ -212,6 +212,7 @@ void Game::update() {
 
     // Resolve collisions
     physics_system.resolveCollisions(components);
+    physics_system.updateDurability(components);
 
     // Call pairwise functions
     general_system.callPairwiseFunctions(components);

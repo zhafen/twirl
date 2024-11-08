@@ -117,17 +117,23 @@ void Game::initializeState() {
         // Relationship with other entities
         // Pulled towards the player
         EntityRelationId rel_id = createEntityRelationship();
+        // First force: gravity
+        // Because of the r^-2 force drops off quickly if we don't scale it strongly
         PairwiseForceComponent pfc;
         pfc.target_entity = id;
         pfc.source_entity = player_id;
-        // Because of the r^-2 force drops off quickly if we don't scale it strongly
         pfc.params.magnitude = -1.0f;
-        pfc.params.power = -2.f;
+        pfc.params.power = -2.0f;
         pfc.params.softening = 1.0f;
         pfc.params.distance_scaling = cfg.window_size.x / 2.0f / cfg.L;
-        // Alternate setup: springs
-        // pfc.params.magnitude *= -0.1f;
         components.pairforce_comps[rel_id] = pfc;
+        // Second force: springs
+        EntityRelationId rel_id2 = createEntityRelationship();
+        PairwiseForceComponent pfc2;
+        pfc2.target_entity = id;
+        pfc2.source_entity = player_id;
+        pfc2.params.magnitude = -0.1f;
+        components.pairforce_comps[rel_id2] = pfc2;
         // Collides with the player
         CollisionComponent cc;
         cc.id1 = id;

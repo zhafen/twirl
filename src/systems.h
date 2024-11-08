@@ -21,11 +21,16 @@ struct MetadataComponent {
 struct RenderComponent {
     std::shared_ptr<sf::Shape> shape;
     int zorder = 0;
-    sf::Vector2f size;
     sf::Vector2f pos;
 };
 
-struct UIComponent : RenderComponent {};
+// All UI components are assumed to be rectangles that track floats.
+// If I start using substructures, I may need to change ui_comps to holding pointers.
+struct UIComponent : RenderComponent {
+    float& tracked_value;
+    sf::Vector2f size;
+    UIComponent(float& tracked_value) : tracked_value(tracked_value) {}
+};
 
 struct PhysicsComponent {
     float mass = 1.0f;

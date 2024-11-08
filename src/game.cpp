@@ -159,31 +159,30 @@ void Game::initializeState() {
 
     // Add a durability bar
     EntityId bar_id = createEntity();
-    UIComponent uic_bar;
+    UIComponent uic_bar(components.physics_comps.at(player_id).durability);
     uic_bar.shape = std::make_shared<sf::RectangleShape>(sf::Vector2f(100.f, 10.f));
     uic_bar.shape->setFillColor(sf::Color::White);
     uic_bar.shape->setOutlineThickness(cfg.L / 10.f);
     uic_bar.shape->setOutlineColor(sf::Color::Black);
     uic_bar.size = sf::Vector2f(cfg.window_size.x / 2, cfg.L);
     // Have to convert the shape to a rectangle to set the size
-    sf::Vector2i pixel_pos(cfg.window_size.x / 2.f - uic_bar.size.x, cfg.L);
-    uic_bar.pos = window.mapPixelToCoords(pixel_pos);
-    // The durability bar size scales with the player durability
-    PairwiseFunctionComponent pfnc;
-    pfnc.id1 = bar_id;
-    pfnc.id2 = player_id;
-    pfnc.func = [](EntityId id1, EntityId id2, Components& components) {
-        auto& uic_bar = components.ui_comps.at(id1);
-        auto& pc_player = components.physics_comps.at(id2);
+    uic_bar.pos = sf::Vector2f(-uic_bar.size.x / 2.f, -float(cfg.window_size.y) / 2.f + cfg.L);
+    // // The durability bar size scales with the player durability
+    // PairwiseFunctionComponent pfnc;
+    // pfnc.id1 = bar_id;
+    // pfnc.id2 = player_id;
+    // pfnc.func = [](EntityId id1, EntityId id2, Components& components) {
+    //     auto& uic_bar = components.ui_comps.at(id1);
+    //     auto& pc_player = components.physics_comps.at(id2);
 
-        // Update the size of the durability bar
-        sf::RectangleShape* bar = dynamic_cast<sf::RectangleShape*>(uic_bar.shape.get());
-        sf::Vector2f bar_size = uic_bar.size;
-        bar_size.x *= pc_player.durability;
-        bar->setSize(bar_size);
-    };
-    components.pairfunc_comps[createEntityRelationship()] = pfnc;
-    components.ui_comps[bar_id] = std::move(uic_bar);
+    //     // Update the size of the durability bar
+    //     sf::RectangleShape* bar = dynamic_cast<sf::RectangleShape*>(uic_bar.shape.get());
+    //     sf::Vector2f bar_size = uic_bar.size;
+    //     bar_size.x *= pc_player.durability;
+    //     bar->setSize(bar_size);
+    // };
+    // components.pairfunc_comps[createEntityRelationship()] = pfnc;
+    components.ui_comps.emplace(bar_id, std::move(uic_bar));
 
     // Create a vector of (zorder, id) pairs
     for (const auto& [id, rc] : components.render_comps) {

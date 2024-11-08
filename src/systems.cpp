@@ -136,9 +136,20 @@ void RenderSystem::renderUI(sf::RenderWindow& window, Components& components) {
 
     // draw frame
     for (auto [zorder, id] : components.ui_entity_zorders) {
+
         auto& uic = components.ui_comps.at(id);
+
+        // Get the bar out and set parameters
         sf::RectangleShape* bar = dynamic_cast<sf::RectangleShape*>(uic.shape.get());
-        bar->setPosition(uic.pos);
+        sf::Vector2f uic_size = uic.size;
+        uic_size.x *= uic.tracked_value;
+        // Causing the bar to shrink from the center requires changing both
+        // the size and position
+        sf::Vector2f uic_pos = uic.pos;
+        uic_pos.x += (uic.size.x - uic_size.x) / 2.f;
+        bar->setSize(uic_size);
+        bar->setPosition(uic_pos);
+
         window.draw(*uic.shape);
     }
 

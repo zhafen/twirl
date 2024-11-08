@@ -10,7 +10,6 @@ struct Config {
     float T;
     float V;
     float A;
-    float health_rate;
     uint16_t fps;
     float dt;
     float dx;

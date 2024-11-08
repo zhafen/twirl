@@ -49,6 +49,13 @@ void PhysicsSystem::update(Components& components) {
         auto& rc = components.render_comps.at(id);
         rc.shape->setPosition(pc.pos);
 
+        // Update durability
+        pc.durability += pc.durability_regen_rate * cfg.dt;
+        if (pc.durability > 1.0f) {
+            pc.durability = 1.0f;
+            pc.lost_all_durability = false;
+        }
+
         // Reset force
         pc.force = {0.f, 0.f};
     }
@@ -108,6 +115,22 @@ void PhysicsSystem::resolveCollisions(Components& components) {
         auto vcom = (pc1.vel * pc1.mass + pc2.vel * pc2.mass) / (pc1.mass + pc2.mass);
         pc1.vel = vcom + p1com / pc1.mass;
         pc2.vel = vcom - p1com / pc2.mass;
+
+        // Apply durability loss
+        // Can optimize this by just setting a "collided" flag and updating the logic
+        // separately. Can do that for the above too.
+        pc1.durability -= pc1.durability_loss_per_collision;
+        if (pc1.durability < 0.0f) {
+            pc1.durability = 0.0f;
+            pc1.lost_all_durability = true;
+            rc1.shape->setFillColor(sf::Color(63, 63, 63));
+        }
+        pc2.durability -= pc2.durability_loss_per_collision;
+        if (pc2.durability < 0.0f) {
+            pc2.durability = 0.0f;
+            pc2.lost_all_durability = true;
+            rc2.shape->setFillColor(sf::Color(63, 63, 63));
+        }
     }
 }
 

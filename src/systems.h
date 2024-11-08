@@ -34,10 +34,13 @@ struct UIComponent : RenderComponent {
 
 struct PhysicsComponent {
     float mass = 1.0f;
-    float durability = 1.0f;
     sf::Vector2f pos = {0.0f, 0.0f};
     sf::Vector2f vel = {0.0f, 0.0f};
     sf::Vector2f force = {0.0f, 0.0f};
+    float durability = 1.0f;
+    float durability_loss_per_collision = 0.0f;
+    float durability_regen_rate = 0.0f;
+    bool lost_all_durability = false;
 };
 
 struct MouseButtonReleasedComponent {};

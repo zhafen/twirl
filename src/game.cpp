@@ -55,6 +55,8 @@ void Game::initializeState() {
     PhysicsComponent pc;
     pc.pos = sf::Vector2f(0.f, 0.f);
     pc.vel = sf::Vector2f(0.f, 0.f);
+    pc.durability_regen_rate = 1.0f / 10.f / cfg.T;
+    pc.durability_loss_per_collision = 0.34f;
     components.physics_comps[player_id] = pc;
 
     // Make beacon particle for player
@@ -167,21 +169,6 @@ void Game::initializeState() {
     uic_bar.size = sf::Vector2f(cfg.window_size.x / 2, cfg.L);
     // Have to convert the shape to a rectangle to set the size
     uic_bar.pos = sf::Vector2f(-uic_bar.size.x / 2.f, -float(cfg.window_size.y) / 2.f + cfg.L);
-    // // The durability bar size scales with the player durability
-    // PairwiseFunctionComponent pfnc;
-    // pfnc.id1 = bar_id;
-    // pfnc.id2 = player_id;
-    // pfnc.func = [](EntityId id1, EntityId id2, Components& components) {
-    //     auto& uic_bar = components.ui_comps.at(id1);
-    //     auto& pc_player = components.physics_comps.at(id2);
-
-    //     // Update the size of the durability bar
-    //     sf::RectangleShape* bar = dynamic_cast<sf::RectangleShape*>(uic_bar.shape.get());
-    //     sf::Vector2f bar_size = uic_bar.size;
-    //     bar_size.x *= pc_player.durability;
-    //     bar->setSize(bar_size);
-    // };
-    // components.pairfunc_comps[createEntityRelationship()] = pfnc;
     components.ui_comps.emplace(bar_id, std::move(uic_bar));
 
     // Create a vector of (zorder, id) pairs
@@ -231,9 +218,6 @@ void Game::update() {
 }
 
 void Game::render() {
-    // DEBUG
-    components.physics_comps.at(player_id).durability *= 0.999f;
-
     // Render
     render_system.render(player_id, window, components);
     render_system.renderUI(window, components);

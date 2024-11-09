@@ -194,11 +194,12 @@ RenderSystem::RenderSystem(const Config& cfg, sf::View& view, sf::View& ui_view)
 void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     window.clear(sf::Color::Black);
 
-    auto rview = registry.view<RenderComponent>();
+    // The .use ensures we use the order of render components
+    auto rview = registry.view<RenderComponent, PhysicsComponent>().use<RenderComponent>();
 
     // draw frame
-    for (auto entity : rview) {
-        auto& rc = rview.get<RenderComponent>(entity);
+    for (auto [entity, rc, pc] : rview.each()) {
+        rc.shape.setPosition(pc.pos);
         window.draw(rc.shape);
     }
 }

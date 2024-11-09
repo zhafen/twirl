@@ -12,7 +12,7 @@
 
 Game::Game()
     : cfg(),
-      window(sf::VideoMode(cfg.window_size.x, cfg.window_size.y), "twirl"),
+      window(sf::VideoMode(cfg.window_size_x, cfg.window_size_y), "twirl"),
       view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size)),
       ui_view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size)),
       render_system(cfg, view, ui_view),
@@ -102,7 +102,7 @@ void Game::initializeState() {
         components.metadata_comps[id] = mc;
         // Randomly distributed in a square
         PhysicsComponent pc;
-        pc.pos = sf::Vector2f(dist(gen), dist(gen) - cfg.window_size.y / 2.f);
+        pc.pos = sf::Vector2f(dist(gen), dist(gen) - cfg.window_size_y / 2.f);
         pc.vel = sf::Vector2f(0.f, 0.f);
         components.physics_comps[id] = pc;
         // Affected by drag;
@@ -125,7 +125,7 @@ void Game::initializeState() {
         pfc.params.magnitude = -1.0f;
         pfc.params.power = -2.0f;
         pfc.params.softening = 1.0f;
-        pfc.params.distance_scaling = cfg.window_size.x / 2.0f / cfg.L;
+        pfc.params.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
         components.pairforce_comps[rel_id] = pfc;
         // Second force: springs
         EntityRelationId rel_id2 = createEntityRelationship();
@@ -178,9 +178,9 @@ void Game::initializeState() {
     uic_bar.shape->setFillColor(sf::Color::White);
     uic_bar.shape->setOutlineThickness(cfg.L / 10.f);
     uic_bar.shape->setOutlineColor(sf::Color::Black);
-    uic_bar.size = sf::Vector2f(cfg.window_size.x / 2, cfg.L);
+    uic_bar.size = sf::Vector2f(cfg.window_size_x / 2, cfg.L);
     // Have to convert the shape to a rectangle to set the size
-    uic_bar.pos = sf::Vector2f(-uic_bar.size.x / 2.f, -float(cfg.window_size.y) / 2.f + cfg.L);
+    uic_bar.pos = sf::Vector2f(-uic_bar.size.x / 2.f, -float(cfg.window_size_y) / 2.f + cfg.L);
     components.ui_comps.emplace(bar_id, std::move(uic_bar));
 
     // Create a vector of (zorder, id) pairs

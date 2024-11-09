@@ -1,9 +1,9 @@
-#include "systems.h"
-
 #include <SFML/Graphics.hpp>
 #include <cmath>
 
-#include "game_objects.h"
+#include "system.h"
+
+namespace cc {
 
 GeneralSystem::GeneralSystem(const Config& cfg) : cfg(cfg) {}
 
@@ -205,4 +205,6 @@ void RenderSystem::renderUI(sf::RenderWindow& window, Components& components) {
 //             break;
 //         }
 //     }
-// }
+// } 
+
+}  // namespace cc

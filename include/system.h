@@ -7,6 +7,7 @@
 #include <unordered_map>
 
 #include "config.h"
+#include "component.h"
 
 namespace cc {
 
@@ -15,16 +16,6 @@ class GeneralSystem {
    public:
     GeneralSystem(const Config& cfg);
     void callPairwiseFunctions(Components& components);
-
-   private:
-    Config cfg;
-};
-
-class EntitySystem {
-   public:
-    EntitySystem(const Config& cfg);
-    EntityId spawnEntity(Components& components);
-    void removeEntity(Components& components, EntityId entity_id);
 
    private:
     Config cfg;

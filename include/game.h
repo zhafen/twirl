@@ -3,8 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "game_objects.h"
-#include "systems.h"
+#include "system.h"
+
+namespace cc {
 
 class Game {
    public:
@@ -44,5 +45,7 @@ class Game {
     void update();
     void render();
 };
+
+} // namespace cc
 
 #endif  // GAME_H

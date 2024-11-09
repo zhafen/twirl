@@ -1,5 +1,3 @@
-#include "game.h"
-
 #include <SFML/Graphics.hpp>
 #include <filesystem>
 #include <iostream>
@@ -7,8 +5,10 @@
 #include <unordered_map>
 #include <vector>
 
-#include "game_objects.h"
-#include "systems.h"
+#include "game.h"
+#include "system.h"
+
+namespace cc {
 
 Game::Game()
     : cfg(),
@@ -243,4 +243,6 @@ void Game::render() {
     window.setView(view);
 
     window.display();
+}
+
 }

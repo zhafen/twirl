@@ -1,7 +1,12 @@
-#ifndef GAMEOBJECTS_H
-#define GAMEOBJECTS_H
+#ifndef CONFIG_H
+#define CONFIG_H
 
-#include <SFML/Graphics.hpp>
+#include <cstdint>
+
+namespace cc {
+
+using EntityId = int;
+using EntityRelationId = int;
 
 // OPTIMIZE: Consider computing these at compile time since they won't change.
 struct Config {
@@ -16,10 +21,6 @@ struct Config {
     static constexpr float dx = V * dt;
 };
 
-class CCCircleShape : public sf::CircleShape {
-   public:
-    // Constructor that sets a different default origin
-    CCCircleShape(float radius = 50.f);
-};
+} // namespace cc
 
-#endif  // GAMEOBJECTS_H
+#endif  // CONFIG_H

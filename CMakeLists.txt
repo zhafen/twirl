@@ -13,7 +13,13 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp src/game.cpp src/game_objects.cpp src/systems.cpp)
+# Include directories
+include_directories(include)
+
+# COllect all source files
+file(GLOB_RECURSE SOURCES "src/*.cpp")
+
+add_executable(main ${SOURCES})
 target_link_libraries(main PRIVATE sfml-graphics)
 target_compile_features(main PRIVATE cxx_std_17)
 

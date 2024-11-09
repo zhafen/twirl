@@ -37,6 +37,7 @@ class Game {
 
     // Systems
     GeneralSystem general_system;
+    EntitySystem entity_system;
     RenderSystem render_system;
     PhysicsSystem physics_system;
 
@@ -50,6 +51,6 @@ class Game {
     void render();
 };
 
-} // namespace cc
+}  // namespace cc
 
 #endif  // GAME_H

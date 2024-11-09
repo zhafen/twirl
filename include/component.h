@@ -70,6 +70,11 @@ struct UIComponent : RenderComponent {
     UIComponent(float& tracked_value) : tracked_value(tracked_value) {}
 };
 
+struct Zorders {
+    std::vector<std::pair<int, entt::entity>> rc_zorders;
+    std::vector<std::pair<int, entt::entity>> uic_zorders;
+};
+
 // struct ComponentsOld {
 //     // Single-entity components
 //     std::unordered_map<EntityId, RenderComponent> render_comps;
@@ -79,8 +84,8 @@ struct UIComponent : RenderComponent {
 //     std::unordered_map<EntityId, DurabilityComponent> dura_comps;
 //     std::unordered_map<EntityId, MouseButtonReleasedComponent>
 //         mousebuttonreleased_comps;
-//     std::vector<std::pair<int, EntityId>> entity_zorders;
-//     std::vector<std::pair<int, EntityId>> ui_entity_zorders;
+//     std::vector<std::pair<int, EntityId>> rc_zorders;
+//     std::vector<std::pair<int, EntityId>> uic_zorders;
 // 
 //     // Multi-entity components
 //     std::unordered_map<EntityRelationId, PairwiseForceComponent> pairforce_comps;

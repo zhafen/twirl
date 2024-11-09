@@ -19,6 +19,7 @@ Game::Game()
       ui_view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size_x, cfg.window_size_y)),
       registry(),
       render_system(cfg, view, ui_view),
+      entity_system(cfg),
       physics_system(cfg),
       general_system(cfg) {
     window.setFramerateLimit(cfg.fps);
@@ -47,12 +48,12 @@ void Game::resetGameState() {
 
 void Game::initializeState() {
     // Make player
-    const auto player = registry.create();
+    player = registry.create();
     registry.emplace<PhysicsComponent>(player);
     registry.emplace<ForceComponent>(player);
     registry.emplace<DurabilityComponent>(player);
-    // auto &player_rc = registry.emplace<RenderComponent>(player, CCCircleShape(cfg.L));
-    // player_rc.shape.setFillColor(sf::Color::White);
+    auto &player_rc = registry.emplace<RenderComponent>(player, CCCircleShape(cfg.L));
+    player_rc.shape.setFillColor(sf::Color::White);
 
     // Make beacon particle for player
     const auto beacon = registry.create();
@@ -62,7 +63,7 @@ void Game::initializeState() {
     beacon_shape.setFillColor(sf::Color::Black);
     beacon_shape.setOutlineColor(sf::Color::White);
     beacon_shape.setOutlineThickness(cfg.L / 10.f);
-    registry.emplace<RenderComponent>(beacon, beacon_shape);
+    registry.emplace<RenderComponent>(beacon, beacon_shape, 1); // zorder = 1
     // // Pull the player towards the beacon
     // EntityRelationId rel_beacon_id = createEntityRelationship();
     // PairwiseForceComponent pfc_beacon;
@@ -169,17 +170,17 @@ void Game::initializeState() {
 
     // Create a vector of (zorder, id) pairs
     // for (const auto& [id, rc] : components.render_comps) {
-    //     components.entity_zorders.emplace_back(rc.zorder, id);
+    //     components.rc_zorders.emplace_back(rc.zorder, id);
     // }
     // // Sort the vector according to zorder
-    // std::sort(registry.entity_zorders.begin(), components.entity_zorders.end());
+    // std::sort(registry.rc_zorders.begin(), components.rc_zorders.end());
 
     // // Do the same for the UI
     // for (const auto& [id, uic] : components.ui_comps) {
-    //     components.ui_entity_zorders.emplace_back(uic.zorder, id);
+    //     components.uic_zorders.emplace_back(uic.zorder, id);
     // }
     // // Sort the vector according to zorder
-    // std::sort(registry.ui_entity_zorders.begin(), components.ui_entity_zorders.end());
+    // std::sort(registry.uic_zorders.begin(), components.uic_zorders.end());
 }
 
 void Game::handleEvents() {
@@ -202,6 +203,7 @@ void Game::handleEvents() {
 
 void Game::update() {
     // Spawn objects
+    // entity_system.orderEntities(registry);
 
     // Calculate forces
     physics_system.calculateForces(registry);
@@ -220,8 +222,8 @@ void Game::update() {
 
 void Game::render() {
     // Render
-    render_system.render(player, window, registry);
-    // render_system.renderUI(window, registry);
+    render_system.render(registry, window);
+    render_system.renderUI(window, registry);
 
     // Pin the view to the player
     view.setCenter(registry.get<PhysicsComponent>(player).pos);

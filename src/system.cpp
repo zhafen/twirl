@@ -1,17 +1,60 @@
+#include "system.h"
+
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <entt/entt.hpp>
-
-#include "system.h"
 
 namespace cc {
 
 GeneralSystem::GeneralSystem(const Config& cfg) : cfg(cfg) {}
 
 void GeneralSystem::callPairwiseFunctions(entt::registry& registry) {
-//     / for (auto& [rel_id, pfnc] : components.pairfunc_comps) {
-//     /     pfnc.func(pfnc.id1, pfnc.id2, components);
-//     / }
+    //     / for (auto& [rel_id, pfnc] : components.pairfunc_comps) {
+    //     /     pfnc.func(pfnc.id1, pfnc.id2, components);
+    //     / }
+}
+
+EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
+
+void EntitySystem::spawnEntities(entt::registry& registry) {
+    // // Make player
+    // const auto player = registry.create();
+    // registry.emplace<PhysicsComponent>(player);
+    // registry.emplace<ForceComponent>(player);
+    // registry.emplace<DurabilityComponent>(player);
+    // auto &player_rc = registry.emplace<RenderComponent>(player,
+    // CCCircleShape(cfg.L)); player_rc.shape.setFillColor(sf::Color::White);
+
+    // // Make beacon particle for player
+    // const auto beacon = registry.create();
+    // registry.emplace<PhysicsComponent>(beacon);
+    // registry.emplace<MouseButtonReleasedComponent>(beacon);
+}
+
+void EntitySystem::orderEntities(entt::registry& registry) {
+    // if (!needs_ordering) {
+    //     return;
+    // }
+
+    // // Reset zorders
+    // zorders.rc_zorders.clear();
+    // zorders.uic_zorders.clear();
+
+    // // Create a vector of (zorder, id) pairs
+    // auto rview = registry.view<RenderComponent>();
+    // for(auto [entity, rc]: rview.each()) {
+    //     zorders.rc_zorders.emplace_back(rc.zorder, entity);
+    // }
+    // // Sort the vector according to zorder
+    // std::sort(zorders.rc_zorders.begin(), zorders.rc_zorders.end());
+
+    // // Create a vector of (zorder, id) pairs for UI components
+    // auto ui_rview = registry.view<UIComponent>();
+    // for(auto [entity, rc]: ui_rview.each()) {
+    //     zorders.uic_zorders.emplace_back(rc.zorder, entity);
+    // }
+    // // Sort the vector according to zorder
+    // std::sort(zorders.uic_zorders.begin(), zorders.uic_zorders.end());
 }
 
 PhysicsSystem::PhysicsSystem(const Config& cfg) : cfg(cfg) {}
@@ -89,42 +132,46 @@ void PhysicsSystem::update(entt::registry& registry) {
  * components.
  */
 void PhysicsSystem::resolveCollisions(entt::registry& registry) {
-//     for (auto& [rel_id, cc] : components.collision_comps) {
-//         // Get first entity
-//         auto& id1 = cc.id1;
-//         auto& rc1 = components.render_comps.at(id1);
-//         auto& pc1 = components.physics_comps.at(id1);
-// 
-//         // Get second entity
-//         auto& id2 = cc.id2;
-//         auto& rc2 = components.render_comps.at(id2);
-//         auto& pc2 = components.physics_comps.at(id2);
-// 
-//         // Check for collision, assuming circular shapes for all objects that could
-//         // collide
-//         auto r_12 = pc2.pos - pc1.pos;
-//         auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
-//         sf::CircleShape* rc1_shape = dynamic_cast<sf::CircleShape*>(rc1.shape.get());
-//         sf::CircleShape* rc2_shape = dynamic_cast<sf::CircleShape*>(rc2.shape.get());
-//         if (r_12_mag > rc1_shape->getRadius() + rc2_shape->getRadius()) {
-//             continue;
-//         }
-// 
-//         // Calculate the momentum in the COM frame
-//         auto T = 0.5f * (pc1.mass * (pc1.vel.x * pc1.vel.x + pc1.vel.y * pc1.vel.y) +
-//                          pc2.mass * (pc2.vel.x * pc2.vel.x + pc2.vel.y * pc2.vel.y));
-//         auto pcom_mag = sqrtf(2.0f * T * pc1.mass * pc2.mass / (pc1.mass + pc2.mass));
-//         auto p1com = -pcom_mag * r_12 / r_12_mag;
-// 
-//         // Convert back to default frame
-//         auto vcom = (pc1.vel * pc1.mass + pc2.vel * pc2.mass) / (pc1.mass + pc2.mass);
-//         pc1.vel = vcom + p1com / pc1.mass;
-//         pc2.vel = vcom - p1com / pc2.mass;
-// 
-//         // Indicate collision
-//         pc1.collided = true;
-//         pc2.collided = true;
-//     }
+    //     for (auto& [rel_id, cc] : components.collision_comps) {
+    //         // Get first entity
+    //         auto& id1 = cc.id1;
+    //         auto& rc1 = components.render_comps.at(id1);
+    //         auto& pc1 = components.physics_comps.at(id1);
+    //
+    //         // Get second entity
+    //         auto& id2 = cc.id2;
+    //         auto& rc2 = components.render_comps.at(id2);
+    //         auto& pc2 = components.physics_comps.at(id2);
+    //
+    //         // Check for collision, assuming circular shapes for all objects that
+    //         could
+    //         // collide
+    //         auto r_12 = pc2.pos - pc1.pos;
+    //         auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
+    //         sf::CircleShape* rc1_shape =
+    //         dynamic_cast<sf::CircleShape*>(rc1.shape.get()); sf::CircleShape*
+    //         rc2_shape = dynamic_cast<sf::CircleShape*>(rc2.shape.get()); if (r_12_mag
+    //         > rc1_shape->getRadius() + rc2_shape->getRadius()) {
+    //             continue;
+    //         }
+    //
+    //         // Calculate the momentum in the COM frame
+    //         auto T = 0.5f * (pc1.mass * (pc1.vel.x * pc1.vel.x + pc1.vel.y *
+    //         pc1.vel.y) +
+    //                          pc2.mass * (pc2.vel.x * pc2.vel.x + pc2.vel.y *
+    //                          pc2.vel.y));
+    //         auto pcom_mag = sqrtf(2.0f * T * pc1.mass * pc2.mass / (pc1.mass +
+    //         pc2.mass)); auto p1com = -pcom_mag * r_12 / r_12_mag;
+    //
+    //         // Convert back to default frame
+    //         auto vcom = (pc1.vel * pc1.mass + pc2.vel * pc2.mass) / (pc1.mass +
+    //         pc2.mass); pc1.vel = vcom + p1com / pc1.mass; pc2.vel = vcom - p1com /
+    //         pc2.mass;
+    //
+    //         // Indicate collision
+    //         pc1.collided = true;
+    //         pc2.collided = true;
+    //     }
 }
 
 void PhysicsSystem::updateDurability(entt::registry& registry) {
@@ -157,16 +204,16 @@ void PhysicsSystem::updateDurability(entt::registry& registry) {
 RenderSystem::RenderSystem(const Config& cfg, sf::View& view, sf::View& ui_view)
     : cfg(cfg), view(view), ui_view(ui_view) {}
 
-void RenderSystem::render(entt::entity player_id, sf::RenderWindow& window,
-                          entt::registry& registry) {
+void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     window.clear(sf::Color::Black);
 
     auto rview = registry.view<PhysicsComponent, RenderComponent>();
 
     // draw frame
-    for (auto entity: rview) {
+    for (auto entity : rview) {
         auto& rc = rview.get<RenderComponent>(entity);
         window.draw(rc.shape);
+        auto& pc = rview.get<PhysicsComponent>(entity);
     }
 }
 
@@ -174,7 +221,7 @@ void RenderSystem::renderUI(sf::RenderWindow& window, entt::registry& registry) 
     // window.setView(ui_view);
 
     // // draw frame
-    // for (auto [zorder, id] : components.ui_entity_zorders) {
+    // for (auto [zorder, id] : components.uic_zorders) {
     //     auto& uic = components.ui_comps.at(id);
 
     //     // Get the bar out and set parameters
@@ -193,21 +240,22 @@ void RenderSystem::renderUI(sf::RenderWindow& window, entt::registry& registry) 
 }
 
 // EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
-// 
+//
 // // EntitySystem::spawnEntities(entt::registry& registry) {
 // // }
-// 
+//
 // void EntitySystem::removeEntity(entt::registry& registry, EntityId entity_id) {
 //     components.physics_comps.erase(entity_id);
 //     components.render_comps.erase(entity_id);
 //     components.dura_comps.erase(entity_id);
-// 
-//     for (auto it = components.entity_zorders.begin(); it != components.entity_zorders.end(); ++it) {
+//
+//     for (auto it = components.rc_zorders.begin(); it != components.rc_zorders.end();
+//     ++it) {
 //         if (it->second == entity_id) {
-//             components.entity_zorders.erase(it);
+//             components.rc_zorders.erase(it);
 //             break;
 //         }
 //     }
-// } 
+// }
 
 }  // namespace cc

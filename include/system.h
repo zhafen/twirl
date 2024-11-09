@@ -23,6 +23,18 @@ class GeneralSystem {
     Config cfg;
 };
 
+class EntitySystem {
+   public:
+    EntitySystem(const Config& cfg);
+    void spawnEntities(entt::registry& registry);
+    void orderEntities(entt::registry& registry);
+
+   private:
+    Zorders zorders;
+    bool needs_ordering = true;
+    Config cfg;
+};
+
 class PhysicsSystem {
    public:
     PhysicsSystem(const Config& cfg);
@@ -39,7 +51,7 @@ class PhysicsSystem {
 class RenderSystem {
    public:
     RenderSystem(const Config& cfg, sf::View& view, sf::View& ui_view);
-    void render(entt::entity player_id, sf::RenderWindow& window, entt::registry& registry);
+    void render(entt::registry& registry, sf::RenderWindow& window);
     void renderUI(sf::RenderWindow& window, entt::registry& registry);
 
    private:
@@ -47,20 +59,6 @@ class RenderSystem {
     sf::View ui_view;
     Config cfg;
 };
-// 
-// class Scene {
-//     public:
-//      Scene(const Config& cfg);
-//      void update(entt::registry& registry);
-//      void render(sf::RenderWindow& window, entt::registry& registry);
-//     
-//     private:
-//      Config cfg;
-//      EntitySystem entity_system;
-//      GeneralSystem general_system;
-//      PhysicsSystem physics_system;
-//      RenderSystem render_system;
-// }
 
 }  // namespace cc
 

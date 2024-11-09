@@ -13,6 +13,15 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
+FetchContent_Declare(
+    EnTT
+    GIT_REPOSITORY https://github.com/skypjack/entt.git
+    GIT_TAG v3.10.1
+    GIT_SHALLOW ON
+    EXCLUDE_FROM_ALL
+    SYSTEM)
+FetchContent_MakeAvailable(EnTT)
+
 # Include directories
 include_directories(include)
 
@@ -20,7 +29,7 @@ include_directories(include)
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 add_executable(main ${SOURCES})
-target_link_libraries(main PRIVATE sfml-graphics)
+target_link_libraries(main PRIVATE sfml-graphics EnTT::EnTT)
 target_compile_features(main PRIVATE cxx_std_17)
 
 if(WIN32)

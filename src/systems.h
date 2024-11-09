@@ -1,12 +1,11 @@
 #ifndef SYSTEMS_H
 #define SYSTEMS_H
 
+#include <SFML/Graphics.hpp>
 #include <functional>
 #include <memory>
 #include <string>
 #include <unordered_map>
-
-#include <SFML/Graphics.hpp>
 
 #include "game_objects.h"
 
@@ -20,18 +19,14 @@ struct MetadataComponent {
     std::string name;
 };
 
-struct RenderComponent {
-    std::shared_ptr<sf::Shape> shape;
-    int zorder = 0;
-    sf::Vector2f pos;
-};
-
-// All UI components are assumed to be rectangles that track floats.
-// If I start using substructures, I may need to change ui_comps to holding pointers.
-struct UIComponent : RenderComponent {
-    float& tracked_value;
-    sf::Vector2f size;
-    UIComponent(float& tracked_value) : tracked_value(tracked_value) {}
+class SpawnerComponent {
+   public:
+    SpawnerComponent() : {}
+    void spawnEntity(Components& components) {
+        EntityId id = ;
+        // Set the position of the entity
+        components.physics_comps[id].pos = pos;
+    }
 };
 
 struct PhysicsComponent {
@@ -60,11 +55,11 @@ struct PairwiseForceComponent {
     EntityId target_entity;
     EntityId source_entity;
     struct Parameters {
-        float magnitude = 1.0f; // In units of cfg.A
+        float magnitude = 1.0f;  // In units of cfg.A
         float softening = 0.0f;
         float power = 2.0f;
-        float min_distance = 0.1f; // In units of cfg.L
-        float distance_scaling = 1.0f; // in units of cfg.L
+        float min_distance = 0.1f;      // In units of cfg.L
+        float distance_scaling = 1.0f;  // in units of cfg.L
     } params;
 };
 
@@ -78,6 +73,20 @@ struct CollisionComponent : PairwiseComponent {};
 // Very general component for applying a function to pairs of entities
 struct PairwiseFunctionComponent : PairwiseComponent {
     std::function<void(EntityId id1, EntityId id2, Components& components)> func;
+};
+
+struct RenderComponent {
+    std::shared_ptr<sf::Shape> shape;
+    int zorder = 0;
+    sf::Vector2f pos;
+};
+
+// All UI components are assumed to be rectangles that track floats.
+// If I start using substructures, I may need to change ui_comps to holding pointers.
+struct UIComponent : RenderComponent {
+    float& tracked_value;
+    sf::Vector2f size;
+    UIComponent(float& tracked_value) : tracked_value(tracked_value) {}
 };
 
 struct Components {
@@ -109,6 +118,16 @@ class GeneralSystem {
     Config cfg;
 };
 
+class EntitySystem {
+   public:
+    EntitySystem(const Config& cfg);
+    EntityId spawnEntity(Components& components);
+    void removeEntity(Components& components, EntityId entity_id);
+
+   private:
+    Config cfg;
+};
+
 class PhysicsSystem {
    public:
     PhysicsSystem(const Config& cfg);
@@ -133,5 +152,19 @@ class RenderSystem {
     sf::View ui_view;
     Config cfg;
 };
+
+class Scene {
+    public:
+     Scene(const Config& cfg);
+     void update(Components& components);
+     void render(sf::RenderWindow& window, Components& components);
+    
+    private:
+     Config cfg;
+     EntitySystem entity_system;
+     GeneralSystem general_system;
+     PhysicsSystem physics_system;
+     RenderSystem render_system;
+}
 
 #endif  // SYSTEMS_H

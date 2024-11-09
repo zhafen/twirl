@@ -216,6 +216,8 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
+    // Spawn objects
+
     // Calculate forces
     physics_system.calculateForces(components);
     physics_system.calculatePairwiseForces(components);

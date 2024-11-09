@@ -188,3 +188,21 @@ void RenderSystem::renderUI(sf::RenderWindow& window, Components& components) {
         window.draw(*uic.shape);
     }
 }
+
+EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
+
+// EntitySystem::spawnEntities(Components& components) {
+// }
+
+void EntitySystem::removeEntity(Components& components, EntityId entity_id) {
+    components.physics_comps.erase(entity_id);
+    components.render_comps.erase(entity_id);
+    components.dura_comps.erase(entity_id);
+
+    for (auto it = components.entity_zorders.begin(); it != components.entity_zorders.end(); ++it) {
+        if (it->second == entity_id) {
+            components.entity_zorders.erase(it);
+            break;
+        }
+    }
+}

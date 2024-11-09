@@ -5,15 +5,13 @@
 #include <string>
 
 #include "config.h"
+#include "shape.h"
 
 namespace cc {
-
-struct Components;
 
 struct Component {};
 
 struct MetadataComponent : Component {
-    EntityId id;
     std::string name;
 };
 
@@ -60,11 +58,11 @@ struct CollisionComponent : PairwiseComponent {};
 
 // Very general component for applying a function to pairs of entities
 struct PairwiseFunctionComponent : PairwiseComponent {
-    std::function<void(EntityId id1, EntityId id2, Components& components)> func;
+    // std::function<void(EntityId id1, EntityId id2, Components& components)> func;
 };
 
 struct RenderComponent : Component {
-    std::shared_ptr<sf::Shape> shape;
+    CCCircleShape shape;
     int zorder = 0;
 };
 

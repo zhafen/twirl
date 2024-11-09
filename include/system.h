@@ -39,7 +39,7 @@ class PhysicsSystem {
 class RenderSystem {
    public:
     RenderSystem(const Config& cfg, sf::View& view, sf::View& ui_view);
-    void render(EntityId player_id, sf::RenderWindow& window, entt::registry& registry);
+    void render(entt::entity player_id, sf::RenderWindow& window, entt::registry& registry);
     void renderUI(sf::RenderWindow& window, entt::registry& registry);
 
    private:

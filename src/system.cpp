@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
-#include <en
+#include <entt/entt.hpp>
 
 #include "system.h"
 
@@ -9,9 +9,9 @@ namespace cc {
 GeneralSystem::GeneralSystem(const Config& cfg) : cfg(cfg) {}
 
 void GeneralSystem::callPairwiseFunctions(entt::registry& registry) {
-    / for (auto& [rel_id, pfnc] : components.pairfunc_comps) {
-    /     pfnc.func(pfnc.id1, pfnc.id2, components);
-    / }
+//     / for (auto& [rel_id, pfnc] : components.pairfunc_comps) {
+//     /     pfnc.func(pfnc.id1, pfnc.id2, components);
+//     / }
 }
 
 PhysicsSystem::PhysicsSystem(const Config& cfg) : cfg(cfg) {}
@@ -157,7 +157,7 @@ void PhysicsSystem::updateDurability(entt::registry& registry) {
 RenderSystem::RenderSystem(const Config& cfg, sf::View& view, sf::View& ui_view)
     : cfg(cfg), view(view), ui_view(ui_view) {}
 
-void RenderSystem::render(EntityId player_id, sf::RenderWindow& window,
+void RenderSystem::render(entt::entity player_id, sf::RenderWindow& window,
                           entt::registry& registry) {
     window.clear(sf::Color::Black);
 
@@ -166,7 +166,7 @@ void RenderSystem::render(EntityId player_id, sf::RenderWindow& window,
     // draw frame
     for (auto entity: rview) {
         auto& rc = rview.get<RenderComponent>(entity);
-        window.draw(*rc.shape);
+        window.draw(rc.shape);
     }
 }
 

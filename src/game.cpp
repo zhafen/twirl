@@ -141,19 +141,18 @@ void Game::initializeState() {
     //     }
     // }
 
-    // // Make background
-    // int n_bkgrd = 100;
-    // for (int i = 0; i < n_bkgrd; ++i) {
-    //     EntityId id = createEntity();
-    //     RenderComp rc;
-    //     rc.shape = std::make_shared<CCCircleShape>(10.f * cfg.L * i);
-    //     rc.shape->setFillColor(sf::Color(127, 127, 127));
-    //     rc.shape->setOutlineThickness(cfg.L / 5.f);
-    //     rc.shape->setOutlineColor(sf::Color(63, 63, 63));
-    //     rc.shape->setPosition(0.f, 0.f);
-    //     rc.zorder = -i;
-    //     components.render_comps[id] = std::move(rc);
-    // }
+    // Make background
+    int n_bkgrd = 100;
+    for (int i = 0; i < n_bkgrd; ++i) {
+        auto bkgrd = registry.create();
+        registry.emplace<PhysicsComp>(bkgrd);
+        CCCircleShape shape(10.f * cfg.L * i);
+        shape.setFillColor(sf::Color(127, 127, 127));
+        shape.setOutlineThickness(cfg.L / 5.f);
+        shape.setOutlineColor(sf::Color(63, 63, 63));
+        shape.setPosition(0.f, 0.f);
+        auto& rc = registry.emplace<RenderComp>(bkgrd, shape, -i);
+    }
 
     // // Add a durability bar
     // EntityId bar_id = createEntity();

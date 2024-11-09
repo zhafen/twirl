@@ -19,16 +19,16 @@ EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
 void EntitySystem::spawnEntities(entt::registry& registry) {
     // // Make player
     // const auto player = registry.create();
-    // registry.emplace<PhysicsComponent>(player);
-    // registry.emplace<ForceComponent>(player);
-    // registry.emplace<DurabilityComponent>(player);
-    // auto &player_rc = registry.emplace<RenderComponent>(player,
+    // registry.emplace<PhysicsComp>(player);
+    // registry.emplace<ForceComp>(player);
+    // registry.emplace<DurabilityComp>(player);
+    // auto &player_rc = registry.emplace<RenderComp>(player,
     // CCCircleShape(cfg.L)); player_rc.shape.setFillColor(sf::Color::White);
 
     // // Make beacon particle for player
     // const auto beacon = registry.create();
-    // registry.emplace<PhysicsComponent>(beacon);
-    // registry.emplace<MouseButtonReleasedComponent>(beacon);
+    // registry.emplace<PhysicsComp>(beacon);
+    // registry.emplace<MouseButtonReleasedComp>(beacon);
 }
 
 void EntitySystem::orderEntities(entt::registry& registry) {
@@ -36,7 +36,7 @@ void EntitySystem::orderEntities(entt::registry& registry) {
         return;
     }
 
-    registry.sort<RenderComponent>(
+    registry.sort<RenderComp>(
         [](const auto lhs, const auto rhs) { return lhs.zorder < rhs.zorder; });
 
     // Mark that the entities are ordered
@@ -56,11 +56,11 @@ void PhysicsSystem::calculateForces(entt::registry& registry) {
 }
 
 void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
-    auto rview = registry.view<PairComponent, PairwiseForceComponent>();
+    auto rview = registry.view<PairComp, PairwiseForceComp>();
 
     for (auto [entity, pc, pfc] : rview.each()) {
-        auto& target_pc = registry.get<PhysicsComponent>(pc.target);
-        auto& source_pc = registry.get<PhysicsComponent>(pc.source);
+        auto& target_pc = registry.get<PhysicsComp>(pc.target);
+        auto& source_pc = registry.get<PhysicsComp>(pc.source);
 
         auto r = target_pc.pos - source_pc.pos;
         auto r_mag = sqrtf(r.x * r.x + r.y * r.y);
@@ -81,7 +81,7 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
 }
 
 void PhysicsSystem::update(entt::registry& registry) {
-    auto rview = registry.view<PhysicsComponent>();
+    auto rview = registry.view<PhysicsComp>();
 
     for (auto [entity, pc] : rview.each()) {
         // Update using leapfrog algorithm
@@ -114,7 +114,7 @@ void PhysicsSystem::update(entt::registry& registry) {
  * move parallel to the line connecting their centers. If you look on wikipedia there
  * are more-thorough constraints based on contact angles.
  *
- * @param components A reference to the Components object containing physics and render
+ * @param components A reference to the Comps object containing physics and render
  * components.
  */
 void PhysicsSystem::resolveCollisions(entt::registry& registry) {
@@ -195,7 +195,7 @@ void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
 
     // The .use ensures we use the order of render components
     auto rview =
-        registry.view<RenderComponent, PhysicsComponent>().use<RenderComponent>();
+        registry.view<RenderComp, PhysicsComp>().use<RenderComp>();
 
     // draw frame
     for (auto [entity, rc, pc] : rview.each()) {

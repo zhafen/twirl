@@ -9,7 +9,7 @@
 
 namespace cc {
 
-struct PhysicsComponent {
+struct PhysicsComp {
     float mass = 1.0f;
     sf::Vector2f pos = {0.0f, 0.0f};
     sf::Vector2f vel = {0.0f, 0.0f};
@@ -17,26 +17,26 @@ struct PhysicsComponent {
     bool collided = false;
 };
 
-struct ForceComponent {
+struct ForceComp {
     // In units of cfg.A / cfg.V
     float drag_coefficient = 0.01f;
     float drag_power = 2.0f;
 };
 
-struct DurabilityComponent {
+struct DurabilityComp {
     float durability = 1.0f;
     float durability_loss_per_collision = 0.34f;
     float durability_regen_rate = 0.1f;
 };
 
-struct MouseButtonReleasedComponent {};
+struct MouseButtonReleasedComp {};
 
-struct PairComponent {
+struct PairComp {
     entt::entity target;
     entt::entity source;
 };
 
-struct PairwiseForceComponent {
+struct PairwiseForceComp {
     float magnitude = 1.0f;  // In units of cfg.A
     float softening = 0.0f;
     float power = 2.0f;
@@ -44,43 +44,43 @@ struct PairwiseForceComponent {
     float distance_scaling = 1.0f;  // in units of cfg.L
 };
 
-struct CollisionComponent {};
+struct CollisionComp {};
 
 // Very general component for applying a function to pairs of entities
-struct PairwiseFunctionComponent {
-    // std::function<void(EntityId id1, EntityId id2, Components& components)> func;
+struct PairwiseFunctionComp {
+    // std::function<void(EntityId id1, EntityId id2, Comps& components)> func;
 };
 
-struct RenderComponent {
+struct RenderComp {
     CCCircleShape shape;
     int zorder = 0;
 };
 
 // All UI components are assumed to be rectangles that track floats.
 // If I start using substructures, I may need to change ui_comps to holding pointers.
-struct UIComponent {
+struct UIComp {
     sf::RectangleShape shape;
     float& tracked_value;
     sf::Vector2f size;
-    UIComponent(float& tracked_value) : tracked_value(tracked_value) {}
+    UIComp(float& tracked_value) : tracked_value(tracked_value) {}
 };
 
-// struct ComponentsOld {
+// struct CompsOld {
 //     // Single-entity components
-//     std::unordered_map<EntityId, RenderComponent> render_comps;
-//     std::unordered_map<EntityId, UIComponent> ui_comps;
-//     std::unordered_map<EntityId, PhysicsComponent> physics_comps;
-//     std::unordered_map<EntityId, ForceComponent> force_comps;
-//     std::unordered_map<EntityId, DurabilityComponent> dura_comps;
-//     std::unordered_map<EntityId, MouseButtonReleasedComponent>
+//     std::unordered_map<EntityId, RenderComp> render_comps;
+//     std::unordered_map<EntityId, UIComp> ui_comps;
+//     std::unordered_map<EntityId, PhysicsComp> physics_comps;
+//     std::unordered_map<EntityId, ForceComp> force_comps;
+//     std::unordered_map<EntityId, DurabilityComp> dura_comps;
+//     std::unordered_map<EntityId, MouseButtonReleasedComp>
 //         mousebuttonreleased_comps;
 //     std::vector<std::pair<int, EntityId>> rc_zorders;
 //     std::vector<std::pair<int, EntityId>> uic_zorders;
 // 
 //     // Multi-entity components
-//     std::unordered_map<EntityRelationId, PairwiseForceComponent> pairforce_comps;
-//     std::unordered_map<EntityRelationId, CollisionComponent> collision_comps;
-//     std::unordered_map<EntityRelationId, PairwiseFunctionComponent> pairfunc_comps;
+//     std::unordered_map<EntityRelationId, PairwiseForceComp> pairforce_comps;
+//     std::unordered_map<EntityRelationId, CollisionComp> collision_comps;
+//     std::unordered_map<EntityRelationId, PairwiseFunctionComp> pairfunc_comps;
 // };
 
 }  // namespace cc

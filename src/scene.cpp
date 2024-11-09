@@ -12,7 +12,7 @@
 //     entities.push_back(entity);
 // }
 // 
-// void Scene::addComponent(const Entity& entity, std::shared_ptr<Component> component) {
+// void Scene::addComp(const Entity& entity, std::shared_ptr<Comp> component) {
 //     // Assuming each entity has a unique ID and components are associated with entities
 //     components.push_back(component);
 // }

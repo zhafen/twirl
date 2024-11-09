@@ -203,7 +203,7 @@ void Game::handleEvents() {
 
 void Game::update() {
     // Spawn objects
-    // entity_system.orderEntities(registry);
+    entity_system.orderEntities(registry);
 
     // Calculate forces
     physics_system.calculateForces(registry);

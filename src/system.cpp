@@ -32,9 +32,13 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
 }
 
 void EntitySystem::orderEntities(entt::registry& registry) {
-    // if (!needs_ordering) {
-    //     return;
-    // }
+    if (!needs_ordering) {
+        return;
+    }
+
+    registry.sort<RenderComponent>([](const RenderComponent lhs, const RenderComponent rhs) {
+        return lhs.zorder < rhs.zorder;
+    });
 
     // // Reset zorders
     // zorders.rc_zorders.clear();
@@ -55,6 +59,9 @@ void EntitySystem::orderEntities(entt::registry& registry) {
     // }
     // // Sort the vector according to zorder
     // std::sort(zorders.uic_zorders.begin(), zorders.uic_zorders.end());
+
+    // Mark that the entities are ordered
+    needs_ordering = false;
 }
 
 PhysicsSystem::PhysicsSystem(const Config& cfg) : cfg(cfg) {}
@@ -207,13 +214,12 @@ RenderSystem::RenderSystem(const Config& cfg, sf::View& view, sf::View& ui_view)
 void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     window.clear(sf::Color::Black);
 
-    auto rview = registry.view<PhysicsComponent, RenderComponent>();
+    auto rview = registry.view<RenderComponent>();
 
     // draw frame
     for (auto entity : rview) {
         auto& rc = rview.get<RenderComponent>(entity);
         window.draw(rc.shape);
-        auto& pc = rview.get<PhysicsComponent>(entity);
     }
 }
 

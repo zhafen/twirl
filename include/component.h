@@ -9,8 +9,6 @@
 
 namespace cc {
 
-struct Component {};
-
 struct PhysicsComponent {
     float mass = 1.0f;
     sf::Vector2f pos = {0.0f, 0.0f};
@@ -45,15 +43,13 @@ struct PairwiseForceComponent {
     } params;
 };
 
-struct PairwiseComponent {
+struct CollisionComponent {
     EntityId id1;
     EntityId id2;
 };
 
-struct CollisionComponent : PairwiseComponent {};
-
 // Very general component for applying a function to pairs of entities
-struct PairwiseFunctionComponent : PairwiseComponent {
+struct PairwiseFunctionComponent {
     // std::function<void(EntityId id1, EntityId id2, Components& components)> func;
 };
 
@@ -64,15 +60,11 @@ struct RenderComponent {
 
 // All UI components are assumed to be rectangles that track floats.
 // If I start using substructures, I may need to change ui_comps to holding pointers.
-struct UIComponent : RenderComponent {
+struct UIComponent {
+    sf::RectangleShape shape;
     float& tracked_value;
     sf::Vector2f size;
     UIComponent(float& tracked_value) : tracked_value(tracked_value) {}
-};
-
-struct Zorders {
-    std::vector<std::pair<int, entt::entity>> rc_zorders;
-    std::vector<std::pair<int, entt::entity>> uic_zorders;
 };
 
 // struct ComponentsOld {

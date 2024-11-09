@@ -11,10 +11,6 @@ namespace cc {
 
 struct Component {};
 
-struct MetadataComponent {
-    std::string name;
-};
-
 struct PhysicsComponent {
     float mass = 1.0f;
     sf::Vector2f pos = {0.0f, 0.0f};
@@ -76,7 +72,6 @@ struct UIComponent : RenderComponent {
 
 // struct ComponentsOld {
 //     // Single-entity components
-//     std::unordered_map<EntityId, MetadataComponent> metadata_comps;
 //     std::unordered_map<EntityId, RenderComponent> render_comps;
 //     std::unordered_map<EntityId, UIComponent> ui_comps;
 //     std::unordered_map<EntityId, PhysicsComponent> physics_comps;

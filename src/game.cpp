@@ -48,33 +48,21 @@ void Game::resetGameState() {
 void Game::initializeState() {
     // Make player
     const auto player = registry.create();
-    registry.emplace<MetadataComponent>(player, "Player");
-    auto &player_pc = registry.emplace<PhysicsComponent>(player);
-    player_pc.pos = sf::Vector2f(0.f, 0.f);
-    player_pc.vel = sf::Vector2f(0.f, 0.f);
+    registry.emplace<PhysicsComponent>(player);
     registry.emplace<ForceComponent>(player);
     registry.emplace<DurabilityComponent>(player);
-    auto &player_rc = registry.emplace<RenderComponent>(player, CCCircleShape(cfg.L));
-    player_rc.shape.setFillColor(sf::Color::White);
+    // auto &player_rc = registry.emplace<RenderComponent>(player, CCCircleShape(cfg.L));
+    // player_rc.shape.setFillColor(sf::Color::White);
 
-    // // Make beacon particle for player
-    // EntityId beacon_id = createEntity();
-    // MetadataComponent mc_beacon;
-    // mc_beacon.id = beacon_id;
-    // mc_beacon.name = "Beacon";
-    // components.metadata_comps[beacon_id] = mc_beacon;
-    // RenderComponent rc_beacon;
-    // rc_beacon.shape = std::make_shared<CCCircleShape>(cfg.L / 2.f);
-    // rc_beacon.shape->setFillColor(sf::Color::Black);
-    // rc_beacon.shape->setOutlineColor(sf::Color::White);
-    // rc_beacon.shape->setOutlineThickness(cfg.L / 10.f);
-    // components.render_comps[beacon_id] = std::move(rc_beacon);
-    // PhysicsComponent pc_beacon;
-    // pc_beacon.pos = sf::Vector2f(0.f, 0.f);
-    // pc_beacon.vel = sf::Vector2f(0.f, 0.f);
-    // components.physics_comps[beacon_id] = pc_beacon;
-    // MouseButtonReleasedComponent mbrc;
-    // components.mousebuttonreleased_comps[beacon_id] = mbrc;
+    // Make beacon particle for player
+    const auto beacon = registry.create();
+    registry.emplace<PhysicsComponent>(beacon);
+    registry.emplace<MouseButtonReleasedComponent>(beacon);
+    auto beacon_shape = CCCircleShape(cfg.L / 2.f);
+    beacon_shape.setFillColor(sf::Color::Black);
+    beacon_shape.setOutlineColor(sf::Color::White);
+    beacon_shape.setOutlineThickness(cfg.L / 10.f);
+    registry.emplace<RenderComponent>(beacon, beacon_shape);
     // // Pull the player towards the beacon
     // EntityRelationId rel_beacon_id = createEntityRelationship();
     // PairwiseForceComponent pfc_beacon;
@@ -92,7 +80,6 @@ void Game::initializeState() {
     // for (int i = 0; i < n_enemies; ++i) {
     //     // Entity properties
     //     EntityId id = createEntity();
-    //     MetadataComponent mc;
     //     mc.id = id;
     //     mc.name = "Enemy" + std::to_string(i);
     //     components.metadata_comps[id] = mc;
@@ -180,7 +167,7 @@ void Game::initializeState() {
     //     sf::Vector2f(-uic_bar.size.x / 2.f, -float(cfg.window_size_y) / 2.f + cfg.L);
     // components.ui_comps.emplace(bar_id, std::move(uic_bar));
 
-    // // Create a vector of (zorder, id) pairs
+    // Create a vector of (zorder, id) pairs
     // for (const auto& [id, rc] : components.render_comps) {
     //     components.entity_zorders.emplace_back(rc.zorder, id);
     // }
@@ -200,14 +187,15 @@ void Game::handleEvents() {
         if (event.type == sf::Event::Closed) {
             window.close();
         } else if (event.type == sf::Event::MouseButtonReleased) {
-            // for (auto& [id, mbrc] : components.mousebuttonreleased_comps) {
-            //     // get the current mouse position in the window
-            //     sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+            auto rview = registry.view<PhysicsComponent, MouseButtonReleasedComponent>();
+            for (auto& entity: rview) {
+                // get the current mouse position in the window
+                sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
 
-            //     // convert it to world coordinates and store
-            //     auto& pc = components.physics_comps.at(id);
-            //     pc.pos = window.mapPixelToCoords(pixelPos);
-            // }
+                // convert it to world coordinates and store
+                auto& pc = registry.get<PhysicsComponent>(entity);
+                pc.pos = window.mapPixelToCoords(pixelPos);
+            }
         }
     }
 }

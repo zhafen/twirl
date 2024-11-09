@@ -13,8 +13,8 @@
 Game::Game()
     : cfg(),
       window(sf::VideoMode(cfg.window_size_x, cfg.window_size_y), "twirl"),
-      view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size)),
-      ui_view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size)),
+      view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size_x, cfg.window_size_y)),
+      ui_view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size_x, cfg.window_size_y)),
       render_system(cfg, view, ui_view),
       physics_system(cfg),
       general_system(cfg) {

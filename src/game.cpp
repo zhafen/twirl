@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "system.h"
+#include "shape.h"
 
 namespace cc {
 

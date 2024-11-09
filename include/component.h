@@ -1,25 +1,23 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include <string>
 #include <SFML/Graphics.hpp>
+#include <string>
 
 #include "config.h"
 
 namespace cc {
 
-class Components;
+struct Components;
 
-class Component {};
+struct Component {};
 
-class MetadataComponent : Component {
-    public:
+struct MetadataComponent : Component {
     EntityId id;
     std::string name;
 };
 
-class PhysicsComponent : Component {
-    public:
+struct PhysicsComponent : Component {
     float mass = 1.0f;
     sf::Vector2f pos = {0.0f, 0.0f};
     sf::Vector2f vel = {0.0f, 0.0f};
@@ -27,25 +25,24 @@ class PhysicsComponent : Component {
     bool collided = false;
 };
 
-class ForceComponent : Component {
-    public:
+struct ForceComponent : Component {
     // In units of cfg.A / cfg.V
     float drag_coefficient = 0.01f;
     float drag_power = 2.0f;
 };
 
-class DurabilityComponent : Component{
+struct DurabilityComponent : Component {
     float durability = 1.0f;
     float durability_loss_per_collision = 0.34f;
     float durability_regen_rate = 0.1f;
 };
 
-class MouseButtonReleasedComponent : Component {};
+struct MouseButtonReleasedComponent : Component {};
 
-class PairwiseForceComponent : Component {
+struct PairwiseForceComponent : Component {
     EntityId target_entity;
     EntityId source_entity;
-    class Parameters {
+    struct Parameters {
         float magnitude = 1.0f;  // In units of cfg.A
         float softening = 0.0f;
         float power = 2.0f;
@@ -54,37 +51,42 @@ class PairwiseForceComponent : Component {
     } params;
 };
 
-class PairwiseComponent : Component{
+struct PairwiseComponent : Component {
     EntityId id1;
     EntityId id2;
 };
 
-class CollisionComponent : PairwiseComponent {};
+struct CollisionComponent : PairwiseComponent {};
 
 // Very general component for applying a function to pairs of entities
-class PairwiseFunctionComponent : PairwiseComponent {
+struct PairwiseFunctionComponent : PairwiseComponent {
     std::function<void(EntityId id1, EntityId id2, Components& components)> func;
 };
 
-class RenderComponent : Component {
+struct RenderComponent : Component {
     std::shared_ptr<sf::Shape> shape;
     int zorder = 0;
     sf::Vector2f pos;
 };
 
 // All UI components are assumed to be rectangles that track floats.
-// If I start using subclassures, I may need to change ui_comps to holding pointers.
-class UIComponent : RenderComponent {
+// If I start using substructures, I may need to change ui_comps to holding pointers.
+struct UIComponent : RenderComponent {
     float& tracked_value;
     sf::Vector2f size;
     UIComponent(float& tracked_value) : tracked_value(tracked_value) {}
 };
 
-class Components {
+struct Components {
     // Single-entity components
-    std::unordered_map<int, std::unordered_map<EntityId, Component>> components;
-
-    // Ordering
+    std::unordered_map<EntityId, MetadataComponent> metadata_comps;
+    std::unordered_map<EntityId, RenderComponent> render_comps;
+    std::unordered_map<EntityId, UIComponent> ui_comps;
+    std::unordered_map<EntityId, PhysicsComponent> physics_comps;
+    std::unordered_map<EntityId, ForceComponent> force_comps;
+    std::unordered_map<EntityId, DurabilityComponent> dura_comps;
+    std::unordered_map<EntityId, MouseButtonReleasedComponent>
+        mousebuttonreleased_comps;
     std::vector<std::pair<int, EntityId>> entity_zorders;
     std::vector<std::pair<int, EntityId>> ui_entity_zorders;
 
@@ -94,6 +96,6 @@ class Components {
     std::unordered_map<EntityRelationId, PairwiseFunctionComponent> pairfunc_comps;
 };
 
-} // namespace cc
+}  // namespace cc
 
 #endif  // COMPONENT_H

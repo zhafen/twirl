@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
+#include <en
 
 #include "system.h"
 
@@ -7,62 +8,62 @@ namespace cc {
 
 GeneralSystem::GeneralSystem(const Config& cfg) : cfg(cfg) {}
 
-void GeneralSystem::callPairwiseFunctions(Components& components) {
-    for (auto& [rel_id, pfnc] : components.pairfunc_comps) {
-        pfnc.func(pfnc.id1, pfnc.id2, components);
-    }
+void GeneralSystem::callPairwiseFunctions(entt::registry& registry) {
+    / for (auto& [rel_id, pfnc] : components.pairfunc_comps) {
+    /     pfnc.func(pfnc.id1, pfnc.id2, components);
+    / }
 }
 
 PhysicsSystem::PhysicsSystem(const Config& cfg) : cfg(cfg) {}
 
-void PhysicsSystem::calculateForces(Components& components) {
-    for (auto& [id, fc] : components.force_comps) {
-        auto& pc = components.physics_comps.at(id);
-        float vel_mag = sqrtf(pc.vel.x * pc.vel.x + pc.vel.y * pc.vel.y);
-        sf::Vector2f vel_scaling =
-            (pc.vel / cfg.V) * powf(vel_mag / cfg.V, fc.drag_power - 1.0f);
-        pc.force -= fc.drag_coefficient * cfg.A * vel_scaling;
-    }
+void PhysicsSystem::calculateForces(entt::registry& registry) {
+    // for (auto& [id, fc] : components.force_comps) {
+    //     auto& pc = components.physics_comps.at(id);
+    //     float vel_mag = sqrtf(pc.vel.x * pc.vel.x + pc.vel.y * pc.vel.y);
+    //     sf::Vector2f vel_scaling =
+    //         (pc.vel / cfg.V) * powf(vel_mag / cfg.V, fc.drag_power - 1.0f);
+    //     pc.force -= fc.drag_coefficient * cfg.A * vel_scaling;
+    // }
 }
 
-void PhysicsSystem::calculatePairwiseForces(Components& components) {
-    for (auto& [rel_id, pfc] : components.pairforce_comps) {
-        auto& target_pc = components.physics_comps.at(pfc.target_entity);
-        auto& source_pc = components.physics_comps.at(pfc.source_entity);
+void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
+    // for (auto& [rel_id, pfc] : components.pairforce_comps) {
+    //     auto& target_pc = components.physics_comps.at(pfc.target_entity);
+    //     auto& source_pc = components.physics_comps.at(pfc.source_entity);
 
-        auto r = target_pc.pos - source_pc.pos;
-        auto r_mag = sqrtf(r.x * r.x + r.y * r.y);
+    //     auto r = target_pc.pos - source_pc.pos;
+    //     auto r_mag = sqrtf(r.x * r.x + r.y * r.y);
 
-        // Don't calculate the distance when too close
-        if (r_mag < pfc.params.min_distance * cfg.L) {
-            continue;
-        }
+    //     // Don't calculate the distance when too close
+    //     if (r_mag < pfc.params.min_distance * cfg.L) {
+    //         continue;
+    //     }
 
-        auto r_hat = r / r_mag;
-        auto r_mag_scaled = (r_mag + pfc.params.softening * cfg.L) / cfg.L /
-                            pfc.params.distance_scaling;
-        auto force = r_hat * pfc.params.magnitude * cfg.A * target_pc.mass *
-                     source_pc.mass * powf(r_mag_scaled, pfc.params.power);
+    //     auto r_hat = r / r_mag;
+    //     auto r_mag_scaled = (r_mag + pfc.params.softening * cfg.L) / cfg.L /
+    //                         pfc.params.distance_scaling;
+    //     auto force = r_hat * pfc.params.magnitude * cfg.A * target_pc.mass *
+    //                  source_pc.mass * powf(r_mag_scaled, pfc.params.power);
 
-        target_pc.force += force;
-    }
+    //     target_pc.force += force;
+    // }
 }
 
-void PhysicsSystem::update(Components& components) {
-    for (auto& [id, pc] : components.physics_comps) {
-        // Update using leapfrog algorithm
-        auto acc = pc.force / pc.mass;
-        pc.vel += acc * cfg.dt / 2.f;
-        pc.pos += pc.vel * cfg.dt;
-        pc.vel += acc * cfg.dt / 2.f;
+void PhysicsSystem::update(entt::registry& registry) {
+    // for (auto& [id, pc] : components.physics_comps) {
+    //     // Update using leapfrog algorithm
+    //     auto acc = pc.force / pc.mass;
+    //     pc.vel += acc * cfg.dt / 2.f;
+    //     pc.pos += pc.vel * cfg.dt;
+    //     pc.vel += acc * cfg.dt / 2.f;
 
-        // Update render component position
-        auto& rc = components.render_comps.at(id);
-        rc.shape->setPosition(pc.pos);
+    //     // Update render component position
+    //     auto& rc = components.render_comps.at(id);
+    //     rc.shape->setPosition(pc.pos);
 
-        // Reset force
-        pc.force = {0.f, 0.f};
-    }
+    //     // Reset force
+    //     pc.force = {0.f, 0.f};
+    // }
 }
 
 /**
@@ -87,114 +88,116 @@ void PhysicsSystem::update(Components& components) {
  * @param components A reference to the Components object containing physics and render
  * components.
  */
-void PhysicsSystem::resolveCollisions(Components& components) {
-    for (auto& [rel_id, cc] : components.collision_comps) {
-        // Get first entity
-        auto& id1 = cc.id1;
-        auto& rc1 = components.render_comps.at(id1);
-        auto& pc1 = components.physics_comps.at(id1);
-
-        // Get second entity
-        auto& id2 = cc.id2;
-        auto& rc2 = components.render_comps.at(id2);
-        auto& pc2 = components.physics_comps.at(id2);
-
-        // Check for collision, assuming circular shapes for all objects that could
-        // collide
-        auto r_12 = pc2.pos - pc1.pos;
-        auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
-        sf::CircleShape* rc1_shape = dynamic_cast<sf::CircleShape*>(rc1.shape.get());
-        sf::CircleShape* rc2_shape = dynamic_cast<sf::CircleShape*>(rc2.shape.get());
-        if (r_12_mag > rc1_shape->getRadius() + rc2_shape->getRadius()) {
-            continue;
-        }
-
-        // Calculate the momentum in the COM frame
-        auto T = 0.5f * (pc1.mass * (pc1.vel.x * pc1.vel.x + pc1.vel.y * pc1.vel.y) +
-                         pc2.mass * (pc2.vel.x * pc2.vel.x + pc2.vel.y * pc2.vel.y));
-        auto pcom_mag = sqrtf(2.0f * T * pc1.mass * pc2.mass / (pc1.mass + pc2.mass));
-        auto p1com = -pcom_mag * r_12 / r_12_mag;
-
-        // Convert back to default frame
-        auto vcom = (pc1.vel * pc1.mass + pc2.vel * pc2.mass) / (pc1.mass + pc2.mass);
-        pc1.vel = vcom + p1com / pc1.mass;
-        pc2.vel = vcom - p1com / pc2.mass;
-
-        // Indicate collision
-        pc1.collided = true;
-        pc2.collided = true;
-    }
+void PhysicsSystem::resolveCollisions(entt::registry& registry) {
+//     for (auto& [rel_id, cc] : components.collision_comps) {
+//         // Get first entity
+//         auto& id1 = cc.id1;
+//         auto& rc1 = components.render_comps.at(id1);
+//         auto& pc1 = components.physics_comps.at(id1);
+// 
+//         // Get second entity
+//         auto& id2 = cc.id2;
+//         auto& rc2 = components.render_comps.at(id2);
+//         auto& pc2 = components.physics_comps.at(id2);
+// 
+//         // Check for collision, assuming circular shapes for all objects that could
+//         // collide
+//         auto r_12 = pc2.pos - pc1.pos;
+//         auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
+//         sf::CircleShape* rc1_shape = dynamic_cast<sf::CircleShape*>(rc1.shape.get());
+//         sf::CircleShape* rc2_shape = dynamic_cast<sf::CircleShape*>(rc2.shape.get());
+//         if (r_12_mag > rc1_shape->getRadius() + rc2_shape->getRadius()) {
+//             continue;
+//         }
+// 
+//         // Calculate the momentum in the COM frame
+//         auto T = 0.5f * (pc1.mass * (pc1.vel.x * pc1.vel.x + pc1.vel.y * pc1.vel.y) +
+//                          pc2.mass * (pc2.vel.x * pc2.vel.x + pc2.vel.y * pc2.vel.y));
+//         auto pcom_mag = sqrtf(2.0f * T * pc1.mass * pc2.mass / (pc1.mass + pc2.mass));
+//         auto p1com = -pcom_mag * r_12 / r_12_mag;
+// 
+//         // Convert back to default frame
+//         auto vcom = (pc1.vel * pc1.mass + pc2.vel * pc2.mass) / (pc1.mass + pc2.mass);
+//         pc1.vel = vcom + p1com / pc1.mass;
+//         pc2.vel = vcom - p1com / pc2.mass;
+// 
+//         // Indicate collision
+//         pc1.collided = true;
+//         pc2.collided = true;
+//     }
 }
 
-void PhysicsSystem::updateDurability(Components& components) {
-    for (auto& [id, dc] : components.dura_comps) {
-        dc.durability += dc.durability_regen_rate * cfg.dt;
+void PhysicsSystem::updateDurability(entt::registry& registry) {
+    // for (auto& [id, dc] : components.dura_comps) {
+    //     dc.durability += dc.durability_regen_rate * cfg.dt;
 
-        auto& rc = components.render_comps.at(id);
+    //     auto& rc = components.render_comps.at(id);
 
-        // Apply durability loss from collision
-        bool& collided = components.physics_comps.at(id).collided;
-        if (collided) {
-            dc.durability -= dc.durability_loss_per_collision;
-            collided = false;
-        }
+    //     // Apply durability loss from collision
+    //     bool& collided = components.physics_comps.at(id).collided;
+    //     if (collided) {
+    //         dc.durability -= dc.durability_loss_per_collision;
+    //         collided = false;
+    //     }
 
-        // Cap durability at 1.0
-        if (dc.durability > 1.0f) {
-            dc.durability = 1.0f;
-            rc.shape->setFillColor(sf::Color::White);
-        } else if (dc.durability < 0.0f) {
-            // When out of durability, set to 0 and change color
-            dc.durability = 0.0f;
-            rc.shape->setFillColor(sf::Color(63, 63, 63));
-        } else {
-            dc.durability += dc.durability_regen_rate * cfg.dt;
-        }
-    }
+    //     // Cap durability at 1.0
+    //     if (dc.durability > 1.0f) {
+    //         dc.durability = 1.0f;
+    //         rc.shape->setFillColor(sf::Color::White);
+    //     } else if (dc.durability < 0.0f) {
+    //         // When out of durability, set to 0 and change color
+    //         dc.durability = 0.0f;
+    //         rc.shape->setFillColor(sf::Color(63, 63, 63));
+    //     } else {
+    //         dc.durability += dc.durability_regen_rate * cfg.dt;
+    //     }
+    // }
 }
 
 RenderSystem::RenderSystem(const Config& cfg, sf::View& view, sf::View& ui_view)
     : cfg(cfg), view(view), ui_view(ui_view) {}
 
 void RenderSystem::render(EntityId player_id, sf::RenderWindow& window,
-                          Components& components) {
+                          entt::registry& registry) {
     window.clear(sf::Color::Black);
 
+    auto rview = registry.view<PhysicsComponent, RenderComponent>();
+
     // draw frame
-    for (auto [zorder, id] : components.entity_zorders) {
-        auto& rc = components.render_comps.at(id);
+    for (auto entity: rview) {
+        auto& rc = rview.get<RenderComponent>(entity);
         window.draw(*rc.shape);
     }
 }
 
-void RenderSystem::renderUI(sf::RenderWindow& window, Components& components) {
-    window.setView(ui_view);
+void RenderSystem::renderUI(sf::RenderWindow& window, entt::registry& registry) {
+    // window.setView(ui_view);
 
-    // draw frame
-    for (auto [zorder, id] : components.ui_entity_zorders) {
-        auto& uic = components.ui_comps.at(id);
+    // // draw frame
+    // for (auto [zorder, id] : components.ui_entity_zorders) {
+    //     auto& uic = components.ui_comps.at(id);
 
-        // Get the bar out and set parameters
-        sf::RectangleShape* bar = dynamic_cast<sf::RectangleShape*>(uic.shape.get());
-        sf::Vector2f uic_size = uic.size;
-        uic_size.x *= uic.tracked_value;
-        // Causing the bar to shrink from the center requires changing both
-        // the size and position
-        sf::Vector2f uic_pos = uic.pos;
-        uic_pos.x += (uic.size.x - uic_size.x) / 2.f;
-        bar->setSize(uic_size);
-        bar->setPosition(uic_pos);
+    //     // Get the bar out and set parameters
+    //     sf::RectangleShape* bar = dynamic_cast<sf::RectangleShape*>(uic.shape.get());
+    //     sf::Vector2f uic_size = uic.size;
+    //     uic_size.x *= uic.tracked_value;
+    //     // Causing the bar to shrink from the center requires changing both
+    //     // the size and position
+    //     sf::Vector2f uic_pos = uic.pos;
+    //     uic_pos.x += (uic.size.x - uic_size.x) / 2.f;
+    //     bar->setSize(uic_size);
+    //     bar->setPosition(uic_pos);
 
-        window.draw(*uic.shape);
-    }
+    //     window.draw(*uic.shape);
+    // }
 }
 
 // EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
 // 
-// // EntitySystem::spawnEntities(Components& components) {
+// // EntitySystem::spawnEntities(entt::registry& registry) {
 // // }
 // 
-// void EntitySystem::removeEntity(Components& components, EntityId entity_id) {
+// void EntitySystem::removeEntity(entt::registry& registry, EntityId entity_id) {
 //     components.physics_comps.erase(entity_id);
 //     components.render_comps.erase(entity_id);
 //     components.dura_comps.erase(entity_id);

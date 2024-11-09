@@ -49,32 +49,15 @@ void Game::initializeState() {
     // Make player
     const auto player = registry.create();
     registry.emplace<MetadataComponent>(player, player, "Player");
-    registry.emplace<PhysicsComponent>(player, sf::Vector2f(0.f, 0.f),
-                                       sf::Vector2f(0.f, 0.f));
+    auto &player_pc = registry.emplace<PhysicsComponent>(player);
+    player_pc.pos = sf::Vector2f(0.f, 0.f);
+    player_pc.vel = sf::Vector2f(0.f, 0.f);
     registry.emplace<ForceComponent>(player);
     registry.emplace<DurabilityComponent>(player);
     registry.emplace<RenderComponent>(player, std::make_shared<CCCircleShape>(cfg.L));
 }
 
 void Game::initializeStateOld() {
-    // Make player
-    player_id = createEntity();
-    MetadataComponent mc;
-    mc.id = player_id;
-    mc.name = "Player";
-    components.metadata_comps[player_id] = mc;
-    RenderComponent rc;
-    rc.shape = std::make_shared<CCCircleShape>(cfg.L);
-    components.render_comps[player_id] = std::move(rc);
-    PhysicsComponent pc;
-    pc.pos = sf::Vector2f(0.f, 0.f);
-    pc.vel = sf::Vector2f(0.f, 0.f);
-    components.physics_comps[player_id] = pc;
-    // Affected by drag;
-    components.force_comps[player_id] = ForceComponent();
-    DurabilityComponent dc;
-    components.dura_comps[player_id] = dc;
-
     // Make beacon particle for player
     EntityId beacon_id = createEntity();
     MetadataComponent mc_beacon;

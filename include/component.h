@@ -76,7 +76,7 @@ struct UIComponent : RenderComponent {
     UIComponent(float& tracked_value) : tracked_value(tracked_value) {}
 };
 
-struct Components {
+struct ComponentsOld {
     // Single-entity components
     std::unordered_map<EntityId, MetadataComponent> metadata_comps;
     std::unordered_map<EntityId, RenderComponent> render_comps;

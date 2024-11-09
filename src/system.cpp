@@ -56,9 +56,9 @@ void PhysicsSystem::calculateForces(entt::registry& registry) {
 }
 
 void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
-    auto view = registry.view<PairComponent, PairwiseForceComponent>();
+    auto rview = registry.view<PairComponent, PairwiseForceComponent>();
 
-    for (auto [entity, pc, pfc] : view.each()) {
+    for (auto [entity, pc, pfc] : rview.each()) {
         auto& target_pc = registry.get<PhysicsComponent>(pc.target);
         auto& source_pc = registry.get<PhysicsComponent>(pc.source);
 
@@ -81,20 +81,18 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
 }
 
 void PhysicsSystem::update(entt::registry& registry) {
-    // for (auto& [id, pc] : components.physics_comps) {
-    //     // Update using leapfrog algorithm
-    //     auto acc = pc.force / pc.mass;
-    //     pc.vel += acc * cfg.dt / 2.f;
-    //     pc.pos += pc.vel * cfg.dt;
-    //     pc.vel += acc * cfg.dt / 2.f;
+    auto rview = registry.view<PhysicsComponent>();
 
-    //     // Update render component position
-    //     auto& rc = components.render_comps.at(id);
-    //     rc.shape->setPosition(pc.pos);
+    for (auto [entity, pc] : rview.each()) {
+        // Update using leapfrog algorithm
+        auto acc = pc.force / pc.mass;
+        pc.vel += acc * cfg.dt / 2.f;
+        pc.pos += pc.vel * cfg.dt;
+        pc.vel += acc * cfg.dt / 2.f;
 
-    //     // Reset force
-    //     pc.force = {0.f, 0.f};
-    // }
+        // Reset force
+        pc.force = {0.f, 0.f};
+    }
 }
 
 /**

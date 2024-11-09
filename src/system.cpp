@@ -36,9 +36,8 @@ void EntitySystem::orderEntities(entt::registry& registry) {
         return;
     }
 
-    registry.sort<RenderComponent>([](const auto lhs, const auto rhs) {
-        return lhs.zorder < rhs.zorder;
-    });
+    registry.sort<RenderComponent>(
+        [](const auto lhs, const auto rhs) { return lhs.zorder < rhs.zorder; });
 
     // Mark that the entities are ordered
     needs_ordering = false;
@@ -57,26 +56,28 @@ void PhysicsSystem::calculateForces(entt::registry& registry) {
 }
 
 void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
-    // for (auto& [rel_id, pfc] : components.pairforce_comps) {
-    //     auto& target_pc = components.physics_comps.at(pfc.target_entity);
-    //     auto& source_pc = components.physics_comps.at(pfc.source_entity);
+    auto view = registry.view<PairComponent, PairwiseForceComponent>();
 
-    //     auto r = target_pc.pos - source_pc.pos;
-    //     auto r_mag = sqrtf(r.x * r.x + r.y * r.y);
+    for (auto [entity, pc, pfc] : view.each()) {
+        auto& target_pc = registry.get<PhysicsComponent>(pc.target);
+        auto& source_pc = registry.get<PhysicsComponent>(pc.source);
 
-    //     // Don't calculate the distance when too close
-    //     if (r_mag < pfc.params.min_distance * cfg.L) {
-    //         continue;
-    //     }
+        auto r = target_pc.pos - source_pc.pos;
+        auto r_mag = sqrtf(r.x * r.x + r.y * r.y);
 
-    //     auto r_hat = r / r_mag;
-    //     auto r_mag_scaled = (r_mag + pfc.params.softening * cfg.L) / cfg.L /
-    //                         pfc.params.distance_scaling;
-    //     auto force = r_hat * pfc.params.magnitude * cfg.A * target_pc.mass *
-    //                  source_pc.mass * powf(r_mag_scaled, pfc.params.power);
+        // Don't calculate the distance when too close
+        if (r_mag < pfc.min_distance * cfg.L) {
+            continue;
+        }
 
-    //     target_pc.force += force;
-    // }
+        auto r_hat = r / r_mag;
+        auto r_mag_scaled =
+            (r_mag + pfc.softening * cfg.L) / cfg.L / pfc.distance_scaling;
+        auto force = r_hat * pfc.magnitude * cfg.A * target_pc.mass * source_pc.mass *
+                     powf(r_mag_scaled, pfc.power);
+
+        target_pc.force += force;
+    }
 }
 
 void PhysicsSystem::update(entt::registry& registry) {
@@ -195,7 +196,8 @@ void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     window.clear(sf::Color::Black);
 
     // The .use ensures we use the order of render components
-    auto rview = registry.view<RenderComponent, PhysicsComponent>().use<RenderComponent>();
+    auto rview =
+        registry.view<RenderComponent, PhysicsComponent>().use<RenderComponent>();
 
     // draw frame
     for (auto [entity, rc, pc] : rview.each()) {

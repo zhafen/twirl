@@ -30,7 +30,6 @@ class EntitySystem {
     void orderEntities(entt::registry& registry);
 
    private:
-    Zorders zorders;
     bool needs_ordering = true;
     Config cfg;
 };

@@ -31,22 +31,20 @@ struct DurabilityComponent {
 
 struct MouseButtonReleasedComponent {};
 
-struct PairwiseForceComponent {
-    EntityId target_entity;
-    EntityId source_entity;
-    struct Parameters {
-        float magnitude = 1.0f;  // In units of cfg.A
-        float softening = 0.0f;
-        float power = 2.0f;
-        float min_distance = 0.1f;      // In units of cfg.L
-        float distance_scaling = 1.0f;  // in units of cfg.L
-    } params;
+struct PairComponent {
+    entt::entity target;
+    entt::entity source;
 };
 
-struct CollisionComponent {
-    EntityId id1;
-    EntityId id2;
+struct PairwiseForceComponent {
+    float magnitude = 1.0f;  // In units of cfg.A
+    float softening = 0.0f;
+    float power = 2.0f;
+    float min_distance = 0.1f;      // In units of cfg.L
+    float distance_scaling = 1.0f;  // in units of cfg.L
 };
+
+struct CollisionComponent {};
 
 // Very general component for applying a function to pairs of entities
 struct PairwiseFunctionComponent {

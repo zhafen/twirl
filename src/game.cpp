@@ -64,13 +64,13 @@ void Game::initializeState() {
     beacon_shape.setOutlineColor(sf::Color::White);
     beacon_shape.setOutlineThickness(cfg.L / 10.f);
     registry.emplace<RenderComponent>(beacon, beacon_shape, 1); // zorder = 1
-    // // Pull the player towards the beacon
-    // EntityRelationId rel_beacon_id = createEntityRelationship();
-    // PairwiseForceComponent pfc_beacon;
-    // pfc_beacon.target_entity = player_id;
-    // pfc_beacon.source_entity = beacon_id;
-    // pfc_beacon.params.magnitude *= -0.1f;
-    // components.pairforce_comps[rel_beacon_id] = pfc_beacon;
+
+    // Make an entity for the relationship between the player and the beacon
+    const auto rel_beacon = registry.create();
+    // This component tracks the relationship itself
+    registry.emplace<PairComponent>(rel_beacon, player, beacon);
+    auto& pfc = registry.emplace<PairwiseForceComponent>(rel_beacon);
+    pfc.magnitude = -0.1f;
 
     // // Make enemies
     // std::random_device rd;

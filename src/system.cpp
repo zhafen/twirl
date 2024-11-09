@@ -36,29 +36,9 @@ void EntitySystem::orderEntities(entt::registry& registry) {
         return;
     }
 
-    registry.sort<RenderComponent>([](const RenderComponent lhs, const RenderComponent rhs) {
+    registry.sort<RenderComponent>([](const auto lhs, const auto rhs) {
         return lhs.zorder < rhs.zorder;
     });
-
-    // // Reset zorders
-    // zorders.rc_zorders.clear();
-    // zorders.uic_zorders.clear();
-
-    // // Create a vector of (zorder, id) pairs
-    // auto rview = registry.view<RenderComponent>();
-    // for(auto [entity, rc]: rview.each()) {
-    //     zorders.rc_zorders.emplace_back(rc.zorder, entity);
-    // }
-    // // Sort the vector according to zorder
-    // std::sort(zorders.rc_zorders.begin(), zorders.rc_zorders.end());
-
-    // // Create a vector of (zorder, id) pairs for UI components
-    // auto ui_rview = registry.view<UIComponent>();
-    // for(auto [entity, rc]: ui_rview.each()) {
-    //     zorders.uic_zorders.emplace_back(rc.zorder, entity);
-    // }
-    // // Sort the vector according to zorder
-    // std::sort(zorders.uic_zorders.begin(), zorders.uic_zorders.end());
 
     // Mark that the entities are ordered
     needs_ordering = false;

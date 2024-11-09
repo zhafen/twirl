@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
+#include <entt/entt.hpp>
 
 #include "system.h"
 
@@ -22,6 +23,9 @@ class Game {
     sf::View view;
     sf::View ui_view;
 
+    // ECS
+    entt::registry registry;
+
     // Entities
     EntityId entityCounter = 0;
     EntityId entityRelationshipCounter = 0;
@@ -41,6 +45,7 @@ class Game {
     int createEntity();
     int createEntityRelationship();
     void initializeState();
+    void initializeStateOld();
     void handleEvents();
     void update();
     void render();

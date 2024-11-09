@@ -1,3 +1,5 @@
+#include "game.h"
+
 #include <SFML/Graphics.hpp>
 #include <filesystem>
 #include <iostream>
@@ -5,9 +7,8 @@
 #include <unordered_map>
 #include <vector>
 
-#include "game.h"
-#include "system.h"
 #include "shape.h"
+#include "system.h"
 
 namespace cc {
 
@@ -16,6 +17,7 @@ Game::Game()
       window(sf::VideoMode(cfg.window_size_x, cfg.window_size_y), "twirl"),
       view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size_x, cfg.window_size_y)),
       ui_view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size_x, cfg.window_size_y)),
+      registry(),
       render_system(cfg, view, ui_view),
       physics_system(cfg),
       general_system(cfg) {
@@ -44,6 +46,17 @@ int Game::createEntity() { return entityCounter++; }
 int Game::createEntityRelationship() { return entityRelationshipCounter++; }
 
 void Game::initializeState() {
+    // Make player
+    const auto player = registry.create();
+    registry.emplace<MetadataComponent>(player, player, "Player");
+    registry.emplace<PhysicsComponent>(player, sf::Vector2f(0.f, 0.f),
+                                       sf::Vector2f(0.f, 0.f));
+    registry.emplace<ForceComponent>(player);
+    registry.emplace<DurabilityComponent>(player);
+    registry.emplace<RenderComponent>(player, std::make_shared<CCCircleShape>(cfg.L));
+}
+
+void Game::initializeStateOld() {
     // Make player
     player_id = createEntity();
     MetadataComponent mc;
@@ -181,7 +194,8 @@ void Game::initializeState() {
     uic_bar.shape->setOutlineColor(sf::Color::Black);
     uic_bar.size = sf::Vector2f(cfg.window_size_x / 2, cfg.L);
     // Have to convert the shape to a rectangle to set the size
-    uic_bar.pos = sf::Vector2f(-uic_bar.size.x / 2.f, -float(cfg.window_size_y) / 2.f + cfg.L);
+    uic_bar.pos =
+        sf::Vector2f(-uic_bar.size.x / 2.f, -float(cfg.window_size_y) / 2.f + cfg.L);
     components.ui_comps.emplace(bar_id, std::move(uic_bar));
 
     // Create a vector of (zorder, id) pairs
@@ -246,4 +260,4 @@ void Game::render() {
     window.display();
 }
 
-}
+}  // namespace cc

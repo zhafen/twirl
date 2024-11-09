@@ -66,7 +66,6 @@ struct PairwiseFunctionComponent : PairwiseComponent {
 struct RenderComponent : Component {
     std::shared_ptr<sf::Shape> shape;
     int zorder = 0;
-    sf::Vector2f pos;
 };
 
 // All UI components are assumed to be rectangles that track floats.

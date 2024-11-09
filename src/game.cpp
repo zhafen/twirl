@@ -49,12 +49,13 @@ void Game::initializeState() {
     // Make player
     const auto player = registry.create();
     registry.emplace<MetadataComponent>(player, "Player");
-    // auto &player_pc = registry.emplace<PhysicsComponent>(player);
-    // player_pc.pos = sf::Vector2f(0.f, 0.f);
-    // player_pc.vel = sf::Vector2f(0.f, 0.f);
-    // registry.emplace<ForceComponent>(player);
-    // registry.emplace<DurabilityComponent>(player);
-    // registry.emplace<RenderComponent>(player, CCCircleShape(cfg.L));
+    auto &player_pc = registry.emplace<PhysicsComponent>(player);
+    player_pc.pos = sf::Vector2f(0.f, 0.f);
+    player_pc.vel = sf::Vector2f(0.f, 0.f);
+    registry.emplace<ForceComponent>(player);
+    registry.emplace<DurabilityComponent>(player);
+    auto &player_rc = registry.emplace<RenderComponent>(player, CCCircleShape(cfg.L));
+    player_rc.shape.setFillColor(sf::Color::White);
 
     // // Make beacon particle for player
     // EntityId beacon_id = createEntity();
@@ -231,12 +232,12 @@ void Game::update() {
 
 void Game::render() {
     // Render
-    // render_system.render(player_id, window, registry);
+    render_system.render(player, window, registry);
     // render_system.renderUI(window, registry);
 
-    // // Pin the view to the player
-    // view.setCenter(registry.physics_comps.at(player_id).pos);
-    // window.setView(view);
+    // Pin the view to the player
+    view.setCenter(registry.get<PhysicsComponent>(player).pos);
+    window.setView(view);
 
     window.display();
 }

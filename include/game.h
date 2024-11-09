@@ -29,8 +29,8 @@ class Game {
     // Entities
     // EntityId entityCounter = 0;
     // EntityId entityRelationshipCounter = 0;
-    // EntityId player_id;
-    std::vector<sf::CircleShape> bkgrd_circles;
+    entt::entity player;
+    // std::vector<sf::CircleShape> bkgrd_circles;
 
     // UI Elements
     sf::Text announcement;

@@ -25,6 +25,8 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
         auto& pc = registry.emplace<PhysicsComp>(projectile);
         pc.mass = 0.01f;
         pc.pos = source_pc.pos;
+        auto& dc = registry.emplace<DurabilityComp>(projectile);
+        dc.durability_loss_per_collision = 1.01f;
         registry.emplace<DragForceComp>(projectile);
         auto& rc = registry.emplace<RenderComp>(projectile, CCCircleShape(cfg.L / 3.f));
         rc.shape.setFillColor(sf::Color::Blue);

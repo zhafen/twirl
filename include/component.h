@@ -68,7 +68,7 @@ struct UIComp {
 
     // sf::RectangleShape shape;
 
-    std::shared_ptr<float> tracked_value;
+    float* tracked_value;
 };
 
 }  // namespace cc

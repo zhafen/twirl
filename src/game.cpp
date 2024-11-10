@@ -148,8 +148,7 @@ void Game::initializeState() {
     uic_bar.shape.setOutlineThickness(cfg.L / 10.f);
     uic_bar.shape.setOutlineColor(sf::Color::Black);
     // This is the key part where the tracked value is set
-    uic_bar.tracked_value =
-        std::make_shared<float>(registry.get<DurabilityComp>(player).durability);
+    uic_bar.tracked_value = &registry.get<DurabilityComp>(player).durability;
     // Have to convert the shape to a rectangle to set the size
     uic_bar.size = sf::Vector2f(cfg.window_size_x / 2, cfg.L);
     uic_bar.pos =

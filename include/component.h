@@ -78,6 +78,12 @@ struct UIComp {
     float* tracked_value;
 };
 
+struct StopWatchComp {
+    float current_time = 0.0f;
+    float end_time = 1.0f;
+    bool end_reached = false;
+};
+
 }  // namespace cc
 
 #endif  // COMPONENT_H

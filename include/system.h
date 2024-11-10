@@ -31,6 +31,7 @@ class PhysicsSystem {
     void calculateForces(entt::registry& registry);
     void calculatePairwiseForces(entt::registry& registry);
     void update(entt::registry& registry);
+    void updateStopWatches(entt::registry& registry);
     void resolveCollisions(entt::registry& registry);
     void updateDurability(entt::registry& registry);
 

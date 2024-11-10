@@ -11,8 +11,18 @@ EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
 void EntitySystem::spawnEntities(entt::registry& registry) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 
-        auto rview = registry.view<SpawnComp, PhysicsComp>();
-        for (auto [entity, source_sc, source_pc] : rview.each()) {
+        auto rview = registry.view<SpawnComp, StopWatchComp, PhysicsComp>();
+        for (auto [entity, source_sc, source_swc, source_pc] : rview.each()) {
+
+            // Check if the end time was reached
+            if (!source_swc.end_reached) {
+                continue;
+            } else {
+                // Reset the stopwatch
+                source_swc.current_time = 0.0f;
+                source_swc.end_reached = false;
+            }
+
             // Create a new projectile
             auto projectile = registry.create();
             auto& pc = registry.emplace<PhysicsComp>(projectile);
@@ -118,6 +128,21 @@ void PhysicsSystem::update(entt::registry& registry) {
 
         // Reset force
         pc.force = {0.f, 0.f};
+    }
+}
+
+void PhysicsSystem::updateStopWatches(entt::registry& registry) {
+    auto rview = registry.view<StopWatchComp>();
+    for (auto [entity, swc] : rview.each()) {
+
+        // Keep going if the end time was already reached.
+        if (swc.end_reached) {continue;}
+
+        swc.current_time += cfg.dt;
+
+        if (swc.current_time >= swc.end_time) {
+            swc.end_reached = true;
+        }
     }
 }
 

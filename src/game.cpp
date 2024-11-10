@@ -54,7 +54,10 @@ void Game::initializeState() {
     dc.delete_at_zero = false;
     auto& player_rc = registry.emplace<RenderComp>(player, CCCircleShape(cfg.L));
     player_rc.shape.setFillColor(sf::Color::White);
+    // All spawn comps must be accompanied by a StopWatchComp that regulates
+    // the spawn rate
     registry.emplace<SpawnComp>(player);
+    registry.emplace<StopWatchComp>(player);
 
     // Make beacon particle for player
     const auto beacon = registry.create();
@@ -190,6 +193,7 @@ void Game::update() {
 
     // Update state
     physics_system.update(registry);
+    physics_system.updateStopWatches(registry);
 
     // Resolve collisions
     physics_system.resolveCollisions(registry);

@@ -11,9 +11,7 @@ namespace cc {
 
 struct EnemyComp {};
 
-struct DeleteComp {
-    bool ready_to_delete = true;
-};
+struct DeleteComp {};
 
 struct PhysicsComp {
     float mass = 1.0f;

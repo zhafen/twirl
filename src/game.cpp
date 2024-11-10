@@ -50,7 +50,8 @@ void Game::initializeState() {
     player = registry.create();
     registry.emplace<PhysicsComp>(player);
     registry.emplace<DragForceComp>(player);
-    registry.emplace<DurabilityComp>(player);
+    auto& dc = registry.emplace<DurabilityComp>(player);
+    dc.delete_at_zero = false;
     auto& player_rc = registry.emplace<RenderComp>(player, CCCircleShape(cfg.L));
     player_rc.shape.setFillColor(sf::Color::White);
 

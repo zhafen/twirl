@@ -9,7 +9,7 @@ namespace cc {
 EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
 
 void EntitySystem::spawnEntities(entt::entity player, entt::registry& registry) {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
         // Create a new projectile
         auto projectile = registry.create();
         auto& pc = registry.emplace<PhysicsComp>(projectile);
@@ -30,11 +30,10 @@ void EntitySystem::spawnEntities(entt::entity player, entt::registry& registry) 
             pfc.params.magnitude = -1.0f;
             
             // Collide with the enemies
-            auto col_id = registry.create();
-            registry.emplace<CollisionComp>(col_id, projectile, enemy);
+            // auto col_id = registry.create();
+            // registry.emplace<CollisionComp>(col_id, projectile, enemy);
         }
     }
-}
 
 void EntitySystem::orderEntities(entt::registry& registry) {
     if (!needs_ordering) {
@@ -51,10 +50,8 @@ void EntitySystem::orderEntities(entt::registry& registry) {
 void EntitySystem::deleteEntities(entt::registry& registry) {
     auto rview = registry.view<DeleteComp>();
 
-    for (auto [entity, dc] : rview.each()) {
-        if (dc.ready_to_delete) {
-            registry.destroy(entity);
-        }
+    for (auto entity : rview) {
+        registry.destroy(entity);
     }
 }
 
@@ -73,11 +70,17 @@ void PhysicsSystem::calculateForces(entt::registry& registry) {
 void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
     auto rview = registry.view<PairwiseForceComp>();
 
-    for (auto [entity, pfc] : rview.each()) {
-        auto& target_pc = registry.get<PhysicsComp>(pfc.target_entity);
-        auto& source_pc = registry.get<PhysicsComp>(pfc.source_entity);
+    for (auto [rel_id, pfc] : rview.each()) {
+        // We use try_get here because the target or source could be deleted.
+        // A possible alternative may be to use listeners.
+        auto* target_pc_ptr = registry.try_get<PhysicsComp>(pfc.target_entity);
+        auto* source_pc_ptr = registry.try_get<PhysicsComp>(pfc.source_entity);
+        if (!target_pc_ptr || !source_pc_ptr) {
+            registry.destroy(rel_id);
+            continue;
+        }
 
-        auto r = target_pc.pos - source_pc.pos;
+        auto r = target_pc_ptr->pos - source_pc_ptr->pos;
         auto r_mag = sqrtf(r.x * r.x + r.y * r.y);
 
         // Don't calculate the distance when too close
@@ -88,10 +91,10 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
         auto r_hat = r / r_mag;
         auto r_mag_scaled =
             (r_mag / cfg.L + pfc.params.softening) / pfc.params.distance_scaling;
-        auto force = cfg.A * r_hat * pfc.params.magnitude * target_pc.mass *
-                     source_pc.mass * powf(r_mag_scaled, pfc.params.power);
+        auto force = cfg.A * r_hat * pfc.params.magnitude * target_pc_ptr->mass *
+                     source_pc_ptr->mass * powf(r_mag_scaled, pfc.params.power);
 
-        target_pc.force += force;
+        target_pc_ptr->force += force;
     }
 }
 

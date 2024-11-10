@@ -50,7 +50,7 @@ void Game::initializeState() {
     // Make player
     player = registry.create();
     registry.emplace<PhysicsComp>(player);
-    registry.emplace<ForceComp>(player);
+    registry.emplace<DragForceComp>(player);
     registry.emplace<DurabilityComp>(player);
     auto &player_rc = registry.emplace<RenderComp>(player, CCCircleShape(cfg.L));
     player_rc.shape.setFillColor(sf::Color::White);
@@ -68,65 +68,56 @@ void Game::initializeState() {
     // Make an entity for the relationship between the player and the beacon
     const auto rel_beacon = registry.create();
     // This component tracks the relationship itself
-    registry.emplace<PairComp>(rel_beacon, player, beacon);
-    auto& pfc = registry.emplace<PairwiseForceComp>(rel_beacon);
-    pfc.magnitude = -0.1f;
+    auto& pfc = registry.emplace<PairwiseForceComp>(rel_beacon, player, beacon);
+    pfc.params.magnitude = -0.1f;
 
-    // // Make enemies
-    // std::random_device rd;
-    // std::mt19937 gen(rd());  // Standard random number generator
-    // std::uniform_real_distribution<float> dist(-10.f * cfg.L, 10.f * cfg.L);
-    // int n_enemies = 10;
-    // std::vector<EntityId> enemy_ids;
-    // for (int i = 0; i < n_enemies; ++i) {
-    //     // Entity properties
-    //     EntityId id = createEntity();
-    //     mc.id = id;
-    //     mc.name = "Enemy" + std::to_string(i);
-    //     components.metadata_comps[id] = mc;
-    //     // Randomly distributed in a square
-    //     PhysicsComp pc;
-    //     pc.pos = sf::Vector2f(dist(gen), dist(gen) - cfg.window_size_y / 2.f);
-    //     pc.vel = sf::Vector2f(0.f, 0.f);
-    //     components.physics_comps[id] = pc;
-    //     // Affected by drag;
-    //     components.force_comps[id] = ForceComp();
-    //     // Colored circles
-    //     RenderComp rc;
-    //     rc.shape = std::make_shared<CCCircleShape>(cfg.L);
-    //     rc.shape->setFillColor(sf::Color::Red);
-    //     rc.shape->setPosition(pc.pos);
-    //     components.render_comps[id] = std::move(rc);
+    // Make enemies
+    std::random_device rd;
+    std::mt19937 gen(rd());  // Standard random number generator
+    std::uniform_real_distribution<float> dist(-10.f * cfg.L, 10.f * cfg.L);
+    int n_enemies = 10;
+    std::vector<entt::entity> enemy_ids;
+    for (int i = 0; i < n_enemies; ++i) {
+        // Entity properties
+        auto enemy = registry.create();
+        // Randomly distributed in a square
+        auto& pc = registry.emplace<PhysicsComp>(enemy);
+        pc.pos = sf::Vector2f(dist(gen), dist(gen) - cfg.window_size_y / 2.f);
+        pc.vel = sf::Vector2f(0.f, 0.f);
+        // Affected by drag;
+        registry.emplace<DragForceComp>(enemy);
+        // Colored circles
+        auto& rc = registry.emplace<RenderComp>(enemy);
+        rc.shape = CCCircleShape(cfg.L);
+        rc.shape.setFillColor(sf::Color::Red);
+        rc.shape.setPosition(pc.pos);
 
-    //     // Relationship with other entities
-    //     // Pulled towards the player
-    //     EntityRelationId rel_id = createEntityRelationship();
-    //     // First force: gravity
-    //     // Because of the r^-2 force drops off quickly if we don't scale it strongly
-    //     PairwiseForceComp pfc;
-    //     pfc.target_entity = id;
-    //     pfc.source_entity = player_id;
-    //     pfc.params.magnitude = -1.0f;
-    //     pfc.params.power = -2.0f;
-    //     pfc.params.softening = 1.0f;
-    //     pfc.params.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
-    //     components.pairforce_comps[rel_id] = pfc;
-    //     // Second force: springs
-    //     EntityRelationId rel_id2 = createEntityRelationship();
-    //     PairwiseForceComp pfc2;
-    //     pfc2.target_entity = id;
-    //     pfc2.source_entity = player_id;
-    //     pfc2.params.magnitude = -0.1f;
-    //     components.pairforce_comps[rel_id2] = pfc2;
-    //     // Collides with the player
-    //     CollisionComp cc;
-    //     cc.id1 = id;
-    //     cc.id2 = player_id;
-    //     components.collision_comps[rel_id] = cc;
+        // Relationship with other entities
+        // Pulled towards the player
+        auto rel_id = registry.create();
+        // First force: gravity
+        // Because of the r^-2 force drops off quickly if we don't scale it strongly
+        // registry.emplace<PairwiseForceComp>(rel_id, enemy, player);
+        // pfc.params.magnitude = -1.0f;
+        // pfc.params.power = -2.0f;
+        // pfc.params.softening = 1.0f;
+        // pfc.params.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
+        // // Second force: springs
+        // auto rel_id2 = registry.create();
+        // auto& pfc2 = registry.emplace<PairwiseForceComp>(rel_id);
+        // pfc2.target_entity = id;
+        // pfc2.source_entity = player_id;
+        // pfc2.params.magnitude = -0.1f;
+        // components.pairforce_comps[rel_id2] = pfc2;
+        // // Collides with the player
+        // CollisionComp cc;
+        // cc.id1 = id;
+        // cc.id2 = player_id;
+        // components.collision_comps[rel_id] = cc;
 
-    //     // Store the enemy id
-    //     enemy_ids.push_back(id);
-    // }
+        // Store the enemy id
+        enemy_ids.push_back(enemy);
+    }
     // // Enemies collide with each other
     // for (auto& id1 : enemy_ids) {
     //     for (auto& id2 : enemy_ids) {

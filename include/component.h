@@ -17,7 +17,7 @@ struct PhysicsComp {
     bool collided = false;
 };
 
-struct ForceComp {
+struct DragForceComp {
     // In units of cfg.A / cfg.V
     float drag_coefficient = 0.01f;
     float drag_power = 2.0f;
@@ -32,16 +32,18 @@ struct DurabilityComp {
 struct MouseButtonReleasedComp {};
 
 struct PairComp {
-    entt::entity target;
-    entt::entity source;
 };
 
 struct PairwiseForceComp {
-    float magnitude = 1.0f;  // In units of cfg.A
-    float softening = 0.0f;
-    float power = 2.0f;
-    float min_distance = 0.1f;      // In units of cfg.L
-    float distance_scaling = 1.0f;  // in units of cfg.L
+    entt::entity target_entity;
+    entt::entity source_entity;
+    struct Params {
+        float magnitude = 1.0f;  // In units of cfg.A
+        float softening = 0.0f;
+        float power = 2.0f;
+        float min_distance = 0.1f;      // In units of cfg.L
+        float distance_scaling = 1.0f;  // in units of cfg.L
+    } params;
 };
 
 struct CollisionComp {};
@@ -64,24 +66,6 @@ struct UIComp {
     sf::Vector2f size;
     UIComp(float& tracked_value) : tracked_value(tracked_value) {}
 };
-
-// struct CompsOld {
-//     // Single-entity components
-//     std::unordered_map<EntityId, RenderComp> render_comps;
-//     std::unordered_map<EntityId, UIComp> ui_comps;
-//     std::unordered_map<EntityId, PhysicsComp> physics_comps;
-//     std::unordered_map<EntityId, ForceComp> force_comps;
-//     std::unordered_map<EntityId, DurabilityComp> dura_comps;
-//     std::unordered_map<EntityId, MouseButtonReleasedComp>
-//         mousebuttonreleased_comps;
-//     std::vector<std::pair<int, EntityId>> rc_zorders;
-//     std::vector<std::pair<int, EntityId>> uic_zorders;
-// 
-//     // Multi-entity components
-//     std::unordered_map<EntityRelationId, PairwiseForceComp> pairforce_comps;
-//     std::unordered_map<EntityRelationId, CollisionComp> collision_comps;
-//     std::unordered_map<EntityRelationId, PairwiseFunctionComp> pairfunc_comps;
-// };
 
 }  // namespace cc
 

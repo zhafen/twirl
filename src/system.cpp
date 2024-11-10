@@ -56,25 +56,25 @@ void PhysicsSystem::calculateForces(entt::registry& registry) {
 }
 
 void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
-    auto rview = registry.view<PairComp, PairwiseForceComp>();
+    auto rview = registry.view<PairwiseForceComp>();
 
-    for (auto [entity, pc, pfc] : rview.each()) {
-        auto& target_pc = registry.get<PhysicsComp>(pc.target);
-        auto& source_pc = registry.get<PhysicsComp>(pc.source);
+    for (auto [entity, pfc] : rview.each()) {
+        auto& target_pc = registry.get<PhysicsComp>(pfc.target_entity);
+        auto& source_pc = registry.get<PhysicsComp>(pfc.source_entity);
 
         auto r = target_pc.pos - source_pc.pos;
         auto r_mag = sqrtf(r.x * r.x + r.y * r.y);
 
         // Don't calculate the distance when too close
-        if (r_mag < pfc.min_distance * cfg.L) {
+        if (r_mag < pfc.params.min_distance * cfg.L) {
             continue;
         }
 
         auto r_hat = r / r_mag;
         auto r_mag_scaled =
-            (r_mag + pfc.softening * cfg.L) / cfg.L / pfc.distance_scaling;
-        auto force = r_hat * pfc.magnitude * cfg.A * target_pc.mass * source_pc.mass *
-                     powf(r_mag_scaled, pfc.power);
+            (r_mag + pfc.params.softening * cfg.L) / cfg.L / pfc.params.distance_scaling;
+        auto force = r_hat * pfc.params.magnitude * cfg.A * target_pc.mass * source_pc.mass *
+                     powf(r_mag_scaled, pfc.params.power);
 
         target_pc.force += force;
     }

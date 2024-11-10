@@ -34,16 +34,12 @@ void Game::run() {
 }
 
 void Game::resetGameState() {
-    // Reset all systems
-    // renderSystem.reset();
+    // Delete all entities
+    registry.clear();
 
     // Reinitialize the game state
     initializeState();
 }
-
-// int Game::createEntity() { return entityCounter++; }
-// Same as createEntity, but for relationships between entities
-// int Game::createEntityRelationship() { return entityRelationshipCounter++; }
 
 void Game::initializeState() {
     // Make player
@@ -100,25 +96,25 @@ void Game::initializeState() {
         rc.shape.setFillColor(sf::Color::Red);
         rc.shape.setPosition(pc.pos);
 
-        // // Relationship with other entities
-        // // Pulled towards the player
-        // auto relation = registry.create();
-        // // First force: gravity
-        // // Because of the r^-2 force drops off quickly if we don't scale it strongly
-        // auto& pfc = registry.emplace<PairwiseForceComp>(relation, enemy, player);
-        // pfc.params.magnitude = -1.0f;
-        // pfc.params.power = -2.0f;
-        // pfc.params.softening = 1.0f;
-        // pfc.params.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
-        // // Second force: springs
-        // auto relation2 = registry.create();
-        // auto& pfc2 = registry.emplace<PairwiseForceComp>(relation2);
-        // pfc2.target_entity = enemy;
-        // pfc2.source_entity = player;
-        // pfc2.params.magnitude = -0.1f;
-        // // Collides with the player
-        // auto col_id = registry.create();
-        // registry.emplace<CollisionComp>(col_id, enemy, player);
+        // Relationship with other entities
+        // Pulled towards the player
+        auto relation = registry.create();
+        // First force: gravity
+        // Because of the r^-2 force drops off quickly if we don't scale it strongly
+        auto& pfc = registry.emplace<PairwiseForceComp>(relation, enemy, player);
+        pfc.params.magnitude = -1.0f;
+        pfc.params.power = -2.0f;
+        pfc.params.softening = 1.0f;
+        pfc.params.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
+        // Second force: springs
+        auto relation2 = registry.create();
+        auto& pfc2 = registry.emplace<PairwiseForceComp>(relation2);
+        pfc2.target_entity = enemy;
+        pfc2.source_entity = player;
+        pfc2.params.magnitude = -0.1f;
+        // Collides with the player
+        auto col_id = registry.create();
+        registry.emplace<CollisionComp>(col_id, enemy, player);
 
         // Store the enemy id
         enemy_ids.push_back(enemy);
@@ -177,39 +173,42 @@ void Game::handleEvents() {
                 auto& pc = registry.get<PhysicsComp>(entity);
                 pc.pos = window.mapPixelToCoords(pixelPos);
             }
+        } else if (event.type == sf::Event::KeyReleased &&
+                   event.key.code == sf::Keyboard::R) {
+            resetGameState();
         }
     }
 }
 
-void Game::update() {
-    // Spawn and despawn entities
-    entity_system.deleteEntities(registry);
-    entity_system.spawnEntities(registry);
-    entity_system.orderEntities(registry);
+    void Game::update() {
+        // Spawn and despawn entities
+        entity_system.deleteEntities(registry);
+        entity_system.spawnEntities(registry);
+        entity_system.orderEntities(registry);
 
-    // Calculate forces
-    physics_system.calculateForces(registry);
-    physics_system.calculatePairwiseForces(registry);
+        // Calculate forces
+        physics_system.calculateForces(registry);
+        physics_system.calculatePairwiseForces(registry);
 
-    // Update state
-    physics_system.update(registry);
-    physics_system.updateStopWatches(registry);
+        // Update state
+        physics_system.update(registry);
+        physics_system.updateStopWatches(registry);
 
-    // Resolve collisions
-    physics_system.resolveCollisions(registry);
-    physics_system.updateDurability(registry);
-}
+        // Resolve collisions
+        physics_system.resolveCollisions(registry);
+        physics_system.updateDurability(registry);
+    }
 
-void Game::render() {
-    // Render
-    render_system.render(registry, window);
-    render_system.renderUI(window, registry);
+    void Game::render() {
+        // Render
+        render_system.render(registry, window);
+        render_system.renderUI(window, registry);
 
-    // Pin the view to the player
-    view.setCenter(registry.get<PhysicsComp>(player).pos);
-    window.setView(view);
+        // Pin the view to the player
+        view.setCenter(registry.get<PhysicsComp>(player).pos);
+        window.setView(view);
 
-    window.display();
-}
+        window.display();
+    }
 
 }  // namespace cc

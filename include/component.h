@@ -11,6 +11,9 @@ namespace cc {
 
 struct EnemyComp {};
 
+struct DeleteComp {
+    bool ready_to_delete = true;
+};
 
 struct PhysicsComp {
     float mass = 1.0f;
@@ -29,7 +32,8 @@ struct DragForceComp {
 struct DurabilityComp {
     float durability = 1.0f;
     float durability_loss_per_collision = 0.34f;
-    float durability_regen_rate = 0.1f;
+    float durability_regen_rate = 0.0f;
+    bool delete_at_zero = true;
 };
 
 struct MouseButtonReleasedComp {};
@@ -38,7 +42,7 @@ struct PairwiseForceComp {
     entt::entity target_entity;
     entt::entity source_entity;
     struct Params {
-        float magnitude = 1.0f;  // In units of cfg.A
+        float magnitude = -1.0f;  // In units of cfg.A
         float softening = 0.0f;
         float power = 2.0f;
         float min_distance = 0.1f;      // In units of cfg.L

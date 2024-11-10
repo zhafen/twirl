@@ -81,6 +81,8 @@ void Game::initializeState() {
         auto enemy = registry.create();
         // Flag as enemies
         registry.emplace<EnemyComp>(enemy);
+        // They have durability
+        registry.emplace<DurabilityComp>(enemy);
         // Randomly distributed in a square
         auto& pc = registry.emplace<PhysicsComp>(enemy);
         pc.pos = sf::Vector2f(dist(gen), dist(gen) - cfg.window_size_y / 2.f);
@@ -93,25 +95,25 @@ void Game::initializeState() {
         rc.shape.setFillColor(sf::Color::Red);
         rc.shape.setPosition(pc.pos);
 
-        // Relationship with other entities
-        // Pulled towards the player
-        auto relation = registry.create();
-        // First force: gravity
-        // Because of the r^-2 force drops off quickly if we don't scale it strongly
-        auto& pfc = registry.emplace<PairwiseForceComp>(relation, enemy, player);
-        pfc.params.magnitude = -1.0f;
-        pfc.params.power = -2.0f;
-        pfc.params.softening = 1.0f;
-        pfc.params.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
-        // Second force: springs
-        auto relation2 = registry.create();
-        auto& pfc2 = registry.emplace<PairwiseForceComp>(relation2);
-        pfc2.target_entity = enemy;
-        pfc2.source_entity = player;
-        pfc2.params.magnitude = -0.1f;
-        // Collides with the player
-        auto col_id = registry.create();
-        registry.emplace<CollisionComp>(col_id, enemy, player);
+        // // Relationship with other entities
+        // // Pulled towards the player
+        // auto relation = registry.create();
+        // // First force: gravity
+        // // Because of the r^-2 force drops off quickly if we don't scale it strongly
+        // auto& pfc = registry.emplace<PairwiseForceComp>(relation, enemy, player);
+        // pfc.params.magnitude = -1.0f;
+        // pfc.params.power = -2.0f;
+        // pfc.params.softening = 1.0f;
+        // pfc.params.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
+        // // Second force: springs
+        // auto relation2 = registry.create();
+        // auto& pfc2 = registry.emplace<PairwiseForceComp>(relation2);
+        // pfc2.target_entity = enemy;
+        // pfc2.source_entity = player;
+        // pfc2.params.magnitude = -0.1f;
+        // // Collides with the player
+        // auto col_id = registry.create();
+        // registry.emplace<CollisionComp>(col_id, enemy, player);
 
         // Store the enemy id
         enemy_ids.push_back(enemy);
@@ -175,8 +177,9 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-    // Spawn objects
-    entity_system.spawnEntities(registry);
+    // Spawn and despawn entities
+    entity_system.deleteEntities(registry);
+    entity_system.spawnEntities(player, registry);
     entity_system.orderEntities(registry);
 
     // Calculate forces

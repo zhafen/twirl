@@ -8,24 +8,31 @@ namespace cc {
 
 EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
 
-void EntitySystem::spawnEntities(entt::registry& registry) {
+void EntitySystem::spawnEntities(entt::entity player, entt::registry& registry) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        // Create a new projectile
+        auto projectile = registry.create();
+        auto& pc = registry.emplace<PhysicsComp>(projectile);
+        pc.mass = 0.01f;
+        pc.pos = registry.get<PhysicsComp>(player).pos;
+        registry.emplace<DragForceComp>(projectile);
+        auto& rc = registry.emplace<RenderComp>(projectile, CCCircleShape(cfg.L / 3.f));
+        rc.shape.setFillColor(sf::Color::Blue);
+        rc.zorder = 2;
+        needs_ordering = true;
 
-    // Create a new projectile
-    auto projectile = registry.create();
-    registry.emplace<PhysicsComp>(projectile);
-    registry.emplace<DragForceComp>(projectile);
-    registry.emplace<DurabilityComp>(projectile);
-    auto& rc = registry.emplace<RenderComp>(projectile, CCCircleShape(cfg.L / 3.f));
-    rc.shape.setFillColor(sf::Color::Blue);
-    rc.zorder = 2;
-    needs_ordering = true;
-
-    auto rview = registry.view<EnemyComp, PhysicsComp>();
-    for (auto [enemy, ec, pc] : rview.each()) {
-        // Target the enemies
-        auto relation = registry.create();
-        auto& pfc = registry.emplace<PairwiseForceComp>(relation, projectile, enemy);
-        pfc.params.magnitude = -1.0f;
+        auto rview = registry.view<EnemyComp, PhysicsComp>();
+        for (auto [enemy, ec, pc] : rview.each()) {
+            // Target the enemies
+            auto relation = registry.create();
+            auto& pfc =
+                registry.emplace<PairwiseForceComp>(relation, projectile, enemy);
+            pfc.params.magnitude = -1.0f;
+            
+            // Collide with the enemies
+            auto col_id = registry.create();
+            registry.emplace<CollisionComp>(col_id, projectile, enemy);
+        }
     }
 }
 
@@ -39,6 +46,16 @@ void EntitySystem::orderEntities(entt::registry& registry) {
 
     // Mark that the entities are ordered
     needs_ordering = false;
+}
+
+void EntitySystem::deleteEntities(entt::registry& registry) {
+    auto rview = registry.view<DeleteComp>();
+
+    for (auto [entity, dc] : rview.each()) {
+        if (dc.ready_to_delete) {
+            registry.destroy(entity);
+        }
+    }
 }
 
 PhysicsSystem::PhysicsSystem(const Config& cfg) : cfg(cfg) {}
@@ -170,7 +187,11 @@ void PhysicsSystem::updateDurability(entt::registry& registry) {
         } else if (dc.durability < 0.0f) {
             // When out of durability, set to 0 and change color
             dc.durability = 0.0f;
-            rc.shape.setFillColor(sf::Color(63, 63, 63));
+            if (dc.delete_at_zero) {
+                registry.emplace<DeleteComp>(entity);
+            } else {
+                rc.shape.setFillColor(sf::Color(63, 63, 63));
+            }
         }
     }
 }
@@ -211,24 +232,5 @@ void RenderSystem::renderUI(sf::RenderWindow& window, entt::registry& registry) 
         window.draw(uic.shape);
     }
 }
-
-// EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
-//
-// // EntitySystem::spawnEntities(entt::registry& registry) {
-// // }
-//
-// void EntitySystem::removeEntity(entt::registry& registry, EntityId entity_id) {
-//     components.physics_comps.erase(entity_id);
-//     components.render_comps.erase(entity_id);
-//     components.dura_comps.erase(entity_id);
-//
-//     for (auto it = components.rc_zorders.begin(); it != components.rc_zorders.end();
-//     ++it) {
-//         if (it->second == entity_id) {
-//             components.rc_zorders.erase(it);
-//             break;
-//         }
-//     }
-// }
 
 }  // namespace cc

@@ -63,7 +63,7 @@ void Game::initializeState() {
     beacon_shape.setFillColor(sf::Color::Black);
     beacon_shape.setOutlineColor(sf::Color::White);
     beacon_shape.setOutlineThickness(cfg.L / 10.f);
-    registry.emplace<RenderComp>(beacon, beacon_shape, 1); // zorder = 1
+    registry.emplace<RenderComp>(beacon, beacon_shape, 1);  // zorder = 1
 
     // Make an entity for the relationship between the player and the beacon
     const auto rel_beacon = registry.create();
@@ -147,8 +147,11 @@ void Game::initializeState() {
     uic_bar.shape.setFillColor(sf::Color::White);
     uic_bar.shape.setOutlineThickness(cfg.L / 10.f);
     uic_bar.shape.setOutlineColor(sf::Color::Black);
-    uic_bar.size = sf::Vector2f(cfg.window_size_x / 2, cfg.L);
+    // This is the key part where the tracked value is set
+    uic_bar.tracked_value =
+        std::make_shared<float>(registry.get<DurabilityComp>(player).durability);
     // Have to convert the shape to a rectangle to set the size
+    uic_bar.size = sf::Vector2f(cfg.window_size_x / 2, cfg.L);
     uic_bar.pos =
         sf::Vector2f(-uic_bar.size.x / 2.f, -float(cfg.window_size_y) / 2.f + cfg.L);
 }
@@ -159,7 +162,7 @@ void Game::handleEvents() {
             window.close();
         } else if (event.type == sf::Event::MouseButtonReleased) {
             auto rview = registry.view<PhysicsComp, MouseButtonReleasedComp>();
-            for (auto& entity: rview) {
+            for (auto& entity : rview) {
                 // get the current mouse position in the window
                 sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
 

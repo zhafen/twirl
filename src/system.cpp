@@ -200,14 +200,14 @@ void RenderSystem::renderUI(sf::RenderWindow& window, entt::registry& registry) 
     window.setView(ui_view);
 
     // draw frame
-    for (auto [entitry, uic] : registry.view<UIComp>().each()) {
+    for (auto [entity, uic] : registry.view<UIComp>().each()) {
 
         // Get versions of the size and position that can be modified
         auto uic_size = uic.size;
         auto uic_pos = uic.pos;
 
         // Scale size with the tracked value
-        uic_size.x *= uic.tracked_value;
+        uic_size.x *= *uic.tracked_value;
         // Causing the bar to shrink from the center requires changing both
         // the size and position
         uic_pos.x += (uic.size.x - uic_size.x) / 2.f;

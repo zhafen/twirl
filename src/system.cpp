@@ -15,14 +15,17 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
     registry.emplace<PhysicsComp>(projectile);
     registry.emplace<DragForceComp>(projectile);
     registry.emplace<DurabilityComp>(projectile);
-    auto& rc = registry.emplace<RenderComp>(projectile, CCCircleShape(cfg.L / 20.f));
+    auto& rc = registry.emplace<RenderComp>(projectile, CCCircleShape(cfg.L / 3.f));
     rc.shape.setFillColor(sf::Color::Blue);
+    rc.zorder = 2;
+    needs_ordering = true;
 
-    auto rview = registry.view<EnemyComp>();
-    for (auto [enemy, ec] : rview.each()) {
+    auto rview = registry.view<EnemyComp, PhysicsComp>();
+    for (auto [enemy, ec, pc] : rview.each()) {
         // Target the enemies
         auto relation = registry.create();
         auto& pfc = registry.emplace<PairwiseForceComp>(relation, projectile, enemy);
+        pfc.params.magnitude = -1.0f;
     }
 }
 

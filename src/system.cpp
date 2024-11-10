@@ -8,32 +8,38 @@ namespace cc {
 
 EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
 
-void EntitySystem::spawnEntities(entt::entity player, entt::registry& registry) {
-    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        // Create a new projectile
-        auto projectile = registry.create();
-        auto& pc = registry.emplace<PhysicsComp>(projectile);
-        pc.mass = 0.01f;
-        pc.pos = registry.get<PhysicsComp>(player).pos;
-        registry.emplace<DragForceComp>(projectile);
-        auto& rc = registry.emplace<RenderComp>(projectile, CCCircleShape(cfg.L / 3.f));
-        rc.shape.setFillColor(sf::Color::Blue);
-        rc.zorder = 2;
-        needs_ordering = true;
+void EntitySystem::spawnEntities(entt::registry& registry) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 
-        auto rview = registry.view<EnemyComp, PhysicsComp>();
-        for (auto [enemy, ec, pc] : rview.each()) {
-            // Target the enemies
-            auto relation = registry.create();
-            auto& pfc =
-                registry.emplace<PairwiseForceComp>(relation, projectile, enemy);
-            pfc.params.magnitude = -1.0f;
-            
-            // Collide with the enemies
-            auto col_id = registry.create();
-            registry.emplace<CollisionComp>(col_id, projectile, enemy);
+        auto rview = registry.view<SpawnComp, PhysicsComp>();
+        for (auto [entity, source_sc, source_pc] : rview.each()) {
+            // Create a new projectile
+            auto projectile = registry.create();
+            auto& pc = registry.emplace<PhysicsComp>(projectile);
+            pc.mass = 0.01f;
+            pc.pos = source_pc.pos;
+            registry.emplace<DragForceComp>(projectile);
+            auto& rc =
+                registry.emplace<RenderComp>(projectile, CCCircleShape(cfg.L / 3.f));
+            rc.shape.setFillColor(sf::Color::Blue);
+            rc.zorder = 2;
+            needs_ordering = true;
+
+            auto rview = registry.view<EnemyComp, PhysicsComp>();
+            for (auto [enemy, ec, pc] : rview.each()) {
+                // Target the enemies
+                auto relation = registry.create();
+                auto& pfc =
+                    registry.emplace<PairwiseForceComp>(relation, projectile, enemy);
+                pfc.params.magnitude = -1.0f;
+
+                // Collide with the enemies
+                auto col_id = registry.create();
+                registry.emplace<CollisionComp>(col_id, projectile, enemy);
+            }
         }
     }
+}
 
 void EntitySystem::orderEntities(entt::registry& registry) {
     if (!needs_ordering) {

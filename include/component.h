@@ -13,6 +13,8 @@ struct EnemyComp {};
 
 struct DeleteComp {};
 
+struct SpawnComp {};
+
 struct PhysicsComp {
     float mass = 1.0f;
     sf::Vector2f pos = {0.0f, 0.0f};

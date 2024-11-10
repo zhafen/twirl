@@ -54,6 +54,7 @@ void Game::initializeState() {
     dc.delete_at_zero = false;
     auto& player_rc = registry.emplace<RenderComp>(player, CCCircleShape(cfg.L));
     player_rc.shape.setFillColor(sf::Color::White);
+    registry.emplace<SpawnComp>(player);
 
     // Make beacon particle for player
     const auto beacon = registry.create();
@@ -180,7 +181,7 @@ void Game::handleEvents() {
 void Game::update() {
     // Spawn and despawn entities
     entity_system.deleteEntities(registry);
-    entity_system.spawnEntities(player, registry);
+    entity_system.spawnEntities(registry);
     entity_system.orderEntities(registry);
 
     // Calculate forces

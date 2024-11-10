@@ -16,7 +16,7 @@ namespace cc {
 class EntitySystem {
    public:
     EntitySystem(const Config& cfg);
-    void spawnEntities(entt::entity player, entt::registry& registry);
+    void spawnEntities(entt::registry& registry);
     void orderEntities(entt::registry& registry);
     void deleteEntities(entt::registry& registry);
 

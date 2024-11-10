@@ -9,18 +9,21 @@ namespace cc {
 EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
 
 void EntitySystem::spawnEntities(entt::registry& registry) {
-    // // Make player
-    // const auto player = registry.create();
-    // registry.emplace<PhysicsComp>(player);
-    // registry.emplace<ForceComp>(player);
-    // registry.emplace<DurabilityComp>(player);
-    // auto &player_rc = registry.emplace<RenderComp>(player,
-    // CCCircleShape(cfg.L)); player_rc.shape.setFillColor(sf::Color::White);
 
-    // // Make beacon particle for player
-    // const auto beacon = registry.create();
-    // registry.emplace<PhysicsComp>(beacon);
-    // registry.emplace<MouseButtonReleasedComp>(beacon);
+    // Create a new projectile
+    auto projectile = registry.create();
+    registry.emplace<PhysicsComp>(projectile);
+    registry.emplace<DragForceComp>(projectile);
+    registry.emplace<DurabilityComp>(projectile);
+    auto& rc = registry.emplace<RenderComp>(projectile, CCCircleShape(cfg.L / 20.f));
+    rc.shape.setFillColor(sf::Color::Blue);
+
+    auto rview = registry.view<EnemyComp>();
+    for (auto [enemy, ec] : rview.each()) {
+        // Target the enemies
+        auto relation = registry.create();
+        auto& pfc = registry.emplace<PairwiseForceComp>(relation, projectile, enemy);
+    }
 }
 
 void EntitySystem::orderEntities(entt::registry& registry) {
@@ -148,7 +151,6 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
 void PhysicsSystem::updateDurability(entt::registry& registry) {
     auto rview = registry.view<DurabilityComp, RenderComp, PhysicsComp>();
     for (auto [entity, dc, rc, pc] : rview.each()) {
-
         // Regenerate durability
         dc.durability += dc.durability_regen_rate * cfg.dt;
 
@@ -191,7 +193,6 @@ void RenderSystem::renderUI(sf::RenderWindow& window, entt::registry& registry) 
 
     // draw frame
     for (auto [entity, uic] : registry.view<UIComp>().each()) {
-
         // Get versions of the size and position that can be modified
         auto uic_size = uic.size;
         auto uic_pos = uic.pos;

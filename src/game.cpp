@@ -20,8 +20,7 @@ Game::Game()
       registry(),
       render_system(cfg, view, ui_view),
       entity_system(cfg),
-      physics_system(cfg),
-      general_system(cfg) {
+      physics_system(cfg) {
     window.setFramerateLimit(cfg.fps);
     initializeState();
 }
@@ -80,6 +79,8 @@ void Game::initializeState() {
     for (int i = 0; i < n_enemies; ++i) {
         // Entity properties
         auto enemy = registry.create();
+        // Flag as enemies
+        registry.emplace<EnemyComp>(enemy);
         // Randomly distributed in a square
         auto& pc = registry.emplace<PhysicsComp>(enemy);
         pc.pos = sf::Vector2f(dist(gen), dist(gen) - cfg.window_size_y / 2.f);
@@ -187,9 +188,6 @@ void Game::update() {
     // Resolve collisions
     physics_system.resolveCollisions(registry);
     physics_system.updateDurability(registry);
-
-    // Call pairwise functions
-    general_system.callPairwiseFunctions(registry);
 }
 
 void Game::render() {

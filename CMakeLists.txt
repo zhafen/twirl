@@ -32,6 +32,8 @@ add_executable(main ${SOURCES})
 target_link_libraries(main PRIVATE sfml-graphics EnTT::EnTT)
 target_compile_features(main PRIVATE cxx_std_17)
 
+add_definitions(-DENTT_NO_ETO)
+
 if(WIN32)
     add_custom_command(
         TARGET main

@@ -154,30 +154,28 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
 }
 
 void PhysicsSystem::updateDurability(entt::registry& registry) {
-    // for (auto& [id, dc] : components.dura_comps) {
-    //     dc.durability += dc.durability_regen_rate * cfg.dt;
+    auto rview = registry.view<DurabilityComp, RenderComp, PhysicsComp>();
+    for (auto [entity, dc, rc, pc] : rview.each()) {
 
-    //     auto& rc = components.render_comps.at(id);
+        // Regenerate durability
+        dc.durability += dc.durability_regen_rate * cfg.dt;
 
-    //     // Apply durability loss from collision
-    //     bool& collided = components.physics_comps.at(id).collided;
-    //     if (collided) {
-    //         dc.durability -= dc.durability_loss_per_collision;
-    //         collided = false;
-    //     }
+        // Apply durability loss from collision
+        if (pc.collided) {
+            dc.durability -= dc.durability_loss_per_collision;
+            pc.collided = false;
+        }
 
-    //     // Cap durability at 1.0
-    //     if (dc.durability > 1.0f) {
-    //         dc.durability = 1.0f;
-    //         rc.shape->setFillColor(sf::Color::White);
-    //     } else if (dc.durability < 0.0f) {
-    //         // When out of durability, set to 0 and change color
-    //         dc.durability = 0.0f;
-    //         rc.shape->setFillColor(sf::Color(63, 63, 63));
-    //     } else {
-    //         dc.durability += dc.durability_regen_rate * cfg.dt;
-    //     }
-    // }
+        // Cap durability at 1.0
+        if (dc.durability > 1.0f) {
+            dc.durability = 1.0f;
+            rc.shape.setFillColor(sf::Color::White);
+        } else if (dc.durability < 0.0f) {
+            // When out of durability, set to 0 and change color
+            dc.durability = 0.0f;
+            rc.shape.setFillColor(sf::Color(63, 63, 63));
+        }
+    }
 }
 
 RenderSystem::RenderSystem(const Config& cfg, sf::View& view, sf::View& ui_view)

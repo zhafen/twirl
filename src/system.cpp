@@ -9,45 +9,49 @@ namespace cc {
 EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
 
 void EntitySystem::spawnEntities(entt::registry& registry) {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-
-        auto rview = registry.view<SpawnComp, StopWatchComp, PhysicsComp>();
-        for (auto [entity, source_sc, source_swc, source_pc] : rview.each()) {
-
-            // Check if the end time was reached
-            if (!source_swc.end_reached) {
-                continue;
-            } else {
-                // Reset the stopwatch
-                source_swc.current_time = 0.0f;
-                source_swc.end_reached = false;
-            }
-
-            // Create a new projectile
-            auto projectile = registry.create();
-            auto& pc = registry.emplace<PhysicsComp>(projectile);
-            pc.mass = 0.01f;
-            pc.pos = source_pc.pos;
-            registry.emplace<DragForceComp>(projectile);
-            auto& rc =
-                registry.emplace<RenderComp>(projectile, CCCircleShape(cfg.L / 3.f));
-            rc.shape.setFillColor(sf::Color::Blue);
-            rc.zorder = 2;
-            needs_ordering = true;
-
-            auto rview = registry.view<EnemyComp, PhysicsComp>();
-            for (auto [enemy, ec, pc] : rview.each()) {
-                // Target the enemies
-                auto relation = registry.create();
-                auto& pfc =
-                    registry.emplace<PairwiseForceComp>(relation, projectile, enemy);
-                pfc.params.magnitude = -1.0f;
-
-                // Collide with the enemies
-                auto col_id = registry.create();
-                registry.emplace<CollisionComp>(col_id, projectile, enemy);
-            }
+    auto rview = registry.view<SpawnComp, StopWatchComp, PhysicsComp>();
+    for (auto [entity, source_sc, source_swc, source_pc] : rview.each()) {
+        // Check if the end time was reached
+        if (!source_swc.end_reached) {
+            continue;
+        } else {
+            // Reset the stopwatch
+            source_swc.current_time = 0.0f;
+            source_swc.end_reached = false;
         }
+
+        // Create a new projectile
+        auto projectile = registry.create();
+        auto& pc = registry.emplace<PhysicsComp>(projectile);
+        pc.mass = 0.01f;
+        pc.pos = source_pc.pos;
+        registry.emplace<DragForceComp>(projectile);
+        auto& rc = registry.emplace<RenderComp>(projectile, CCCircleShape(cfg.L / 3.f));
+        rc.shape.setFillColor(sf::Color::Blue);
+        rc.zorder = 2;
+        needs_ordering = true;
+
+        auto rview = registry.view<EnemyComp, PhysicsComp>();
+        for (auto [enemy, ec, pc] : rview.each()) {
+            // Target the enemies
+            auto relation = registry.create();
+            auto& pfc =
+                registry.emplace<PairwiseForceComp>(relation, projectile, enemy);
+            pfc.params.magnitude = -1.0f;
+
+            // Collide with the enemies
+            auto col_id = registry.create();
+            registry.emplace<CollisionComp>(col_id, projectile, enemy);
+        }
+    }
+}
+
+void EntitySystem::deleteEntities(entt::registry& registry) {
+    auto rview = registry.view<DeleteComp>();
+
+    for (auto entity : rview) {
+        registry.destroy(entity);
+        needs_ordering = true;
     }
 }
 
@@ -61,14 +65,6 @@ void EntitySystem::orderEntities(entt::registry& registry) {
 
     // Mark that the entities are ordered
     needs_ordering = false;
-}
-
-void EntitySystem::deleteEntities(entt::registry& registry) {
-    auto rview = registry.view<DeleteComp>();
-
-    for (auto entity : rview) {
-        registry.destroy(entity);
-    }
 }
 
 PhysicsSystem::PhysicsSystem(const Config& cfg) : cfg(cfg) {}
@@ -134,9 +130,10 @@ void PhysicsSystem::update(entt::registry& registry) {
 void PhysicsSystem::updateStopWatches(entt::registry& registry) {
     auto rview = registry.view<StopWatchComp>();
     for (auto [entity, swc] : rview.each()) {
-
         // Keep going if the end time was already reached.
-        if (swc.end_reached) {continue;}
+        if (swc.end_reached) {
+            continue;
+        }
 
         swc.current_time += cfg.dt;
 

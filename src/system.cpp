@@ -197,25 +197,25 @@ void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
 }
 
 void RenderSystem::renderUI(sf::RenderWindow& window, entt::registry& registry) {
-    // window.setView(ui_view);
+    window.setView(ui_view);
 
-    // // draw frame
-    // for (auto [zorder, id] : components.uic_zorders) {
-    //     auto& uic = components.ui_comps.at(id);
+    // draw frame
+    for (auto [entitry, uic] : registry.view<UIComp>().each()) {
 
-    //     // Get the bar out and set parameters
-    //     sf::RectangleShape* bar = dynamic_cast<sf::RectangleShape*>(uic.shape.get());
-    //     sf::Vector2f uic_size = uic.size;
-    //     uic_size.x *= uic.tracked_value;
-    //     // Causing the bar to shrink from the center requires changing both
-    //     // the size and position
-    //     sf::Vector2f uic_pos = uic.pos;
-    //     uic_pos.x += (uic.size.x - uic_size.x) / 2.f;
-    //     bar->setSize(uic_size);
-    //     bar->setPosition(uic_pos);
+        // Get versions of the size and position that can be modified
+        auto uic_size = uic.size;
+        auto uic_pos = uic.pos;
 
-    //     window.draw(*uic.shape);
-    // }
+        // Scale size with the tracked value
+        uic_size.x *= uic.tracked_value;
+        // Causing the bar to shrink from the center requires changing both
+        // the size and position
+        uic_pos.x += (uic.size.x - uic_size.x) / 2.f;
+        uic.shape.setSize(uic_size);
+        uic.shape.setPosition(uic_pos);
+
+        window.draw(uic.shape);
+    }
 }
 
 // EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}

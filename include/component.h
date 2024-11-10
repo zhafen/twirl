@@ -62,9 +62,13 @@ struct RenderComp {
 // If I start using substructures, I may need to change ui_comps to holding pointers.
 struct UIComp {
     sf::RectangleShape shape;
-    float& tracked_value;
+
+    sf::Vector2f pos;
     sf::Vector2f size;
-    UIComp(float& tracked_value) : tracked_value(tracked_value) {}
+
+    // sf::RectangleShape shape;
+
+    float tracked_value;
 };
 
 }  // namespace cc

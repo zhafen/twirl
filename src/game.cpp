@@ -136,35 +136,21 @@ void Game::initializeState() {
         shape.setOutlineThickness(cfg.L / 5.f);
         shape.setOutlineColor(sf::Color(63, 63, 63));
         shape.setPosition(0.f, 0.f);
-        auto& rc = registry.emplace<RenderComp>(bkgrd, shape, -i);
+        registry.emplace<RenderComp>(bkgrd, shape, -i);
     }
 
-    // // Add a durability bar
-    // EntityId bar_id = createEntity();
-    // UIComp uic_bar(registry.dura_comps.at(player_id).durability);
-    // uic_bar.shape = std::make_shared<sf::RectangleShape>(sf::Vector2f(100.f, 10.f));
-    // uic_bar.shape->setFillColor(sf::Color::White);
-    // uic_bar.shape->setOutlineThickness(cfg.L / 10.f);
-    // uic_bar.shape->setOutlineColor(sf::Color::Black);
-    // uic_bar.size = sf::Vector2f(cfg.window_size_x / 2, cfg.L);
-    // // Have to convert the shape to a rectangle to set the size
-    // uic_bar.pos =
-    //     sf::Vector2f(-uic_bar.size.x / 2.f, -float(cfg.window_size_y) / 2.f + cfg.L);
-    // components.ui_comps.emplace(bar_id, std::move(uic_bar));
-
-    // Create a vector of (zorder, id) pairs
-    // for (const auto& [id, rc] : components.render_comps) {
-    //     components.rc_zorders.emplace_back(rc.zorder, id);
-    // }
-    // // Sort the vector according to zorder
-    // std::sort(registry.rc_zorders.begin(), components.rc_zorders.end());
-
-    // // Do the same for the UI
-    // for (const auto& [id, uic] : components.ui_comps) {
-    //     components.uic_zorders.emplace_back(uic.zorder, id);
-    // }
-    // // Sort the vector according to zorder
-    // std::sort(registry.uic_zorders.begin(), components.uic_zorders.end());
+    // Add a durability bar
+    auto bar = registry.create();
+    // Have to pass in a shape to the component or it crashes, unlike with RenderComp
+    // Not sure why
+    auto& uic_bar = registry.emplace<UIComp>(bar, sf::RectangleShape());
+    uic_bar.shape.setFillColor(sf::Color::White);
+    uic_bar.shape.setOutlineThickness(cfg.L / 10.f);
+    uic_bar.shape.setOutlineColor(sf::Color::Black);
+    uic_bar.size = sf::Vector2f(cfg.window_size_x / 2, cfg.L);
+    // Have to convert the shape to a rectangle to set the size
+    uic_bar.pos =
+        sf::Vector2f(-uic_bar.size.x / 2.f, -float(cfg.window_size_y) / 2.f + cfg.L);
 }
 
 void Game::handleEvents() {

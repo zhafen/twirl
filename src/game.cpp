@@ -97,23 +97,20 @@ void Game::initializeState() {
         auto rel_id = registry.create();
         // First force: gravity
         // Because of the r^-2 force drops off quickly if we don't scale it strongly
-        // registry.emplace<PairwiseForceComp>(rel_id, enemy, player);
-        // pfc.params.magnitude = -1.0f;
-        // pfc.params.power = -2.0f;
-        // pfc.params.softening = 1.0f;
-        // pfc.params.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
-        // // Second force: springs
-        // auto rel_id2 = registry.create();
-        // auto& pfc2 = registry.emplace<PairwiseForceComp>(rel_id);
-        // pfc2.target_entity = id;
-        // pfc2.source_entity = player_id;
-        // pfc2.params.magnitude = -0.1f;
-        // components.pairforce_comps[rel_id2] = pfc2;
-        // // Collides with the player
-        // CollisionComp cc;
-        // cc.id1 = id;
-        // cc.id2 = player_id;
-        // components.collision_comps[rel_id] = cc;
+        auto& pfc = registry.emplace<PairwiseForceComp>(rel_id, enemy, player);
+        pfc.params.magnitude = -1.0f;
+        pfc.params.power = -2.0f;
+        pfc.params.softening = 1.0f;
+        pfc.params.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
+        // Second force: springs
+        auto rel_id2 = registry.create();
+        auto& pfc2 = registry.emplace<PairwiseForceComp>(rel_id2);
+        pfc2.target_entity = enemy;
+        pfc2.source_entity = player;
+        pfc2.params.magnitude = -0.1f;
+        // Collides with the player
+        auto col_id = registry.create();
+        registry.emplace<CollisionComp>(col_id, enemy, player);
 
         // Store the enemy id
         enemy_ids.push_back(enemy);

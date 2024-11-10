@@ -72,9 +72,9 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
 
         auto r_hat = r / r_mag;
         auto r_mag_scaled =
-            (r_mag + pfc.params.softening * cfg.L) / cfg.L / pfc.params.distance_scaling;
-        auto force = r_hat * pfc.params.magnitude * cfg.A * target_pc.mass * source_pc.mass *
-                     powf(r_mag_scaled, pfc.params.power);
+            (r_mag / cfg.L + pfc.params.softening) / pfc.params.distance_scaling;
+        auto force = cfg.A * r_hat * pfc.params.magnitude * target_pc.mass *
+                     source_pc.mass * powf(r_mag_scaled, pfc.params.power);
 
         target_pc.force += force;
     }
@@ -194,8 +194,7 @@ void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     window.clear(sf::Color::Black);
 
     // The .use ensures we use the order of render components
-    auto rview =
-        registry.view<RenderComp, PhysicsComp>().use<RenderComp>();
+    auto rview = registry.view<RenderComp, PhysicsComp>().use<RenderComp>();
 
     // draw frame
     for (auto [entity, rc, pc] : rview.each()) {

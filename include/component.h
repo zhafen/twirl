@@ -31,9 +31,6 @@ struct DurabilityComp {
 
 struct MouseButtonReleasedComp {};
 
-struct PairComp {
-};
-
 struct PairwiseForceComp {
     entt::entity target_entity;
     entt::entity source_entity;
@@ -46,7 +43,10 @@ struct PairwiseForceComp {
     } params;
 };
 
-struct CollisionComp {};
+struct CollisionComp {
+    entt::entity id1;
+    entt::entity id2;
+};
 
 // Very general component for applying a function to pairs of entities
 struct PairwiseFunctionComp {

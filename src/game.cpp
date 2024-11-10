@@ -52,7 +52,7 @@ void Game::initializeState() {
     registry.emplace<PhysicsComp>(player);
     registry.emplace<DragForceComp>(player);
     registry.emplace<DurabilityComp>(player);
-    auto &player_rc = registry.emplace<RenderComp>(player, CCCircleShape(cfg.L));
+    auto& player_rc = registry.emplace<RenderComp>(player, CCCircleShape(cfg.L));
     player_rc.shape.setFillColor(sf::Color::White);
 
     // Make beacon particle for player
@@ -94,17 +94,17 @@ void Game::initializeState() {
 
         // Relationship with other entities
         // Pulled towards the player
-        auto rel_id = registry.create();
+        auto relation = registry.create();
         // First force: gravity
         // Because of the r^-2 force drops off quickly if we don't scale it strongly
-        auto& pfc = registry.emplace<PairwiseForceComp>(rel_id, enemy, player);
+        auto& pfc = registry.emplace<PairwiseForceComp>(relation, enemy, player);
         pfc.params.magnitude = -1.0f;
         pfc.params.power = -2.0f;
         pfc.params.softening = 1.0f;
         pfc.params.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
         // Second force: springs
-        auto rel_id2 = registry.create();
-        auto& pfc2 = registry.emplace<PairwiseForceComp>(rel_id2);
+        auto relation2 = registry.create();
+        auto& pfc2 = registry.emplace<PairwiseForceComp>(relation2);
         pfc2.target_entity = enemy;
         pfc2.source_entity = player;
         pfc2.params.magnitude = -0.1f;
@@ -115,19 +115,16 @@ void Game::initializeState() {
         // Store the enemy id
         enemy_ids.push_back(enemy);
     }
-    // // Enemies collide with each other
-    // for (auto& id1 : enemy_ids) {
-    //     for (auto& id2 : enemy_ids) {
-    //         if (id1 == id2) {
-    //             continue;
-    //         }
-    //         EntityId rel_id = createEntityRelationship();
-    //         CollisionComp cc;
-    //         cc.id1 = id1;
-    //         cc.id2 = id2;
-    //         components.collision_comps[rel_id] = cc;
-    //     }
-    // }
+    // Enemies collide with each other
+    for (auto& entity1 : enemy_ids) {
+        for (auto& entity2 : enemy_ids) {
+            if (entity1 == entity2) {
+                continue;
+            }
+            auto relation = registry.create();
+            registry.emplace<CollisionComp>(relation, entity1, entity2);
+        }
+    }
 
     // Make background
     int n_bkgrd = 100;

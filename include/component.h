@@ -44,13 +44,13 @@ struct PairwiseForceComp {
 };
 
 struct CollisionComp {
-    entt::entity id1;
-    entt::entity id2;
+    entt::entity entity1;
+    entt::entity entity2;
 };
 
 // Very general component for applying a function to pairs of entities
 struct PairwiseFunctionComp {
-    // std::function<void(EntityId id1, EntityId id2, Comps& components)> func;
+    // std::function<void(EntityId entity1, EntityId entity2, Comps& components)> func;
 };
 
 struct RenderComp {

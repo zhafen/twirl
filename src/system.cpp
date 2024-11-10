@@ -10,7 +10,7 @@ GeneralSystem::GeneralSystem(const Config& cfg) : cfg(cfg) {}
 
 void GeneralSystem::callPairwiseFunctions(entt::registry& registry) {
     //     / for (auto& [rel_id, pfnc] : components.pairfunc_comps) {
-    //     /     pfnc.func(pfnc.id1, pfnc.id2, components);
+    //     /     pfnc.func(pfnc.entity1, pfnc.entity2, components);
     //     / }
 }
 
@@ -46,13 +46,13 @@ void EntitySystem::orderEntities(entt::registry& registry) {
 PhysicsSystem::PhysicsSystem(const Config& cfg) : cfg(cfg) {}
 
 void PhysicsSystem::calculateForces(entt::registry& registry) {
-    // for (auto& [id, fc] : components.force_comps) {
-    //     auto& pc = components.physics_comps.at(id);
-    //     float vel_mag = sqrtf(pc.vel.x * pc.vel.x + pc.vel.y * pc.vel.y);
-    //     sf::Vector2f vel_scaling =
-    //         (pc.vel / cfg.V) * powf(vel_mag / cfg.V, fc.drag_power - 1.0f);
-    //     pc.force -= fc.drag_coefficient * cfg.A * vel_scaling;
-    // }
+    auto rview = registry.view<PhysicsComp, DragForceComp>();
+    for (auto [entity, pc, fc] : rview.each()) {
+        float vel_mag = sqrtf(pc.vel.x * pc.vel.x + pc.vel.y * pc.vel.y);
+        sf::Vector2f vel_scaling =
+            (pc.vel / cfg.V) * powf(vel_mag / cfg.V, fc.drag_power - 1.0f);
+        pc.force -= cfg.A * fc.drag_coefficient * vel_scaling;
+    }
 }
 
 void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
@@ -118,46 +118,39 @@ void PhysicsSystem::update(entt::registry& registry) {
  * components.
  */
 void PhysicsSystem::resolveCollisions(entt::registry& registry) {
-    //     for (auto& [rel_id, cc] : components.collision_comps) {
-    //         // Get first entity
-    //         auto& id1 = cc.id1;
-    //         auto& rc1 = components.render_comps.at(id1);
-    //         auto& pc1 = components.physics_comps.at(id1);
-    //
-    //         // Get second entity
-    //         auto& id2 = cc.id2;
-    //         auto& rc2 = components.render_comps.at(id2);
-    //         auto& pc2 = components.physics_comps.at(id2);
-    //
-    //         // Check for collision, assuming circular shapes for all objects that
-    //         could
-    //         // collide
-    //         auto r_12 = pc2.pos - pc1.pos;
-    //         auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
-    //         sf::CircleShape* rc1_shape =
-    //         dynamic_cast<sf::CircleShape*>(rc1.shape.get()); sf::CircleShape*
-    //         rc2_shape = dynamic_cast<sf::CircleShape*>(rc2.shape.get()); if (r_12_mag
-    //         > rc1_shape->getRadius() + rc2_shape->getRadius()) {
-    //             continue;
-    //         }
-    //
-    //         // Calculate the momentum in the COM frame
-    //         auto T = 0.5f * (pc1.mass * (pc1.vel.x * pc1.vel.x + pc1.vel.y *
-    //         pc1.vel.y) +
-    //                          pc2.mass * (pc2.vel.x * pc2.vel.x + pc2.vel.y *
-    //                          pc2.vel.y));
-    //         auto pcom_mag = sqrtf(2.0f * T * pc1.mass * pc2.mass / (pc1.mass +
-    //         pc2.mass)); auto p1com = -pcom_mag * r_12 / r_12_mag;
-    //
-    //         // Convert back to default frame
-    //         auto vcom = (pc1.vel * pc1.mass + pc2.vel * pc2.mass) / (pc1.mass +
-    //         pc2.mass); pc1.vel = vcom + p1com / pc1.mass; pc2.vel = vcom - p1com /
-    //         pc2.mass;
-    //
-    //         // Indicate collision
-    //         pc1.collided = true;
-    //         pc2.collided = true;
-    //     }
+    for (auto [rel_id, cc] : registry.view<CollisionComp>().each()) {
+        // Get first entity
+        auto& entity1 = cc.entity1;
+        auto& pc1 = registry.get<PhysicsComp>(entity1);
+        auto& rc1 = registry.get<RenderComp>(entity1);
+
+        // Get second entity
+        auto& entity2 = cc.entity2;
+        auto& pc2 = registry.get<PhysicsComp>(entity2);
+        auto& rc2 = registry.get<RenderComp>(entity2);
+
+        // Check for collision, assuming circular shapes for all objects that collide
+        auto r_12 = pc2.pos - pc1.pos;
+        auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
+        if (r_12_mag > rc1.shape.getRadius() + rc2.shape.getRadius()) {
+            continue;
+        }
+
+        // Calculate the momentum in the COM frame
+        auto T = 0.5f * (pc1.mass * (pc1.vel.x * pc1.vel.x + pc1.vel.y * pc1.vel.y) +
+                         pc2.mass * (pc2.vel.x * pc2.vel.x + pc2.vel.y * pc2.vel.y));
+        auto pcom_mag = sqrtf(2.0f * T * pc1.mass * pc2.mass / (pc1.mass + pc2.mass));
+        auto p1com = -pcom_mag * r_12 / r_12_mag;
+
+        // Convert back to default frame
+        auto vcom = (pc1.vel * pc1.mass + pc2.vel * pc2.mass) / (pc1.mass + pc2.mass);
+        pc1.vel = vcom + p1com / pc1.mass;
+        pc2.vel = vcom - p1com / pc2.mass;
+
+        // Indicate collision
+        pc1.collided = true;
+        pc2.collided = true;
+    }
 }
 
 void PhysicsSystem::updateDurability(entt::registry& registry) {

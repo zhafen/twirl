@@ -30,8 +30,8 @@ void EntitySystem::spawnEntities(entt::entity player, entt::registry& registry) 
             pfc.params.magnitude = -1.0f;
             
             // Collide with the enemies
-            // auto col_id = registry.create();
-            // registry.emplace<CollisionComp>(col_id, projectile, enemy);
+            auto col_id = registry.create();
+            registry.emplace<CollisionComp>(col_id, projectile, enemy);
         }
     }
 
@@ -71,16 +71,18 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
     auto rview = registry.view<PairwiseForceComp>();
 
     for (auto [rel_id, pfc] : rview.each()) {
-        // We use try_get here because the target or source could be deleted.
-        // A possible alternative may be to use listeners.
-        auto* target_pc_ptr = registry.try_get<PhysicsComp>(pfc.target_entity);
-        auto* source_pc_ptr = registry.try_get<PhysicsComp>(pfc.source_entity);
-        if (!target_pc_ptr || !source_pc_ptr) {
+        // Check if the entities still exist
+        if (!registry.valid(pfc.target_entity) || !registry.valid(pfc.source_entity)) {
             registry.destroy(rel_id);
             continue;
         }
 
-        auto r = target_pc_ptr->pos - source_pc_ptr->pos;
+        // We use try_get here because the target or source could be deleted.
+        // A possible alternative may be to use listeners.
+        auto& target_pc = registry.get<PhysicsComp>(pfc.target_entity);
+        auto& source_pc = registry.get<PhysicsComp>(pfc.source_entity);
+
+        auto r = target_pc.pos - source_pc.pos;
         auto r_mag = sqrtf(r.x * r.x + r.y * r.y);
 
         // Don't calculate the distance when too close
@@ -91,10 +93,10 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
         auto r_hat = r / r_mag;
         auto r_mag_scaled =
             (r_mag / cfg.L + pfc.params.softening) / pfc.params.distance_scaling;
-        auto force = cfg.A * r_hat * pfc.params.magnitude * target_pc_ptr->mass *
-                     source_pc_ptr->mass * powf(r_mag_scaled, pfc.params.power);
+        auto force = cfg.A * r_hat * pfc.params.magnitude * target_pc.mass *
+                     source_pc.mass * powf(r_mag_scaled, pfc.params.power);
 
-        target_pc_ptr->force += force;
+        target_pc.force += force;
     }
 }
 
@@ -137,6 +139,12 @@ void PhysicsSystem::update(entt::registry& registry) {
  */
 void PhysicsSystem::resolveCollisions(entt::registry& registry) {
     for (auto [rel_id, cc] : registry.view<CollisionComp>().each()) {
+        // Check if the entities still exist
+        if (!registry.valid(cc.entity1) || !registry.valid(cc.entity2)) {
+            registry.destroy(rel_id);
+            continue;
+        }
+
         // Get first entity
         auto& entity1 = cc.entity1;
         auto& pc1 = registry.get<PhysicsComp>(entity1);

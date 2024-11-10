@@ -13,16 +13,6 @@
 
 namespace cc {
 
-// Probably best to avoid using the general system when possible
-class GeneralSystem {
-   public:
-    GeneralSystem(const Config& cfg);
-    void callPairwiseFunctions(entt::registry& registry);
-
-   private:
-    Config cfg;
-};
-
 class EntitySystem {
    public:
     EntitySystem(const Config& cfg);

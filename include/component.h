@@ -18,7 +18,7 @@ struct PhysicsComp {
 };
 
 struct DragForceComp {
-    // In units of cfg.A / cfg.V
+    // In units of cfg.A
     float drag_coefficient = 0.01f;
     float drag_power = 2.0f;
 };

@@ -6,14 +6,6 @@
 
 namespace cc {
 
-GeneralSystem::GeneralSystem(const Config& cfg) : cfg(cfg) {}
-
-void GeneralSystem::callPairwiseFunctions(entt::registry& registry) {
-    //     / for (auto& [rel_id, pfnc] : components.pairfunc_comps) {
-    //     /     pfnc.func(pfnc.entity1, pfnc.entity2, components);
-    //     / }
-}
-
 EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
 
 void EntitySystem::spawnEntities(entt::registry& registry) {

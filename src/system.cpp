@@ -20,6 +20,12 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
             source_swc.end_reached = false;
         }
 
+        // If there are no enemies, then keep going
+        auto rview = registry.view<EnemyComp>();
+        if (rview.empty()) {
+            continue;
+        }
+
         // Create a new projectile
         auto projectile = registry.create();
         auto& pc = registry.emplace<PhysicsComp>(projectile);
@@ -33,8 +39,9 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
         rc.zorder = 2;
         needs_ordering = true;
 
-        auto rview = registry.view<EnemyComp, PhysicsComp>();
-        for (auto [enemy, ec, pc] : rview.each()) {
+        for (auto [enemy, ec] : rview.each()) {
+            auto& pc = registry.get<PhysicsComp>(enemy);
+
             // Target the enemies
             auto relation = registry.create();
             auto& pfc =

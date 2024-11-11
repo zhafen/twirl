@@ -22,6 +22,15 @@ FetchContent_Declare(
     SYSTEM)
 FetchContent_MakeAvailable(EnTT)
 
+FetchContent_Declare(
+    nlohmann_json
+    GIT_REPOSITORY https://github.com/nlohmann/json.git
+    GIT_TAG v3.11.2
+    GIT_SHALLOW ON
+    EXCLUDE_FROM_ALL
+    SYSTEM)
+FetchContent_MakeAvailable(nlohmann_json)
+
 # Include directories
 include_directories(include)
 
@@ -29,7 +38,7 @@ include_directories(include)
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 add_executable(main ${SOURCES})
-target_link_libraries(main PRIVATE sfml-graphics EnTT::EnTT)
+target_link_libraries(main PRIVATE sfml-graphics EnTT::EnTT nlohmann_json::nlohmann_json)
 target_compile_features(main PRIVATE cxx_std_17)
 
 add_definitions(-DENTT_NO_ETO)

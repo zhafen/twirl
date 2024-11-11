@@ -1,28 +1,28 @@
-// #include "scene.h"
-// 
-// Scene::Scene() {
-//     // Constructor implementation
-// }
-// 
-// Scene::~Scene() {
-//     // Destructor implementation
-// }
-// 
-// void Scene::addEntity(const Entity& entity) {
-//     entities.push_back(entity);
-// }
-// 
-// void Scene::addComp(const Entity& entity, std::shared_ptr<Comp> component) {
-//     // Assuming each entity has a unique ID and components are associated with entities
-//     components.push_back(component);
-// }
-// 
-// void Scene::addSystem(std::shared_ptr<System> system) {
-//     systems.push_back(system);
-// }
-// 
-// void Scene::update(float deltaTime) {
-//     for (auto& system : systems) {
-//         system->update(entities, components, deltaTime);
-//     }
-// }
+#include <nlohmann/json.hpp>
+
+#include "scene.h"
+
+void Scene::loadFromJson(const std::string& filePath) {
+    std::ifstream file(filePath);
+    if (!file.is_open()) {
+        std::cerr << "Failed to open file: " << filePath << std::endl;
+        return;
+    }
+
+    nlohmann::json jsonData;
+    file >> jsonData;
+
+    for (const auto& entityJson : jsonData) {
+        parseEntity(entityJson);
+    }
+}
+
+void Scene::parseEntity(const nlohmann::json& entityJson) {
+    auto entity = registry.create();
+    // Assuming entityJson contains components data
+    // Add components to the entity based on the JSON data
+    // Example:
+    // if (entityJson.contains("transform")) {
+    //     registry.emplace<TransformComponent>(entity, entityJson["transform"]);
+    // }
+}

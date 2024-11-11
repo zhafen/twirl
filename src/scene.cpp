@@ -1,6 +1,9 @@
-#include <nlohmann/json.hpp>
 
 #include "scene.h"
+
+#include <nlohmann/json.hpp>
+
+namespace cc {
 
 void Scene::loadFromJson(const std::string& filePath) {
     std::ifstream file(filePath);

@@ -6,6 +6,8 @@
 #include <fstream>
 #include <iostream>
 
+namespace cc {
+
 class Scene {
 public:
     Scene() = default;
@@ -21,4 +23,6 @@ private:
     void parseEntity(const nlohmann::json& entityJson);
 };
 
-#endif // SCEN
+} // namespace cc
+
+#endif // SCENE_H

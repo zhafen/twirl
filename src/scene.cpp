@@ -3,7 +3,7 @@
 
 #include <nlohmann/json.hpp>
 
-namespace cc {
+namespace twirl {
 
 void Scene::loadFromJson(const std::string& filePath) {
     std::ifstream file(filePath);
@@ -31,4 +31,4 @@ void Scene::parseEntity(const nlohmann::json& entityJson) {
 
 }
 
-} // namespace cc
+} // namespace twirl

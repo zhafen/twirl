@@ -10,7 +10,7 @@
 #include "shape.h"
 #include "system.h"
 
-namespace cc {
+namespace twirl {
 
 Game::Game()
     : cfg(),
@@ -48,7 +48,7 @@ void Game::initializeState() {
     registry.emplace<DragForceComp>(player);
     auto& dc = registry.emplace<DurabilityComp>(player);
     dc.delete_at_zero = false;
-    auto& player_rc = registry.emplace<RenderComp>(player, CCCircleShape(cfg.L));
+    auto& player_rc = registry.emplace<RenderComp>(player, TwirlCircleShape(cfg.L));
     player_rc.shape.setFillColor(sf::Color::White);
     // All spawn comps must be accompanied by a StopWatchComp that regulates
     // the spawn rate
@@ -59,7 +59,7 @@ void Game::initializeState() {
     const auto beacon = registry.create();
     registry.emplace<PhysicsComp>(beacon);
     registry.emplace<MouseButtonReleasedComp>(beacon);
-    auto beacon_shape = CCCircleShape(cfg.L / 2.f);
+    auto beacon_shape = TwirlCircleShape(cfg.L / 2.f);
     beacon_shape.setFillColor(sf::Color::Black);
     beacon_shape.setOutlineColor(sf::Color::White);
     beacon_shape.setOutlineThickness(cfg.L / 10.f);
@@ -92,7 +92,7 @@ void Game::initializeState() {
         registry.emplace<DragForceComp>(enemy);
         // Colored circles
         auto& rc = registry.emplace<RenderComp>(enemy);
-        rc.shape = CCCircleShape(cfg.L);
+        rc.shape = TwirlCircleShape(cfg.L);
         rc.shape.setFillColor(sf::Color::Red);
         rc.shape.setPosition(pc.pos);
 
@@ -135,7 +135,7 @@ void Game::initializeState() {
     for (int i = 0; i < n_bkgrd; ++i) {
         auto bkgrd = registry.create();
         registry.emplace<PhysicsComp>(bkgrd);
-        CCCircleShape shape(10.f * cfg.L * i);
+        TwirlCircleShape shape(10.f * cfg.L * i);
         shape.setFillColor(sf::Color(127, 127, 127));
         shape.setOutlineThickness(cfg.L / 5.f);
         shape.setOutlineColor(sf::Color(63, 63, 63));
@@ -211,4 +211,4 @@ void Game::handleEvents() {
         window.display();
     }
 
-}  // namespace cc
+}  // namespace twirl

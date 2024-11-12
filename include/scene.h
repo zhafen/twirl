@@ -6,7 +6,7 @@
 #include <fstream>
 #include <iostream>
 
-namespace cc {
+namespace twirl {
 
 class Scene {
 public:
@@ -23,6 +23,6 @@ private:
     void parseEntity(const nlohmann::json& entityJson);
 };
 
-} // namespace cc
+} // namespace twirl
 
 #endif // SCENE_H

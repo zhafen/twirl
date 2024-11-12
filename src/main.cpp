@@ -12,7 +12,7 @@ struct FirstStruct {
 };
 
 int main() {
-    cc::Game game;
+    twirl::Game game;
     game.run();
     return 0;
 }

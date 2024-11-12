@@ -4,7 +4,7 @@
 #include <cmath>
 #include <entt/entt.hpp>
 
-namespace cc {
+namespace twirl {
 
 EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
 
@@ -34,7 +34,7 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
         auto& dc = registry.emplace<DurabilityComp>(projectile);
         dc.durability_loss_per_collision = 1.01f;
         registry.emplace<DragForceComp>(projectile);
-        auto& rc = registry.emplace<RenderComp>(projectile, CCCircleShape(cfg.L / 3.f));
+        auto& rc = registry.emplace<RenderComp>(projectile, TwirlCircleShape(cfg.L / 3.f));
         rc.shape.setFillColor(sf::Color::Blue);
         rc.zorder = 2;
         needs_ordering = true;
@@ -281,4 +281,4 @@ void RenderSystem::renderUI(sf::RenderWindow& window, entt::registry& registry) 
     }
 }
 
-}  // namespace cc
+}  // namespace twirl

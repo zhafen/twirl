@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-namespace cc {
+namespace twirl {
 
 using EntityId = int;
 using EntityRelationId = int;
@@ -21,6 +21,6 @@ struct Config {
     static constexpr float dx = V * dt;
 };
 
-} // namespace cc
+} // namespace twirl
 
 #endif  // CONFIG_H

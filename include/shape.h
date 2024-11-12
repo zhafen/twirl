@@ -3,14 +3,14 @@
 
 #include <SFML/Graphics.hpp>
 
-namespace cc {
+namespace twirl {
 
-class CCCircleShape : public sf::CircleShape {
+class TwirlCircleShape : public sf::CircleShape {
    public:
     // Constructor that sets a different default origin
-    CCCircleShape(float radius = 50.f);
+    TwirlCircleShape(float radius = 50.f);
 };
 
-} // namespace cc
+} // namespace twirl
 
 #endif  // CCSHAPE_H

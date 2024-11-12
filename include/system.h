@@ -11,7 +11,7 @@
 #include "config.h"
 #include "component.h"
 
-namespace cc {
+namespace twirl {
 
 class EntitySystem {
    public:
@@ -51,6 +51,6 @@ class RenderSystem {
     Config cfg;
 };
 
-}  // namespace cc
+}  // namespace twirl
 
 #endif  // SYSTEMS_H

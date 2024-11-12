@@ -6,7 +6,7 @@
 
 #include "system.h"
 
-namespace cc {
+namespace twirl {
 
 class Game {
    public:
@@ -50,6 +50,6 @@ class Game {
     void render();
 };
 
-}  // namespace cc
+}  // namespace twirl
 
 #endif  // GAME_H

@@ -7,7 +7,7 @@
 #include "config.h"
 #include "shape.h"
 
-namespace cc {
+namespace twirl {
 
 struct EnemyComp {};
 
@@ -61,7 +61,7 @@ struct PairwiseFunctionComp {
 };
 
 struct RenderComp {
-    CCCircleShape shape;
+    TwirlCircleShape shape;
     int zorder = 0;
 };
 
@@ -84,6 +84,6 @@ struct StopWatchComp {
     bool end_reached = false;
 };
 
-}  // namespace cc
+}  // namespace twirl
 
 #endif  // COMPONENT_H

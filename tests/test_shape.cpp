@@ -3,9 +3,9 @@
 #include <gtest/gtest.h>
 
 // Example test case for shape-related functions
-TEST(CCCircleShapeTest, BasicTest) {
+TEST(TwirlCircleShapeTest, BasicTest) {
     float radius = 50.f;
-    cc::CCCircleShape circle(radius);
+    twirl::TwirlCircleShape circle(radius);
 
     // Check if the origin is set to the center of the circle
     sf::Vector2f origin = circle.getOrigin();

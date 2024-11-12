@@ -50,12 +50,13 @@ target_link_libraries(
     nlohmann_json::nlohmann_json
 )
 
-# file(GLOB_RECURSE TEST_SOURCES "tests/*.cpp")
-add_executable(twirl_tests tests/test_main.cpp tests/test_shape.cpp src/shape.cpp)
+file(GLOB_RECURSE TEST_SOURCES "tests/*.cpp" "src/*.cpp")
+# Exclude src/main.cpp
+list(REMOVE_ITEM TEST_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
+add_executable(twirl_tests ${TEST_SOURCES})
 target_link_libraries(
     twirl_tests
     ${GTEST_LIBRARIES}
-    pthread
     sfml-graphics
     EnTT::EnTT
     nlohmann_json::nlohmann_json

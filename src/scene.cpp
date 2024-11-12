@@ -5,18 +5,18 @@
 
 namespace twirl {
 
-void Scene::loadFromJson(const std::string& filePath) {
-    std::ifstream file(filePath);
+void Scene::loadFromJson(const std::string& file_path) {
+    std::ifstream file(file_path);
     if (!file.is_open()) {
-        std::cerr << "Failed to open file: " << filePath << std::endl;
+        std::cerr << "Failed to open file: " << file_path << std::endl;
         return;
     }
 
-    nlohmann::json jsonData;
-    file >> jsonData;
+    nlohmann::json json_data;
+    file >> json_data;
 
-    for (const auto& entityJson : jsonData) {
-        parseEntity(entityJson);
+    for (const auto& entity_json : json_data) {
+        parseEntity(entity_json);
     }
 }
 

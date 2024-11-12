@@ -15,10 +15,9 @@ public:
 
     void loadFromJson(const std::string& filePath);
 
-    entt::registry& getRegistry() { return registry; }
+    entt::registry registry;
 
 private:
-    entt::registry registry;
 
     void parseEntity(const nlohmann::json& entityJson);
 };

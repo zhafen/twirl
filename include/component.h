@@ -9,6 +9,10 @@
 
 namespace twirl {
 
+struct MetadataComp {
+    std::string name;
+};
+
 struct EnemyComp {};
 
 struct DeleteComp {};

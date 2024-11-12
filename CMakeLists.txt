@@ -6,6 +6,7 @@ enable_testing()
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
+# Get dependencies
 include(FetchContent)
 FetchContent_Declare(SFML
     GIT_REPOSITORY https://github.com/SFML/SFML.git
@@ -14,7 +15,6 @@ FetchContent_Declare(SFML
     EXCLUDE_FROM_ALL
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
-
 FetchContent_Declare(
     EnTT
     GIT_REPOSITORY https://github.com/skypjack/entt.git
@@ -23,7 +23,6 @@ FetchContent_Declare(
     EXCLUDE_FROM_ALL
     SYSTEM)
 FetchContent_MakeAvailable(EnTT)
-
 FetchContent_Declare(
     nlohmann_json
     GIT_REPOSITORY https://github.com/nlohmann/json.git
@@ -32,14 +31,13 @@ FetchContent_Declare(
     EXCLUDE_FROM_ALL
     SYSTEM)
 FetchContent_MakeAvailable(nlohmann_json)
-
 find_package(GTest REQUIRED)
 
 # Include directories
 include_directories(include)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-# Collect all source files
+# Build and link main files
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_executable(twirl ${SOURCES})
 target_link_libraries(
@@ -50,8 +48,8 @@ target_link_libraries(
     nlohmann_json::nlohmann_json
 )
 
+# Build and link test files
 file(GLOB_RECURSE TEST_SOURCES "tests/*.cpp" "src/*.cpp")
-# Exclude src/main.cpp
 list(REMOVE_ITEM TEST_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
 add_executable(twirl_tests ${TEST_SOURCES})
 target_link_libraries(

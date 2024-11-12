@@ -19,7 +19,7 @@ public:
 
 private:
 
-    void parseEntity(const nlohmann::json& entityJson);
+    void parseEntity(std::string entity_name, const nlohmann::json& entity_json);
 };
 
 } // namespace twirl

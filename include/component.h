@@ -2,6 +2,7 @@
 #define COMPONENT_H
 
 #include <SFML/Graphics.hpp>
+#include <nlohmann/json.hpp>
 #include <string>
 
 #include "config.h"
@@ -32,6 +33,7 @@ struct DragForceComp {
     float drag_coefficient = 0.01f;
     float drag_power = 2.0f;
 };
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(DragForceComp, drag_coefficient, drag_power);
 
 struct DurabilityComp {
     float durability = 1.0f;

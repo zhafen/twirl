@@ -11,14 +11,14 @@ TEST(SceneTest, LoadFromJson) {
     Scene scene;
 
     // Main function to test
-    scene.loadFromJson("tests/test_data/test_scene.json");
+    scene.loadFromJson("../../tests/test_data/test_scene.json");
 
     // Loop through the registry and check if the components are added correctly
     auto rview = scene.registry.view<MetadataComp>();
     ASSERT_FALSE(rview.empty());
     for (auto [entity, mc] : rview.each()) {
 
-        if (mc.name == "Player") {
+        if (mc.name == "player") {
             auto& dfc = scene.registry.get<DragForceComp>(entity);
             EXPECT_EQ(dfc.drag_coefficient, 0.05f);
         } else {

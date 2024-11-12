@@ -27,15 +27,17 @@ struct PhysicsComp {
     sf::Vector2f force = {0.0f, 0.0f};
     bool collided = false;
 };
+// Have to define this without a macro because of the vector types
 inline void from_json(const nlohmann::json& j, PhysicsComp& pc) {
     j.at("mass").get_to(pc.mass);
     j.at("pos").at("x").get_to(pc.pos.x);
-    // j.at("pos").x.get_to(pc.pos.x);
-    // j.at("vel").get_to(pc.vel);
-    // j.at("force").get_to(pc.force);
+    j.at("pos").at("y").get_to(pc.pos.y);
+    j.at("vel").at("x").get_to(pc.vel.x);
+    j.at("vel").at("y").get_to(pc.vel.y);
+    j.at("force").at("x").get_to(pc.force.x);
+    j.at("force").at("y").get_to(pc.force.y);
     j.at("collided").get_to(pc.collided);
 }
-// NLOHMANN_DEFINE_TYPE_NOT_INTRUSIVE(PhysicsComp, mass, pos, vel, force, collided);
 
 struct DragForceComp {
     // In units of cfg.A

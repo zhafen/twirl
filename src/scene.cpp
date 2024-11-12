@@ -31,12 +31,12 @@ void Scene::parseEntity(const std::string entity_name, const json& entity_json) 
     json components = entity_json["components"];
 
     for (const auto& [comp_key, comp] : components.items()) {
-        if (comp_key == "DragForceComp") {
-            auto comp_inst = comp.template get<DragForceComp>();
-            registry.emplace<DragForceComp>(entity, comp_inst);
-        } else if (comp_key == "PhysicsComp") {
+        if (comp_key == "PhysicsComp") {
             auto comp_inst = comp.template get<PhysicsComp>();
             registry.emplace<PhysicsComp>(entity, comp_inst);
+        } else if (comp_key == "DragForceComp") {
+            auto comp_inst = comp.template get<DragForceComp>();
+            registry.emplace<DragForceComp>(entity, comp_inst);
         } else {
             throw std::runtime_error("Unknown component key: " + comp_key);
         }

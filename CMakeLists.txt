@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.28)
 project(Twirl LANGUAGES CXX)
 
+enable_testing()
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
@@ -31,21 +33,40 @@ FetchContent_Declare(
     SYSTEM)
 FetchContent_MakeAvailable(nlohmann_json)
 
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
 # Include directories
 include_directories(include)
 
 # COllect all source files
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
-add_executable(main ${SOURCES})
-target_link_libraries(main PRIVATE sfml-graphics EnTT::EnTT nlohmann_json::nlohmann_json)
-target_compile_features(main PRIVATE cxx_std_17)
+add_executable(twirl ${SOURCES})
+target_link_libraries(
+    twirl
+    PRIVATE
+    sfml-graphics
+    EnTT::EnTT
+    nlohmann_json::nlohmann_json
+)
+
+add_executable(twirl_tests tests/test_main.cpp ${SOURCES})
+target_link_libraries(
+    twirl_tests
+    ${GTEST_LIBRARIES}
+    pthread
+)
+target_compile_features(twirl PRIVATE cxx_std_17)
+
+# Add tests
+add_test(NAME twirl_tests COMMAND twirl_tests)
 
 add_definitions(-DENTT_NO_ETO)
 
 if(WIN32)
     add_custom_command(
-        TARGET main
+        TARGET twirl
         COMMENT "Copy OpenAL DLL"
         PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SFML_SOURCE_DIR}/extlibs/bin/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>/openal32.dll $<TARGET_FILE_DIR:main>
         VERBATIM)

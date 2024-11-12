@@ -28,4 +28,7 @@ void Scene::parseEntity(const nlohmann::json& entityJson) {
     // if (entityJson.contains("transform")) {
     //     registry.emplace<TransformComponent>(entity, entityJson["transform"]);
     // }
+
 }
+
+} // namespace cc

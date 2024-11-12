@@ -12,13 +12,7 @@ void Scene::loadFromJson(const std::string& file_path) {
     // Parse the file
     std::ifstream file(file_path);
     if (!file.is_open()) {
-        std::cerr << "Failed to open file: " << file_path << std::endl;
-        std::string cwd = std::filesystem::current_path();
-        std::string path = "../../tests/test_";
-        for (const auto & entry : std::filesystem::directory_iterator(path)) {
-            std::cout << entry.path() << std::endl;
-        }
-        std::cerr << "Current path: " << cwd << std::endl;
+        throw std::runtime_error("Failed to open file: " + file_path);
         return;
     }
     json json_data = json::parse(file);
@@ -40,16 +34,13 @@ void Scene::parseEntity(const std::string entity_name, const json& entity_json) 
         if (comp_key == "DragForceComp") {
             auto comp_inst = comp.template get<DragForceComp>();
             registry.emplace<DragForceComp>(entity, comp_inst);
+        } else if (comp_key == "PhysicsComp") {
+            auto comp_inst = comp.template get<PhysicsComp>();
+            registry.emplace<PhysicsComp>(entity, comp_inst);
+        } else {
+            throw std::runtime_error("Unknown component key: " + comp_key);
         }
     }
-
-    // Assuming entityJson contains components data
-    // Add components to the entity based on the JSON data
-    // Example:
-    // if (entityJson.contains("transform")) {
-    //     registry.emplace<TransformComponent>(entity, entityJson["transform"]);
-    // }
-
 }
 
 } // namespace twirl

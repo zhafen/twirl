@@ -1,6 +1,13 @@
 {
     "player": {
         "components": {
+            "PhysicsComp": {
+                "mass" : 10.0,
+                "pos" : [1.0, 1.0],
+                "vel" : [2.0, 2.0],
+                "force" : [3.0, 3.0],
+                "collided" : true
+            },
             "DragForceComp": {
                 "drag_coefficient": 0.05,
                 "drag_power": 2.5

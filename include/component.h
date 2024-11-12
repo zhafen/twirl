@@ -27,6 +27,15 @@ struct PhysicsComp {
     sf::Vector2f force = {0.0f, 0.0f};
     bool collided = false;
 };
+inline void from_json(const nlohmann::json& j, PhysicsComp& pc) {
+    j.at("mass").get_to(pc.mass);
+    j.at("pos").at("x").get_to(pc.pos.x);
+    // j.at("pos").x.get_to(pc.pos.x);
+    // j.at("vel").get_to(pc.vel);
+    // j.at("force").get_to(pc.force);
+    j.at("collided").get_to(pc.collided);
+}
+// NLOHMANN_DEFINE_TYPE_NOT_INTRUSIVE(PhysicsComp, mass, pos, vel, force, collided);
 
 struct DragForceComp {
     // In units of cfg.A

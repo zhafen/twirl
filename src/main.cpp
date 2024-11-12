@@ -3,14 +3,6 @@
 #include <iostream>
 #include <memory>
 
-struct SecondStruct {
-    float value;
-};
-
-struct FirstStruct {
-    std::shared_ptr<float> valuePtr; // Shared pointer to a float
-};
-
 int main() {
     twirl::Game game;
     game.run();

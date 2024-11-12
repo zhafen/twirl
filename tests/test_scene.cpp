@@ -30,6 +30,9 @@ TEST(SceneTest, LoadFromJson) {
             auto& dfc = scene.registry.get<DragForceComp>(entity);
             EXPECT_FLOAT_EQ(dfc.drag_coefficient, 0.05f);
             EXPECT_FLOAT_EQ(dfc.drag_power, 2.5f);
+            auto& mbrc = scene.registry.get<MouseButtonReleasedComp>(entity);
+            // Assert that MouseButtonReleasedComp is an empty struct
+            EXPECT_EQ(sizeof(mbrc), sizeof(MouseButtonReleasedComp));
         } else {
             FAIL() << "Unexpected entity name: " << mc.name;
         }

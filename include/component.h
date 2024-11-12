@@ -10,6 +10,8 @@
 
 namespace twirl {
 
+// We don't define a macro for MetadataComp because currently the key for a given
+// entity in the json is the name.
 struct MetadataComp {
     std::string name;
 };
@@ -52,6 +54,9 @@ struct DurabilityComp {
     float durability_regen_rate = 0.0f;
     bool delete_at_zero = true;
 };
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(DurabilityComp, durability,
+                                   durability_loss_per_collision, durability_regen_rate,
+                                   delete_at_zero);
 
 struct MouseButtonReleasedComp {};
 

@@ -37,6 +37,11 @@ void Scene::parseEntity(const std::string entity_name, const json& entity_json) 
         } else if (comp_key == "DragForceComp") {
             auto comp_inst = comp.template get<DragForceComp>();
             registry.emplace<DragForceComp>(entity, comp_inst);
+        } else if (comp_key == "DurabilityComp") {
+            auto comp_inst = comp.template get<DurabilityComp>();
+            registry.emplace<DurabilityComp>(entity, comp_inst);
+        } else if (comp_key == "MouseButtonReleasedComp") {
+            registry.emplace<MouseButtonReleasedComp>(entity);
         } else {
             throw std::runtime_error("Unknown component key: " + comp_key);
         }

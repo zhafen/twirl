@@ -11,7 +11,8 @@
             "DragForceComp": {
                 "drag_coefficient": 0.05,
                 "drag_power": 2.5
-            }
+            },
+            "MouseButtonReleasedComp": {}
         }
     }
 }

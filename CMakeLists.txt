@@ -34,14 +34,13 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(nlohmann_json)
 
 find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
 
 # Include directories
 include_directories(include)
+include_directories(${GTEST_INCLUDE_DIRS})
 
-# COllect all source files
+# Collect all source files
 file(GLOB_RECURSE SOURCES "src/*.cpp")
-
 add_executable(twirl ${SOURCES})
 target_link_libraries(
     twirl
@@ -51,12 +50,17 @@ target_link_libraries(
     nlohmann_json::nlohmann_json
 )
 
-add_executable(twirl_tests tests/test_main.cpp ${SOURCES})
+# file(GLOB_RECURSE TEST_SOURCES "tests/*.cpp")
+add_executable(twirl_tests tests/test_main.cpp tests/test_shape.cpp src/shape.cpp)
 target_link_libraries(
     twirl_tests
     ${GTEST_LIBRARIES}
     pthread
+    sfml-graphics
+    EnTT::EnTT
+    nlohmann_json::nlohmann_json
 )
+
 target_compile_features(twirl PRIVATE cxx_std_17)
 
 # Add tests

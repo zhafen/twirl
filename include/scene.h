@@ -3,14 +3,14 @@
 
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/registry.hpp>
-#include <nlohmann/json.hpp>
 #include <fstream>
 #include <iostream>
+#include <nlohmann/json.hpp>
 
 namespace twirl {
 
 class Scene {
-public:
+   public:
     Scene() = default;
     ~Scene() = default;
 
@@ -18,11 +18,11 @@ public:
 
     entt::registry registry;
 
-private:
-
-    void parseEntity(std::string entity_name, const nlohmann::json& entity_json);
+   private:
+    void parseEntity(std::string entity_name, const nlohmann::json& entity_json,
+                     std::unordered_map<std::string, entt::entity>& entity_map);
 };
 
-} // namespace twirl
+}  // namespace twirl
 
-#endif // SCENE_H
+#endif  // SCENE_H

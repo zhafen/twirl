@@ -34,5 +34,17 @@
                 "zorder": 1
             }
         }
+    },
+    "player-beacon force": {
+        "components": {
+            "PairwiseForceComp": {
+                "target_entity": "player",
+                "source_entity": "beacon",
+                "params": {
+                    "magnitude": -0.1,
+                }
+            }
+        }
+
     }
 }

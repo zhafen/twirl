@@ -19,15 +19,17 @@ void Scene::loadFromJson(const std::string& file_path) {
     json json_data = json::parse(file);
 
     // Loop through and parse entities
+    std::unordered_map<std::string, entt::entity> entity_map;
     for (const auto& [entity_name, entity_json] : json_data.items()) {
-        parseEntity(entity_name, entity_json);
+        parseEntity(entity_name, entity_json, entity_map);
     }
 }
 
-void Scene::parseEntity(const std::string entity_name, const json& entity_json) {
-    // Create an entity and store its name
+void Scene::parseEntity(const std::string entity_name, const json& entity_json, std::unordered_map<std::string, entt::entity>& entity_map) {
+    // Create an entity and store its name and ID
     auto entity = registry.create();
     registry.emplace<MetadataComp>(entity, entity_name);
+    entity_map[entity_name] = entity;
 
     json components = entity_json["components"];
 
@@ -54,6 +56,8 @@ void Scene::parseEntity(const std::string entity_name, const json& entity_json) 
             registry.emplace<SpawnComp>(entity);
         } else if (comp_key == "PairwiseForceComp") {
             auto comp_inst = comp.template get<PairwiseForceComp>();
+            comp_inst.target_entity = entity_map.at(comp.at("target_entity"));
+            comp_inst.source_entity = entity_map.at(comp.at("source_entity"));
             registry.emplace<PairwiseForceComp>(entity, comp_inst);
         } else if (comp_key == "CollisionComp") {
             auto comp_inst = comp.template get<CollisionComp>();

@@ -29,21 +29,32 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_FLOAT_EQ(pc.vel.y, 2.0f);
             EXPECT_FLOAT_EQ(pc.force.x, 0.0f);
             EXPECT_FLOAT_EQ(pc.force.y, 0.0f);
+
             auto& dfc = scene.registry.get<DragForceComp>(entity);
             EXPECT_FLOAT_EQ(dfc.drag_coefficient, 0.05f);
             EXPECT_FLOAT_EQ(dfc.drag_power, 2.5f);
+
             auto& dc = scene.registry.get<DurabilityComp>(entity);
             EXPECT_FLOAT_EQ(dc.durability, 1.0f);
             EXPECT_FLOAT_EQ(dc.durability_loss_per_collision, 0.34f);
             EXPECT_FLOAT_EQ(dc.durability_regen_rate, 0.0f);
             EXPECT_EQ(dc.delete_at_zero, false);
+
             auto& rc = scene.registry.get<RenderComp>(entity);
             EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L);
             auto fill_color = rc.shape.getFillColor();
-            EXPECT_EQ(fill_color.r, 128);
+            EXPECT_EQ(fill_color.r, 255);
             EXPECT_EQ(fill_color.g, 128);
             EXPECT_EQ(fill_color.b, 128);
             EXPECT_EQ(fill_color.a, 255);
+
+            auto& sc = scene.registry.get<SpawnComp>(entity);
+            EXPECT_EQ(sizeof(sc), sizeof(SpawnComp));
+
+            auto& swc = scene.registry.get<StopWatchComp>(entity);
+            EXPECT_FLOAT_EQ(swc.current_time, 0.0f);
+            EXPECT_FLOAT_EQ(swc.end_time, 1.0f);
+            EXPECT_EQ(swc.end_reached, false);
         } else if (mc.name == "beacon") {
             // Assert that MouseButtonReleasedComp is an empty struct
             auto& mbrc = scene.registry.get<MouseButtonReleasedComp>(entity);

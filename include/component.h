@@ -89,11 +89,19 @@ struct PairwiseForceComp {
         float distance_scaling = 1.0f;  // in units of cfg.L
     } params;
 };
+inline void from_json(const nlohmann::json& j, PairwiseForceComp& pfc) {
+    pfc.params.magnitude = j.at("params").value("magnitude", -1.0f);
+    pfc.params.softening = j.at("params").value("softening", 0.0f);
+    pfc.params.power = j.at("params").value("power", 2.0f);
+    pfc.params.min_distance = j.at("params").value("min_distance", 0.1f);
+    pfc.params.distance_scaling = j.at("params").value("distance_scaling", 1.0f);
+}
 
 struct CollisionComp {
     entt::entity entity1;
     entt::entity entity2;
 };
+inline void from_json(const nlohmann::json& j, CollisionComp& cc) {}
 
 // Very general component for applying a function to pairs of entities
 struct PairwiseFunctionComp {
@@ -124,12 +132,22 @@ struct UIComp {
 
     float* tracked_value;
 };
+inline void from_json(const nlohmann::json& j, UIComp& uic) {
+    uic.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f));
+    uic.size = j.value("size", sf::Vector2f(0.0f, 0.0f));
+    uic.tracked_value = nullptr;  // Assuming tracked_value is set elsewhere
+}
 
 struct StopWatchComp {
     float current_time = 0.0f;
     float end_time = 1.0f;
     bool end_reached = false;
 };
+inline void from_json(const nlohmann::json& j, StopWatchComp& swc) {
+    swc.current_time = j.value("current_time", 0.0f);
+    swc.end_time = j.value("end_time", 1.0f);
+    swc.end_reached = j.value("end_reached", false);
+}
 
 }  // namespace twirl
 

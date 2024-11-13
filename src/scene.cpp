@@ -1,9 +1,10 @@
 #include "scene.h"
-#include "component.h"
 
 #include <filesystem>
 #include <fstream>
 #include <nlohmann/json.hpp>
+
+#include "component.h"
 using json = nlohmann::json;
 
 namespace twirl {
@@ -42,13 +43,34 @@ void Scene::parseEntity(const std::string entity_name, const json& entity_json) 
             registry.emplace<DurabilityComp>(entity, comp_inst);
         } else if (comp_key == "MouseButtonReleasedComp") {
             registry.emplace<MouseButtonReleasedComp>(entity);
-            } else if (comp_key == "RenderComp") {
-                auto comp_inst = comp.template get<RenderComp>();
-                registry.emplace<RenderComp>(entity, comp_inst);
+        } else if (comp_key == "RenderComp") {
+            auto comp_inst = comp.template get<RenderComp>();
+            registry.emplace<RenderComp>(entity, comp_inst);
+        } else if (comp_key == "EnemyComp") {
+            registry.emplace<EnemyComp>(entity);
+        } else if (comp_key == "DeleteComp") {
+            registry.emplace<DeleteComp>(entity);
+        } else if (comp_key == "SpawnComp") {
+            registry.emplace<SpawnComp>(entity);
+        } else if (comp_key == "PairwiseForceComp") {
+            auto comp_inst = comp.template get<PairwiseForceComp>();
+            registry.emplace<PairwiseForceComp>(entity, comp_inst);
+        } else if (comp_key == "CollisionComp") {
+            auto comp_inst = comp.template get<CollisionComp>();
+            registry.emplace<CollisionComp>(entity, comp_inst);
+        } else if (comp_key == "PairwiseFunctionComp") {
+            // Assuming PairwiseFunctionComp has a default constructor
+            registry.emplace<PairwiseFunctionComp>(entity);
+        } else if (comp_key == "UIComp") {
+            auto comp_inst = comp.template get<UIComp>();
+            registry.emplace<UIComp>(entity, comp_inst);
+        } else if (comp_key == "StopWatchComp") {
+            auto comp_inst = comp.template get<StopWatchComp>();
+            registry.emplace<StopWatchComp>(entity, comp_inst);
         } else {
             throw std::runtime_error("Unknown component key: " + comp_key);
         }
     }
 }
 
-} // namespace twirl
+}  // namespace twirl

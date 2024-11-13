@@ -21,6 +21,9 @@ struct Config {
     static constexpr float dx = V * dt;
 };
 
+// Make global
+inline Config cfg;
+
 } // namespace twirl
 
 #endif  // CONFIG_H

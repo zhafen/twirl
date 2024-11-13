@@ -1,8 +1,10 @@
+#include "config.h"
+#include "component.h"
+#include "scene.h"
+
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
 #include <entt/entt.hpp>
-#include "scene.h"
-#include "component.h"
 
 using namespace twirl;
 
@@ -35,6 +37,12 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_FLOAT_EQ(dc.durability_loss_per_collision, 0.34f);
             EXPECT_FLOAT_EQ(dc.durability_regen_rate, 0.0f);
             EXPECT_EQ(dc.delete_at_zero, false);
+            auto& rc = scene.registry.get<RenderComp>(entity);
+            EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L);
+            auto fill_color = rc.shape.getFillColor();
+            EXPECT_EQ(fill_color.r, 255);
+            EXPECT_EQ(fill_color.g, 255);
+            EXPECT_EQ(fill_color.b, 255);
         } else if (mc.name == "beacon") {
             // Assert that MouseButtonReleasedComp is an empty struct
             auto& mbrc = scene.registry.get<MouseButtonReleasedComp>(entity);

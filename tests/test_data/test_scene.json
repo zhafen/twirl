@@ -13,6 +13,10 @@
             },
             "DurabilityComp": {
                 "delete_at_zero": false
+            },
+            "RenderComp": {
+                "radius": 1.0,
+                "fill_color": [255, 255, 255]
             }
         }
     },

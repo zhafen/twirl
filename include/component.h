@@ -54,9 +54,12 @@ struct DurabilityComp {
     float durability_regen_rate = 0.0f;
     bool delete_at_zero = true;
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(DurabilityComp, durability,
-                                   durability_loss_per_collision, durability_regen_rate,
-                                   delete_at_zero);
+inline void from_json(const nlohmann::json& j, DurabilityComp& dc) {
+    dc.durability = j.value("durability", 1.0f);
+    dc.durability_loss_per_collision = j.value("durability_loss_per_collision", 0.34f);
+    dc.durability_regen_rate = j.value("durability_regen_rate", 0.0f);
+    dc.delete_at_zero = j.value("delete_at_zero", true);
+}
 
 struct MouseButtonReleasedComp {};
 

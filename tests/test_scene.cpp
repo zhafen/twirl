@@ -30,8 +30,14 @@ TEST(SceneTest, LoadFromJson) {
             auto& dfc = scene.registry.get<DragForceComp>(entity);
             EXPECT_FLOAT_EQ(dfc.drag_coefficient, 0.05f);
             EXPECT_FLOAT_EQ(dfc.drag_power, 2.5f);
-            auto& mbrc = scene.registry.get<MouseButtonReleasedComp>(entity);
+            auto& dc = scene.registry.get<DurabilityComp>(entity);
+            EXPECT_FLOAT_EQ(dc.durability, 1.0f);
+            EXPECT_FLOAT_EQ(dc.durability_loss_per_collision, 0.34f);
+            EXPECT_FLOAT_EQ(dc.durability_regen_rate, 0.0f);
+            EXPECT_EQ(dc.delete_at_zero, false);
+        } else if (mc.name == "beacon") {
             // Assert that MouseButtonReleasedComp is an empty struct
+            auto& mbrc = scene.registry.get<MouseButtonReleasedComp>(entity);
             EXPECT_EQ(sizeof(mbrc), sizeof(MouseButtonReleasedComp));
         } else {
             FAIL() << "Unexpected entity name: " << mc.name;

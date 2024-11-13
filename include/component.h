@@ -47,9 +47,9 @@ struct PhysicsComp {
 // Have to define this without a macro because of the vector types
 inline void from_json(const nlohmann::json& j, PhysicsComp& pc) {
     pc.mass = j.value("mass", 1.0f);
-    pc.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f));
-    pc.vel = j.value("vel", sf::Vector2f(0.0f, 0.0f));
-    pc.force = j.value("force", sf::Vector2f(0.0f, 0.0f));
+    pc.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f)) * cfg.L;
+    pc.vel = j.value("vel", sf::Vector2f(0.0f, 0.0f)) * cfg.V;
+    pc.force = j.value("force", sf::Vector2f(0.0f, 0.0f)) * cfg.A;
     pc.collided = j.value("collided", false);
 }
 
@@ -114,9 +114,13 @@ struct RenderComp {
 };
 inline void from_json(const nlohmann::json& j, RenderComp& rc) {
     auto radius = j.value("radius", 1.0f) * cfg.L;
+    auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;
     auto fill_color = j.value("fill_color", sf::Color::White);
+    auto outline_color = j.value("fill_color", sf::Color::Black);
     rc.shape = TwirlCircleShape(radius);
+    rc.shape.setOutlineThickness(outline_thickness);
     rc.shape.setFillColor(fill_color);
+    rc.shape.setOutlineColor(fill_color);
     rc.zorder = j.value("zorder", 0);
 }
 

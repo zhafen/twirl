@@ -72,9 +72,9 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L / 2.f);
             EXPECT_FLOAT_EQ(rc.shape.getOutlineThickness(), cfg.L / 10.f);
             auto fill_color = rc.shape.getOutlineColor();
-            EXPECT_EQ(fill_color.r, 255);
-            EXPECT_EQ(fill_color.g, 255);
-            EXPECT_EQ(fill_color.b, 255);
+            EXPECT_EQ(fill_color.r, 0);
+            EXPECT_EQ(fill_color.g, 0);
+            EXPECT_EQ(fill_color.b, 0);
             EXPECT_EQ(fill_color.a, 255);
         } else {
             FAIL() << "Unexpected entity name: " << mc.name;

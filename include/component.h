@@ -9,12 +9,19 @@
 #include "config.h"
 #include "shape.h"
 
+// from_json functions for sfml types
 namespace sf {
 inline void from_json(const nlohmann::json& j, sf::Vector2f& v) {
     v.x = j.at(0).get<float>();
     v.y = j.at(1).get<float>();
 }
+inline void from_json(const nlohmann::json& j, sf::Color& c) {
+    c.r = j.at(0).get<uint8_t>();
+    c.g = j.at(1).get<uint8_t>();
+    c.b = j.at(2).get<uint8_t>();
+    c.a = j.at(3).get<uint8_t>();
 }
+}  // namespace sf
 
 namespace twirl {
 
@@ -97,6 +104,13 @@ struct RenderComp {
     TwirlCircleShape shape;
     int zorder = 0;
 };
+inline void from_json(const nlohmann::json& j, RenderComp& rc) {
+    auto radius = j.value("radius", 1.0f) * cfg.L;
+    auto fill_color = j.value("fill_color", sf::Color::White);
+    rc.shape = TwirlCircleShape(radius);
+    rc.shape.setFillColor(fill_color);
+    rc.zorder = j.value("zorder", 0);
+}
 
 // All UI components are assumed to be rectangles that track floats.
 // If I start using substructures, I may need to change ui_comps to holding pointers.

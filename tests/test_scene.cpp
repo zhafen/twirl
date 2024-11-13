@@ -40,9 +40,10 @@ TEST(SceneTest, LoadFromJson) {
             auto& rc = scene.registry.get<RenderComp>(entity);
             EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L);
             auto fill_color = rc.shape.getFillColor();
-            EXPECT_EQ(fill_color.r, 255);
-            EXPECT_EQ(fill_color.g, 255);
-            EXPECT_EQ(fill_color.b, 255);
+            EXPECT_EQ(fill_color.r, 128);
+            EXPECT_EQ(fill_color.g, 128);
+            EXPECT_EQ(fill_color.b, 128);
+            EXPECT_EQ(fill_color.a, 255);
         } else if (mc.name == "beacon") {
             // Assert that MouseButtonReleasedComp is an empty struct
             auto& mbrc = scene.registry.get<MouseButtonReleasedComp>(entity);

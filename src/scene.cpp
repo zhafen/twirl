@@ -42,6 +42,9 @@ void Scene::parseEntity(const std::string entity_name, const json& entity_json) 
             registry.emplace<DurabilityComp>(entity, comp_inst);
         } else if (comp_key == "MouseButtonReleasedComp") {
             registry.emplace<MouseButtonReleasedComp>(entity);
+            } else if (comp_key == "RenderComp") {
+                auto comp_inst = comp.template get<RenderComp>();
+                registry.emplace<RenderComp>(entity, comp_inst);
         } else {
             throw std::runtime_error("Unknown component key: " + comp_key);
         }

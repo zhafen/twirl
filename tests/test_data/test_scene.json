@@ -16,7 +16,7 @@
             },
             "RenderComp": {
                 "radius": 1.0,
-                "fill_color": [255, 255, 255]
+                "fill_color": [128, 128, 128, 255]
             }
         }
     },

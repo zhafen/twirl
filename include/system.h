@@ -15,40 +15,35 @@ namespace twirl {
 
 class EntitySystem {
    public:
-    EntitySystem(const Config& cfg);
+    EntitySystem() = default;
     void spawnEntities(entt::registry& registry);
     void orderEntities(entt::registry& registry);
     void deleteEntities(entt::registry& registry);
 
    private:
     bool needs_ordering = true;
-    Config cfg;
 };
 
 class PhysicsSystem {
    public:
-    PhysicsSystem(const Config& cfg);
+    PhysicsSystem() = default;
     void calculateForces(entt::registry& registry);
     void calculatePairwiseForces(entt::registry& registry);
     void update(entt::registry& registry);
     void updateStopWatches(entt::registry& registry);
     void resolveCollisions(entt::registry& registry);
     void updateDurability(entt::registry& registry);
-
-   private:
-    Config cfg;
 };
 
 class RenderSystem {
    public:
-    RenderSystem(const Config& cfg, sf::View& view, sf::View& ui_view);
+    RenderSystem(sf::View& view, sf::View& ui_view);
     void render(entt::registry& registry, sf::RenderWindow& window);
     void renderUI(sf::RenderWindow& window, entt::registry& registry);
 
    private:
     sf::View view;
     sf::View ui_view;
-    Config cfg;
 };
 
 }  // namespace twirl

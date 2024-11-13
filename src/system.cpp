@@ -1,3 +1,4 @@
+#include "config.h"
 #include "system.h"
 
 #include <SFML/Graphics.hpp>
@@ -5,8 +6,6 @@
 #include <entt/entt.hpp>
 
 namespace twirl {
-
-EntitySystem::EntitySystem(const Config& cfg) : cfg(cfg) {}
 
 void EntitySystem::spawnEntities(entt::registry& registry) {
     auto rview = registry.view<SpawnComp, StopWatchComp, PhysicsComp>();
@@ -75,8 +74,6 @@ void EntitySystem::orderEntities(entt::registry& registry) {
     // Mark that the entities are ordered
     needs_ordering = false;
 }
-
-PhysicsSystem::PhysicsSystem(const Config& cfg) : cfg(cfg) {}
 
 void PhysicsSystem::calculateForces(entt::registry& registry) {
     auto rview = registry.view<PhysicsComp, DragForceComp>();
@@ -244,8 +241,8 @@ void PhysicsSystem::updateDurability(entt::registry& registry) {
     }
 }
 
-RenderSystem::RenderSystem(const Config& cfg, sf::View& view, sf::View& ui_view)
-    : cfg(cfg), view(view), ui_view(ui_view) {}
+RenderSystem::RenderSystem(sf::View& view, sf::View& ui_view)
+    : view(view), ui_view(ui_view) {}
 
 void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     window.clear(sf::Color::Black);

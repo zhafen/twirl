@@ -1,3 +1,4 @@
+#include "config.h"
 #include "game.h"
 
 #include <SFML/Graphics.hpp>
@@ -13,14 +14,13 @@
 namespace twirl {
 
 Game::Game()
-    : cfg(),
-      window(sf::VideoMode(cfg.window_size_x, cfg.window_size_y), "twirl"),
+    : window(sf::VideoMode(cfg.window_size_x, cfg.window_size_y), "twirl"),
       view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size_x, cfg.window_size_y)),
       ui_view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size_x, cfg.window_size_y)),
       registry(),
-      render_system(cfg, view, ui_view),
-      entity_system(cfg),
-      physics_system(cfg) {
+      render_system(view, ui_view),
+      entity_system(),
+      physics_system() {
     window.setFramerateLimit(cfg.fps);
     initializeState();
 }

@@ -15,9 +15,6 @@ class Game {
     void resetGameState();
 
    private:
-    // Configuration
-    Config cfg;
-
     // Window and view
     sf::RenderWindow window;
     sf::View view;

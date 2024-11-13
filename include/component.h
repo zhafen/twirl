@@ -39,10 +39,8 @@ struct PhysicsComp {
 // Have to define this without a macro because of the vector types
 inline void from_json(const nlohmann::json& j, PhysicsComp& pc) {
     pc.mass = j.value("mass", 1.0f);
-    pc.pos.x = j.at("pos").value("x", 0.0f);
-    pc.pos.y = j.at("pos").value("y", 0.0f);
-    pc.vel.x = j.at("vel").value("x", 0.0f);
-    pc.vel.y = j.at("vel").value("y", 0.0f);
+    pc.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f));
+    pc.vel = j.value("vel", sf::Vector2f(0.0f, 0.0f));
     pc.force = j.value("force", sf::Vector2f(0.0f, 0.0f));
     pc.collided = j.value("collided", false);
 }

@@ -2,6 +2,7 @@
 #define SCENE_H
 
 #include <entt/entity/fwd.hpp>
+#include <entt/entity/registry.hpp>
 #include <nlohmann/json.hpp>
 #include <fstream>
 #include <iostream>

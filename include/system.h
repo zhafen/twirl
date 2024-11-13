@@ -6,6 +6,7 @@
 #include <unordered_map>
 
 #include <entt/entity/fwd.hpp>
+#include <entt/entity/registry.hpp>
 #include <SFML/Graphics.hpp>
 
 #include "config.h"

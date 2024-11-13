@@ -5,6 +5,7 @@
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
 #include <entt/entity/fwd.hpp>
+#include <entt/entity/registry.hpp>
 
 using namespace twirl;
 

@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <entt/entity/fwd.hpp>
+#include <entt/entity/registry.hpp>
 
 #include "system.h"
 

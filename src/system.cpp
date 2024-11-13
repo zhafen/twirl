@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <entt/entity/fwd.hpp>
+#include <entt/entity/registry.hpp>
 
 namespace twirl {
 

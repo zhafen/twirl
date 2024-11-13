@@ -5,7 +5,7 @@
 #include <memory>
 #include <unordered_map>
 
-#include <entt/entt.hpp>
+#include <entt/entity/fwd.hpp>
 #include <SFML/Graphics.hpp>
 
 #include "config.h"

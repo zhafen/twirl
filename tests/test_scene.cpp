@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
-#include <entt/entt.hpp>
+#include <entt/entity/fwd.hpp>
 
 using namespace twirl;
 

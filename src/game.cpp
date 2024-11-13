@@ -2,6 +2,7 @@
 #include "game.h"
 
 #include <SFML/Graphics.hpp>
+#include <entt/entt.hpp>
 #include <filesystem>
 #include <iostream>
 #include <random>

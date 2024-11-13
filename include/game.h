@@ -2,7 +2,7 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
-#include <entt/entt.hpp>
+#include <entt/entity/fwd.hpp>
 
 #include "system.h"
 

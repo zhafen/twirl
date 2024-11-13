@@ -2,7 +2,7 @@
 #define COMPONENT_H
 
 #include <SFML/Graphics.hpp>
-#include <entt/entt.hpp>
+#include <entt/entity/fwd.hpp>
 #include <nlohmann/json.hpp>
 #include <string>
 

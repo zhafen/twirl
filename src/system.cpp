@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <cmath>
-#include <entt/entt.hpp>
+#include <entt/entity/fwd.hpp>
 
 namespace twirl {
 

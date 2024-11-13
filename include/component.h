@@ -31,14 +31,14 @@ struct PhysicsComp {
 };
 // Have to define this without a macro because of the vector types
 inline void from_json(const nlohmann::json& j, PhysicsComp& pc) {
-    j.at("mass").get_to(pc.mass);
-    j.at("pos").at("x").get_to(pc.pos.x);
-    j.at("pos").at("y").get_to(pc.pos.y);
-    j.at("vel").at("x").get_to(pc.vel.x);
-    j.at("vel").at("y").get_to(pc.vel.y);
-    j.at("force").at("x").get_to(pc.force.x);
-    j.at("force").at("y").get_to(pc.force.y);
-    j.at("collided").get_to(pc.collided);
+    pc.mass = j.value("mass", 1.0f);
+    pc.pos.x = j.at("pos").value("x", 0.0f);
+    pc.pos.y = j.at("pos").value("y", 0.0f);
+    pc.vel.x = j.at("vel").value("x", 0.0f);
+    pc.vel.y = j.at("vel").value("y", 0.0f);
+    pc.force.x = j.at("force").value("x", 0.0f);
+    pc.force.y = j.at("force").value("y", 0.0f);
+    pc.collided = j.value("collided", false);
 }
 
 struct DragForceComp {
@@ -46,7 +46,10 @@ struct DragForceComp {
     float drag_coefficient = 0.01f;
     float drag_power = 2.0f;
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(DragForceComp, drag_coefficient, drag_power);
+inline void from_json(const nlohmann::json& j, DragForceComp& dfc) {
+    dfc.drag_coefficient = j.value("drag_coefficient", 0.01f);
+    dfc.drag_power = j.value("drag_power", 2.0f);
+}
 
 struct DurabilityComp {
     float durability = 1.0f;

@@ -23,10 +23,10 @@ TEST(SceneTest, LoadFromJson) {
         if (mc.name == "player") {
             auto& pc = scene.registry.get<PhysicsComp>(entity);
             EXPECT_FLOAT_EQ(pc.mass, 10.0f);
-            EXPECT_FLOAT_EQ(pc.pos.x, 1.0f);
-            EXPECT_FLOAT_EQ(pc.pos.y, 1.0f);
-            EXPECT_FLOAT_EQ(pc.vel.x, 2.0f);
-            EXPECT_FLOAT_EQ(pc.vel.y, 2.0f);
+            EXPECT_FLOAT_EQ(pc.pos.x, 1.0f * cfg.L);
+            EXPECT_FLOAT_EQ(pc.pos.y, 1.0f * cfg.L);
+            EXPECT_FLOAT_EQ(pc.vel.x, 2.0f * cfg.V);
+            EXPECT_FLOAT_EQ(pc.vel.y, 2.0f * cfg.V);
             EXPECT_FLOAT_EQ(pc.force.x, 0.0f);
             EXPECT_FLOAT_EQ(pc.force.y, 0.0f);
 
@@ -56,9 +56,26 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_FLOAT_EQ(swc.end_time, 1.0f);
             EXPECT_EQ(swc.end_reached, false);
         } else if (mc.name == "beacon") {
-            // Assert that MouseButtonReleasedComp is an empty struct
+            auto& pc = scene.registry.get<PhysicsComp>(entity);
+            EXPECT_FLOAT_EQ(pc.mass, 1.0f);
+            EXPECT_FLOAT_EQ(pc.pos.x, 0.0f);
+            EXPECT_FLOAT_EQ(pc.pos.y, 0.0f);
+            EXPECT_FLOAT_EQ(pc.vel.x, 0.0f);
+            EXPECT_FLOAT_EQ(pc.vel.y, 0.0f);
+            EXPECT_FLOAT_EQ(pc.force.x, 0.0f);
+            EXPECT_FLOAT_EQ(pc.force.y, 0.0f);
+
             auto& mbrc = scene.registry.get<MouseButtonReleasedComp>(entity);
             EXPECT_EQ(sizeof(mbrc), sizeof(MouseButtonReleasedComp));
+
+            auto& rc = scene.registry.get<RenderComp>(entity);
+            EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L / 2.f);
+            EXPECT_FLOAT_EQ(rc.shape.getOutlineThickness(), cfg.L / 10.f);
+            auto fill_color = rc.shape.getOutlineColor();
+            EXPECT_EQ(fill_color.r, 255);
+            EXPECT_EQ(fill_color.g, 255);
+            EXPECT_EQ(fill_color.b, 255);
+            EXPECT_EQ(fill_color.a, 255);
         } else {
             FAIL() << "Unexpected entity name: " << mc.name;
         }

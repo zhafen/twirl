@@ -24,7 +24,15 @@
     },
     "beacon": {
         "components": {
-            "MouseButtonReleasedComp": {}
+            "PhysicsComp": {},
+            "MouseButtonReleasedComp": {},
+            "RenderComp": {
+                "radius": 0.5,
+                "outline_thickness": 0.1,
+                "fill_color": [0, 0, 0, 255],
+                "outline_color": [255, 255, 255, 255],
+                "zorder": 1
+            }
         }
     }
 }

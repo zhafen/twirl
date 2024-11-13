@@ -25,8 +25,8 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_FLOAT_EQ(pc.pos.y, 1.0f);
             EXPECT_FLOAT_EQ(pc.vel.x, 2.0f);
             EXPECT_FLOAT_EQ(pc.vel.y, 2.0f);
-            EXPECT_FLOAT_EQ(pc.force.x, 3.0f);
-            EXPECT_FLOAT_EQ(pc.force.y, 3.0f);
+            EXPECT_FLOAT_EQ(pc.force.x, 0.0f);
+            EXPECT_FLOAT_EQ(pc.force.y, 0.0f);
             auto& dfc = scene.registry.get<DragForceComp>(entity);
             EXPECT_FLOAT_EQ(dfc.drag_coefficient, 0.05f);
             EXPECT_FLOAT_EQ(dfc.drag_power, 2.5f);

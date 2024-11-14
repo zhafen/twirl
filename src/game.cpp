@@ -1,5 +1,8 @@
 #include "config.h"
 #include "game.h"
+#include "shape.h"
+#include "system.h"
+#include "scene.h"
 
 #include <SFML/Graphics.hpp>
 #include <entt/entt.hpp>
@@ -8,9 +11,6 @@
 #include <random>
 #include <unordered_map>
 #include <vector>
-
-#include "shape.h"
-#include "system.h"
 
 namespace twirl {
 
@@ -43,124 +43,11 @@ void Game::resetGameState() {
 }
 
 void Game::initializeState() {
-    // Make player
-    player = registry.create();
-    registry.emplace<PhysicsComp>(player);
-    registry.emplace<DragForceComp>(player);
-    auto& dc = registry.emplace<DurabilityComp>(player);
-    dc.delete_at_zero = false;
-    auto& player_rc = registry.emplace<RenderComp>(player, TwirlCircleShape(cfg.L));
-    player_rc.shape.setFillColor(sf::Color::White);
-    // All spawn comps must be accompanied by a StopWatchComp that regulates
-    // the spawn rate
-    registry.emplace<SpawnComp>(player);
-    registry.emplace<StopWatchComp>(player);
 
-    // Make beacon particle for player
-    const auto beacon = registry.create();
-    registry.emplace<PhysicsComp>(beacon);
-    registry.emplace<MouseButtonReleasedComp>(beacon);
-    auto beacon_shape = TwirlCircleShape(cfg.L / 2.f);
-    beacon_shape.setFillColor(sf::Color::Black);
-    beacon_shape.setOutlineColor(sf::Color::White);
-    beacon_shape.setOutlineThickness(cfg.L / 10.f);
-    registry.emplace<RenderComp>(beacon, beacon_shape, 1);  // zorder = 1
-
-    // Make an entity for the relationship between the player and the beacon
-    const auto rel_beacon = registry.create();
-    // This component tracks the relationship itself
-    registry.emplace<PairComp>(rel_beacon, player, beacon);
-    auto& pfc = registry.emplace<PairwiseForceComp>(rel_beacon);
-    pfc.magnitude = -0.1f;
-
-    // Make enemies
-    std::random_device rd;
-    std::mt19937 gen(rd());  // Standard random number generator
-    std::uniform_real_distribution<float> dist(-10.f * cfg.L, 10.f * cfg.L);
-    std::size_t n_enemies = 10;
-    std::vector<entt::entity> enemy_ids;
-    for (int i = 0; i < n_enemies; ++i) {
-        // Entity properties
-        auto enemy = registry.create();
-        // Flag as enemies
-        registry.emplace<EnemyComp>(enemy);
-        // They have durability
-        registry.emplace<DurabilityComp>(enemy);
-        // Randomly distributed in a square
-        auto& pc = registry.emplace<PhysicsComp>(enemy);
-        pc.pos = sf::Vector2f(dist(gen), dist(gen) - cfg.window_size_y / 2.f);
-        pc.vel = sf::Vector2f(0.f, 0.f);
-        // Affected by drag;
-        registry.emplace<DragForceComp>(enemy);
-        // Colored circles
-        auto& rc = registry.emplace<RenderComp>(enemy);
-        rc.shape = TwirlCircleShape(cfg.L);
-        rc.shape.setFillColor(sf::Color::Red);
-        rc.shape.setPosition(pc.pos);
-
-        // Relationship with other entities
-        // Pulled towards the player
-        auto relation = registry.create();
-        // First force: gravity
-        // Because of the r^-2 force drops off quickly if we don't scale it strongly
-        auto& prc = registry.emplace<PairComp>(relation, enemy, player);
-        auto& pfc = registry.emplace<PairwiseForceComp>(relation);
-        pfc.magnitude = -1.0f;
-        pfc.power = -2.0f;
-        pfc.softening = 1.0f;
-        pfc.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
-        // Second force: springs
-        auto relation2 = registry.create();
-        auto& prc2 = registry.emplace<PairComp>(relation2, enemy, player);
-        auto& pfc2 = registry.emplace<PairwiseForceComp>(relation2);
-        pfc2.magnitude = -0.1f;
-        // Collides with the player
-        auto col_id = registry.create();
-        registry.emplace<PairComp>(col_id, enemy, player);
-        registry.emplace<CollisionComp>(col_id);
-
-        // Store the enemy id
-        enemy_ids.push_back(enemy);
-    }
-    // Enemies collide with each other
-    for (auto& entity1 : enemy_ids) {
-        for (auto& entity2 : enemy_ids) {
-            if (entity1 == entity2 || entity1 > entity2) {
-            continue;
-            }
-            auto relation = registry.create();
-            registry.emplace<PairComp>(relation, entity1, entity2);
-            registry.emplace<CollisionComp>(relation);
-        }
-    }
-
-    // Make background
-    int n_bkgrd = 100;
-    for (int i = 0; i < n_bkgrd; ++i) {
-        auto bkgrd = registry.create();
-        registry.emplace<PhysicsComp>(bkgrd);
-        TwirlCircleShape shape(10.f * cfg.L * i);
-        shape.setFillColor(sf::Color(127, 127, 127));
-        shape.setOutlineThickness(cfg.L / 5.f);
-        shape.setOutlineColor(sf::Color(63, 63, 63));
-        shape.setPosition(0.f, 0.f);
-        registry.emplace<RenderComp>(bkgrd, shape, -i);
-    }
-
-    // Add a durability bar
-    auto bar = registry.create();
-    // Have to pass in a shape to the component or it crashes, unlike with RenderComp
-    // Not sure why
-    auto& uic_bar = registry.emplace<UIComp>(bar, sf::RectangleShape());
-    uic_bar.shape.setFillColor(sf::Color::White);
-    uic_bar.shape.setOutlineThickness(cfg.L / 10.f);
-    uic_bar.shape.setOutlineColor(sf::Color::Black);
-    // This is the key part where the tracked value is set
-    uic_bar.tracked_value = &registry.get<DurabilityComp>(player).durability;
-    // Have to convert the shape to a rectangle to set the size
-    uic_bar.size = sf::Vector2f(cfg.window_size_x / 2, cfg.L);
-    uic_bar.pos =
-        sf::Vector2f(-uic_bar.size.x / 2.f, -float(cfg.window_size_y) / 2.f + cfg.L);
+    // Load the scene from json
+    scene.loadFromJson("../../tests/test_data/test_scene.json");
+    player = std::move(scene.name_to_entity_map.at("player"));
+    registry = std::move(scene.registry);
 }
 
 void Game::handleEvents() {

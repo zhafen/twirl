@@ -5,6 +5,7 @@
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/registry.hpp>
 
+#include "scene.h"
 #include "system.h"
 
 namespace twirl {
@@ -22,13 +23,9 @@ class Game {
     sf::View ui_view;
 
     // ECS
+    Scene scene;
     entt::registry registry;
-
-    // Entities
     entt::entity player;
-
-    // UI Elements
-    sf::Text announcement;
 
     // Systems
     EntitySystem entity_system;

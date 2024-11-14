@@ -25,10 +25,7 @@ class Game {
     entt::registry registry;
 
     // Entities
-    // EntityId entityCounter = 0;
-    // EntityId entityRelationshipCounter = 0;
     entt::entity player;
-    // std::vector<sf::CircleShape> bkgrd_circles;
 
     // UI Elements
     sf::Text announcement;
@@ -39,10 +36,7 @@ class Game {
     PhysicsSystem physics_system;
 
     // Methods
-    int createEntity();
-    int createEntityRelationship();
     void initializeState();
-    void initializeStateOld();
     void handleEvents();
     void update();
     void render();

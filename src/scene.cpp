@@ -53,17 +53,16 @@ void Scene::parseEntity(const std::string entity_name, const json& entity_json) 
             registry.emplace<DeleteComp>(entity);
         } else if (comp_key == "SpawnComp") {
             registry.emplace<SpawnComp>(entity);
-        } else if (comp_key == "PairwiseForceComp") {
-            auto comp_inst = comp.template get<PairwiseForceComp>();
+        } else if (comp_key == "PairComp") {
+            auto comp_inst = PairComp();
             comp_inst.target_entity = name_to_entity_map.at(comp.at("target_entity"));
             comp_inst.source_entity = name_to_entity_map.at(comp.at("source_entity"));
+            registry.emplace<PairComp>(entity, comp_inst);
+        } else if (comp_key == "PairwiseForceComp") {
+            auto comp_inst = comp.template get<PairwiseForceComp>();
             registry.emplace<PairwiseForceComp>(entity, comp_inst);
         } else if (comp_key == "CollisionComp") {
-            auto comp_inst = comp.template get<CollisionComp>();
-            registry.emplace<CollisionComp>(entity, comp_inst);
-        } else if (comp_key == "PairwiseFunctionComp") {
-            // Assuming PairwiseFunctionComp has a default constructor
-            registry.emplace<PairwiseFunctionComp>(entity);
+            registry.emplace<CollisionComp>(entity);
         } else if (comp_key == "UIComp") {
             auto comp_inst = comp.template get<UIComp>();
             registry.emplace<UIComp>(entity, comp_inst);

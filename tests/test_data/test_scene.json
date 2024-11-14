@@ -37,12 +37,12 @@
     },
     "player-beacon force": {
         "components": {
-            "PairwiseForceComp": {
+            "PairComp": {
                 "target_entity": "player",
-                "source_entity": "beacon",
-                "params": {
-                    "magnitude": -0.1
-                }
+                "source_entity": "beacon"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -0.1
             }
         }
 

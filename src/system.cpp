@@ -44,9 +44,9 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
 
             // Target the enemies
             auto relation = registry.create();
-            auto& pfc =
-                registry.emplace<PairwiseForceComp>(relation, projectile, enemy);
-            pfc.params.magnitude = -1.0f;
+            auto& prc = registry.emplace<PairComp>(relation, enemy, projectile);
+            auto& pfc = registry.emplace<PairwiseForceComp>(relation);
+            pfc.magnitude = -1.0f;
 
             // Collide with the enemies
             auto col_id = registry.create();
@@ -87,33 +87,33 @@ void PhysicsSystem::calculateForces(entt::registry& registry) {
 }
 
 void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
-    auto rview = registry.view<PairwiseForceComp>();
+    auto rview = registry.view<PairComp, PairwiseForceComp>();
 
-    for (auto [rel_id, pfc] : rview.each()) {
+    for (auto [rel_id, prc, pfc] : rview.each()) {
         // Check if the entities still exist
-        if (!registry.valid(pfc.target_entity) || !registry.valid(pfc.source_entity)) {
+        if (!registry.valid(prc.target_entity) || !registry.valid(prc.source_entity)) {
             registry.destroy(rel_id);
             continue;
         }
 
         // We use try_get here because the target or source could be deleted.
         // A possible alternative may be to use listeners.
-        auto& target_pc = registry.get<PhysicsComp>(pfc.target_entity);
-        auto& source_pc = registry.get<PhysicsComp>(pfc.source_entity);
+        auto& target_pc = registry.get<PhysicsComp>(prc.target_entity);
+        auto& source_pc = registry.get<PhysicsComp>(prc.source_entity);
 
         auto r = target_pc.pos - source_pc.pos;
         auto r_mag = sqrtf(r.x * r.x + r.y * r.y);
 
         // Don't calculate the distance when too close
-        if (r_mag < pfc.params.min_distance * cfg.L) {
+        if (r_mag < pfc.min_distance * cfg.L) {
             continue;
         }
 
         auto r_hat = r / r_mag;
         auto r_mag_scaled =
-            (r_mag / cfg.L + pfc.params.softening) / pfc.params.distance_scaling;
-        auto force = cfg.A * r_hat * pfc.params.magnitude * target_pc.mass *
-                     source_pc.mass * powf(r_mag_scaled, pfc.params.power);
+            (r_mag / cfg.L + pfc.softening) / pfc.distance_scaling;
+        auto force = cfg.A * r_hat * pfc.magnitude * target_pc.mass *
+                     source_pc.mass * powf(r_mag_scaled, pfc.power);
 
         target_pc.force += force;
     }
@@ -173,20 +173,20 @@ void PhysicsSystem::updateStopWatches(entt::registry& registry) {
  * components.
  */
 void PhysicsSystem::resolveCollisions(entt::registry& registry) {
-    for (auto [rel_id, cc] : registry.view<CollisionComp>().each()) {
+    for (auto [rel_id, prc, cc] : registry.view<PairComp, CollisionComp>().each()) {
         // Check if the entities still exist
-        if (!registry.valid(cc.entity1) || !registry.valid(cc.entity2)) {
+        if (!registry.valid(prc.target_entity) || !registry.valid(prc.source_entity)) {
             registry.destroy(rel_id);
             continue;
         }
 
         // Get first entity
-        auto& entity1 = cc.entity1;
+        auto& entity1 = prc.target_entity;
         auto& pc1 = registry.get<PhysicsComp>(entity1);
         auto& rc1 = registry.get<RenderComp>(entity1);
 
         // Get second entity
-        auto& entity2 = cc.entity2;
+        auto& entity2 = prc.source_entity;
         auto& pc2 = registry.get<PhysicsComp>(entity2);
         auto& rc2 = registry.get<RenderComp>(entity2);
 

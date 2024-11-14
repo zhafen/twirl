@@ -69,8 +69,9 @@ void Game::initializeState() {
     // Make an entity for the relationship between the player and the beacon
     const auto rel_beacon = registry.create();
     // This component tracks the relationship itself
-    auto& pfc = registry.emplace<PairwiseForceComp>(rel_beacon, player, beacon);
-    pfc.params.magnitude = -0.1f;
+    registry.emplace<PairComp>(rel_beacon, player, beacon);
+    auto& pfc = registry.emplace<PairwiseForceComp>(rel_beacon);
+    pfc.magnitude = -0.1f;
 
     // Make enemies
     std::random_device rd;
@@ -102,17 +103,17 @@ void Game::initializeState() {
         auto relation = registry.create();
         // First force: gravity
         // Because of the r^-2 force drops off quickly if we don't scale it strongly
-        auto& pfc = registry.emplace<PairwiseForceComp>(relation, enemy, player);
-        pfc.params.magnitude = -1.0f;
-        pfc.params.power = -2.0f;
-        pfc.params.softening = 1.0f;
-        pfc.params.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
+        auto& prc = registry.emplace<PairComp>(relation, enemy, player);
+        auto& pfc = registry.emplace<PairwiseForceComp>(relation);
+        pfc.magnitude = -1.0f;
+        pfc.power = -2.0f;
+        pfc.softening = 1.0f;
+        pfc.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
         // Second force: springs
         auto relation2 = registry.create();
+        auto& prc2 = registry.emplace<PairComp>(relation2, enemy, player);
         auto& pfc2 = registry.emplace<PairwiseForceComp>(relation2);
-        pfc2.target_entity = enemy;
-        pfc2.source_entity = player;
-        pfc2.params.magnitude = -0.1f;
+        pfc2.magnitude = -0.1f;
         // Collides with the player
         auto col_id = registry.create();
         registry.emplace<CollisionComp>(col_id, enemy, player);
@@ -123,11 +124,12 @@ void Game::initializeState() {
     // Enemies collide with each other
     for (auto& entity1 : enemy_ids) {
         for (auto& entity2 : enemy_ids) {
-            if (entity1 == entity2) {
-                continue;
+            if (entity1 == entity2 || entity1 > entity2) {
+            continue;
             }
             auto relation = registry.create();
-            registry.emplace<CollisionComp>(relation, entity1, entity2);
+            registry.emplace<PairComp>(relation, entity1, entity2);
+            registry.emplace<CollisionComp>(relation);
         }
     }
 

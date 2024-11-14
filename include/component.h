@@ -78,35 +78,27 @@ inline void from_json(const nlohmann::json& j, DurabilityComp& dc) {
 
 struct MouseButtonReleasedComp {};
 
-struct PairwiseForceComp {
+struct PairComp {
     entt::entity target_entity;
     entt::entity source_entity;
-    struct Params {
-        float magnitude = -1.0f;  // In units of cfg.A
-        float softening = 0.0f;
-        float power = 2.0f;
-        float min_distance = 0.1f;      // In units of cfg.L
-        float distance_scaling = 1.0f;  // in units of cfg.L
-    } params;
+};
+
+struct PairwiseForceComp {
+    float magnitude = -1.0f;  // In units of cfg.A
+    float softening = 0.0f;
+    float power = 2.0f;
+    float min_distance = 0.1f;      // In units of cfg.L
+    float distance_scaling = 1.0f;  // in units of cfg.L
 };
 inline void from_json(const nlohmann::json& j, PairwiseForceComp& pfc) {
-    pfc.params.magnitude = j.at("params").value("magnitude", -1.0f);
-    pfc.params.softening = j.at("params").value("softening", 0.0f);
-    pfc.params.power = j.at("params").value("power", 2.0f);
-    pfc.params.min_distance = j.at("params").value("min_distance", 0.1f);
-    pfc.params.distance_scaling = j.at("params").value("distance_scaling", 1.0f);
+    pfc.magnitude = j.value("magnitude", -1.0f);
+    pfc.softening = j.value("softening", 0.0f);
+    pfc.power = j.value("power", 2.0f);
+    pfc.min_distance = j.value("min_distance", 0.1f);
+    pfc.distance_scaling = j.value("distance_scaling", 1.0f);
 }
 
-struct CollisionComp {
-    entt::entity entity1;
-    entt::entity entity2;
-};
-inline void from_json(const nlohmann::json& j, CollisionComp& cc) {}
-
-// Very general component for applying a function to pairs of entities
-struct PairwiseFunctionComp {
-    // std::function<void(EntityId entity1, EntityId entity2, Comps& components)> func;
-};
+struct CollisionComp {};
 
 struct RenderComp {
     TwirlCircleShape shape;

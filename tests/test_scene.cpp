@@ -79,15 +79,18 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_EQ(fill_color.g, 0);
             EXPECT_EQ(fill_color.b, 0);
             EXPECT_EQ(fill_color.a, 255);
+
         } else if (mc.name == "player-beacon force") {
+            auto& prc = scene.registry.get<PairComp>(entity);
+            EXPECT_EQ(prc.target_entity, scene.name_to_entity_map.at("player"));
+            EXPECT_EQ(prc.source_entity, scene.name_to_entity_map.at("beacon"));
+
             auto& pfc = scene.registry.get<PairwiseForceComp>(entity);
-            EXPECT_EQ(pfc.target_entity, scene.name_to_entity_map.at("player"));
-            EXPECT_EQ(pfc.source_entity, scene.name_to_entity_map.at("beacon"));
-            EXPECT_FLOAT_EQ(pfc.params.magnitude, -0.1f);
-            EXPECT_FLOAT_EQ(pfc.params.softening, 0.0f);
-            EXPECT_FLOAT_EQ(pfc.params.power, 2.0f);
-            EXPECT_FLOAT_EQ(pfc.params.min_distance, 0.1f);
-            EXPECT_FLOAT_EQ(pfc.params.distance_scaling, 1.0f);
+            EXPECT_FLOAT_EQ(pfc.magnitude, -0.1f);
+            EXPECT_FLOAT_EQ(pfc.softening, 0.0f);
+            EXPECT_FLOAT_EQ(pfc.power, 2.0f);
+            EXPECT_FLOAT_EQ(pfc.min_distance, 0.1f);
+            EXPECT_FLOAT_EQ(pfc.distance_scaling, 1.0f);
         } else {
             FAIL() << "Unexpected entity name: " << mc.name;
         }

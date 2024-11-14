@@ -116,7 +116,8 @@ void Game::initializeState() {
         pfc2.magnitude = -0.1f;
         // Collides with the player
         auto col_id = registry.create();
-        registry.emplace<CollisionComp>(col_id, enemy, player);
+        registry.emplace<PairComp>(col_id, enemy, player);
+        registry.emplace<CollisionComp>(col_id);
 
         // Store the enemy id
         enemy_ids.push_back(enemy);

@@ -50,7 +50,8 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
 
             // Collide with the enemies
             auto col_id = registry.create();
-            registry.emplace<CollisionComp>(col_id, projectile, enemy);
+            auto& prc2 = registry.emplace<PairComp>(col_id, enemy, projectile);
+            registry.emplace<CollisionComp>(col_id);
         }
     }
 }

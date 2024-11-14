@@ -45,6 +45,14 @@
                 "magnitude": -0.1
             }
         }
-
+    },
+    "background": {
+        "components": {
+            "RenderComp": {
+                "fill_color": [0, 0, 0, 255],
+                "zorder": -1
+            }
+        },
+        "count": 100
     }
 }

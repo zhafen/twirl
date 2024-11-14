@@ -19,9 +19,9 @@ TEST(SceneTest, LoadFromJson) {
     // Loop through the registry and check if the components are added correctly
     auto rview = scene.registry.view<MetadataComp>();
     ASSERT_FALSE(rview.empty());
-    entt::entity player;
-    entt::entity beacon;
     for (auto [entity, mc] : rview.each()) {
+        // Check that the name mappings are correct
+        EXPECT_EQ(entity, scene.name_to_entity_map.at(mc.name));
 
         if (mc.name == "player") {
             auto& pc = scene.registry.get<PhysicsComp>(entity);
@@ -81,8 +81,8 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_EQ(fill_color.a, 255);
         } else if (mc.name == "player-beacon force") {
             auto& pfc = scene.registry.get<PairwiseForceComp>(entity);
-            EXPECT_EQ(pfc.target_entity, player);
-            EXPECT_EQ(pfc.target_entity, beacon);
+            EXPECT_EQ(pfc.target_entity, scene.name_to_entity_map.at("player"));
+            EXPECT_EQ(pfc.source_entity, scene.name_to_entity_map.at("beacon"));
             EXPECT_FLOAT_EQ(pfc.params.magnitude, -0.1f);
             EXPECT_FLOAT_EQ(pfc.params.softening, 0.0f);
             EXPECT_FLOAT_EQ(pfc.params.power, 2.0f);

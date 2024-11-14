@@ -17,10 +17,10 @@ class Scene {
     void loadFromJson(const std::string& filePath);
 
     entt::registry registry;
+    std::unordered_map<std::string, entt::entity> name_to_entity_map;
 
    private:
-    void parseEntity(std::string entity_name, const nlohmann::json& entity_json,
-                     std::unordered_map<std::string, entt::entity>& entity_map);
+    void parseEntity(std::string entity_name, const nlohmann::json& entity_json);
 };
 
 }  // namespace twirl

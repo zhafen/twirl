@@ -2,10 +2,16 @@
     "player": {
         "components": {
             "PhysicsComp": {
-                "mass" : 10.0,
-                "pos" : [1.0, 1.0],
-                "vel" : [2.0, 2.0],
-                "collided" : true
+                "mass": 10.0,
+                "pos": [
+                    1.0,
+                    1.0
+                ],
+                "vel": [
+                    2.0,
+                    2.0
+                ],
+                "collided": true
             },
             "DragForceComp": {
                 "drag_coefficient": 0.05,
@@ -16,7 +22,12 @@
             },
             "RenderComp": {
                 "radius": 1.0,
-                "fill_color": [255, 128, 128, 255]
+                "fill_color": [
+                    255,
+                    128,
+                    128,
+                    255
+                ]
             },
             "SpawnComp": {},
             "StopWatchComp": {}
@@ -29,8 +40,18 @@
             "RenderComp": {
                 "radius": 0.5,
                 "outline_thickness": 0.1,
-                "fill_color": [0, 0, 0, 255],
-                "outline_color": [255, 255, 255, 255],
+                "fill_color": [
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                "outline_color": [
+                    255,
+                    255,
+                    255,
+                    255
+                ],
                 "zorder": 1
             }
         }
@@ -46,13 +67,2204 @@
             }
         }
     },
-    "background": {
+    "bkgrd.0": {
         "components": {
+            "PhysicsComp": {},
             "RenderComp": {
-                "fill_color": [0, 0, 0, 255],
+                "radius": 0.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": 0
+            }
+        }
+    },
+    "bkgrd.1": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 10.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
                 "zorder": -1
             }
-        },
-        "count": 100
+        }
+    },
+    "bkgrd.2": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 20.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -2
+            }
+        }
+    },
+    "bkgrd.3": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 30.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -3
+            }
+        }
+    },
+    "bkgrd.4": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 40.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -4
+            }
+        }
+    },
+    "bkgrd.5": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 50.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -5
+            }
+        }
+    },
+    "bkgrd.6": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 60.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -6
+            }
+        }
+    },
+    "bkgrd.7": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 70.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -7
+            }
+        }
+    },
+    "bkgrd.8": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 80.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -8
+            }
+        }
+    },
+    "bkgrd.9": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 90.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -9
+            }
+        }
+    },
+    "bkgrd.10": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 100.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -10
+            }
+        }
+    },
+    "bkgrd.11": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 110.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -11
+            }
+        }
+    },
+    "bkgrd.12": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 120.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -12
+            }
+        }
+    },
+    "bkgrd.13": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 130.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -13
+            }
+        }
+    },
+    "bkgrd.14": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 140.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -14
+            }
+        }
+    },
+    "bkgrd.15": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 150.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -15
+            }
+        }
+    },
+    "bkgrd.16": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 160.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -16
+            }
+        }
+    },
+    "bkgrd.17": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 170.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -17
+            }
+        }
+    },
+    "bkgrd.18": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 180.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -18
+            }
+        }
+    },
+    "bkgrd.19": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 190.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -19
+            }
+        }
+    },
+    "bkgrd.20": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 200.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -20
+            }
+        }
+    },
+    "bkgrd.21": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 210.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -21
+            }
+        }
+    },
+    "bkgrd.22": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 220.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -22
+            }
+        }
+    },
+    "bkgrd.23": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 230.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -23
+            }
+        }
+    },
+    "bkgrd.24": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 240.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -24
+            }
+        }
+    },
+    "bkgrd.25": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 250.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -25
+            }
+        }
+    },
+    "bkgrd.26": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 260.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -26
+            }
+        }
+    },
+    "bkgrd.27": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 270.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -27
+            }
+        }
+    },
+    "bkgrd.28": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 280.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -28
+            }
+        }
+    },
+    "bkgrd.29": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 290.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -29
+            }
+        }
+    },
+    "bkgrd.30": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 300.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -30
+            }
+        }
+    },
+    "bkgrd.31": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 310.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -31
+            }
+        }
+    },
+    "bkgrd.32": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 320.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -32
+            }
+        }
+    },
+    "bkgrd.33": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 330.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -33
+            }
+        }
+    },
+    "bkgrd.34": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 340.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -34
+            }
+        }
+    },
+    "bkgrd.35": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 350.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -35
+            }
+        }
+    },
+    "bkgrd.36": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 360.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -36
+            }
+        }
+    },
+    "bkgrd.37": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 370.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -37
+            }
+        }
+    },
+    "bkgrd.38": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 380.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -38
+            }
+        }
+    },
+    "bkgrd.39": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 390.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -39
+            }
+        }
+    },
+    "bkgrd.40": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 400.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -40
+            }
+        }
+    },
+    "bkgrd.41": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 410.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -41
+            }
+        }
+    },
+    "bkgrd.42": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 420.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -42
+            }
+        }
+    },
+    "bkgrd.43": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 430.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -43
+            }
+        }
+    },
+    "bkgrd.44": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 440.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -44
+            }
+        }
+    },
+    "bkgrd.45": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 450.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -45
+            }
+        }
+    },
+    "bkgrd.46": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 460.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -46
+            }
+        }
+    },
+    "bkgrd.47": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 470.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -47
+            }
+        }
+    },
+    "bkgrd.48": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 480.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -48
+            }
+        }
+    },
+    "bkgrd.49": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 490.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -49
+            }
+        }
+    },
+    "bkgrd.50": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 500.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -50
+            }
+        }
+    },
+    "bkgrd.51": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 510.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -51
+            }
+        }
+    },
+    "bkgrd.52": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 520.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -52
+            }
+        }
+    },
+    "bkgrd.53": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 530.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -53
+            }
+        }
+    },
+    "bkgrd.54": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 540.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -54
+            }
+        }
+    },
+    "bkgrd.55": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 550.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -55
+            }
+        }
+    },
+    "bkgrd.56": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 560.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -56
+            }
+        }
+    },
+    "bkgrd.57": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 570.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -57
+            }
+        }
+    },
+    "bkgrd.58": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 580.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -58
+            }
+        }
+    },
+    "bkgrd.59": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 590.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -59
+            }
+        }
+    },
+    "bkgrd.60": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 600.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -60
+            }
+        }
+    },
+    "bkgrd.61": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 610.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -61
+            }
+        }
+    },
+    "bkgrd.62": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 620.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -62
+            }
+        }
+    },
+    "bkgrd.63": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 630.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -63
+            }
+        }
+    },
+    "bkgrd.64": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 640.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -64
+            }
+        }
+    },
+    "bkgrd.65": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 650.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -65
+            }
+        }
+    },
+    "bkgrd.66": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 660.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -66
+            }
+        }
+    },
+    "bkgrd.67": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 670.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -67
+            }
+        }
+    },
+    "bkgrd.68": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 680.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -68
+            }
+        }
+    },
+    "bkgrd.69": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 690.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -69
+            }
+        }
+    },
+    "bkgrd.70": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 700.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -70
+            }
+        }
+    },
+    "bkgrd.71": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 710.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -71
+            }
+        }
+    },
+    "bkgrd.72": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 720.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -72
+            }
+        }
+    },
+    "bkgrd.73": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 730.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -73
+            }
+        }
+    },
+    "bkgrd.74": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 740.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -74
+            }
+        }
+    },
+    "bkgrd.75": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 750.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -75
+            }
+        }
+    },
+    "bkgrd.76": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 760.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -76
+            }
+        }
+    },
+    "bkgrd.77": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 770.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -77
+            }
+        }
+    },
+    "bkgrd.78": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 780.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -78
+            }
+        }
+    },
+    "bkgrd.79": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 790.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -79
+            }
+        }
+    },
+    "bkgrd.80": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 800.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -80
+            }
+        }
+    },
+    "bkgrd.81": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 810.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -81
+            }
+        }
+    },
+    "bkgrd.82": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 820.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -82
+            }
+        }
+    },
+    "bkgrd.83": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 830.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -83
+            }
+        }
+    },
+    "bkgrd.84": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 840.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -84
+            }
+        }
+    },
+    "bkgrd.85": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 850.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -85
+            }
+        }
+    },
+    "bkgrd.86": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 860.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -86
+            }
+        }
+    },
+    "bkgrd.87": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 870.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -87
+            }
+        }
+    },
+    "bkgrd.88": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 880.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -88
+            }
+        }
+    },
+    "bkgrd.89": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 890.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -89
+            }
+        }
+    },
+    "bkgrd.90": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 900.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -90
+            }
+        }
+    },
+    "bkgrd.91": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 910.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -91
+            }
+        }
+    },
+    "bkgrd.92": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 920.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -92
+            }
+        }
+    },
+    "bkgrd.93": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 930.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -93
+            }
+        }
+    },
+    "bkgrd.94": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 940.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -94
+            }
+        }
+    },
+    "bkgrd.95": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 950.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -95
+            }
+        }
+    },
+    "bkgrd.96": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 960.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -96
+            }
+        }
+    },
+    "bkgrd.97": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 970.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -97
+            }
+        }
+    },
+    "bkgrd.98": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 980.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -98
+            }
+        }
+    },
+    "bkgrd.99": {
+        "components": {
+            "PhysicsComp": {},
+            "RenderComp": {
+                "radius": 990.0,
+                "outline_thickness": 0.2,
+                "fill_color": [
+                    127,
+                    127,
+                    127,
+                    255
+                ],
+                "outline_color": [
+                    63,
+                    63,
+                    63,
+                    255
+                ],
+                "zorder": -99
+            }
+        }
     }
 }

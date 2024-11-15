@@ -1,8 +1,9 @@
 #include "config.h"
 #include "system.h"
 
-#include <SFML/Graphics.hpp>
+#include <iostream>
 #include <cmath>
+#include <SFML/Graphics.hpp>
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/registry.hpp>
 
@@ -26,11 +27,14 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
             continue;
         }
 
+        // DEBUG
+        auto& mc = registry.get<MetadataComp>(entity);
+
         // Create a new projectile
         auto projectile = registry.create();
         registry.emplace<MetadataComp>(projectile, "projectile");
         auto& pc = registry.emplace<PhysicsComp>(projectile);
-        pc.mass = 0.01f;
+        pc.mass = 1.0f;
         pc.pos = source_pc.pos;
         auto& dc = registry.emplace<DurabilityComp>(projectile);
         dc.durability_loss_per_collision = 1.01f;
@@ -47,7 +51,7 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
             auto relation = registry.create();
             auto& prc = registry.emplace<PairComp>(relation, projectile, enemy);
             auto& pfc = registry.emplace<PairwiseForceComp>(relation);
-            pfc.magnitude = -1.0f;
+            pfc.magnitude = -0.1f;
 
             // Collide with the enemies
             auto col_id = registry.create();
@@ -111,6 +115,13 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
             continue;
         }
 
+        // DEBUG
+        auto& mc_target = registry.get<MetadataComp>(prc.target_entity);
+        auto& mc_source = registry.get<MetadataComp>(prc.source_entity);
+        if (mc_target.name == "projectile") {
+            int n = 0;
+        }
+
         auto r_hat = r / r_mag;
         auto r_mag_scaled =
             (r_mag / cfg.L + pfc.softening) / pfc.distance_scaling;
@@ -125,11 +136,22 @@ void PhysicsSystem::update(entt::registry& registry) {
     auto rview = registry.view<PhysicsComp>();
 
     for (auto [entity, pc] : rview.each()) {
+        // DEBUG
+        auto& mc = registry.get<MetadataComp>(entity);
+        if (std::isnan(pc.pos.x) || std::isnan(pc.pos.y)) {
+            std::cout << "NAN position for " << mc.name << std::endl;
+        }
+
         // Update using leapfrog algorithm
         auto acc = pc.force / pc.mass;
         pc.vel += acc * cfg.dt / 2.f;
         pc.pos += pc.vel * cfg.dt;
         pc.vel += acc * cfg.dt / 2.f;
+
+        // DEBUG
+        if (mc.name == "projectile") {
+            pc.force = {0.f, 0.f};
+        }
 
         // Reset force
         pc.force = {0.f, 0.f};

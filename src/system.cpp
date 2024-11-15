@@ -191,6 +191,10 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
         auto& pc2 = registry.get<PhysicsComp>(entity2);
         auto& rc2 = registry.get<RenderComp>(entity2);
 
+        // DEBUG
+        auto& mc1 = registry.get<MetadataComp>(entity1);
+        auto& mc2 = registry.get<MetadataComp>(entity2);
+
         // Check for collision, assuming circular shapes for all objects that collide
         auto r_12 = pc2.pos - pc1.pos;
         auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
@@ -220,6 +224,9 @@ void PhysicsSystem::updateDurability(entt::registry& registry) {
     for (auto [entity, dc, rc, pc] : rview.each()) {
         // Regenerate durability
         dc.durability += dc.durability_regen_rate * cfg.dt;
+
+        // DEBUG
+        auto& mc = registry.get<MetadataComp>(entity);
 
         // Apply durability loss from collision
         if (pc.collided) {

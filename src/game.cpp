@@ -37,6 +37,7 @@ void Game::run() {
 void Game::resetGameState() {
     // Delete all entities
     registry.clear();
+    // TODO: Need to clear the scene too.
 
     // Reinitialize the game state
     initializeState();

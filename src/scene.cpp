@@ -5,7 +5,7 @@
 #include <nlohmann/json.hpp>
 
 #include "component.h"
-using json = nlohmann::json;
+using json = nlohmann::ordered_json;
 
 namespace twirl {
 

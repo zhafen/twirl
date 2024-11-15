@@ -20,7 +20,7 @@ class Scene {
     std::unordered_map<std::string, entt::entity> name_to_entity_map;
 
    private:
-    void parseEntity(std::string entity_name, const nlohmann::json& entity_json);
+    void parseEntity(std::string entity_name, const nlohmann::ordered_json& entity_json);
 };
 
 }  // namespace twirl

@@ -72,8 +72,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -49.05493244168775,
-                    -88.05357652389746
+                    -96.54950574026246,
+                    -21.744992119433064
                 ],
                 "vel": [
                     0.0,
@@ -93,17 +93,14 @@
             }
         }
     },
-    "player-enemy.000 inverse square": {
+    "player-enemy.000 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
                 "target_entity": "enemy.000"
             },
             "PairwiseForceComp": {
-                "magnitude": -0.1,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 10.0
+                "magnitude": -0.05
             }
         }
     },
@@ -121,8 +118,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    30.453782977495877,
-                    -27.936805330187184
+                    -15.314294480426554,
+                    -61.146312986216536
                 ],
                 "vel": [
                     0.0,
@@ -142,17 +139,14 @@
             }
         }
     },
-    "player-enemy.001 inverse square": {
+    "player-enemy.001 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
                 "target_entity": "enemy.001"
             },
             "PairwiseForceComp": {
-                "magnitude": -0.1,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 10.0
+                "magnitude": -0.05
             }
         }
     },
@@ -170,8 +164,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -37.30279580410587,
-                    -23.46975792859908
+                    30.508719616640207,
+                    -118.93473487674571
                 ],
                 "vel": [
                     0.0,
@@ -191,17 +185,14 @@
             }
         }
     },
-    "player-enemy.002 inverse square": {
+    "player-enemy.002 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
                 "target_entity": "enemy.002"
             },
             "PairwiseForceComp": {
-                "magnitude": -0.1,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 10.0
+                "magnitude": -0.05
             }
         }
     },
@@ -219,8 +210,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    2.270029874490831,
-                    -93.22971266902829
+                    -10.739105418910484,
+                    -38.77212313558819
                 ],
                 "vel": [
                     0.0,
@@ -240,17 +231,14 @@
             }
         }
     },
-    "player-enemy.003 inverse square": {
+    "player-enemy.003 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
                 "target_entity": "enemy.003"
             },
             "PairwiseForceComp": {
-                "magnitude": -0.1,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 10.0
+                "magnitude": -0.05
             }
         }
     },
@@ -268,8 +256,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    76.29327715122193,
-                    -37.5311928033435
+                    -66.03063041059764,
+                    -109.0216162112892
                 ],
                 "vel": [
                     0.0,
@@ -289,17 +277,14 @@
             }
         }
     },
-    "player-enemy.004 inverse square": {
+    "player-enemy.004 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
                 "target_entity": "enemy.004"
             },
             "PairwiseForceComp": {
-                "magnitude": -0.1,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 10.0
+                "magnitude": -0.05
             }
         }
     },
@@ -317,8 +302,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -39.14840384370222,
-                    -96.03148978878224
+                    -67.82687132996408,
+                    -27.375714467400513
                 ],
                 "vel": [
                     0.0,
@@ -338,17 +323,14 @@
             }
         }
     },
-    "player-enemy.005 inverse square": {
+    "player-enemy.005 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
                 "target_entity": "enemy.005"
             },
             "PairwiseForceComp": {
-                "magnitude": -0.1,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 10.0
+                "magnitude": -0.05
             }
         }
     },
@@ -366,8 +348,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -76.40723487073501,
-                    -54.23450397216381
+                    61.00357681349459,
+                    -76.95932277022791
                 ],
                 "vel": [
                     0.0,
@@ -387,17 +369,14 @@
             }
         }
     },
-    "player-enemy.006 inverse square": {
+    "player-enemy.006 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
                 "target_entity": "enemy.006"
             },
             "PairwiseForceComp": {
-                "magnitude": -0.1,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 10.0
+                "magnitude": -0.05
             }
         }
     },
@@ -415,8 +394,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    2.83859657597354,
-                    -25.7471301077983
+                    40.17830171681044,
+                    -75.76841223879491
                 ],
                 "vel": [
                     0.0,
@@ -436,17 +415,14 @@
             }
         }
     },
-    "player-enemy.007 inverse square": {
+    "player-enemy.007 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
                 "target_entity": "enemy.007"
             },
             "PairwiseForceComp": {
-                "magnitude": -0.1,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 10.0
+                "magnitude": -0.05
             }
         }
     },
@@ -464,8 +440,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    54.16823706803322,
-                    -97.46309292661178
+                    92.14867019684306,
+                    -110.00277016038626
                 ],
                 "vel": [
                     0.0,
@@ -485,17 +461,14 @@
             }
         }
     },
-    "player-enemy.008 inverse square": {
+    "player-enemy.008 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
                 "target_entity": "enemy.008"
             },
             "PairwiseForceComp": {
-                "magnitude": -0.1,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 10.0
+                "magnitude": -0.05
             }
         }
     },
@@ -513,8 +486,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -90.42033018790971,
-                    -90.21767069447384
+                    65.82980578134459,
+                    -103.81992169793838
                 ],
                 "vel": [
                     0.0,
@@ -534,17 +507,14 @@
             }
         }
     },
-    "player-enemy.009 inverse square": {
+    "player-enemy.009 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
                 "target_entity": "enemy.009"
             },
             "PairwiseForceComp": {
-                "magnitude": -0.1,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 10.0
+                "magnitude": -0.05
             }
         }
     },

@@ -72,8 +72,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -9.722937889471034,
-                    -23.87554093175396
+                    -5.037707599156647,
+                    -25.245867348630647
                 ],
                 "vel": [
                     0.0,
@@ -102,7 +102,7 @@
                 "target_entity": "enemy.000"
             },
             "PairwiseForceComp": {
-                "magnitude": -1.0,
+                "magnitude": -0.1,
                 "power": -2.0,
                 "softening": 1.0,
                 "distance_scaling": 10.0
@@ -134,8 +134,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -0.20973578432084494,
-                    -20.015440336612563
+                    -4.221991888209439,
+                    -29.176504721418155
                 ],
                 "vel": [
                     0.0,
@@ -164,7 +164,7 @@
                 "target_entity": "enemy.001"
             },
             "PairwiseForceComp": {
-                "magnitude": -1.0,
+                "magnitude": -0.1,
                 "power": -2.0,
                 "softening": 1.0,
                 "distance_scaling": 10.0
@@ -196,8 +196,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    7.934956415042539,
-                    -27.809071428480234
+                    -1.7580408211952943,
+                    -22.620697616633535
                 ],
                 "vel": [
                     0.0,
@@ -226,7 +226,7 @@
                 "target_entity": "enemy.002"
             },
             "PairwiseForceComp": {
-                "magnitude": -1.0,
+                "magnitude": -0.1,
                 "power": -2.0,
                 "softening": 1.0,
                 "distance_scaling": 10.0
@@ -258,8 +258,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -1.6700263348741817,
-                    -21.179020082444243
+                    -3.3394954406879034,
+                    -20.23245636094771
                 ],
                 "vel": [
                     0.0,
@@ -288,7 +288,7 @@
                 "target_entity": "enemy.003"
             },
             "PairwiseForceComp": {
-                "magnitude": -1.0,
+                "magnitude": -0.1,
                 "power": -2.0,
                 "softening": 1.0,
                 "distance_scaling": 10.0
@@ -320,8 +320,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -1.945178233492788,
-                    -27.63461583221226
+                    2.7940443496994245,
+                    -27.286504280123104
                 ],
                 "vel": [
                     0.0,
@@ -350,7 +350,7 @@
                 "target_entity": "enemy.004"
             },
             "PairwiseForceComp": {
-                "magnitude": -1.0,
+                "magnitude": -0.1,
                 "power": -2.0,
                 "softening": 1.0,
                 "distance_scaling": 10.0
@@ -382,8 +382,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    8.455747356398028,
-                    -24.249049699961155
+                    -2.2533284641461337,
+                    -25.644909129036748
                 ],
                 "vel": [
                     0.0,
@@ -412,7 +412,7 @@
                 "target_entity": "enemy.005"
             },
             "PairwiseForceComp": {
-                "magnitude": -1.0,
+                "magnitude": -0.1,
                 "power": -2.0,
                 "softening": 1.0,
                 "distance_scaling": 10.0
@@ -444,8 +444,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -2.708377962081334,
-                    -25.781320637412765
+                    6.366828304811488,
+                    -24.912005230867756
                 ],
                 "vel": [
                     0.0,
@@ -474,7 +474,7 @@
                 "target_entity": "enemy.006"
             },
             "PairwiseForceComp": {
-                "magnitude": -1.0,
+                "magnitude": -0.1,
                 "power": -2.0,
                 "softening": 1.0,
                 "distance_scaling": 10.0
@@ -506,8 +506,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -5.040963532756358,
-                    -28.949868760545463
+                    1.6057337232673135,
+                    -21.807529180477264
                 ],
                 "vel": [
                     0.0,
@@ -536,7 +536,7 @@
                 "target_entity": "enemy.007"
             },
             "PairwiseForceComp": {
-                "magnitude": -1.0,
+                "magnitude": -0.1,
                 "power": -2.0,
                 "softening": 1.0,
                 "distance_scaling": 10.0
@@ -568,8 +568,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    6.498605797705203,
-                    -20.45070330411116
+                    -3.0297746471575877,
+                    -26.913183237221787
                 ],
                 "vel": [
                     0.0,
@@ -598,7 +598,7 @@
                 "target_entity": "enemy.008"
             },
             "PairwiseForceComp": {
-                "magnitude": -1.0,
+                "magnitude": -0.1,
                 "power": -2.0,
                 "softening": 1.0,
                 "distance_scaling": 10.0
@@ -630,8 +630,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    0.34516309901646025,
-                    -26.528585307639702
+                    2.283013831200302,
+                    -20.056147643263472
                 ],
                 "vel": [
                     0.0,
@@ -660,7 +660,7 @@
                 "target_entity": "enemy.009"
             },
             "PairwiseForceComp": {
-                "magnitude": -1.0,
+                "magnitude": -0.1,
                 "power": -2.0,
                 "softening": 1.0,
                 "distance_scaling": 10.0

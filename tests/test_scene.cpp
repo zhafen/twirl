@@ -2,6 +2,7 @@
 #include "component.h"
 #include "scene.h"
 
+#include <regex>
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
 #include <entt/entity/fwd.hpp>
@@ -74,11 +75,11 @@ TEST(SceneTest, LoadFromJson) {
             auto& rc = scene.registry.get<RenderComp>(entity);
             EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L / 2.f);
             EXPECT_FLOAT_EQ(rc.shape.getOutlineThickness(), cfg.L / 10.f);
-            auto fill_color = rc.shape.getOutlineColor();
-            EXPECT_EQ(fill_color.r, 0);
-            EXPECT_EQ(fill_color.g, 0);
-            EXPECT_EQ(fill_color.b, 0);
-            EXPECT_EQ(fill_color.a, 255);
+            auto outline_color = rc.shape.getOutlineColor();
+            EXPECT_EQ(outline_color.r, 255);
+            EXPECT_EQ(outline_color.g, 255);
+            EXPECT_EQ(outline_color.b, 255);
+            EXPECT_EQ(outline_color.a, 255);
 
         } else if (mc.name == "player-beacon force") {
             auto& prc = scene.registry.get<PairComp>(entity);
@@ -91,6 +92,21 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_FLOAT_EQ(pfc.power, 2.0f);
             EXPECT_FLOAT_EQ(pfc.min_distance, 0.1f);
             EXPECT_FLOAT_EQ(pfc.distance_scaling, 1.0f);
+        } else if (std::regex_match(mc.name, std::regex("bkgrd.*"))) {
+            // Background circle
+            auto& rc = scene.registry.get<RenderComp>(entity);
+
+            auto fill_color = rc.shape.getFillColor();
+            EXPECT_EQ(fill_color.r, 127);
+            EXPECT_EQ(fill_color.g, 127);
+            EXPECT_EQ(fill_color.b, 127);
+            EXPECT_EQ(fill_color.a, 255);
+
+            auto outline_color = rc.shape.getOutlineColor();
+            EXPECT_EQ(outline_color.r, 63);
+            EXPECT_EQ(outline_color.g, 63);
+            EXPECT_EQ(outline_color.b, 63);
+            EXPECT_EQ(outline_color.a, 255);
         } else {
             FAIL() << "Unexpected entity name: " << mc.name;
         }

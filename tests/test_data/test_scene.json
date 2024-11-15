@@ -72,8 +72,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -1.7693019004030184,
-                    -24.496482250462343
+                    -9.722937889471034,
+                    -23.87554093175396
                 ],
                 "vel": [
                     0.0,
@@ -98,8 +98,8 @@
     "player-enemy.000 inverse square": {
         "components": {
             "PairComp": {
-                "target_entity": "player",
-                "source_entity": "enemy.000"
+                "source_entity": "player",
+                "target_entity": "enemy.000"
             },
             "PairwiseForceComp": {
                 "magnitude": -1.0,
@@ -109,13 +109,33 @@
             }
         }
     },
+    "player-enemy.000 spring": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.000"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -0.1
+            }
+        }
+    },
+    "player-enemy.000 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.000"
+            },
+            "CollisionComp": {}
+        }
+    },
     "enemy.001": {
         "components": {
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    7.784611762374421,
-                    -21.176263411298457
+                    -0.20973578432084494,
+                    -20.015440336612563
                 ],
                 "vel": [
                     0.0,
@@ -140,8 +160,8 @@
     "player-enemy.001 inverse square": {
         "components": {
             "PairComp": {
-                "target_entity": "player",
-                "source_entity": "enemy.001"
+                "source_entity": "player",
+                "target_entity": "enemy.001"
             },
             "PairwiseForceComp": {
                 "magnitude": -1.0,
@@ -151,13 +171,33 @@
             }
         }
     },
+    "player-enemy.001 spring": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.001"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -0.1
+            }
+        }
+    },
+    "player-enemy.001 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.001"
+            },
+            "CollisionComp": {}
+        }
+    },
     "enemy.002": {
         "components": {
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    0.5141344533224412,
-                    -28.665290789652992
+                    7.934956415042539,
+                    -27.809071428480234
                 ],
                 "vel": [
                     0.0,
@@ -182,8 +222,8 @@
     "player-enemy.002 inverse square": {
         "components": {
             "PairComp": {
-                "target_entity": "player",
-                "source_entity": "enemy.002"
+                "source_entity": "player",
+                "target_entity": "enemy.002"
             },
             "PairwiseForceComp": {
                 "magnitude": -1.0,
@@ -193,13 +233,33 @@
             }
         }
     },
+    "player-enemy.002 spring": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.002"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -0.1
+            }
+        }
+    },
+    "player-enemy.002 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.002"
+            },
+            "CollisionComp": {}
+        }
+    },
     "enemy.003": {
         "components": {
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    2.0899160794193428,
-                    -26.009031247275857
+                    -1.6700263348741817,
+                    -21.179020082444243
                 ],
                 "vel": [
                     0.0,
@@ -224,8 +284,8 @@
     "player-enemy.003 inverse square": {
         "components": {
             "PairComp": {
-                "target_entity": "player",
-                "source_entity": "enemy.003"
+                "source_entity": "player",
+                "target_entity": "enemy.003"
             },
             "PairwiseForceComp": {
                 "magnitude": -1.0,
@@ -235,13 +295,33 @@
             }
         }
     },
+    "player-enemy.003 spring": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.003"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -0.1
+            }
+        }
+    },
+    "player-enemy.003 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.003"
+            },
+            "CollisionComp": {}
+        }
+    },
     "enemy.004": {
         "components": {
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    2.213819728899919,
-                    -23.78527404949952
+                    -1.945178233492788,
+                    -27.63461583221226
                 ],
                 "vel": [
                     0.0,
@@ -266,8 +346,8 @@
     "player-enemy.004 inverse square": {
         "components": {
             "PairComp": {
-                "target_entity": "player",
-                "source_entity": "enemy.004"
+                "source_entity": "player",
+                "target_entity": "enemy.004"
             },
             "PairwiseForceComp": {
                 "magnitude": -1.0,
@@ -277,13 +357,33 @@
             }
         }
     },
+    "player-enemy.004 spring": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.004"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -0.1
+            }
+        }
+    },
+    "player-enemy.004 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.004"
+            },
+            "CollisionComp": {}
+        }
+    },
     "enemy.005": {
         "components": {
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    8.787187424208007,
-                    -27.205483101260064
+                    8.455747356398028,
+                    -24.249049699961155
                 ],
                 "vel": [
                     0.0,
@@ -308,8 +408,8 @@
     "player-enemy.005 inverse square": {
         "components": {
             "PairComp": {
-                "target_entity": "player",
-                "source_entity": "enemy.005"
+                "source_entity": "player",
+                "target_entity": "enemy.005"
             },
             "PairwiseForceComp": {
                 "magnitude": -1.0,
@@ -319,13 +419,33 @@
             }
         }
     },
+    "player-enemy.005 spring": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.005"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -0.1
+            }
+        }
+    },
+    "player-enemy.005 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.005"
+            },
+            "CollisionComp": {}
+        }
+    },
     "enemy.006": {
         "components": {
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -1.260448737223129,
-                    -22.679274744828938
+                    -2.708377962081334,
+                    -25.781320637412765
                 ],
                 "vel": [
                     0.0,
@@ -350,8 +470,8 @@
     "player-enemy.006 inverse square": {
         "components": {
             "PairComp": {
-                "target_entity": "player",
-                "source_entity": "enemy.006"
+                "source_entity": "player",
+                "target_entity": "enemy.006"
             },
             "PairwiseForceComp": {
                 "magnitude": -1.0,
@@ -361,13 +481,33 @@
             }
         }
     },
+    "player-enemy.006 spring": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.006"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -0.1
+            }
+        }
+    },
+    "player-enemy.006 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.006"
+            },
+            "CollisionComp": {}
+        }
+    },
     "enemy.007": {
         "components": {
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -3.832655104717486,
-                    -23.71584759979055
+                    -5.040963532756358,
+                    -28.949868760545463
                 ],
                 "vel": [
                     0.0,
@@ -392,8 +532,8 @@
     "player-enemy.007 inverse square": {
         "components": {
             "PairComp": {
-                "target_entity": "player",
-                "source_entity": "enemy.007"
+                "source_entity": "player",
+                "target_entity": "enemy.007"
             },
             "PairwiseForceComp": {
                 "magnitude": -1.0,
@@ -403,13 +543,33 @@
             }
         }
     },
+    "player-enemy.007 spring": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.007"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -0.1
+            }
+        }
+    },
+    "player-enemy.007 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.007"
+            },
+            "CollisionComp": {}
+        }
+    },
     "enemy.008": {
         "components": {
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -3.293932164606968,
-                    -23.754483417807325
+                    6.498605797705203,
+                    -20.45070330411116
                 ],
                 "vel": [
                     0.0,
@@ -434,8 +594,8 @@
     "player-enemy.008 inverse square": {
         "components": {
             "PairComp": {
-                "target_entity": "player",
-                "source_entity": "enemy.008"
+                "source_entity": "player",
+                "target_entity": "enemy.008"
             },
             "PairwiseForceComp": {
                 "magnitude": -1.0,
@@ -445,13 +605,33 @@
             }
         }
     },
+    "player-enemy.008 spring": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.008"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -0.1
+            }
+        }
+    },
+    "player-enemy.008 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.008"
+            },
+            "CollisionComp": {}
+        }
+    },
     "enemy.009": {
         "components": {
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    5.96642963305446,
-                    -26.604379004286635
+                    0.34516309901646025,
+                    -26.528585307639702
                 ],
                 "vel": [
                     0.0,
@@ -476,8 +656,8 @@
     "player-enemy.009 inverse square": {
         "components": {
             "PairComp": {
-                "target_entity": "player",
-                "source_entity": "enemy.009"
+                "source_entity": "player",
+                "target_entity": "enemy.009"
             },
             "PairwiseForceComp": {
                 "magnitude": -1.0,
@@ -485,6 +665,431 @@
                 "softening": 1.0,
                 "distance_scaling": 10.0
             }
+        }
+    },
+    "player-enemy.009 spring": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.009"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -0.1
+            }
+        }
+    },
+    "player-enemy.009 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "player",
+                "target_entity": "enemy.009"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.000-enemy.001 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.000",
+                "target_entity": "enemy.001"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.000-enemy.002 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.000",
+                "target_entity": "enemy.002"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.000-enemy.003 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.000",
+                "target_entity": "enemy.003"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.000-enemy.004 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.000",
+                "target_entity": "enemy.004"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.000-enemy.005 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.000",
+                "target_entity": "enemy.005"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.000-enemy.006 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.000",
+                "target_entity": "enemy.006"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.000-enemy.007 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.000",
+                "target_entity": "enemy.007"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.000-enemy.008 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.000",
+                "target_entity": "enemy.008"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.000-enemy.009 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.000",
+                "target_entity": "enemy.009"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.001-enemy.002 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.001",
+                "target_entity": "enemy.002"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.001-enemy.003 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.001",
+                "target_entity": "enemy.003"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.001-enemy.004 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.001",
+                "target_entity": "enemy.004"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.001-enemy.005 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.001",
+                "target_entity": "enemy.005"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.001-enemy.006 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.001",
+                "target_entity": "enemy.006"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.001-enemy.007 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.001",
+                "target_entity": "enemy.007"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.001-enemy.008 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.001",
+                "target_entity": "enemy.008"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.001-enemy.009 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.001",
+                "target_entity": "enemy.009"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.002-enemy.003 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.002",
+                "target_entity": "enemy.003"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.002-enemy.004 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.002",
+                "target_entity": "enemy.004"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.002-enemy.005 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.002",
+                "target_entity": "enemy.005"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.002-enemy.006 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.002",
+                "target_entity": "enemy.006"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.002-enemy.007 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.002",
+                "target_entity": "enemy.007"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.002-enemy.008 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.002",
+                "target_entity": "enemy.008"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.002-enemy.009 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.002",
+                "target_entity": "enemy.009"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.003-enemy.004 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.003",
+                "target_entity": "enemy.004"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.003-enemy.005 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.003",
+                "target_entity": "enemy.005"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.003-enemy.006 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.003",
+                "target_entity": "enemy.006"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.003-enemy.007 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.003",
+                "target_entity": "enemy.007"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.003-enemy.008 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.003",
+                "target_entity": "enemy.008"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.003-enemy.009 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.003",
+                "target_entity": "enemy.009"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.004-enemy.005 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.004",
+                "target_entity": "enemy.005"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.004-enemy.006 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.004",
+                "target_entity": "enemy.006"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.004-enemy.007 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.004",
+                "target_entity": "enemy.007"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.004-enemy.008 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.004",
+                "target_entity": "enemy.008"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.004-enemy.009 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.004",
+                "target_entity": "enemy.009"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.005-enemy.006 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.005",
+                "target_entity": "enemy.006"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.005-enemy.007 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.005",
+                "target_entity": "enemy.007"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.005-enemy.008 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.005",
+                "target_entity": "enemy.008"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.005-enemy.009 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.005",
+                "target_entity": "enemy.009"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.006-enemy.007 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.006",
+                "target_entity": "enemy.007"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.006-enemy.008 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.006",
+                "target_entity": "enemy.008"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.006-enemy.009 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.006",
+                "target_entity": "enemy.009"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.007-enemy.008 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.007",
+                "target_entity": "enemy.008"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.007-enemy.009 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.007",
+                "target_entity": "enemy.009"
+            },
+            "CollisionComp": {}
+        }
+    },
+    "enemy.008-enemy.009 collision": {
+        "components": {
+            "PairComp": {
+                "source_entity": "enemy.008",
+                "target_entity": "enemy.009"
+            },
+            "CollisionComp": {}
         }
     },
     "bkgrd.000": {

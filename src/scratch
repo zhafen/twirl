@@ -1,44 +1,4 @@
 
-    // Make enemies
-    std::size_t n_enemies = 10;
-    for (int i = 0; i < n_enemies; ++i) {
-        // They have durability
-
-        // Relationship with other entities
-        // Pulled towards the player
-        auto relation = registry.create();
-        // First force: gravity
-        // Because of the r^-2 force drops off quickly if we don't scale it strongly
-        auto& prc = registry.emplace<PairComp>(relation, enemy, player);
-        auto& pfc = registry.emplace<PairwiseForceComp>(relation);
-        pfc.magnitude = -1.0f;
-        pfc.power = -2.0f;
-        pfc.softening = 1.0f;
-        pfc.distance_scaling = cfg.window_size_x / 2.0f / cfg.L;
-        // Second force: springs
-        auto relation2 = registry.create();
-        auto& prc2 = registry.emplace<PairComp>(relation2, enemy, player);
-        auto& pfc2 = registry.emplace<PairwiseForceComp>(relation2);
-        pfc2.magnitude = -0.1f;
-        // Collides with the player
-        auto col_id = registry.create();
-        registry.emplace<PairComp>(col_id, enemy, player);
-        registry.emplace<CollisionComp>(col_id);
-
-        // Store the enemy id
-        enemy_ids.push_back(enemy);
-    }
-    // Enemies collide with each other
-    for (auto& entity1 : enemy_ids) {
-        for (auto& entity2 : enemy_ids) {
-            if (entity1 == entity2 || entity1 > entity2) {
-            continue;
-            }
-            auto relation = registry.create();
-            registry.emplace<PairComp>(relation, entity1, entity2);
-            registry.emplace<CollisionComp>(relation);
-        }
-    }
 
     // Add a durability bar
     auto bar = registry.create();

@@ -42,15 +42,15 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
         for (auto [enemy, ec] : rview.each()) {
             auto& pc = registry.get<PhysicsComp>(enemy);
 
-            // Target the enemies
+            // Be pulled towards the enemies
             auto relation = registry.create();
-            auto& prc = registry.emplace<PairComp>(relation, enemy, projectile);
+            auto& prc = registry.emplace<PairComp>(relation, projectile, enemy);
             auto& pfc = registry.emplace<PairwiseForceComp>(relation);
             pfc.magnitude = -1.0f;
 
             // Collide with the enemies
             auto col_id = registry.create();
-            auto& prc2 = registry.emplace<PairComp>(col_id, enemy, projectile);
+            auto& prc2 = registry.emplace<PairComp>(col_id, projectile, enemy);
             registry.emplace<CollisionComp>(col_id);
         }
     }

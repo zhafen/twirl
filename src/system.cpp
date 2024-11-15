@@ -28,6 +28,7 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
 
         // Create a new projectile
         auto projectile = registry.create();
+        registry.emplace<MetadataComp>(projectile, "projectile");
         auto& pc = registry.emplace<PhysicsComp>(projectile);
         pc.mass = 0.01f;
         pc.pos = source_pc.pos;

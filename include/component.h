@@ -108,11 +108,11 @@ inline void from_json(const nlohmann::json& j, RenderComp& rc) {
     auto radius = j.value("radius", 1.0f) * cfg.L;
     auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;
     auto fill_color = j.value("fill_color", sf::Color::White);
-    auto outline_color = j.value("fill_color", sf::Color::Black);
+    auto outline_color = j.value("outline_color", sf::Color::Black);
     rc.shape = TwirlCircleShape(radius);
     rc.shape.setOutlineThickness(outline_thickness);
     rc.shape.setFillColor(fill_color);
-    rc.shape.setOutlineColor(fill_color);
+    rc.shape.setOutlineColor(outline_color);
     rc.zorder = j.value("zorder", 0);
 }
 

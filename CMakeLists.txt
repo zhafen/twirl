@@ -65,7 +65,8 @@ target_compile_features(twirl PRIVATE cxx_std_17)
 # Add tests
 add_test(NAME twirl_tests COMMAND twirl_tests)
 
-add_definitions(-DENTT_NO_ETO)
+# Trigger this to treat empty components as regular components.
+# add_definitions(-DENTT_NO_ETO)
 
 if(WIN32)
     add_custom_command(

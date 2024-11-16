@@ -52,9 +52,6 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_EQ(fill_color.b, 128);
             EXPECT_EQ(fill_color.a, 255);
 
-            auto& sc = scene.registry.get<SpawnComp>(entity);
-            EXPECT_EQ(sizeof(sc), sizeof(SpawnComp));
-
             auto& swc = scene.registry.get<StopWatchComp>(entity);
             EXPECT_FLOAT_EQ(swc.current_time, 0.0f);
             EXPECT_FLOAT_EQ(swc.end_time, 1.0f);
@@ -68,9 +65,6 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_FLOAT_EQ(pc.vel.y, 0.0f);
             EXPECT_FLOAT_EQ(pc.force.x, 0.0f);
             EXPECT_FLOAT_EQ(pc.force.y, 0.0f);
-
-            auto& mbrc = scene.registry.get<MouseButtonReleasedComp>(entity);
-            EXPECT_EQ(sizeof(mbrc), sizeof(MouseButtonReleasedComp));
 
             auto& rc = scene.registry.get<RenderComp>(entity);
             EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L / 2.f);

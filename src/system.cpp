@@ -11,7 +11,7 @@ namespace twirl {
 
 void EntitySystem::spawnEntities(entt::registry& registry) {
     auto rview = registry.view<SpawnComp, StopWatchComp, PhysicsComp>();
-    for (auto [entity, source_sc, source_swc, source_pc] : rview.each()) {
+    for (auto [entity, source_swc, source_pc] : rview.each()) {
         // Check if the end time was reached
         if (!source_swc.end_reached) {
             continue;
@@ -44,7 +44,7 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
         rc.zorder = 2;
         needs_ordering = true;
 
-        for (auto [enemy, ec] : rview.each()) {
+        for (auto enemy : rview) {
             auto& pc = registry.get<PhysicsComp>(enemy);
 
             // Be pulled towards the enemies
@@ -197,7 +197,7 @@ void PhysicsSystem::updateStopWatches(entt::registry& registry) {
  * components.
  */
 void PhysicsSystem::resolveCollisions(entt::registry& registry) {
-    for (auto [rel_id, prc, cc] : registry.view<PairComp, CollisionComp>().each()) {
+    for (auto [rel_id, prc] : registry.view<PairComp, CollisionComp>().each()) {
         // Check if the entities still exist
         if (!registry.valid(prc.target_entity) || !registry.valid(prc.source_entity)) {
             registry.destroy(rel_id);

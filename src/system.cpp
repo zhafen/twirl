@@ -1,63 +1,67 @@
-#include "config.h"
 #include "system.h"
 
-#include <iostream>
-#include <cmath>
 #include <SFML/Graphics.hpp>
+#include <cmath>
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/registry.hpp>
+#include <iostream>
+
+#include "config.h"
 
 namespace twirl {
 
 void EntitySystem::spawnEntities(entt::registry& registry) {
-    auto rview = registry.view<SpawnComp, StopWatchComp, PhysicsComp>();
-    for (auto [entity, source_swc, source_pc] : rview.each()) {
+    // If there are no enemies, then keep going
+    if (registry.view<EnemyComp>().empty()) {
+        return;
+    }
+
+    auto rview = registry.view<SceneTriggerComp, StopWatchComp>();
+    for (auto [entity, asc, swc] : rview.each()) {
         // Check if the end time was reached
-        if (!source_swc.end_reached) {
+        if (!swc.end_reached) {
             continue;
         } else {
             // Reset the stopwatch
-            source_swc.current_time = 0.0f;
-            source_swc.end_reached = false;
+            swc.current_time = 0.0f;
+            swc.end_reached = false;
         }
 
-        // If there are no enemies, then keep going
-        auto rview = registry.view<EnemyComp>();
-        if (rview.empty()) {
-            continue;
-        }
+        // If we got this far then we activate the scene trigger
+        registry.patch<SceneTriggerComp>(entity, [](auto& stc) {
+            stc.n_triggers++;
+        });
 
-        // DEBUG
-        auto& mc = registry.get<MetadataComp>(entity);
+        // // DEBUG
+        // auto& mc = registry.get<MetadataComp>(entity);
 
-        // Create a new projectile
-        auto projectile = registry.create();
-        registry.emplace<MetadataComp>(projectile, "projectile");
-        auto& pc = registry.emplace<PhysicsComp>(projectile);
-        pc.mass = 1.0f;
-        pc.pos = source_pc.pos;
-        auto& dc = registry.emplace<DurabilityComp>(projectile);
-        dc.durability_loss_per_collision = 1.01f;
-        registry.emplace<DragForceComp>(projectile);
-        auto& rc = registry.emplace<RenderComp>(projectile, TwirlCircleShape(cfg.L / 3.f));
-        rc.shape.setFillColor(sf::Color::Blue);
-        rc.zorder = 2;
-        needs_ordering = true;
+        // // Create a new projectile
+        // auto projectile = registry.create();
+        // registry.emplace<MetadataComp>(projectile, "projectile");
+        // auto& pc = registry.emplace<PhysicsComp>(projectile);
+        // pc.mass = 1.0f;
+        // pc.pos = source_pc.pos;
+        // auto& dc = registry.emplace<DurabilityComp>(projectile);
+        // dc.durability_loss_per_collision = 1.01f;
+        // registry.emplace<DragForceComp>(projectile);
+        // auto& rc = registry.emplace<RenderComp>(projectile, TwirlCircleShape(cfg.L
+        // / 3.f)); rc.shape.setFillColor(sf::Color::Blue); rc.zorder = 2;
+        // needs_ordering = true;
 
-        for (auto enemy : rview) {
-            auto& pc = registry.get<PhysicsComp>(enemy);
+        // for (auto enemy : rview) {
+        //     auto& pc = registry.get<PhysicsComp>(enemy);
 
-            // Be pulled towards the enemies
-            auto relation = registry.create();
-            auto& prc = registry.emplace<PairComp>(relation, projectile, enemy);
-            auto& pfc = registry.emplace<PairwiseForceComp>(relation);
-            pfc.magnitude = -0.1f;
+        //     // Be pulled towards the enemies
+        //     auto relation = registry.create();
+        //     auto& prc = registry.emplace<PairComp>(relation, projectile, enemy);
+        //     auto& pfc = registry.emplace<PairwiseForceComp>(relation);
+        //     pfc.magnitude = -0.1f;
 
-            // Collide with the enemies
-            auto col_id = registry.create();
-            auto& prc2 = registry.emplace<PairComp>(col_id, projectile, enemy);
-            registry.emplace<CollisionComp>(col_id);
-        }
+        //     // Collide with the enemies
+        //     auto col_id = registry.create();
+        //     auto& prc2 = registry.emplace<PairComp>(col_id, projectile, enemy);
+        //     registry.emplace<CollisionComp>(col_id);
+        // }
     }
 }
 
@@ -123,10 +127,9 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
         }
 
         auto r_hat = r / r_mag;
-        auto r_mag_scaled =
-            (r_mag / cfg.L + pfc.softening) / pfc.distance_scaling;
-        auto force = cfg.A * r_hat * pfc.magnitude * target_pc.mass *
-                     source_pc.mass * powf(r_mag_scaled, pfc.power);
+        auto r_mag_scaled = (r_mag / cfg.L + pfc.softening) / pfc.distance_scaling;
+        auto force = cfg.A * r_hat * pfc.magnitude * target_pc.mass * source_pc.mass *
+                     powf(r_mag_scaled, pfc.power);
 
         target_pc.force += force;
     }

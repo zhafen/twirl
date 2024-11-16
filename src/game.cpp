@@ -36,6 +36,10 @@ void Game::run() {
 }
 
 void Game::initializeState() {
+
+    // Initialize entity name storage
+    registry.storage<EntityName>();
+
     // Load the scene from json
     scene_system.loadJsonData(registry);
 }

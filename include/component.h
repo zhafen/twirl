@@ -27,9 +27,17 @@ inline void from_json(const json& j, sf::Color& c) {
 
 namespace twirl {
 
+using EntityName = std::string;
+
 struct SceneComp {
     std::string data_fp;
     json json_data;
+};
+
+struct SceneTriggerComp {
+    std::string scene_name;
+    entt::entity scene_entity;
+    int n_triggers = 0;
 };
 
 // We don't define a macro for MetadataComp because currently the key for a given
@@ -41,8 +49,6 @@ struct MetadataComp {
 struct EnemyComp {};
 
 struct DeleteComp {};
-
-struct SpawnComp {};
 
 struct PhysicsComp {
     float mass = 1.0f;

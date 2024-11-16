@@ -48,6 +48,7 @@ class SceneSystem {
     std::unordered_map<std::string, entt::entity> name_to_entity_map;
 
    private:
+    void onSceneTrigger(entt::registry& registry, entt::entity entity);
     void emplaceEntity(entt::registry& registry, const std::string entity_name,
                        const json& entity_json);
 };

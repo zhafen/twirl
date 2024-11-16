@@ -17,11 +17,11 @@ TEST(SceneTest, LoadFromJson) {
     entt::entity scene = registry.create();
     registry.emplace<SceneComp>(scene, "../../tests/test_data/test_scene.json");
 
-    // Main function to test
+    // Main functions to test
     scene_system.loadJsonData(registry);
 
     // Loop through the registry and check if the components are added correctly
-    auto rview = scene_system.registry.view<MetadataComp>();
+    auto rview = registry.view<MetadataComp>();
     ASSERT_FALSE(rview.empty());
     for (auto [entity, mc] : rview.each()) {
         // Check that the name mappings are correct

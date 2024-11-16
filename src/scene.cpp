@@ -10,9 +10,7 @@ using json = nlohmann::ordered_json;
 namespace twirl {
 
 void SceneSystem::loadJsonData(entt::registry& registry) {
-
-    for (auto [entity, sc]: registry.view<SceneComp>().each()) {
-
+    for (auto [entity, sc] : registry.view<SceneComp>().each()) {
         // Parse the file
         std::ifstream file(sc.data_fp);
         if (!file.is_open()) {
@@ -23,22 +21,22 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
     }
 }
 
-void SceneSystem::emplaceScenes(entt::registry& registry) {
+void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) {
+    auto& stc = registry.get<SceneTriggerComp>(entity);
+    auto& sc = registry.get<SceneComp>(stc.scene_entity);
 
-    for (auto [entity, sc]: registry.view<SceneComp>().each()) {
-
-        // Loop through and parse entities
-        for (const auto& [entity_name, entity_json] : json_data.items()) {
-            emplaceEntity(registry, entity_name, entity_json);
-        }
+    // Loop through and emplace entities
+    for (const auto& [entity_name, entity_json] : sc.json_data.items()) {
+        emplaceEntity(registry, entity_name, entity_json);
     }
 }
 
-void SceneSystem::emplaceEntity(entt::registry& registry, const std::string entity_name, const json& entity_json) {
+void SceneSystem::emplaceEntity(entt::registry& registry, const std::string entity_name,
+                                const json& entity_json) {
     // Create an entity and store its name and ID
     auto entity = registry.create();
     registry.emplace<MetadataComp>(entity, entity_name);
-    name_to_entity_map[entity_name] = entity;
+    registry.emplace<EntityName>(entity, entity_name);
 
     json components = entity_json["components"];
 
@@ -61,8 +59,8 @@ void SceneSystem::emplaceEntity(entt::registry& registry, const std::string enti
             registry.emplace<EnemyComp>(entity);
         } else if (comp_key == "DeleteComp") {
             registry.emplace<DeleteComp>(entity);
-        } else if (comp_key == "SpawnComp") {
-            registry.emplace<SpawnComp>(entity);
+        } else if (comp_key == "SceneTriggerComp") {
+            registry.emplace<SceneTriggerComp>(entity);
         } else if (comp_key == "PairComp") {
             auto comp_inst = PairComp();
             comp_inst.target_entity = name_to_entity_map.at(comp.at("target_entity"));

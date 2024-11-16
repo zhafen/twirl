@@ -42,19 +42,21 @@ TEST(SceneTest, TriggerScene) {
     ASSERT_FALSE(rview.empty());
 }
 
-TEST(SceneTest, LoadFromJson) {
-    // Create a Scene object
+TEST(SceneTest, EmplaceScene) {
+    // Set up registry and scene system, including the trigger
     SceneSystem scene_system;
     entt::registry registry;
+
+    // Add a scene to the registry (including some manually-input json data)
     entt::entity scene = registry.create();
     registry.emplace<SceneComp>(scene, "../../tests/test_data/test_scene.json");
-    scene_system.loadJsonData(registry);
-    registry.emplace<SceneTriggerComp>(scene, "test_scene", scene);
-    registry.on_update<SceneTriggerComp>().connect<&SceneSystem::onSceneTrigger>(
-        scene_system);
-    registry.patch<SceneTriggerComp>(scene, [](auto& stc) {
-        stc.n_triggers++;
-    });
+
+    // Add the triggering entity
+    entt::entity triggering_entity = registry.create();
+    registry.emplace<SceneTriggerComp>(triggering_entity, "test_scene", scene);
+
+    // Emplace the Scene
+    scene_system.onSceneTrigger(registry, triggering_entity);
 
     // Loop through the registry and check if the components are added correctly
     auto rview = registry.view<MetadataComp>();

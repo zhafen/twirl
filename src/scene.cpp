@@ -59,8 +59,6 @@ void SceneSystem::emplaceEntity(entt::registry& registry, const std::string enti
             registry.emplace<EnemyComp>(entity);
         } else if (comp_key == "DeleteComp") {
             registry.emplace<DeleteComp>(entity);
-        } else if (comp_key == "SceneTriggerComp") {
-            registry.emplace<SceneTriggerComp>(entity);
         } else if (comp_key == "PairComp") {
             auto comp_inst = PairComp();
             comp_inst.target_entity = name_to_entity_map.at(comp.at("target_entity"));

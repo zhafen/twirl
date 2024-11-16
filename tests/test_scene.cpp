@@ -1,14 +1,46 @@
-#include "config.h"
-#include "component.h"
-#include "scene.h"
-
-#include <regex>
 #include <gtest/gtest.h>
-#include <nlohmann/json.hpp>
+
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/registry.hpp>
+#include <nlohmann/json.hpp>
+#include <regex>
+
+#include "component.h"
+#include "config.h"
+#include "scene.h"
 
 using namespace twirl;
+
+TEST(SceneTest, TriggerScene) {
+
+    // Set up registry and scene system, including the trigger
+    SceneSystem scene_system;
+    entt::registry registry;
+    registry.on_update<SceneTriggerComp>().connect<&SceneSystem::onSceneTrigger>(
+        scene_system);
+
+    // Add a scene to the registry (including some manually-input json data)
+    entt::entity scene = registry.create();
+    json json_data = R"(
+    {
+        "spawned_entity": {"components": {"EnemyComp": {}}}
+    }
+    )"_json;
+    registry.emplace<SceneComp>(scene, std::string(), json_data);
+
+    // Add the triggering entity
+    entt::entity triggering_entity = registry.create();
+    registry.emplace<SceneTriggerComp>(triggering_entity, "test_scene", scene);
+
+    // Trigger the scene
+    registry.patch<SceneTriggerComp>(triggering_entity, [](auto& stc) {
+        stc.n_triggers++;
+    });
+
+    // Check that the entity was added
+    auto rview = registry.view<EnemyComp>();
+    ASSERT_FALSE(rview.empty());
+}
 
 TEST(SceneTest, LoadFromJson) {
     // Create a Scene object
@@ -16,9 +48,13 @@ TEST(SceneTest, LoadFromJson) {
     entt::registry registry;
     entt::entity scene = registry.create();
     registry.emplace<SceneComp>(scene, "../../tests/test_data/test_scene.json");
-
-    // Main functions to test
     scene_system.loadJsonData(registry);
+    registry.emplace<SceneTriggerComp>(scene, "test_scene", scene);
+    registry.on_update<SceneTriggerComp>().connect<&SceneSystem::onSceneTrigger>(
+        scene_system);
+    registry.patch<SceneTriggerComp>(scene, [](auto& stc) {
+        stc.n_triggers++;
+    });
 
     // Loop through the registry and check if the components are added correctly
     auto rview = registry.view<MetadataComp>();
@@ -106,5 +142,4 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_EQ(outline_color.a, 255);
         }
     }
-
 }

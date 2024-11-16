@@ -25,6 +25,11 @@ inline void from_json(const nlohmann::json& j, sf::Color& c) {
 
 namespace twirl {
 
+struct SceneComp {
+    entt::registry registry;
+    std::string data_fp;
+};
+
 // We don't define a macro for MetadataComp because currently the key for a given
 // entity in the json is the name.
 struct MetadataComp {

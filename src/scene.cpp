@@ -9,7 +9,7 @@ using json = nlohmann::ordered_json;
 
 namespace twirl {
 
-void Scene::loadFromJson(const std::string& file_path) {
+void SceneSystem::loadFromJson(const std::string& file_path) {
     // Parse the file
     std::ifstream file(file_path);
     if (!file.is_open()) {
@@ -24,7 +24,7 @@ void Scene::loadFromJson(const std::string& file_path) {
     }
 }
 
-void Scene::parseEntity(const std::string entity_name, const json& entity_json) {
+void SceneSystem::parseEntity(const std::string entity_name, const json& entity_json) {
     // Create an entity and store its name and ID
     auto entity = registry.create();
     registry.emplace<MetadataComp>(entity, entity_name);

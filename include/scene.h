@@ -9,10 +9,10 @@
 
 namespace twirl {
 
-class Scene {
+class SceneSystem {
    public:
-    Scene() = default;
-    ~Scene() = default;
+    SceneSystem() = default;
+    ~SceneSystem() = default;
 
     void loadFromJson(const std::string& filePath);
 

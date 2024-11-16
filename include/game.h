@@ -23,7 +23,7 @@ class Game {
     sf::View ui_view;
 
     // ECS
-    Scene scene;
+    SceneSystem scene;
     entt::registry registry;
     entt::entity player;
 

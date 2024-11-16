@@ -12,7 +12,7 @@ using namespace twirl;
 
 TEST(SceneTest, LoadFromJson) {
     // Create a Scene object
-    Scene scene;
+    SceneSystem scene;
 
     // Main function to test
     scene.loadFromJson("../../tests/test_data/test_scene.json");

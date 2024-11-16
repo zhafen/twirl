@@ -29,6 +29,9 @@ void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) 
     for (const auto& [entity_name, entity_json] : sc.json_data.items()) {
         emplaceEntity(registry, entity_name, entity_json);
     }
+
+    // Reset n_triggers
+    stc.n_triggers = 0;
 }
 
 void SceneSystem::emplaceEntity(entt::registry& registry, const std::string entity_name,

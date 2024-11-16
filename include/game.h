@@ -23,11 +23,11 @@ class Game {
     sf::View ui_view;
 
     // ECS
-    SceneSystem scene;
     entt::registry registry;
     entt::entity player;
 
     // Systems
+    SceneSystem scene_system;
     EntitySystem entity_system;
     RenderSystem render_system;
     PhysicsSystem physics_system;

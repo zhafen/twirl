@@ -1,8 +1,4 @@
-#include "config.h"
 #include "game.h"
-#include "shape.h"
-#include "system.h"
-#include "scene.h"
 
 #include <SFML/Graphics.hpp>
 #include <entt/entt.hpp>
@@ -11,6 +7,11 @@
 #include <random>
 #include <unordered_map>
 #include <vector>
+
+#include "config.h"
+#include "scene.h"
+#include "shape.h"
+#include "system.h"
 
 namespace twirl {
 
@@ -34,6 +35,11 @@ void Game::run() {
     }
 }
 
+void Game::initializeState() {
+    // Load the scene from json
+    scene_system.loadJsonData(registry);
+}
+
 void Game::resetGameState() {
     // Delete all entities
     registry.clear();
@@ -41,14 +47,6 @@ void Game::resetGameState() {
 
     // Reinitialize the game state
     initializeState();
-}
-
-void Game::initializeState() {
-
-    // Load the scene from json
-    scene.loadFromJson("../../tests/test_data/test_scene.json");
-    player = std::move(scene.name_to_entity_map.at("player"));
-    registry = std::move(scene.registry);
 }
 
 void Game::handleEvents() {
@@ -72,35 +70,35 @@ void Game::handleEvents() {
     }
 }
 
-    void Game::update() {
-        // Spawn and despawn entities
-        entity_system.deleteEntities(registry);
-        entity_system.spawnEntities(registry);
-        entity_system.orderEntities(registry);
+void Game::update() {
+    // Spawn and despawn entities
+    entity_system.deleteEntities(registry);
+    entity_system.spawnEntities(registry);
+    entity_system.orderEntities(registry);
 
-        // Calculate forces
-        physics_system.calculateForces(registry);
-        physics_system.calculatePairwiseForces(registry);
+    // Calculate forces
+    physics_system.calculateForces(registry);
+    physics_system.calculatePairwiseForces(registry);
 
-        // Update state
-        physics_system.update(registry);
-        physics_system.updateStopWatches(registry);
+    // Update state
+    physics_system.update(registry);
+    physics_system.updateStopWatches(registry);
 
-        // Resolve collisions
-        physics_system.resolveCollisions(registry);
-        physics_system.updateDurability(registry);
-    }
+    // Resolve collisions
+    physics_system.resolveCollisions(registry);
+    physics_system.updateDurability(registry);
+}
 
-    void Game::render() {
-        // Render
-        render_system.render(registry, window);
-        render_system.renderUI(window, registry);
+void Game::render() {
+    // Render
+    render_system.render(registry, window);
+    render_system.renderUI(window, registry);
 
-        // Pin the view to the player
-        view.setCenter(registry.get<PhysicsComp>(player).pos);
-        window.setView(view);
+    // Pin the view to the player
+    view.setCenter(registry.get<PhysicsComp>(player).pos);
+    window.setView(view);
 
-        window.display();
-    }
+    window.display();
+}
 
 }  // namespace twirl

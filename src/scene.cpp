@@ -9,22 +9,32 @@ using json = nlohmann::ordered_json;
 
 namespace twirl {
 
-void SceneSystem::loadFromJson(const std::string& file_path) {
-    // Parse the file
-    std::ifstream file(file_path);
-    if (!file.is_open()) {
-        throw std::runtime_error("Failed to open file: " + file_path);
-        return;
-    }
-    json json_data = json::parse(file);
+void SceneSystem::loadJsonData(entt::registry& registry) {
 
-    // Loop through and parse entities
-    for (const auto& [entity_name, entity_json] : json_data.items()) {
-        parseEntity(entity_name, entity_json);
+    for (auto [entity, sc]: registry.view<SceneComp>().each()) {
+
+        // Parse the file
+        std::ifstream file(sc.data_fp);
+        if (!file.is_open()) {
+            throw std::runtime_error("Failed to open file: " + sc.data_fp);
+            return;
+        }
+        sc.json_data = json::parse(file);
     }
 }
 
-void SceneSystem::parseEntity(const std::string entity_name, const json& entity_json) {
+void SceneSystem::emplaceScenes(entt::registry& registry) {
+
+    for (auto [entity, sc]: registry.view<SceneComp>().each()) {
+
+        // Loop through and parse entities
+        for (const auto& [entity_name, entity_json] : json_data.items()) {
+            emplaceEntity(registry, entity_name, entity_json);
+        }
+    }
+}
+
+void SceneSystem::emplaceEntity(entt::registry& registry, const std::string entity_name, const json& entity_json) {
     // Create an entity and store its name and ID
     auto entity = registry.create();
     registry.emplace<MetadataComp>(entity, entity_name);

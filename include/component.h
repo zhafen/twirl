@@ -9,13 +9,15 @@
 #include "config.h"
 #include "shape.h"
 
+using json = nlohmann::ordered_json;
+
 // from_json functions for sfml types
 namespace sf {
-inline void from_json(const nlohmann::json& j, sf::Vector2f& v) {
+inline void from_json(const json& j, sf::Vector2f& v) {
     v.x = j.at(0).get<float>();
     v.y = j.at(1).get<float>();
 }
-inline void from_json(const nlohmann::json& j, sf::Color& c) {
+inline void from_json(const json& j, sf::Color& c) {
     c.r = j.at(0).get<uint8_t>();
     c.g = j.at(1).get<uint8_t>();
     c.b = j.at(2).get<uint8_t>();
@@ -26,8 +28,8 @@ inline void from_json(const nlohmann::json& j, sf::Color& c) {
 namespace twirl {
 
 struct SceneComp {
-    entt::registry registry;
     std::string data_fp;
+    json json_data;
 };
 
 // We don't define a macro for MetadataComp because currently the key for a given
@@ -50,7 +52,7 @@ struct PhysicsComp {
     bool collided = false;
 };
 // Have to define this without a macro because of the vector types
-inline void from_json(const nlohmann::json& j, PhysicsComp& pc) {
+inline void from_json(const json& j, PhysicsComp& pc) {
     pc.mass = j.value("mass", 1.0f);
     pc.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f)) * cfg.L;
     pc.vel = j.value("vel", sf::Vector2f(0.0f, 0.0f)) * cfg.V;
@@ -63,7 +65,7 @@ struct DragForceComp {
     float drag_coefficient = 0.01f;
     float drag_power = 2.0f;
 };
-inline void from_json(const nlohmann::json& j, DragForceComp& dfc) {
+inline void from_json(const json& j, DragForceComp& dfc) {
     dfc.drag_coefficient = j.value("drag_coefficient", 0.01f);
     dfc.drag_power = j.value("drag_power", 2.0f);
 }
@@ -74,7 +76,7 @@ struct DurabilityComp {
     float durability_regen_rate = 0.0f;
     bool delete_at_zero = true;
 };
-inline void from_json(const nlohmann::json& j, DurabilityComp& dc) {
+inline void from_json(const json& j, DurabilityComp& dc) {
     dc.durability = j.value("durability", 1.0f);
     dc.durability_loss_per_collision = j.value("durability_loss_per_collision", 0.34f);
     dc.durability_regen_rate = j.value("durability_regen_rate", 0.0f);
@@ -95,7 +97,7 @@ struct PairwiseForceComp {
     float min_distance = 0.1f;      // In units of cfg.L
     float distance_scaling = 1.0f;  // in units of cfg.L
 };
-inline void from_json(const nlohmann::json& j, PairwiseForceComp& pfc) {
+inline void from_json(const json& j, PairwiseForceComp& pfc) {
     pfc.magnitude = j.value("magnitude", -1.0f);
     pfc.softening = j.value("softening", 0.0f);
     pfc.power = j.value("power", 2.0f);
@@ -109,7 +111,7 @@ struct RenderComp {
     TwirlCircleShape shape;
     int zorder = 0;
 };
-inline void from_json(const nlohmann::json& j, RenderComp& rc) {
+inline void from_json(const json& j, RenderComp& rc) {
     auto radius = j.value("radius", 1.0f) * cfg.L;
     auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;
     auto fill_color = j.value("fill_color", sf::Color::White);
@@ -133,7 +135,7 @@ struct UIComp {
 
     float* tracked_value;
 };
-inline void from_json(const nlohmann::json& j, UIComp& uic) {
+inline void from_json(const json& j, UIComp& uic) {
     uic.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f));
     uic.size = j.value("size", sf::Vector2f(0.0f, 0.0f));
     uic.tracked_value = nullptr;  // Assuming tracked_value is set elsewhere
@@ -144,7 +146,7 @@ struct StopWatchComp {
     float end_time = 1.0f;
     bool end_reached = false;
 };
-inline void from_json(const nlohmann::json& j, StopWatchComp& swc) {
+inline void from_json(const json& j, StopWatchComp& swc) {
     swc.current_time = j.value("current_time", 0.0f);
     swc.end_time = j.value("end_time", 1.0f);
     swc.end_reached = j.value("end_reached", false);

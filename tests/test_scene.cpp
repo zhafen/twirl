@@ -12,20 +12,23 @@ using namespace twirl;
 
 TEST(SceneTest, LoadFromJson) {
     // Create a Scene object
-    SceneSystem scene;
+    SceneSystem scene_system;
+    entt::registry registry;
+    entt::entity scene = registry.create();
+    registry.emplace<SceneComp>(scene, "../../tests/test_data/test_scene.json");
 
     // Main function to test
-    scene.loadFromJson("../../tests/test_data/test_scene.json");
+    scene_system.loadJsonData(registry);
 
     // Loop through the registry and check if the components are added correctly
-    auto rview = scene.registry.view<MetadataComp>();
+    auto rview = scene_system.registry.view<MetadataComp>();
     ASSERT_FALSE(rview.empty());
     for (auto [entity, mc] : rview.each()) {
         // Check that the name mappings are correct
-        EXPECT_EQ(entity, scene.name_to_entity_map.at(mc.name));
+        EXPECT_EQ(entity, scene_system.name_to_entity_map.at(mc.name));
 
         if (mc.name == "player") {
-            auto& pc = scene.registry.get<PhysicsComp>(entity);
+            auto& pc = scene_system.registry.get<PhysicsComp>(entity);
             EXPECT_FLOAT_EQ(pc.mass, 10.0f);
             EXPECT_FLOAT_EQ(pc.pos.x, 1.0f * cfg.L);
             EXPECT_FLOAT_EQ(pc.pos.y, 1.0f * cfg.L);
@@ -34,17 +37,17 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_FLOAT_EQ(pc.force.x, 0.0f);
             EXPECT_FLOAT_EQ(pc.force.y, 0.0f);
 
-            auto& dfc = scene.registry.get<DragForceComp>(entity);
+            auto& dfc = scene_system.registry.get<DragForceComp>(entity);
             EXPECT_FLOAT_EQ(dfc.drag_coefficient, 0.05f);
             EXPECT_FLOAT_EQ(dfc.drag_power, 2.5f);
 
-            auto& dc = scene.registry.get<DurabilityComp>(entity);
+            auto& dc = scene_system.registry.get<DurabilityComp>(entity);
             EXPECT_FLOAT_EQ(dc.durability, 1.0f);
             EXPECT_FLOAT_EQ(dc.durability_loss_per_collision, 0.34f);
             EXPECT_FLOAT_EQ(dc.durability_regen_rate, 0.0f);
             EXPECT_EQ(dc.delete_at_zero, false);
 
-            auto& rc = scene.registry.get<RenderComp>(entity);
+            auto& rc = scene_system.registry.get<RenderComp>(entity);
             EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L);
             auto fill_color = rc.shape.getFillColor();
             EXPECT_EQ(fill_color.r, 255);
@@ -52,12 +55,12 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_EQ(fill_color.b, 128);
             EXPECT_EQ(fill_color.a, 255);
 
-            auto& swc = scene.registry.get<StopWatchComp>(entity);
+            auto& swc = scene_system.registry.get<StopWatchComp>(entity);
             EXPECT_FLOAT_EQ(swc.current_time, 0.0f);
             EXPECT_FLOAT_EQ(swc.end_time, 1.0f);
             EXPECT_EQ(swc.end_reached, false);
         } else if (mc.name == "beacon") {
-            auto& pc = scene.registry.get<PhysicsComp>(entity);
+            auto& pc = scene_system.registry.get<PhysicsComp>(entity);
             EXPECT_FLOAT_EQ(pc.mass, 1.0f);
             EXPECT_FLOAT_EQ(pc.pos.x, 0.0f);
             EXPECT_FLOAT_EQ(pc.pos.y, 0.0f);
@@ -66,7 +69,7 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_FLOAT_EQ(pc.force.x, 0.0f);
             EXPECT_FLOAT_EQ(pc.force.y, 0.0f);
 
-            auto& rc = scene.registry.get<RenderComp>(entity);
+            auto& rc = scene_system.registry.get<RenderComp>(entity);
             EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L / 2.f);
             EXPECT_FLOAT_EQ(rc.shape.getOutlineThickness(), cfg.L / 10.f);
             auto outline_color = rc.shape.getOutlineColor();
@@ -76,11 +79,11 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_EQ(outline_color.a, 255);
 
         } else if (mc.name == "player-beacon force") {
-            auto& prc = scene.registry.get<PairComp>(entity);
-            EXPECT_EQ(prc.target_entity, scene.name_to_entity_map.at("player"));
-            EXPECT_EQ(prc.source_entity, scene.name_to_entity_map.at("beacon"));
+            auto& prc = scene_system.registry.get<PairComp>(entity);
+            EXPECT_EQ(prc.target_entity, scene_system.name_to_entity_map.at("player"));
+            EXPECT_EQ(prc.source_entity, scene_system.name_to_entity_map.at("beacon"));
 
-            auto& pfc = scene.registry.get<PairwiseForceComp>(entity);
+            auto& pfc = scene_system.registry.get<PairwiseForceComp>(entity);
             EXPECT_FLOAT_EQ(pfc.magnitude, -1.0f);
             EXPECT_FLOAT_EQ(pfc.softening, 0.0f);
             EXPECT_FLOAT_EQ(pfc.power, 2.0f);
@@ -88,7 +91,7 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_FLOAT_EQ(pfc.distance_scaling, 1.0f);
         } else if (std::regex_match(mc.name, std::regex("bkgrd.*"))) {
             // Background circle
-            auto& rc = scene.registry.get<RenderComp>(entity);
+            auto& rc = scene_system.registry.get<RenderComp>(entity);
 
             auto fill_color = rc.shape.getFillColor();
             EXPECT_EQ(fill_color.r, 127);

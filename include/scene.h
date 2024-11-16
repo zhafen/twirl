@@ -12,7 +12,7 @@ using json = nlohmann::ordered_json;
 namespace twirl {
 
 /**
- * 
+ *
  * Scene system requirements (+ possible solutions indented):
  * - Load entities from a json file
  * - Store the entities in memory
@@ -30,10 +30,10 @@ namespace twirl {
  *      to delete entities associated with a given scene I would have to keep track of
  *      an arbitrary number of unique scenes, and I couldn't easily use a unique
  *      component to tag them.
- * 
+ *
  * With the above in mind, I think the best solution is to store the raw data as a
  * loaded json, and then use that to create the entities in the main registry.
- * 
+ *
  */
 class SceneSystem {
    public:
@@ -48,7 +48,8 @@ class SceneSystem {
     std::unordered_map<std::string, entt::entity> name_to_entity_map;
 
    private:
-    void parseEntity(entt::registry& registry, std::string entity_name, const nlohmann::ordered_json& entity_json);
+    void emplaceEntity(entt::registry& registry, const std::string entity_name,
+                       const json& entity_json);
 };
 
 }  // namespace twirl

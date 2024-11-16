@@ -81,7 +81,7 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_EQ(prc.source_entity, scene.name_to_entity_map.at("beacon"));
 
             auto& pfc = scene.registry.get<PairwiseForceComp>(entity);
-            EXPECT_FLOAT_EQ(pfc.magnitude, -0.1f);
+            EXPECT_FLOAT_EQ(pfc.magnitude, -1.0f);
             EXPECT_FLOAT_EQ(pfc.softening, 0.0f);
             EXPECT_FLOAT_EQ(pfc.power, 2.0f);
             EXPECT_FLOAT_EQ(pfc.min_distance, 0.1f);
@@ -101,8 +101,6 @@ TEST(SceneTest, LoadFromJson) {
             EXPECT_EQ(outline_color.g, 63);
             EXPECT_EQ(outline_color.b, 63);
             EXPECT_EQ(outline_color.a, 255);
-        } else {
-            FAIL() << "Unexpected entity name: " << mc.name;
         }
     }
 

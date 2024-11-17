@@ -45,7 +45,7 @@ TEST(SceneTest, TriggerScene) {
     ASSERT_FALSE(rview.empty());
 }
 
-TEST(SceneTest, EmplaceScene) {
+TEST(SceneTest, EmplaceSceneFromJson) {
     // Set up registry and scene system, including the trigger
     SceneSystem scene_system;
     entt::registry registry;

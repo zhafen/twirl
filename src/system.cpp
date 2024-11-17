@@ -24,6 +24,12 @@ EntityMap EntitySystem::getEntityMap(
 }
 
 void EntitySystem::resolveEntityNames(entt::registry& registry) {
+    auto entity_map = getEntityMap(registry);
+    auto rview = registry.view<PairComp>();
+    for (auto [pair_entity, pc] : rview.each()) {
+        pc.target_entity = entity_map[pc.target_entity_name];
+        pc.source_entity = entity_map[pc.source_entity_name];
+    }
 }
 
 void EntitySystem::spawnEntities(entt::registry& registry) {

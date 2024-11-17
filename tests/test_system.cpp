@@ -39,7 +39,7 @@ TEST(SystemEntityTest, ResolveEntityNames) {
     for (auto [pair_entity, pair_entity_name, pc] : rview.each()) {
         if (pair_entity_name == "player-beacon force") {
             ASSERT_EQ(entity_map["player"], pc.target_entity);
-            ASSERT_EQ(entity_map["source"], pc.target_entity);
+            ASSERT_EQ(entity_map["beacon"], pc.source_entity);
         }
     }
 }

@@ -28,6 +28,7 @@ inline void from_json(const json& j, sf::Color& c) {
 namespace twirl {
 
 using EntityName = std::string;
+using EntityMap = std::unordered_map<std::string, entt::entity>;
 
 struct SceneComp {
     std::string data_fp;

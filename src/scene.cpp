@@ -39,16 +39,19 @@ void SceneSystem::emplaceScene(entt::registry& registry,
     auto& sc = registry.get<SceneComp>(scene_entity);
 
     // Loop through and emplace entities
+    EntityMap scene_entity_map;
     for (const auto& [entity_name, entity_json] : sc.json_data.items()) {
-        emplaceEntity(registry, entity_name, entity_json);
+        emplaceEntity(registry, scene_entity_map, entity_name, entity_json);
     }
 }
 
-void SceneSystem::emplaceEntity(entt::registry& registry, const std::string entity_name,
+void SceneSystem::emplaceEntity(entt::registry& registry, EntityMap& scene_entity_map, const std::string entity_name,
                                 const json& entity_json) {
     // Create an entity and store its name and ID
     auto entity = registry.create();
     registry.emplace<EntityName>(entity, entity_name);
+    // We also keep track of the inverse so we can parse PairComp
+    scene_entity_map[entity_name] = entity;
 
     json components = entity_json["components"];
 
@@ -73,10 +76,8 @@ void SceneSystem::emplaceEntity(entt::registry& registry, const std::string enti
             registry.emplace<DeleteComp>(entity);
         } else if (comp_key == "PairComp") {
             auto comp_inst = PairComp();
-            EntityName target_entity_name = comp.at("target_entity");
-            comp_inst.target_entity = entt::to_entity(registry, target_entity_name);
-            EntityName source_entity_name = comp.at("source_entity");
-            comp_inst.source_entity = entt::to_entity(registry, source_entity_name);
+            comp_inst.target_entity = scene_entity_map.at(comp.at("target_entity"));
+            comp_inst.source_entity = scene_entity_map.at(comp.at("source_entity"));
             registry.emplace<PairComp>(entity, comp_inst);
         } else if (comp_key == "PairwiseForceComp") {
             auto comp_inst = comp.template get<PairwiseForceComp>();

@@ -39,7 +39,7 @@ class Game {
 
     // ECS
     entt::registry registry;
-    std::unordered_map<std::string, entt::entity> entity_map;
+    EntityMap entity_map;
 
     // Window and view
     sf::RenderWindow window;

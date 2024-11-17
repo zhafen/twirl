@@ -10,9 +10,9 @@
 
 namespace twirl {
 
-std::unordered_map<std::string, entt::entity> EntitySystem::getEntityMap(
+EntityMap EntitySystem::getEntityMap(
     entt::registry& registry) {
-    std::unordered_map<std::string, entt::entity> entity_map;
+    EntityMap entity_map;
 
     auto rview = registry.view<EntityName>();
     for (auto [entity, name] : rview.each()) {

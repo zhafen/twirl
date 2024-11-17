@@ -7,6 +7,8 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
+#include "component.h"
+
 using json = nlohmann::ordered_json;
 
 namespace twirl {
@@ -47,7 +49,7 @@ class SceneSystem {
     json json_data;
 
    private:
-    void emplaceEntity(entt::registry& registry, const std::string entity_name,
+    void emplaceEntity(entt::registry& registry, EntityMap& scene_entity_map, const std::string entity_name,
                        const json& entity_json);
 };
 

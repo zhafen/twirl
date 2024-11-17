@@ -49,9 +49,10 @@ void SceneSystem::emplaceScene(entt::registry& registry,
     }
 }
 
-void SceneSystem::emplaceEntity(entt::registry& registry, EntityMap& scene_entity_map, const std::string entity_name,
+void SceneSystem::emplaceEntity(entt::registry& registry, EntityMap& scene_entity_map, const std::string entity_name_str,
                                 const json& entity_json) {
     // Create an entity and store its name and ID
+    EntityName entity_name(entity_name_str);
     auto entity = registry.create();
     registry.emplace<EntityName>(entity, entity_name);
     // We also keep track of the inverse so we can parse PairComp

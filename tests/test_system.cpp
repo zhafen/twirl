@@ -61,6 +61,8 @@ TEST(SystemPhysicsTest, CalculatePairwiseForces) {
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();
     auto& physics_system = game.getPhysicsSystem();
+    // Need to resolve entity names before calculating pairwise forces
+    game.getEntitySystem().resolveEntityNames(registry);
 
     // Calculate forces
     physics_system.calculatePairwiseForces(registry);

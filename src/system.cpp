@@ -103,8 +103,6 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
             continue;
         }
 
-        // We use try_get here because the target or source could be deleted.
-        // A possible alternative may be to use listeners.
         auto& target_pc = registry.get<PhysicsComp>(prc.target_entity);
         auto& source_pc = registry.get<PhysicsComp>(prc.source_entity);
 

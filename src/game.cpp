@@ -41,6 +41,7 @@ void Game::initialize() {
     // Emplace the main scene
     entt::entity scene_entity = registry.create();
     registry.emplace<SceneComp>(scene_entity, main_scene_fp);
+    registry.emplace<EntityName>(scene_entity, "main_scene");
     scene_system.loadJsonData(registry);
     scene_system.emplaceScene(registry, scene_entity);
 

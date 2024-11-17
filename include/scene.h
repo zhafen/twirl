@@ -45,7 +45,6 @@ class SceneSystem {
 
     json json_data;
     entt::registry registry;
-    std::unordered_map<std::string, entt::entity> name_to_entity_map;
 
    private:
     void emplaceEntity(entt::registry& registry, const std::string entity_name,

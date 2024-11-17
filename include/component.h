@@ -105,6 +105,8 @@ struct MouseButtonReleasedComp {};
 struct PairComp {
     entt::entity target_entity;
     entt::entity source_entity;
+    EntityName target_entity_name;
+    EntityName source_entity_name;
 };
 
 struct PairwiseForceComp {

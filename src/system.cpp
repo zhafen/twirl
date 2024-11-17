@@ -23,6 +23,9 @@ EntityMap EntitySystem::getEntityMap(
     return entity_map;
 }
 
+void EntitySystem::resolveEntityNames(entt::registry& registry) {
+}
+
 void EntitySystem::spawnEntities(entt::registry& registry) {
     // If there are no enemies, then keep going
     if (registry.view<EnemyComp>().empty()) {

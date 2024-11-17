@@ -23,6 +23,27 @@ TEST(SystemEntityTest, SpawnDeleteOrder) {
     entity_system.orderEntities(registry);
 }
 
+TEST(SystemEntityTest, ResolveEntityNames) {
+
+    // Initialize the game in its test state
+    Game game("../../tests/test_data/test_scene.json");
+    auto& registry = game.getRegistry();
+    auto& entity_system = game.getEntitySystem();
+
+    // Resolve entity names
+    entity_system.resolveEntityNames(registry);
+
+    // Check that the entities match up
+    auto entity_map = game.getEntityMap();
+    auto rview = registry.view<EntityName, PairComp>();
+    for (auto [pair_entity, pair_entity_name, pc] : rview.each()) {
+        if (pair_entity_name == "player-beacon force") {
+            ASSERT_EQ(entity_map["player"], pc.target_entity);
+            ASSERT_EQ(entity_map["source"], pc.target_entity);
+        }
+    }
+}
+
 TEST(SystemPhysicsTest, CalculateForces) {
 
     // Initialize the game in its test state

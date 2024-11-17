@@ -23,6 +23,10 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
             return;
         }
         sc.json_data = json::parse(file);
+
+        if (sc.emplace_after_loading) {
+            emplaceScene(registry, entity);
+        }
     }
 }
 

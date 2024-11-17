@@ -2,7 +2,8 @@
     "initial_conditions": {
         "components": {
             "SceneComp": {
-                "scene_fp": "../../scenes/initial_conditions.json"
+                "scene_fp": "../../scenes/initial_conditions.json",
+                "emplace_after_loading": true
             }
         }
     }

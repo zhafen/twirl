@@ -32,6 +32,7 @@ using EntityMap = std::unordered_map<std::string, entt::entity>;
 
 struct SceneComp {
     std::string data_fp;
+    bool emplace_after_loading = false;
     json json_data;
 };
 

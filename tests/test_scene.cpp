@@ -114,10 +114,8 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_EQ(outline_color.a, 255);
 
         } else if (name == "player-beacon force") {
-            auto& prc = registry.get<PairComp>(entity);
-            EXPECT_EQ(registry.get<EntityName>(prc.target_entity), EntityName{"player"});
-            EXPECT_EQ(registry.get<EntityName>(prc.source_entity), EntityName{"beacon"});
-
+            // We don't check for the correct entities here because
+            // that's part of resolveEntityNames
             auto& pfc = registry.get<PairwiseForceComp>(entity);
             EXPECT_FLOAT_EQ(pfc.magnitude, -1.0f);
             EXPECT_FLOAT_EQ(pfc.softening, 0.0f);

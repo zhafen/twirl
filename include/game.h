@@ -13,7 +13,7 @@ namespace twirl {
 
 class Game {
    public:
-    Game();
+    Game(std::string main_scene_fp);
 
     // Most of our methods are public
     void run();
@@ -27,6 +27,8 @@ class Game {
     std::unordered_map<std::string, entt::entity> entity_map;
 
    private:
+    std::string main_scene_fp;
+
     // Window and view
     sf::RenderWindow window;
     sf::View view;

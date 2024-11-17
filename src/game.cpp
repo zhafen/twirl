@@ -1,23 +1,24 @@
 
+#include "game.h"
+
+#include <SFML/Graphics.hpp>
+#include <entt/entity/fwd.hpp>
 #include <filesystem>
 #include <iostream>
 #include <random>
 #include <unordered_map>
 #include <vector>
 
-#include <entt/entity/fwd.hpp>
-#include <SFML/Graphics.hpp>
-
 #include "config.h"
-#include "game.h"
 #include "scene.h"
 #include "shape.h"
 #include "system.h"
 
 namespace twirl {
 
-Game::Game()
-    : window(sf::VideoMode(cfg.window_size_x, cfg.window_size_y), "twirl"),
+Game::Game(std::string main_scene_fp)
+    : main_scene_fp(main_scene_fp),
+      window(sf::VideoMode(cfg.window_size_x, cfg.window_size_y), "twirl"),
       view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size_x, cfg.window_size_y)),
       ui_view(sf::Vector2f(0, 0), sf::Vector2f(cfg.window_size_x, cfg.window_size_y)),
       registry(),
@@ -39,7 +40,7 @@ void Game::run() {
 void Game::initialize() {
     // Emplace the main scene
     entt::entity scene_entity = registry.create();
-    registry.emplace<SceneComp>(scene_entity, "../../scenes/main_scene.json");
+    registry.emplace<SceneComp>(scene_entity, main_scene_fp);
     scene_system.loadJsonData(registry);
     scene_system.emplaceScene(registry, scene_entity);
 
@@ -110,7 +111,8 @@ void Game::render() {
     size_t n_vc = 0;
     for (auto [entity, pc] : rview.each()) {
         if (n_vc > 1) {
-            std::cerr << "Warning: More than one ViewComp entity found. Using the first one.\n";
+            std::cerr << "Warning: More than one ViewComp entity found. Using the "
+                         "first one.\n";
             break;
         }
         view.setCenter(pc.pos);

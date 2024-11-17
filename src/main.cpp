@@ -4,7 +4,7 @@
 #include <memory>
 
 int main() {
-    twirl::Game game;
+    twirl::Game game("../../scenes/main_scene.json");
     game.run();
     return 0;
 }

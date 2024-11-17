@@ -37,4 +37,9 @@ TEST(GameTest, HandleEvents) {
     // Check that the window is open
     ASSERT_TRUE(window.isOpen());
 
+    // Run the handle events function once
+    game.handleEvents();
+
+    // Close the window
+    window.close();
 }

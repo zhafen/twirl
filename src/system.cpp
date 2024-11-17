@@ -16,19 +16,25 @@ EntityMap EntitySystem::getEntityMap(
 
     auto rview = registry.view<EntityName>();
     for (auto [entity, name] : rview.each()) {
-        // We don't want the hassle of storing the entity names as EntityName objects
-        entity_map[static_cast<std::string>(name)] = entity;
+        entity_map[name] = entity;
     }
 
     return entity_map;
 }
 
+/**
+ * OPTIMIZE: This function should not loop over every pair comp, and should not call getEntityMap every time.
+ */
 void EntitySystem::resolveEntityNames(entt::registry& registry) {
     auto entity_map = getEntityMap(registry);
     auto rview = registry.view<PairComp>();
     for (auto [pair_entity, pc] : rview.each()) {
-        pc.target_entity = entity_map[pc.target_entity_name];
-        pc.source_entity = entity_map[pc.source_entity_name];
+        if (!registry.valid(pc.target_entity) && !pc.target_entity_name.empty()) {
+            pc.target_entity = entity_map[pc.target_entity_name];
+        }
+        if (!registry.valid(pc.source_entity) && !pc.source_entity_name.empty()) {
+            pc.source_entity = entity_map[pc.source_entity_name];
+        }
     }
 }
 

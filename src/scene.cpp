@@ -85,9 +85,7 @@ void SceneSystem::emplaceEntity(entt::registry& registry, EntityMap& scene_entit
         } else if (comp_key == "DeleteComp") {
             registry.emplace<DeleteComp>(entity);
         } else if (comp_key == "PairComp") {
-            auto comp_inst = PairComp();
-            comp_inst.target_entity = scene_entity_map.at(comp.at("target_entity"));
-            comp_inst.source_entity = scene_entity_map.at(comp.at("source_entity"));
+            auto comp_inst = comp.template get<PairComp>();
             registry.emplace<PairComp>(entity, comp_inst);
         } else if (comp_key == "PairwiseForceComp") {
             auto comp_inst = comp.template get<PairwiseForceComp>();

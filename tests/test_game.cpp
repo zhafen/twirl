@@ -57,3 +57,18 @@ TEST(GameTest, Update) {
     // Close the window
     window.close();
 }
+
+TEST(GameTest, Render) {
+    // Initialize the game
+    Game game("../../tests/test_data/test_scene.json");
+
+    // Get window
+    sf::RenderWindow& window = game.getWindow();
+    ASSERT_TRUE(window.isOpen());
+
+    // Run the handle events function once
+    game.render();
+
+    // Close the window
+    window.close();
+}

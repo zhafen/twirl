@@ -44,3 +44,25 @@ TEST(SystemPhysicsTest, CalculatePairwiseForces) {
     // Calculate forces
     physics_system.calculatePairwiseForces(registry);
 }
+
+TEST(SystemPhysicsTest, Update) {
+
+    // Initialize the game in its test state
+    Game game("../../tests/test_data/test_scene.json");
+    auto& registry = game.getRegistry();
+    auto& physics_system = game.getPhysicsSystem();
+
+    // Update state
+    physics_system.update(registry);
+}
+
+TEST(SystemPhysicsTest, UpdateStopWatches) {
+
+    // Initialize the game in its test state
+    Game game("../../tests/test_data/test_scene.json");
+    auto& registry = game.getRegistry();
+    auto& physics_system = game.getPhysicsSystem();
+
+    // Update stop watches
+    physics_system.updateStopWatches(registry);
+}

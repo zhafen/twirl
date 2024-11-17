@@ -26,7 +26,7 @@ TEST(SceneTest, TriggerScene) {
         "spawned_entity": {"components": {"EnemyComp": {}}}
     }
     )"_json;
-    registry.emplace<SceneComp>(scene, std::string(), json_data);
+    registry.emplace<SceneComp>(scene, std::string(), false, json_data);
 
     // Add the triggering entity
     entt::entity triggering_entity = registry.create();

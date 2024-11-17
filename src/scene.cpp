@@ -15,10 +15,10 @@ namespace twirl {
 void SceneSystem::loadJsonData(entt::registry& registry) {
     for (auto [entity, sc] : registry.view<SceneComp>().each()) {
         // Parse the file
-        std::ifstream file(sc.data_fp);
+        std::ifstream file(sc.scene_fp);
         if (!file.is_open()) {
             throw std::runtime_error(
-                "Failed to open file: " + sc.data_fp +
+                "Failed to open file: " + sc.scene_fp +
                 "\nCurrent directory: " + std::filesystem::current_path().string());
             return;
         }
@@ -60,7 +60,10 @@ void SceneSystem::emplaceEntity(entt::registry& registry, EntityMap& scene_entit
     json components = entity_json["components"];
 
     for (const auto& [comp_key, comp] : components.items()) {
-        if (comp_key == "PhysicsComp") {
+        if (comp_key == "SceneComp") {
+            auto comp_inst = comp.template get<SceneComp>();
+            registry.emplace<SceneComp>(entity, comp_inst);
+        } else if (comp_key == "PhysicsComp") {
             auto comp_inst = comp.template get<PhysicsComp>();
             registry.emplace<PhysicsComp>(entity, comp_inst);
         } else if (comp_key == "DragForceComp") {

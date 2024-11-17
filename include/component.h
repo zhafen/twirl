@@ -31,10 +31,14 @@ using EntityName = std::string;
 using EntityMap = std::unordered_map<std::string, entt::entity>;
 
 struct SceneComp {
-    std::string data_fp;
+    std::string scene_fp;
     bool emplace_after_loading = false;
     json json_data;
 };
+inline void from_json(const json& j, SceneComp& sc) {
+    sc.scene_fp = j.at("scene_fp").get<std::string>();
+    sc.emplace_after_loading = j.value("emplace_after_loading", false);
+}
 
 struct SceneTriggerComp {
     std::string scene_name;

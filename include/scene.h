@@ -44,7 +44,6 @@ class SceneSystem {
     void onSceneTrigger(entt::registry& registry, entt::entity entity);
 
     json json_data;
-    entt::registry registry;
 
    private:
     void emplaceEntity(entt::registry& registry, const std::string entity_name,

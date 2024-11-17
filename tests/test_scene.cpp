@@ -71,7 +71,7 @@ TEST(SceneTest, EmplaceScene) {
         EXPECT_EQ(entity, entt::to_entity(registry, name));
 
         if (name == "player") {
-            auto& pc = scene_system.registry.get<PhysicsComp>(entity);
+            auto& pc = registry.get<PhysicsComp>(entity);
             EXPECT_FLOAT_EQ(pc.mass, 10.0f);
             EXPECT_FLOAT_EQ(pc.pos.x, 1.0f * cfg.L);
             EXPECT_FLOAT_EQ(pc.pos.y, 1.0f * cfg.L);
@@ -80,17 +80,17 @@ TEST(SceneTest, EmplaceScene) {
             EXPECT_FLOAT_EQ(pc.force.x, 0.0f);
             EXPECT_FLOAT_EQ(pc.force.y, 0.0f);
 
-            auto& dfc = scene_system.registry.get<DragForceComp>(entity);
+            auto& dfc = registry.get<DragForceComp>(entity);
             EXPECT_FLOAT_EQ(dfc.drag_coefficient, 0.05f);
             EXPECT_FLOAT_EQ(dfc.drag_power, 2.5f);
 
-            auto& dc = scene_system.registry.get<DurabilityComp>(entity);
+            auto& dc = registry.get<DurabilityComp>(entity);
             EXPECT_FLOAT_EQ(dc.durability, 1.0f);
             EXPECT_FLOAT_EQ(dc.durability_loss_per_collision, 0.34f);
             EXPECT_FLOAT_EQ(dc.durability_regen_rate, 0.0f);
             EXPECT_EQ(dc.delete_at_zero, false);
 
-            auto& rc = scene_system.registry.get<RenderComp>(entity);
+            auto& rc = registry.get<RenderComp>(entity);
             EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L);
             auto fill_color = rc.shape.getFillColor();
             EXPECT_EQ(fill_color.r, 255);
@@ -98,12 +98,12 @@ TEST(SceneTest, EmplaceScene) {
             EXPECT_EQ(fill_color.b, 128);
             EXPECT_EQ(fill_color.a, 255);
 
-            auto& swc = scene_system.registry.get<StopWatchComp>(entity);
+            auto& swc = registry.get<StopWatchComp>(entity);
             EXPECT_FLOAT_EQ(swc.current_time, 0.0f);
             EXPECT_FLOAT_EQ(swc.end_time, 1.0f);
             EXPECT_EQ(swc.end_reached, false);
         } else if (name == "beacon") {
-            auto& pc = scene_system.registry.get<PhysicsComp>(entity);
+            auto& pc = registry.get<PhysicsComp>(entity);
             EXPECT_FLOAT_EQ(pc.mass, 1.0f);
             EXPECT_FLOAT_EQ(pc.pos.x, 0.0f);
             EXPECT_FLOAT_EQ(pc.pos.y, 0.0f);
@@ -112,7 +112,7 @@ TEST(SceneTest, EmplaceScene) {
             EXPECT_FLOAT_EQ(pc.force.x, 0.0f);
             EXPECT_FLOAT_EQ(pc.force.y, 0.0f);
 
-            auto& rc = scene_system.registry.get<RenderComp>(entity);
+            auto& rc = registry.get<RenderComp>(entity);
             EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L / 2.f);
             EXPECT_FLOAT_EQ(rc.shape.getOutlineThickness(), cfg.L / 10.f);
             auto outline_color = rc.shape.getOutlineColor();
@@ -122,11 +122,11 @@ TEST(SceneTest, EmplaceScene) {
             EXPECT_EQ(outline_color.a, 255);
 
         } else if (name == "player-beacon force") {
-            auto& prc = scene_system.registry.get<PairComp>(entity);
+            auto& prc = registry.get<PairComp>(entity);
             EXPECT_EQ(prc.target_entity, entt::to_entity(registry, EntityName{"player"}));
             EXPECT_EQ(prc.source_entity, entt::to_entity(registry, EntityName{"beacon"}));
 
-            auto& pfc = scene_system.registry.get<PairwiseForceComp>(entity);
+            auto& pfc = registry.get<PairwiseForceComp>(entity);
             EXPECT_FLOAT_EQ(pfc.magnitude, -1.0f);
             EXPECT_FLOAT_EQ(pfc.softening, 0.0f);
             EXPECT_FLOAT_EQ(pfc.power, 2.0f);
@@ -134,7 +134,7 @@ TEST(SceneTest, EmplaceScene) {
             EXPECT_FLOAT_EQ(pfc.distance_scaling, 1.0f);
         } else if (std::regex_match(name, std::regex("bkgrd.*"))) {
             // Background circle
-            auto& rc = scene_system.registry.get<RenderComp>(entity);
+            auto& rc = registry.get<RenderComp>(entity);
 
             auto fill_color = rc.shape.getFillColor();
             EXPECT_EQ(fill_color.r, 127);

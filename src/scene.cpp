@@ -46,6 +46,11 @@ void SceneSystem::emplaceEntity(entt::registry& registry, const std::string enti
 
     json components = entity_json["components"];
 
+    // DEBUG
+    if (entity_name == "bkgrd.099") {
+        std::cout << "bkgrd.099\n";
+    }
+
     for (const auto& [comp_key, comp] : components.items()) {
         if (comp_key == "PhysicsComp") {
             auto comp_inst = comp.template get<PhysicsComp>();
@@ -69,9 +74,8 @@ void SceneSystem::emplaceEntity(entt::registry& registry, const std::string enti
             auto comp_inst = PairComp();
             EntityName target_entity_name = comp.at("target_entity");
             comp_inst.target_entity = entt::to_entity(registry, target_entity_name);
-            // EntityName source_entity_name = comp.at("source_entity").get<std::string>();
-            // comp_inst.source_entity = entt::to_entity(registry.storage<EntityName>(),
-                                                    //   source_entity_name);
+            EntityName source_entity_name = comp.at("source_entity");
+            comp_inst.source_entity = entt::to_entity(registry, source_entity_name);
             registry.emplace<PairComp>(entity, comp_inst);
         } else if (comp_key == "PairwiseForceComp") {
             auto comp_inst = comp.template get<PairwiseForceComp>();

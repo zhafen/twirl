@@ -22,3 +22,25 @@ TEST(SystemEntityTest, SpawnDeleteOrder) {
     entity_system.spawnEntities(registry);
     entity_system.orderEntities(registry);
 }
+
+TEST(SystemPhysicsTest, CalculateForces) {
+
+    // Initialize the game in its test state
+    Game game("../../tests/test_data/test_scene.json");
+    auto& registry = game.getRegistry();
+    auto& physics_system = game.getPhysicsSystem();
+
+    // Calculate forces
+    physics_system.calculateForces(registry);
+}
+
+TEST(SystemPhysicsTest, CalculatePairwiseForces) {
+
+    // Initialize the game in its test state
+    Game game("../../tests/test_data/test_scene.json");
+    auto& registry = game.getRegistry();
+    auto& physics_system = game.getPhysicsSystem();
+
+    // Calculate forces
+    physics_system.calculatePairwiseForces(registry);
+}

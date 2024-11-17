@@ -25,7 +25,7 @@ Game::Game()
       entity_system(),
       physics_system() {
     window.setFramerateLimit(cfg.fps);
-    initializeState();
+    initialize();
 }
 
 void Game::run() {
@@ -36,7 +36,7 @@ void Game::run() {
     }
 }
 
-void Game::initializeState() {
+void Game::initialize() {
     // Emplace the main scene
     entt::entity scene_entity = registry.create();
     registry.emplace<SceneComp>(scene_entity, "../../scenes/main_scene.json");
@@ -52,7 +52,7 @@ void Game::resetGameState() {
     registry.clear();
 
     // Reinitialize the game state
-    initializeState();
+    initialize();
 }
 
 void Game::handleEvents() {

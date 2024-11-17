@@ -13,18 +13,22 @@ namespace twirl {
 class Game {
    public:
     Game();
+
+    // Most of our methods are public
     void run();
     void resetGameState();
+    void handleEvents();
+    void update();
+    void render();
+
+    // Similarly, our registry is public
+    entt::registry registry;
 
    private:
     // Window and view
     sf::RenderWindow window;
     sf::View view;
     sf::View ui_view;
-
-    // ECS
-    entt::registry registry;
-    entt::entity player;
 
     // Systems
     SceneSystem scene_system;
@@ -33,10 +37,7 @@ class Game {
     PhysicsSystem physics_system;
 
     // Methods
-    void initializeState();
-    void handleEvents();
-    void update();
-    void render();
+    void initialize();
 };
 
 }  // namespace twirl

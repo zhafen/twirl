@@ -39,6 +39,8 @@ void Game::initializeState() {
     // Emplace the main scene
     entt::entity scene_entity = registry.create();
     registry.emplace<SceneComp>(scene_entity, "../../scenes/main_scene.json");
+    scene_system.loadJsonData(registry);
+    scene_system.emplaceScene(registry, scene_entity);
 
     // Load other scenes
     scene_system.loadJsonData(registry);

@@ -66,3 +66,25 @@ TEST(SystemPhysicsTest, UpdateStopWatches) {
     // Update stop watches
     physics_system.updateStopWatches(registry);
 }
+
+TEST(SystemPhysicsTest, ResolveCollisions) {
+
+    // Initialize the game in its test state
+    Game game("../../tests/test_data/test_scene.json");
+    auto& registry = game.getRegistry();
+    auto& physics_system = game.getPhysicsSystem();
+
+    // Resolve collisions
+    physics_system.resolveCollisions(registry);
+}
+
+TEST(SystemPhysicsTest, UpdateDurability) {
+
+    // Initialize the game in its test state
+    Game game("../../tests/test_data/test_scene.json");
+    auto& registry = game.getRegistry();
+    auto& physics_system = game.getPhysicsSystem();
+
+    // Update durability
+    physics_system.updateDurability(registry);
+}

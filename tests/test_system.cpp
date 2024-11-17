@@ -88,3 +88,41 @@ TEST(SystemPhysicsTest, UpdateDurability) {
     // Update durability
     physics_system.updateDurability(registry);
 }
+
+TEST(SystemRenderTest, Render) {
+
+    // Initialize the game in its test state
+    Game game("../../tests/test_data/test_scene.json");
+    auto& registry = game.getRegistry();
+    auto& render_system = game.getRenderSystem();
+    auto& window = game.getWindow();
+
+    // Render
+    render_system.render(registry, window);
+}
+
+TEST(SystemRenderTest, RenderUI) {
+
+    // Initialize the game in its test state
+    Game game("../../tests/test_data/test_scene.json");
+    auto& registry = game.getRegistry();
+    auto& render_system = game.getRenderSystem();
+    auto& window = game.getWindow();
+
+    // Render
+    render_system.render(registry, window);
+    render_system.renderUI(registry, window);
+    render_system.setView(registry, window, game.getView());
+}
+
+TEST(SystemRenderTest, SetView) {
+
+    // Initialize the game in its test state
+    Game game("../../tests/test_data/test_scene.json");
+    auto& registry = game.getRegistry();
+    auto& render_system = game.getRenderSystem();
+    auto& window = game.getWindow();
+
+    // Render
+    render_system.setView(registry, window, game.getView());
+}

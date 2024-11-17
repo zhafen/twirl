@@ -104,21 +104,8 @@ void Game::update() {
 void Game::render() {
     // Render
     render_system.render(registry, window);
-    render_system.renderUI(window, registry);
-
-    // Pin the view to the ViewComp entity (the player)
-    auto rview = registry.view<PhysicsComp, ViewComp>();
-    size_t n_vc = 0;
-    for (auto [entity, pc] : rview.each()) {
-        if (n_vc > 1) {
-            std::cerr << "Warning: More than one ViewComp entity found. Using the "
-                         "first one.\n";
-            break;
-        }
-        view.setCenter(pc.pos);
-        window.setView(view);
-        n_vc++;
-    }
+    render_system.renderUI(registry, window);
+    render_system.setView(registry, window, view);
 
     window.display();
 }

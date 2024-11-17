@@ -41,7 +41,8 @@ class RenderSystem {
    public:
     RenderSystem(sf::View& view, sf::View& ui_view);
     void render(entt::registry& registry, sf::RenderWindow& window);
-    void renderUI(sf::RenderWindow& window, entt::registry& registry);
+    void renderUI(entt::registry& registry, sf::RenderWindow& window);
+    void setView(entt::registry& regsitry, sf::RenderWindow& window, sf::View& view);
 
    private:
     sf::View view;

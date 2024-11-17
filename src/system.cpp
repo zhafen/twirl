@@ -277,7 +277,7 @@ void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     }
 }
 
-void RenderSystem::renderUI(sf::RenderWindow& window, entt::registry& registry) {
+void RenderSystem::renderUI(entt::registry& registry, sf::RenderWindow& window) {
     window.setView(ui_view);
 
     // draw frame
@@ -296,6 +296,24 @@ void RenderSystem::renderUI(sf::RenderWindow& window, entt::registry& registry) 
 
         window.draw(uic.shape);
     }
+}
+
+void RenderSystem::setView(entt::registry& registry, sf::RenderWindow& window, sf::View& view) {
+
+    // Pin the view to the ViewComp entity (the player)
+    auto rview = registry.view<PhysicsComp, ViewComp>();
+    size_t n_vc = 0;
+    for (auto [entity, pc] : rview.each()) {
+        if (n_vc > 1) {
+            std::cerr << "Warning: More than one ViewComp entity found. Using the "
+                         "first one.\n";
+            break;
+        }
+        view.setCenter(pc.pos);
+        window.setView(view);
+        n_vc++;
+    }
+
 }
 
 }  // namespace twirl

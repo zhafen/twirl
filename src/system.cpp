@@ -10,6 +10,19 @@
 
 namespace twirl {
 
+std::unordered_map<std::string, entt::entity> EntitySystem::getEntityMap(
+    entt::registry& registry) {
+    std::unordered_map<std::string, entt::entity> entity_map;
+
+    auto rview = registry.view<EntityName>();
+    for (auto [entity, name] : rview.each()) {
+        // We don't want the hassle of storing the entity names as EntityName objects
+        entity_map[static_cast<std::string>(name)] = entity;
+    }
+
+    return entity_map;
+}
+
 void EntitySystem::spawnEntities(entt::registry& registry) {
     // If there are no enemies, then keep going
     if (registry.view<EnemyComp>().empty()) {

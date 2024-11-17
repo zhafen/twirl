@@ -17,6 +17,7 @@ namespace twirl {
 class EntitySystem {
    public:
     EntitySystem() = default;
+    std::unordered_map<std::string, entt::entity> getEntityMap(entt::registry& registry);
     void spawnEntities(entt::registry& registry);
     void orderEntities(entt::registry& registry);
     void deleteEntities(entt::registry& registry);

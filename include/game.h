@@ -8,6 +8,7 @@
 #include "scene.h"
 #include "system.h"
 
+
 namespace twirl {
 
 class Game {
@@ -23,6 +24,7 @@ class Game {
 
     // Similarly, our registry is public
     entt::registry registry;
+    std::unordered_map<std::string, entt::entity> entity_map;
 
    private:
     // Window and view

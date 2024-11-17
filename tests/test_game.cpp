@@ -32,13 +32,27 @@ TEST(GameTest, HandleEvents) {
     // Initialize the game
     Game game("../../tests/test_data/test_scene.json");
 
+    // Get window
     sf::RenderWindow& window = game.getWindow();
-
-    // Check that the window is open
     ASSERT_TRUE(window.isOpen());
 
     // Run the handle events function once
     game.handleEvents();
+
+    // Close the window
+    window.close();
+}
+
+TEST(GameTest, Update) {
+    // Initialize the game
+    Game game("../../tests/test_data/test_scene.json");
+
+    // Get window
+    sf::RenderWindow& window = game.getWindow();
+    ASSERT_TRUE(window.isOpen());
+
+    // Run the handle events function once
+    game.update();
 
     // Close the window
     window.close();

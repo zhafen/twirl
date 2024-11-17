@@ -60,7 +60,6 @@ TEST(SceneTest, EmplaceSceneFromJson) {
     scene_system.onSceneTrigger(registry, triggering_entity);
 
     // Loop through the registry and check if the components are added correctly
-    // DEBUG
     auto rview = registry.view<EntityName>();
     ASSERT_FALSE(rview.empty());
     for (auto [entity, name] : rview.each()) {

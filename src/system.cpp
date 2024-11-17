@@ -45,9 +45,6 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
             stc.n_triggers++;
         });
 
-        // // DEBUG
-        // auto& mc = registry.get<MetadataComp>(entity);
-
         // // Create a new projectile
         // auto projectile = registry.create();
         // registry.emplace<MetadataComp>(projectile, "projectile");
@@ -132,13 +129,6 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
             continue;
         }
 
-        // DEBUG
-        auto& mc_target = registry.get<MetadataComp>(prc.target_entity);
-        auto& mc_source = registry.get<MetadataComp>(prc.source_entity);
-        if (mc_target.name == "projectile") {
-            int n = 0;
-        }
-
         auto r_hat = r / r_mag;
         auto r_mag_scaled = (r_mag / cfg.L + pfc.softening) / pfc.distance_scaling;
         auto force = cfg.A * r_hat * pfc.magnitude * target_pc.mass * source_pc.mass *
@@ -152,22 +142,11 @@ void PhysicsSystem::update(entt::registry& registry) {
     auto rview = registry.view<PhysicsComp>();
 
     for (auto [entity, pc] : rview.each()) {
-        // DEBUG
-        auto& mc = registry.get<MetadataComp>(entity);
-        if (std::isnan(pc.pos.x) || std::isnan(pc.pos.y)) {
-            std::cout << "NAN position for " << mc.name << std::endl;
-        }
-
         // Update using leapfrog algorithm
         auto acc = pc.force / pc.mass;
         pc.vel += acc * cfg.dt / 2.f;
         pc.pos += pc.vel * cfg.dt;
         pc.vel += acc * cfg.dt / 2.f;
-
-        // DEBUG
-        if (mc.name == "projectile") {
-            pc.force = {0.f, 0.f};
-        }
 
         // Reset force
         pc.force = {0.f, 0.f};
@@ -230,10 +209,6 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
         auto& pc2 = registry.get<PhysicsComp>(entity2);
         auto& rc2 = registry.get<RenderComp>(entity2);
 
-        // DEBUG
-        auto& mc1 = registry.get<MetadataComp>(entity1);
-        auto& mc2 = registry.get<MetadataComp>(entity2);
-
         // Check for collision, assuming circular shapes for all objects that collide
         auto r_12 = pc2.pos - pc1.pos;
         auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
@@ -263,9 +238,6 @@ void PhysicsSystem::updateDurability(entt::registry& registry) {
     for (auto [entity, dc, rc, pc] : rview.each()) {
         // Regenerate durability
         dc.durability += dc.durability_regen_rate * cfg.dt;
-
-        // DEBUG
-        auto& mc = registry.get<MetadataComp>(entity);
 
         // Apply durability loss from collision
         if (pc.collided) {

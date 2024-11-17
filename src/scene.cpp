@@ -52,11 +52,6 @@ void SceneSystem::emplaceEntity(entt::registry& registry, const std::string enti
 
     json components = entity_json["components"];
 
-    // DEBUG
-    if (entity_name == "bkgrd.099") {
-        std::cout << "bkgrd.099\n";
-    }
-
     for (const auto& [comp_key, comp] : components.items()) {
         if (comp_key == "PhysicsComp") {
             auto comp_inst = comp.template get<PhysicsComp>();

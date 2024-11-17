@@ -44,34 +44,6 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
         registry.patch<SceneTriggerComp>(entity, [](auto& stc) {
             stc.n_triggers++;
         });
-
-        // // Create a new projectile
-        // auto projectile = registry.create();
-        // registry.emplace<MetadataComp>(projectile, "projectile");
-        // auto& pc = registry.emplace<PhysicsComp>(projectile);
-        // pc.mass = 1.0f;
-        // pc.pos = source_pc.pos;
-        // auto& dc = registry.emplace<DurabilityComp>(projectile);
-        // dc.durability_loss_per_collision = 1.01f;
-        // registry.emplace<DragForceComp>(projectile);
-        // auto& rc = registry.emplace<RenderComp>(projectile, TwirlCircleShape(cfg.L
-        // / 3.f)); rc.shape.setFillColor(sf::Color::Blue); rc.zorder = 2;
-        // needs_ordering = true;
-
-        // for (auto enemy : rview) {
-        //     auto& pc = registry.get<PhysicsComp>(enemy);
-
-        //     // Be pulled towards the enemies
-        //     auto relation = registry.create();
-        //     auto& prc = registry.emplace<PairComp>(relation, projectile, enemy);
-        //     auto& pfc = registry.emplace<PairwiseForceComp>(relation);
-        //     pfc.magnitude = -0.1f;
-
-        //     // Collide with the enemies
-        //     auto col_id = registry.create();
-        //     auto& prc2 = registry.emplace<PairComp>(col_id, projectile, enemy);
-        //     registry.emplace<CollisionComp>(col_id);
-        // }
     }
 }
 

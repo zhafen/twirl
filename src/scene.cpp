@@ -63,6 +63,9 @@ void SceneSystem::emplaceEntity(entt::registry& registry, EntityMap& scene_entit
         if (comp_key == "SceneComp") {
             auto comp_inst = comp.template get<SceneComp>();
             registry.emplace<SceneComp>(entity, comp_inst);
+        } else if (comp_key == "SceneTriggerComp") {
+            auto comp_inst = comp.template get<SceneTriggerComp>();
+            registry.emplace<SceneTriggerComp>(entity, comp_inst);
         } else if (comp_key == "PhysicsComp") {
             auto comp_inst = comp.template get<PhysicsComp>();
             registry.emplace<PhysicsComp>(entity, comp_inst);

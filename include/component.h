@@ -45,6 +45,11 @@ struct SceneTriggerComp {
     entt::entity scene_entity;
     int n_triggers = 0;
 };
+inline void from_json(const json& j, SceneTriggerComp& stc) {
+    stc.scene_name = j.at("scene_name").get<std::string>();
+    stc.scene_entity = j.at("scene_entity").get<entt::entity>();
+    stc.n_triggers = j.value("n_triggers", 0);
+}
 
 // We don't define a macro for MetadataComp because currently the key for a given
 // entity in the json is the name.

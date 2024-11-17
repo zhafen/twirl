@@ -10,7 +10,7 @@
 
 using namespace twirl;
 
-TEST(EntitySystemTest, SpawnDeleteOrder) {
+TEST(SystemEntityTest, SpawnDeleteOrder) {
 
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");

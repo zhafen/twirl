@@ -52,12 +52,8 @@ TEST(SceneTest, EmplaceSceneFromJson) {
     registry.emplace<SceneComp>(scene, "../../tests/test_data/test_scene.json");
     scene_system.loadJsonData(registry);
 
-    // Add the triggering entity
-    entt::entity triggering_entity = registry.create();
-    registry.emplace<SceneTriggerComp>(triggering_entity, "test_scene", scene);
-
     // Emplace the Scene
-    scene_system.onSceneTrigger(registry, triggering_entity);
+    scene_system.emplaceScene(registry, scene);
 
     // Loop through the registry and check if the components are added correctly
     auto rview = registry.view<EntityName>();
@@ -119,8 +115,8 @@ TEST(SceneTest, EmplaceSceneFromJson) {
 
         } else if (name == "player-beacon force") {
             auto& prc = registry.get<PairComp>(entity);
-            EXPECT_EQ(prc.target_entity, entt::to_entity(registry, EntityName{"player"}));
-            EXPECT_EQ(prc.source_entity, entt::to_entity(registry, EntityName{"beacon"}));
+            EXPECT_EQ(registry.get<EntityName>(prc.target_entity), EntityName{"player"});
+            EXPECT_EQ(registry.get<EntityName>(prc.source_entity), EntityName{"beacon"});
 
             auto& pfc = registry.get<PairwiseForceComp>(entity);
             EXPECT_FLOAT_EQ(pfc.magnitude, -1.0f);

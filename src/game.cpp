@@ -83,7 +83,7 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-    // Spawn and despawn entities
+    // Try spawning, deleting, and ordering entities
     entity_system.deleteEntities(registry);
     entity_system.spawnEntities(registry);
     entity_system.orderEntities(registry);

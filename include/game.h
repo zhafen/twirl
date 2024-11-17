@@ -26,6 +26,13 @@ class Game {
     entt::registry& getRegistry() { return registry; }
     std::unordered_map<std::string, entt::entity>& getEntityMap() { return entity_map; }
     sf::RenderWindow& getWindow() { return window; }
+    sf::View& getView() { return view; }
+    sf::View& getUiView() { return ui_view; }
+    SceneSystem& getSceneSystem() { return scene_system; }
+    EntitySystem& getEntitySystem() { return entity_system; }
+    RenderSystem& getRenderSystem() { return render_system; }
+    PhysicsSystem& getPhysicsSystem() { return physics_system; }
+    std::string& getMainSceneFilePath() { return main_scene_fp; }
 
    private:
     std::string main_scene_fp;

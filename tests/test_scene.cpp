@@ -1,9 +1,9 @@
-#include <gtest/gtest.h>
+#include <regex>
 
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/helper.hpp>
 #include <nlohmann/json.hpp>
-#include <regex>
+#include <gtest/gtest.h>
 
 #include "component.h"
 #include "config.h"

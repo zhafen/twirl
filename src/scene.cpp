@@ -1,11 +1,12 @@
-#include "scene.h"
-
-#include <entt/entity/helper.hpp>
 #include <filesystem>
 #include <fstream>
+
+#include <entt/entity/helper.hpp>
 #include <nlohmann/json.hpp>
 
 #include "component.h"
+#include "scene.h"
+
 using json = nlohmann::ordered_json;
 
 namespace twirl {

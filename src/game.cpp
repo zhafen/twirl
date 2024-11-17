@@ -1,14 +1,15 @@
-#include "game.h"
 
-#include <SFML/Graphics.hpp>
-#include <entt/entt.hpp>
 #include <filesystem>
 #include <iostream>
 #include <random>
 #include <unordered_map>
 #include <vector>
 
+#include <entt/entity/fwd.hpp>
+#include <SFML/Graphics.hpp>
+
 #include "config.h"
+#include "game.h"
 #include "scene.h"
 #include "shape.h"
 #include "system.h"

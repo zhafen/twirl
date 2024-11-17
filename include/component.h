@@ -129,6 +129,8 @@ inline void from_json(const json& j, RenderComp& rc) {
     rc.zorder = j.value("zorder", 0);
 }
 
+struct ViewComp {};
+
 // All UI components are assumed to be rectangles that track floats.
 // If I start using substructures, I may need to change ui_comps to holding pointers.
 struct UIComp {

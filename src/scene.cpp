@@ -27,15 +27,19 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
 
 void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) {
     auto& stc = registry.get<SceneTriggerComp>(entity);
-    auto& sc = registry.get<SceneComp>(stc.scene_entity);
+    emplaceScene(registry, stc.scene_entity);
+
+    // Reset n_triggers
+    stc.n_triggers = 0;
+}
+
+void SceneSystem::emplaceScene(entt::registry& registry, const entt::entity scene_entity) {
+    auto& sc = registry.get<SceneComp>(scene_entity);
 
     // Loop through and emplace entities
     for (const auto& [entity_name, entity_json] : sc.json_data.items()) {
         emplaceEntity(registry, entity_name, entity_json);
     }
-
-    // Reset n_triggers
-    stc.n_triggers = 0;
 }
 
 void SceneSystem::emplaceEntity(entt::registry& registry, const std::string entity_name,

@@ -42,6 +42,7 @@ class SceneSystem {
 
     void loadJsonData(entt::registry& registry);
     void onSceneTrigger(entt::registry& registry, entt::entity entity);
+    void emplaceScene(entt::registry& registry, entt::entity scene_entity);
 
     json json_data;
 

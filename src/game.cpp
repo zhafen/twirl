@@ -36,18 +36,17 @@ void Game::run() {
 }
 
 void Game::initializeState() {
+    // Emplace the main scene
+    entt::entity scene_entity = registry.create();
+    registry.emplace<SceneComp>(scene_entity, "../../scenes/main_scene.json");
 
-    // Initialize entity name storage
-    registry.storage<EntityName>();
-
-    // Load the scene from json
+    // Load other scenes
     scene_system.loadJsonData(registry);
 }
 
 void Game::resetGameState() {
     // Delete all entities
     registry.clear();
-    // TODO: Need to clear the scene too.
 
     // Reinitialize the game state
     initializeState();
@@ -98,9 +97,13 @@ void Game::render() {
     render_system.render(registry, window);
     render_system.renderUI(window, registry);
 
-    // Pin the view to the player
-    view.setCenter(registry.get<PhysicsComp>(player).pos);
-    window.setView(view);
+    // Pin the view to the ViewComp entity (the player)
+    auto rview = registry.view<ViewComp, PhysicsComp>();
+    assert(rview.size_hint() == 1);
+    for (auto [entity, pc] : rview.each()) {
+        view.setCenter(pc.pos);
+        window.setView(view);
+    }
 
     window.display();
 }

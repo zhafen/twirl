@@ -22,12 +22,17 @@ class Game {
     void update();
     void render();
 
-    // Similarly, our registry is public
-    entt::registry registry;
-    std::unordered_map<std::string, entt::entity> entity_map;
+    // Getter functions for private variables
+    entt::registry& getRegistry() { return registry; }
+    std::unordered_map<std::string, entt::entity>& getEntityMap() { return entity_map; }
+    sf::RenderWindow& getWindow() { return window; }
 
    private:
     std::string main_scene_fp;
+
+    // ECS
+    entt::registry registry;
+    std::unordered_map<std::string, entt::entity> entity_map;
 
     // Window and view
     sf::RenderWindow window;

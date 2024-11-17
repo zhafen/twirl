@@ -16,14 +16,25 @@ TEST(GameTest, Initialize) {
     Game game("../../tests/test_data/test_scene.json");
 
     // Check that the registry is not empty
-    auto rview = game.registry.view<EntityName>();
+    auto rview = game.getRegistry().view<EntityName>();
     ASSERT_FALSE(rview.empty());
 
     // Check that the player entity is present
-    entt::entity player_entity = game.entity_map["player"];
+    entt::entity player_entity = game.getEntityMap()["player"];
     ASSERT_FALSE(player_entity == entt::null);
 
     // Check that the player entity has the correct components
-    auto& pc = game.registry.get<PhysicsComp>(player_entity);
+    auto& pc = game.getRegistry().get<PhysicsComp>(player_entity);
     EXPECT_FLOAT_EQ(pc.mass, 1.0f);
+}
+
+TEST(GameTest, HandleEvents) {
+    // Initialize the game
+    Game game("../../tests/test_data/test_scene.json");
+
+    sf::RenderWindow& window = game.getWindow();
+
+    // Check that the window is open
+    ASSERT_TRUE(window.isOpen());
+
 }

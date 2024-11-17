@@ -18,7 +18,9 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
         // Parse the file
         std::ifstream file(sc.data_fp);
         if (!file.is_open()) {
-            throw std::runtime_error("Failed to open file: " + sc.data_fp);
+            throw std::runtime_error(
+                "Failed to open file: " + sc.data_fp +
+                "\nCurrent directory: " + std::filesystem::current_path().string());
             return;
         }
         sc.json_data = json::parse(file);
@@ -33,7 +35,8 @@ void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) 
     stc.n_triggers = 0;
 }
 
-void SceneSystem::emplaceScene(entt::registry& registry, const entt::entity scene_entity) {
+void SceneSystem::emplaceScene(entt::registry& registry,
+                               const entt::entity scene_entity) {
     auto& sc = registry.get<SceneComp>(scene_entity);
 
     // Loop through and emplace entities
@@ -86,6 +89,8 @@ void SceneSystem::emplaceEntity(entt::registry& registry, const std::string enti
             registry.emplace<PairwiseForceComp>(entity, comp_inst);
         } else if (comp_key == "CollisionComp") {
             registry.emplace<CollisionComp>(entity);
+        } else if (comp_key == "ViewComp") {
+            registry.emplace<ViewComp>(entity);
         } else if (comp_key == "UIComp") {
             auto comp_inst = comp.template get<UIComp>();
             registry.emplace<UIComp>(entity, comp_inst);

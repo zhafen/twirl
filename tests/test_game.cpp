@@ -5,6 +5,7 @@
 #include <nlohmann/json.hpp>
 
 #include "config.h"
+#include "component.h"
 #include "game.h"
 
 using namespace twirl;
@@ -20,6 +21,14 @@ TEST(GameTest, Initialize) {
 
     // Check that the player entity is present
     entt::entity player_entity = entt::to_entity(game.registry, EntityName{"player"});
+    // DEBUG
+    for (auto [entity, name] : rview.each()) {
+        if (name == "player") {
+            player_entity = entity;
+            break;
+        }
+    }
+    auto& pc = game.registry.get<PhysicsComp>(player_entity);
     ASSERT_FALSE(player_entity == entt::null);
 
     // // Check that the player entity has the correct components

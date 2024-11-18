@@ -68,6 +68,34 @@ TEST(SystemPhysicsTest, CalculatePairwiseForces) {
     physics_system.calculatePairwiseForces(registry);
 }
 
+TEST(SystemPhysicsTest, CalculatePairwiseForcesPostDelete) {
+
+    // Set up test objects
+    entt::registry registry;
+    PhysicsSystem physics_system;
+    // Entities themselves
+    entt::entity entity1 = registry.create();
+    registry.emplace<PhysicsComp>(entity1);
+    entt::entity entity2 = registry.create();
+    registry.emplace<PhysicsComp>(entity2);
+    entt::entity entity3 = registry.create();
+    registry.emplace<PhysicsComp>(entity3);
+    // Entity-entity relationships
+    entt::entity rel_12 = registry.create();
+    registry.emplace<PairComp>(rel_12, entity1, entity2);
+    registry.emplace<PairwiseForceComp>(rel_12);
+    entt::entity rel_23 = registry.create();
+    registry.emplace<PairComp>(rel_23, entity2, entity3);
+    registry.emplace<PairwiseForceComp>(rel_23);
+    entt::entity rel_31 = registry.create();
+    registry.emplace<PairComp>(rel_31, entity3, entity1);
+    registry.emplace<PairwiseForceComp>(rel_31);
+
+    // Calculate forces
+    physics_system.calculatePairwiseForces(registry);
+}
+
+
 TEST(SystemPhysicsTest, Update) {
 
     // Initialize the game in its test state

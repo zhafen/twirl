@@ -103,6 +103,9 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
             continue;
         }
 
+        // DEBUG
+        EntityName target_entity_name = registry.get<EntityName>(prc.target_entity);
+
         auto& target_pc = registry.get<PhysicsComp>(prc.target_entity);
         auto& source_pc = registry.get<PhysicsComp>(prc.source_entity);
 
@@ -172,9 +175,6 @@ void PhysicsSystem::updateStopWatches(entt::registry& registry) {
  * angle of p1 and p2. However, we employ a simple assumption that the objects
  * move parallel to the line connecting their centers. If you look on wikipedia there
  * are more-thorough constraints based on contact angles.
- *
- * @param components A reference to the Comps object containing physics and render
- * components.
  */
 void PhysicsSystem::resolveCollisions(entt::registry& registry) {
     for (auto [rel_id, prc] : registry.view<PairComp, CollisionComp>().each()) {

@@ -27,6 +27,8 @@ EntityMap EntitySystem::getEntityMap(
  */
 void EntitySystem::resolveEntityNames(entt::registry& registry) {
     auto entity_map = getEntityMap(registry);
+    // DEBUG
+    EntityName actual_entity_name = registry.get<EntityName>(entity_map["enemy.009"]);
     auto rview = registry.view<PairComp>();
     for (auto [pair_entity, pc] : rview.each()) {
         if (!registry.valid(pc.target_entity) && !pc.target_entity_name.empty()) {
@@ -102,6 +104,12 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
             registry.destroy(rel_id);
             continue;
         }
+
+        // DEBUG
+        EntityName target_name = registry.get<EntityName>(prc.target_entity);
+        EntityName source_name = registry.get<EntityName>(prc.source_entity);
+        bool is_target_null = prc.target_entity == entt::null;
+        bool is_source_null = prc.source_entity == entt::null;
 
         auto& target_pc = registry.get<PhysicsComp>(prc.target_entity);
         auto& source_pc = registry.get<PhysicsComp>(prc.source_entity);

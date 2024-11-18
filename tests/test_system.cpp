@@ -93,6 +93,10 @@ TEST(SystemPhysicsTest, CalculatePairwiseForcesPostDelete) {
 
     // Calculate forces
     physics_system.calculatePairwiseForces(registry);
+
+    // Delete an entity and try again
+    registry.destroy(entity1);
+    physics_system.calculatePairwiseForces(registry);
 }
 
 

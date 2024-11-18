@@ -103,9 +103,6 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
             continue;
         }
 
-        // DEBUG
-        EntityName target_entity_name = registry.get<EntityName>(prc.target_entity);
-
         auto& target_pc = registry.get<PhysicsComp>(prc.target_entity);
         auto& source_pc = registry.get<PhysicsComp>(prc.source_entity);
 

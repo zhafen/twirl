@@ -4,14 +4,13 @@
 #include <entt/entity/helper.hpp>
 #include <nlohmann/json.hpp>
 
-#include "config.h"
 #include "component.h"
+#include "config.h"
 #include "game.h"
 
 using namespace twirl;
 
 TEST(SystemEntityTest, SpawnDeleteOrder) {
-
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();
@@ -24,7 +23,6 @@ TEST(SystemEntityTest, SpawnDeleteOrder) {
 }
 
 TEST(SystemEntityTest, ResolveEntityNames) {
-
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();
@@ -44,8 +42,52 @@ TEST(SystemEntityTest, ResolveEntityNames) {
     }
 }
 
-TEST(SystemPhysicsTest, CalculateForces) {
+TEST(SystemEntityPhysicsTest, ResolveNamesInAction) {
+    // Set up test objects
+    entt::registry registry;
+    EntitySystem entity_system;
+    PhysicsSystem physics_system;
+    // Entities themselves
+    entt::entity entity1 = registry.create();
+    registry.emplace<EntityName>(entity1, "entity1");
+    registry.emplace<PhysicsComp>(entity1);
+    entt::entity entity2 = registry.create();
+    registry.emplace<EntityName>(entity2, "entity2");
+    registry.emplace<PhysicsComp>(entity2);
+    entt::entity entity3 = registry.create();
+    registry.emplace<EntityName>(entity3, "entity3");
+    registry.emplace<PhysicsComp>(entity3);
+    // Entity-entity relationships
+    entt::entity rel_12 = registry.create();
+    PairComp pc_12;
+    pc_12.target_entity_name = "entity1";
+    pc_12.source_entity_name = "entity2";
+    registry.emplace<PairComp>(rel_12, pc_12);
+    registry.emplace<PairwiseForceComp>(rel_12);
+    entt::entity rel_23 = registry.create();
+    PairComp pc_23;
+    pc_23.target_entity_name = "entity2";
+    pc_23.source_entity_name = "entity3";
+    registry.emplace<PairComp>(rel_23, pc_23);
+    registry.emplace<PairwiseForceComp>(rel_23);
+    entt::entity rel_31 = registry.create();
+    PairComp pc_31;
+    pc_31.target_entity_name = "entity3";
+    pc_31.source_entity_name = "entity1";
+    registry.emplace<PairComp>(rel_31, pc_31);
+    registry.emplace<PairwiseForceComp>(rel_31);
 
+    // Resolve names then forces
+    entity_system.resolveEntityNames(registry);
+    physics_system.calculatePairwiseForces(registry);
+
+    // Delete an entity and try again
+    registry.destroy(entity1);
+    entity_system.resolveEntityNames(registry);
+    physics_system.calculatePairwiseForces(registry);
+}
+
+TEST(SystemPhysicsTest, CalculateForces) {
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();
@@ -56,7 +98,6 @@ TEST(SystemPhysicsTest, CalculateForces) {
 }
 
 TEST(SystemPhysicsTest, CalculatePairwiseForces) {
-
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();
@@ -69,7 +110,6 @@ TEST(SystemPhysicsTest, CalculatePairwiseForces) {
 }
 
 TEST(SystemPhysicsTest, CalculatePairwiseForcesPostDelete) {
-
     // Set up test objects
     entt::registry registry;
     PhysicsSystem physics_system;
@@ -99,9 +139,7 @@ TEST(SystemPhysicsTest, CalculatePairwiseForcesPostDelete) {
     physics_system.calculatePairwiseForces(registry);
 }
 
-
 TEST(SystemPhysicsTest, Update) {
-
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();
@@ -112,7 +150,6 @@ TEST(SystemPhysicsTest, Update) {
 }
 
 TEST(SystemPhysicsTest, UpdateStopWatches) {
-
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();
@@ -123,7 +160,6 @@ TEST(SystemPhysicsTest, UpdateStopWatches) {
 }
 
 TEST(SystemPhysicsTest, ResolveCollisions) {
-
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();
@@ -134,7 +170,6 @@ TEST(SystemPhysicsTest, ResolveCollisions) {
 }
 
 TEST(SystemPhysicsTest, UpdateDurability) {
-
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();
@@ -145,7 +180,6 @@ TEST(SystemPhysicsTest, UpdateDurability) {
 }
 
 TEST(SystemRenderTest, Render) {
-
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();
@@ -157,7 +191,6 @@ TEST(SystemRenderTest, Render) {
 }
 
 TEST(SystemRenderTest, RenderUI) {
-
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();
@@ -171,7 +204,6 @@ TEST(SystemRenderTest, RenderUI) {
 }
 
 TEST(SystemRenderTest, SetView) {
-
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();

@@ -27,8 +27,6 @@ EntityMap EntitySystem::getEntityMap(
  */
 void EntitySystem::resolveEntityNames(entt::registry& registry) {
     auto entity_map = getEntityMap(registry);
-    // DEBUG
-    EntityName actual_entity_name = registry.get<EntityName>(entity_map["enemy.009"]);
     auto rview = registry.view<PairComp>();
     for (auto [pair_entity, pc] : rview.each()) {
         if (!registry.valid(pc.target_entity) && !pc.target_entity_name.empty()) {

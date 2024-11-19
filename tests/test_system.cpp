@@ -83,6 +83,7 @@ TEST(SystemEntityPhysicsTest, ResolveEntityPairs) {
     ASSERT_TRUE(registry.valid(rel_12));
     ASSERT_TRUE(registry.valid(rel_23));
     ASSERT_TRUE(registry.valid(rel_31));
+    ASSERT_EQ(registry.get<EntityName>(pc_12.target_entity), "entity1");
     ASSERT_EQ(pc_12.target_entity, entity1);
     ASSERT_EQ(pc_12.source_entity, entity2);
     ASSERT_EQ(pc_23.target_entity, entity2);

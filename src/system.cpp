@@ -10,8 +10,7 @@
 
 namespace twirl {
 
-EntityMap EntitySystem::getEntityMap(
-    entt::registry& registry) {
+EntityMap EntitySystem::getEntityMap(entt::registry& registry) {
     EntityMap entity_map;
 
     auto rview = registry.view<EntityName>();
@@ -23,18 +22,52 @@ EntityMap EntitySystem::getEntityMap(
 }
 
 /**
- * OPTIMIZE: This function should not loop over every pair comp, and should not call getEntityMap every time.
+ * OPTIMIZE: This function may not be able to loop over every paircomp if we use
+ * listeners, and should probably not call getEntityMap every time.
  */
-void EntitySystem::resolveEntityNames(entt::registry& registry) {
+void EntitySystem::resolveEntityPairs(entt::registry& registry) {
     auto entity_map = getEntityMap(registry);
     auto rview = registry.view<PairComp>();
     for (auto [pair_entity, pc] : rview.each()) {
-        if (!registry.valid(pc.target_entity) && !pc.target_entity_name.empty()) {
-            pc.target_entity = entity_map[pc.target_entity_name];
+        bool destroy_pair_entity = false;
+        if (!registry.valid(pc.target_entity)) {
+            // If the the target name is not empty, try to resolve it
+            if (!pc.target_entity_name.empty()) {
+                // Try to resolve and use the target name
+                bool is_resolved =
+                    entity_map.find(pc.target_entity_name) == entity_map.end();
+                if (is_resolved) {
+                    pc.target_entity = entity_map[pc.target_entity_name];
+                } else {
+                    // If the name cannot be resolved,
+                    // mark the pair entity for destruction
+                    destroy_pair_entity = true;
+                }
+            } else {
+                // If not valid and there's no name, mark for destruction
+                destroy_pair_entity = true;
+            }
         }
-        if (!registry.valid(pc.source_entity) && !pc.source_entity_name.empty()) {
-            pc.source_entity = entity_map[pc.source_entity_name];
+        if (!registry.valid(pc.source_entity)) {
+            // If the the target name is not empty, try to resolve it
+            if (!pc.source_entity_name.empty()) {
+                // Try to resolve and use the target name
+                bool is_resolved =
+                    entity_map.find(pc.source_entity_name) == entity_map.end();
+                if (is_resolved) {
+                    pc.source_entity = entity_map[pc.source_entity_name];
+                } else {
+                    // If the name cannot be resolved,
+                    // mark the pair entity for destruction
+                    destroy_pair_entity = true;
+                }
+            } else {
+                // If not valid and there's no name, mark for destruction
+                destroy_pair_entity = true;
+            }
         }
+        // Follow through, destroying only once
+        if (destroy_pair_entity) { registry.destroy(pair_entity); }
     }
 }
 
@@ -56,9 +89,7 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
         }
 
         // If we got this far then we activate the scene trigger
-        registry.patch<SceneTriggerComp>(entity, [](auto& stc) {
-            stc.n_triggers++;
-        });
+        registry.patch<SceneTriggerComp>(entity, [](auto& stc) { stc.n_triggers++; });
     }
 }
 
@@ -286,8 +317,8 @@ void RenderSystem::renderUI(entt::registry& registry, sf::RenderWindow& window) 
     }
 }
 
-void RenderSystem::setView(entt::registry& registry, sf::RenderWindow& window, sf::View& view) {
-
+void RenderSystem::setView(entt::registry& registry, sf::RenderWindow& window,
+                           sf::View& view) {
     // Pin the view to the ViewComp entity (the player)
     auto rview = registry.view<PhysicsComp, ViewComp>();
     size_t n_vc = 0;
@@ -301,7 +332,6 @@ void RenderSystem::setView(entt::registry& registry, sf::RenderWindow& window, s
         window.setView(view);
         n_vc++;
     }
-
 }
 
 }  // namespace twirl

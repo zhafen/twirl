@@ -115,7 +115,7 @@ TEST(SceneTest, EmplaceSceneFromJson) {
 
         } else if (name == "player-beacon force") {
             // We don't check for the correct entities themselves here because
-            // that's part of resolveEntityNames
+            // that's part of resolveEntityPairs
             auto& prc = registry.get<PairComp>(entity);
             EXPECT_EQ(prc.target_entity_name, "player");
             EXPECT_EQ(prc.source_entity_name, "beacon");

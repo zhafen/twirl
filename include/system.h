@@ -18,7 +18,7 @@ class EntitySystem {
    public:
     EntitySystem() = default;
     EntityMap getEntityMap(entt::registry& registry);
-    void resolveEntityNames(entt::registry& registry);
+    void resolveEntityPairs(entt::registry& registry);
     void spawnEntities(entt::registry& registry);
     void orderEntities(entt::registry& registry);
     void deleteEntities(entt::registry& registry);

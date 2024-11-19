@@ -29,7 +29,7 @@ TEST(SystemEntityTest, ResolveEntityNames) {
     auto& entity_system = game.getEntitySystem();
 
     // Resolve entity names
-    entity_system.resolveEntityNames(registry);
+    entity_system.resolveEntityPairs(registry);
 
     // Check that the entities match up
     auto entity_map = game.getEntityMap();
@@ -78,12 +78,12 @@ TEST(SystemEntityPhysicsTest, ResolveNamesInAction) {
     registry.emplace<PairwiseForceComp>(rel_31);
 
     // Resolve names then forces
-    entity_system.resolveEntityNames(registry);
+    entity_system.resolveEntityPairs(registry);
     physics_system.calculatePairwiseForces(registry);
 
     // Delete an entity and try again
     registry.destroy(entity1);
-    entity_system.resolveEntityNames(registry);
+    entity_system.resolveEntityPairs(registry);
     physics_system.calculatePairwiseForces(registry);
 }
 
@@ -103,7 +103,7 @@ TEST(SystemPhysicsTest, CalculatePairwiseForces) {
     auto& registry = game.getRegistry();
     auto& physics_system = game.getPhysicsSystem();
     // Need to resolve entity names before calculating pairwise forces
-    game.getEntitySystem().resolveEntityNames(registry);
+    game.getEntitySystem().resolveEntityPairs(registry);
 
     // Calculate forces
     physics_system.calculatePairwiseForces(registry);

@@ -113,6 +113,7 @@ TEST(SystemPhysicsTest, CalculatePairwiseForcesPostDelete) {
     // Set up test objects
     entt::registry registry;
     PhysicsSystem physics_system;
+    EntitySystem entity_system;
     // Entities themselves
     entt::entity entity1 = registry.create();
     registry.emplace<PhysicsComp>(entity1);
@@ -132,10 +133,12 @@ TEST(SystemPhysicsTest, CalculatePairwiseForcesPostDelete) {
     registry.emplace<PairwiseForceComp>(rel_31);
 
     // Calculate forces
+    entity_system.resolveEntityPairs(registry);
     physics_system.calculatePairwiseForces(registry);
 
     // Delete an entity and try again
     registry.destroy(entity1);
+    entity_system.resolveEntityPairs(registry);
     physics_system.calculatePairwiseForces(registry);
 }
 

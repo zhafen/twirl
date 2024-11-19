@@ -128,18 +128,6 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
     auto rview = registry.view<PairComp, PairwiseForceComp>();
 
     for (auto [rel_id, prc, pfc] : rview.each()) {
-        // Check if the entities still exist
-        if (!registry.valid(prc.target_entity) || !registry.valid(prc.source_entity)) {
-            registry.destroy(rel_id);
-            continue;
-        }
-
-        // DEBUG
-        EntityName target_name = registry.get<EntityName>(prc.target_entity);
-        EntityName source_name = registry.get<EntityName>(prc.source_entity);
-        bool is_target_null = prc.target_entity == entt::null;
-        bool is_source_null = prc.source_entity == entt::null;
-
         auto& target_pc = registry.get<PhysicsComp>(prc.target_entity);
         auto& source_pc = registry.get<PhysicsComp>(prc.source_entity);
 

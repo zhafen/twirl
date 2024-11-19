@@ -35,7 +35,7 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
             if (!pc.target_entity_name.empty()) {
                 // Try to resolve and use the target name
                 bool is_resolved =
-                    entity_map.find(pc.target_entity_name) == entity_map.end();
+                    entity_map.find(pc.target_entity_name) != entity_map.end();
                 if (is_resolved) {
                     pc.target_entity = entity_map[pc.target_entity_name];
                 } else {
@@ -53,7 +53,7 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
             if (!pc.source_entity_name.empty()) {
                 // Try to resolve and use the target name
                 bool is_resolved =
-                    entity_map.find(pc.source_entity_name) == entity_map.end();
+                    entity_map.find(pc.source_entity_name) != entity_map.end();
                 if (is_resolved) {
                     pc.source_entity = entity_map[pc.source_entity_name];
                 } else {

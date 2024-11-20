@@ -74,11 +74,6 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
 }
 
 void EntitySystem::spawnEntities(entt::registry& registry) {
-    // If there are no enemies, then keep going
-    if (registry.view<EnemyComp>().empty()) {
-        return;
-    }
-
     auto rview = registry.view<SceneTriggerComp, StopWatchComp>();
     for (auto [entity, asc, swc] : rview.each()) {
         // Check if the end time was reached

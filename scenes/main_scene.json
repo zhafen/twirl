@@ -6,5 +6,12 @@
                 "emplace_after_loading": true
             }
         }
+    },
+    "projectiles": {
+        "components": {
+            "SceneComp": {
+                "scene_fp": "../../scenes/projectiles.json"
+            }
+        }
     }
 }

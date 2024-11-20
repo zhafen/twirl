@@ -29,6 +29,9 @@
                     255
                 ]
             },
+            "SceneTriggerComp": {
+                "scene_name": "projectiles"
+            },
             "StopWatchComp": {},
             "ViewComp": {}
         }
@@ -72,8 +75,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -96.50233036494767,
-                    -76.76401674748415
+                    59.87526045585892,
+                    -60.30422914965494
                 ],
                 "vel": [
                     0.0,
@@ -93,7 +96,7 @@
             }
         }
     },
-    "player-enemy.000 inverse square": {
+    "enemy-player.000 inverse square": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -107,7 +110,7 @@
             }
         }
     },
-    "player-enemy.000 spring": {
+    "enemy-player.000 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -118,7 +121,7 @@
             }
         }
     },
-    "player-enemy.000 collision": {
+    "enemy-player.000 collision": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -132,8 +135,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    46.09293088602476,
-                    -109.26069663512139
+                    -16.385920880146074,
+                    -54.97463956464969
                 ],
                 "vel": [
                     0.0,
@@ -153,7 +156,7 @@
             }
         }
     },
-    "player-enemy.001 inverse square": {
+    "enemy-player.001 inverse square": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -167,7 +170,7 @@
             }
         }
     },
-    "player-enemy.001 spring": {
+    "enemy-player.001 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -178,7 +181,7 @@
             }
         }
     },
-    "player-enemy.001 collision": {
+    "enemy-player.001 collision": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -192,8 +195,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    63.62433257468149,
-                    -73.19357780641955
+                    -91.75320695746849,
+                    -36.421390837267396
                 ],
                 "vel": [
                     0.0,
@@ -213,7 +216,7 @@
             }
         }
     },
-    "player-enemy.002 inverse square": {
+    "enemy-player.002 inverse square": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -227,7 +230,7 @@
             }
         }
     },
-    "player-enemy.002 spring": {
+    "enemy-player.002 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -238,7 +241,7 @@
             }
         }
     },
-    "player-enemy.002 collision": {
+    "enemy-player.002 collision": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -252,8 +255,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -11.011332194770233,
-                    -82.15232986023362
+                    92.77188435333977,
+                    -30.828217170341276
                 ],
                 "vel": [
                     0.0,
@@ -273,7 +276,7 @@
             }
         }
     },
-    "player-enemy.003 inverse square": {
+    "enemy-player.003 inverse square": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -287,7 +290,7 @@
             }
         }
     },
-    "player-enemy.003 spring": {
+    "enemy-player.003 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -298,7 +301,7 @@
             }
         }
     },
-    "player-enemy.003 collision": {
+    "enemy-player.003 collision": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -312,8 +315,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    92.98879417197966,
-                    -88.83775410357103
+                    30.372209651157902,
+                    -77.62088346875666
                 ],
                 "vel": [
                     0.0,
@@ -333,7 +336,7 @@
             }
         }
     },
-    "player-enemy.004 inverse square": {
+    "enemy-player.004 inverse square": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -347,7 +350,7 @@
             }
         }
     },
-    "player-enemy.004 spring": {
+    "enemy-player.004 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -358,7 +361,7 @@
             }
         }
     },
-    "player-enemy.004 collision": {
+    "enemy-player.004 collision": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -372,8 +375,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -70.58014012065235,
-                    -43.93305125107862
+                    53.17970970638248,
+                    -118.37053043915553
                 ],
                 "vel": [
                     0.0,
@@ -393,7 +396,7 @@
             }
         }
     },
-    "player-enemy.005 inverse square": {
+    "enemy-player.005 inverse square": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -407,7 +410,7 @@
             }
         }
     },
-    "player-enemy.005 spring": {
+    "enemy-player.005 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -418,7 +421,7 @@
             }
         }
     },
-    "player-enemy.005 collision": {
+    "enemy-player.005 collision": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -432,8 +435,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -84.22114554662936,
-                    -74.51414080909336
+                    12.560790282444216,
+                    -61.82599025660263
                 ],
                 "vel": [
                     0.0,
@@ -453,7 +456,7 @@
             }
         }
     },
-    "player-enemy.006 inverse square": {
+    "enemy-player.006 inverse square": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -467,7 +470,7 @@
             }
         }
     },
-    "player-enemy.006 spring": {
+    "enemy-player.006 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -478,7 +481,7 @@
             }
         }
     },
-    "player-enemy.006 collision": {
+    "enemy-player.006 collision": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -492,8 +495,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -22.369028732698666,
-                    -43.088277879087144
+                    48.188203043236285,
+                    -70.31061341951062
                 ],
                 "vel": [
                     0.0,
@@ -513,7 +516,7 @@
             }
         }
     },
-    "player-enemy.007 inverse square": {
+    "enemy-player.007 inverse square": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -527,7 +530,7 @@
             }
         }
     },
-    "player-enemy.007 spring": {
+    "enemy-player.007 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -538,7 +541,7 @@
             }
         }
     },
-    "player-enemy.007 collision": {
+    "enemy-player.007 collision": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -552,8 +555,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    33.01053461190614,
-                    -104.83762859489543
+                    43.16511498159991,
+                    -80.12340474872155
                 ],
                 "vel": [
                     0.0,
@@ -573,7 +576,7 @@
             }
         }
     },
-    "player-enemy.008 inverse square": {
+    "enemy-player.008 inverse square": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -587,7 +590,7 @@
             }
         }
     },
-    "player-enemy.008 spring": {
+    "enemy-player.008 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -598,7 +601,7 @@
             }
         }
     },
-    "player-enemy.008 collision": {
+    "enemy-player.008 collision": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -612,8 +615,8 @@
             "EnemyComp": {},
             "PhysicsComp": {
                 "pos": [
-                    -54.228625940687735,
-                    -61.967334583040824
+                    2.731305398207212,
+                    -84.77043512305303
                 ],
                 "vel": [
                     0.0,
@@ -633,7 +636,7 @@
             }
         }
     },
-    "player-enemy.009 inverse square": {
+    "enemy-player.009 inverse square": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -647,7 +650,7 @@
             }
         }
     },
-    "player-enemy.009 spring": {
+    "enemy-player.009 spring": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -658,7 +661,7 @@
             }
         }
     },
-    "player-enemy.009 collision": {
+    "enemy-player.009 collision": {
         "components": {
             "PairComp": {
                 "source_entity": "player",
@@ -1090,7 +1093,7 @@
                     63,
                     255
                 ],
-                "zorder": 0
+                "zorder": -100
             }
         }
     },
@@ -1112,7 +1115,7 @@
                     63,
                     255
                 ],
-                "zorder": -1
+                "zorder": -101
             }
         }
     },
@@ -1134,7 +1137,7 @@
                     63,
                     255
                 ],
-                "zorder": -2
+                "zorder": -102
             }
         }
     },
@@ -1156,7 +1159,7 @@
                     63,
                     255
                 ],
-                "zorder": -3
+                "zorder": -103
             }
         }
     },
@@ -1178,7 +1181,7 @@
                     63,
                     255
                 ],
-                "zorder": -4
+                "zorder": -104
             }
         }
     },
@@ -1200,7 +1203,7 @@
                     63,
                     255
                 ],
-                "zorder": -5
+                "zorder": -105
             }
         }
     },
@@ -1222,7 +1225,7 @@
                     63,
                     255
                 ],
-                "zorder": -6
+                "zorder": -106
             }
         }
     },
@@ -1244,7 +1247,7 @@
                     63,
                     255
                 ],
-                "zorder": -7
+                "zorder": -107
             }
         }
     },
@@ -1266,7 +1269,7 @@
                     63,
                     255
                 ],
-                "zorder": -8
+                "zorder": -108
             }
         }
     },
@@ -1288,7 +1291,7 @@
                     63,
                     255
                 ],
-                "zorder": -9
+                "zorder": -109
             }
         }
     },
@@ -1310,7 +1313,7 @@
                     63,
                     255
                 ],
-                "zorder": -10
+                "zorder": -110
             }
         }
     },
@@ -1332,7 +1335,7 @@
                     63,
                     255
                 ],
-                "zorder": -11
+                "zorder": -111
             }
         }
     },
@@ -1354,7 +1357,7 @@
                     63,
                     255
                 ],
-                "zorder": -12
+                "zorder": -112
             }
         }
     },
@@ -1376,7 +1379,7 @@
                     63,
                     255
                 ],
-                "zorder": -13
+                "zorder": -113
             }
         }
     },
@@ -1398,7 +1401,7 @@
                     63,
                     255
                 ],
-                "zorder": -14
+                "zorder": -114
             }
         }
     },
@@ -1420,7 +1423,7 @@
                     63,
                     255
                 ],
-                "zorder": -15
+                "zorder": -115
             }
         }
     },
@@ -1442,7 +1445,7 @@
                     63,
                     255
                 ],
-                "zorder": -16
+                "zorder": -116
             }
         }
     },
@@ -1464,7 +1467,7 @@
                     63,
                     255
                 ],
-                "zorder": -17
+                "zorder": -117
             }
         }
     },
@@ -1486,7 +1489,7 @@
                     63,
                     255
                 ],
-                "zorder": -18
+                "zorder": -118
             }
         }
     },
@@ -1508,7 +1511,7 @@
                     63,
                     255
                 ],
-                "zorder": -19
+                "zorder": -119
             }
         }
     },
@@ -1530,7 +1533,7 @@
                     63,
                     255
                 ],
-                "zorder": -20
+                "zorder": -120
             }
         }
     },
@@ -1552,7 +1555,7 @@
                     63,
                     255
                 ],
-                "zorder": -21
+                "zorder": -121
             }
         }
     },
@@ -1574,7 +1577,7 @@
                     63,
                     255
                 ],
-                "zorder": -22
+                "zorder": -122
             }
         }
     },
@@ -1596,7 +1599,7 @@
                     63,
                     255
                 ],
-                "zorder": -23
+                "zorder": -123
             }
         }
     },
@@ -1618,7 +1621,7 @@
                     63,
                     255
                 ],
-                "zorder": -24
+                "zorder": -124
             }
         }
     },
@@ -1640,7 +1643,7 @@
                     63,
                     255
                 ],
-                "zorder": -25
+                "zorder": -125
             }
         }
     },
@@ -1662,7 +1665,7 @@
                     63,
                     255
                 ],
-                "zorder": -26
+                "zorder": -126
             }
         }
     },
@@ -1684,7 +1687,7 @@
                     63,
                     255
                 ],
-                "zorder": -27
+                "zorder": -127
             }
         }
     },
@@ -1706,7 +1709,7 @@
                     63,
                     255
                 ],
-                "zorder": -28
+                "zorder": -128
             }
         }
     },
@@ -1728,7 +1731,7 @@
                     63,
                     255
                 ],
-                "zorder": -29
+                "zorder": -129
             }
         }
     },
@@ -1750,7 +1753,7 @@
                     63,
                     255
                 ],
-                "zorder": -30
+                "zorder": -130
             }
         }
     },
@@ -1772,7 +1775,7 @@
                     63,
                     255
                 ],
-                "zorder": -31
+                "zorder": -131
             }
         }
     },
@@ -1794,7 +1797,7 @@
                     63,
                     255
                 ],
-                "zorder": -32
+                "zorder": -132
             }
         }
     },
@@ -1816,7 +1819,7 @@
                     63,
                     255
                 ],
-                "zorder": -33
+                "zorder": -133
             }
         }
     },
@@ -1838,7 +1841,7 @@
                     63,
                     255
                 ],
-                "zorder": -34
+                "zorder": -134
             }
         }
     },
@@ -1860,7 +1863,7 @@
                     63,
                     255
                 ],
-                "zorder": -35
+                "zorder": -135
             }
         }
     },
@@ -1882,7 +1885,7 @@
                     63,
                     255
                 ],
-                "zorder": -36
+                "zorder": -136
             }
         }
     },
@@ -1904,7 +1907,7 @@
                     63,
                     255
                 ],
-                "zorder": -37
+                "zorder": -137
             }
         }
     },
@@ -1926,7 +1929,7 @@
                     63,
                     255
                 ],
-                "zorder": -38
+                "zorder": -138
             }
         }
     },
@@ -1948,7 +1951,7 @@
                     63,
                     255
                 ],
-                "zorder": -39
+                "zorder": -139
             }
         }
     },
@@ -1970,7 +1973,7 @@
                     63,
                     255
                 ],
-                "zorder": -40
+                "zorder": -140
             }
         }
     },
@@ -1992,7 +1995,7 @@
                     63,
                     255
                 ],
-                "zorder": -41
+                "zorder": -141
             }
         }
     },
@@ -2014,7 +2017,7 @@
                     63,
                     255
                 ],
-                "zorder": -42
+                "zorder": -142
             }
         }
     },
@@ -2036,7 +2039,7 @@
                     63,
                     255
                 ],
-                "zorder": -43
+                "zorder": -143
             }
         }
     },
@@ -2058,7 +2061,7 @@
                     63,
                     255
                 ],
-                "zorder": -44
+                "zorder": -144
             }
         }
     },
@@ -2080,7 +2083,7 @@
                     63,
                     255
                 ],
-                "zorder": -45
+                "zorder": -145
             }
         }
     },
@@ -2102,7 +2105,7 @@
                     63,
                     255
                 ],
-                "zorder": -46
+                "zorder": -146
             }
         }
     },
@@ -2124,7 +2127,7 @@
                     63,
                     255
                 ],
-                "zorder": -47
+                "zorder": -147
             }
         }
     },
@@ -2146,7 +2149,7 @@
                     63,
                     255
                 ],
-                "zorder": -48
+                "zorder": -148
             }
         }
     },
@@ -2168,7 +2171,7 @@
                     63,
                     255
                 ],
-                "zorder": -49
+                "zorder": -149
             }
         }
     },
@@ -2190,7 +2193,7 @@
                     63,
                     255
                 ],
-                "zorder": -50
+                "zorder": -150
             }
         }
     },
@@ -2212,7 +2215,7 @@
                     63,
                     255
                 ],
-                "zorder": -51
+                "zorder": -151
             }
         }
     },
@@ -2234,7 +2237,7 @@
                     63,
                     255
                 ],
-                "zorder": -52
+                "zorder": -152
             }
         }
     },
@@ -2256,7 +2259,7 @@
                     63,
                     255
                 ],
-                "zorder": -53
+                "zorder": -153
             }
         }
     },
@@ -2278,7 +2281,7 @@
                     63,
                     255
                 ],
-                "zorder": -54
+                "zorder": -154
             }
         }
     },
@@ -2300,7 +2303,7 @@
                     63,
                     255
                 ],
-                "zorder": -55
+                "zorder": -155
             }
         }
     },
@@ -2322,7 +2325,7 @@
                     63,
                     255
                 ],
-                "zorder": -56
+                "zorder": -156
             }
         }
     },
@@ -2344,7 +2347,7 @@
                     63,
                     255
                 ],
-                "zorder": -57
+                "zorder": -157
             }
         }
     },
@@ -2366,7 +2369,7 @@
                     63,
                     255
                 ],
-                "zorder": -58
+                "zorder": -158
             }
         }
     },
@@ -2388,7 +2391,7 @@
                     63,
                     255
                 ],
-                "zorder": -59
+                "zorder": -159
             }
         }
     },
@@ -2410,7 +2413,7 @@
                     63,
                     255
                 ],
-                "zorder": -60
+                "zorder": -160
             }
         }
     },
@@ -2432,7 +2435,7 @@
                     63,
                     255
                 ],
-                "zorder": -61
+                "zorder": -161
             }
         }
     },
@@ -2454,7 +2457,7 @@
                     63,
                     255
                 ],
-                "zorder": -62
+                "zorder": -162
             }
         }
     },
@@ -2476,7 +2479,7 @@
                     63,
                     255
                 ],
-                "zorder": -63
+                "zorder": -163
             }
         }
     },
@@ -2498,7 +2501,7 @@
                     63,
                     255
                 ],
-                "zorder": -64
+                "zorder": -164
             }
         }
     },
@@ -2520,7 +2523,7 @@
                     63,
                     255
                 ],
-                "zorder": -65
+                "zorder": -165
             }
         }
     },
@@ -2542,7 +2545,7 @@
                     63,
                     255
                 ],
-                "zorder": -66
+                "zorder": -166
             }
         }
     },
@@ -2564,7 +2567,7 @@
                     63,
                     255
                 ],
-                "zorder": -67
+                "zorder": -167
             }
         }
     },
@@ -2586,7 +2589,7 @@
                     63,
                     255
                 ],
-                "zorder": -68
+                "zorder": -168
             }
         }
     },
@@ -2608,7 +2611,7 @@
                     63,
                     255
                 ],
-                "zorder": -69
+                "zorder": -169
             }
         }
     },
@@ -2630,7 +2633,7 @@
                     63,
                     255
                 ],
-                "zorder": -70
+                "zorder": -170
             }
         }
     },
@@ -2652,7 +2655,7 @@
                     63,
                     255
                 ],
-                "zorder": -71
+                "zorder": -171
             }
         }
     },
@@ -2674,7 +2677,7 @@
                     63,
                     255
                 ],
-                "zorder": -72
+                "zorder": -172
             }
         }
     },
@@ -2696,7 +2699,7 @@
                     63,
                     255
                 ],
-                "zorder": -73
+                "zorder": -173
             }
         }
     },
@@ -2718,7 +2721,7 @@
                     63,
                     255
                 ],
-                "zorder": -74
+                "zorder": -174
             }
         }
     },
@@ -2740,7 +2743,7 @@
                     63,
                     255
                 ],
-                "zorder": -75
+                "zorder": -175
             }
         }
     },
@@ -2762,7 +2765,7 @@
                     63,
                     255
                 ],
-                "zorder": -76
+                "zorder": -176
             }
         }
     },
@@ -2784,7 +2787,7 @@
                     63,
                     255
                 ],
-                "zorder": -77
+                "zorder": -177
             }
         }
     },
@@ -2806,7 +2809,7 @@
                     63,
                     255
                 ],
-                "zorder": -78
+                "zorder": -178
             }
         }
     },
@@ -2828,7 +2831,7 @@
                     63,
                     255
                 ],
-                "zorder": -79
+                "zorder": -179
             }
         }
     },
@@ -2850,7 +2853,7 @@
                     63,
                     255
                 ],
-                "zorder": -80
+                "zorder": -180
             }
         }
     },
@@ -2872,7 +2875,7 @@
                     63,
                     255
                 ],
-                "zorder": -81
+                "zorder": -181
             }
         }
     },
@@ -2894,7 +2897,7 @@
                     63,
                     255
                 ],
-                "zorder": -82
+                "zorder": -182
             }
         }
     },
@@ -2916,7 +2919,7 @@
                     63,
                     255
                 ],
-                "zorder": -83
+                "zorder": -183
             }
         }
     },
@@ -2938,7 +2941,7 @@
                     63,
                     255
                 ],
-                "zorder": -84
+                "zorder": -184
             }
         }
     },
@@ -2960,7 +2963,7 @@
                     63,
                     255
                 ],
-                "zorder": -85
+                "zorder": -185
             }
         }
     },
@@ -2982,7 +2985,7 @@
                     63,
                     255
                 ],
-                "zorder": -86
+                "zorder": -186
             }
         }
     },
@@ -3004,7 +3007,7 @@
                     63,
                     255
                 ],
-                "zorder": -87
+                "zorder": -187
             }
         }
     },
@@ -3026,7 +3029,7 @@
                     63,
                     255
                 ],
-                "zorder": -88
+                "zorder": -188
             }
         }
     },
@@ -3048,7 +3051,7 @@
                     63,
                     255
                 ],
-                "zorder": -89
+                "zorder": -189
             }
         }
     },
@@ -3070,7 +3073,7 @@
                     63,
                     255
                 ],
-                "zorder": -90
+                "zorder": -190
             }
         }
     },
@@ -3092,7 +3095,7 @@
                     63,
                     255
                 ],
-                "zorder": -91
+                "zorder": -191
             }
         }
     },
@@ -3114,7 +3117,7 @@
                     63,
                     255
                 ],
-                "zorder": -92
+                "zorder": -192
             }
         }
     },
@@ -3136,7 +3139,7 @@
                     63,
                     255
                 ],
-                "zorder": -93
+                "zorder": -193
             }
         }
     },
@@ -3158,7 +3161,7 @@
                     63,
                     255
                 ],
-                "zorder": -94
+                "zorder": -194
             }
         }
     },
@@ -3180,7 +3183,7 @@
                     63,
                     255
                 ],
-                "zorder": -95
+                "zorder": -195
             }
         }
     },
@@ -3202,7 +3205,7 @@
                     63,
                     255
                 ],
-                "zorder": -96
+                "zorder": -196
             }
         }
     },
@@ -3224,7 +3227,7 @@
                     63,
                     255
                 ],
-                "zorder": -97
+                "zorder": -197
             }
         }
     },
@@ -3246,7 +3249,7 @@
                     63,
                     255
                 ],
-                "zorder": -98
+                "zorder": -198
             }
         }
     },
@@ -3268,7 +3271,7 @@
                     63,
                     255
                 ],
-                "zorder": -99
+                "zorder": -199
             }
         }
     }

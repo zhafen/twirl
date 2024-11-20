@@ -1,0 +1,41 @@
+{
+    "projectile": {
+        "components": {
+            "PhysicsComp": {},
+            "DragForceComp": {},
+            "DurabilityComp": {
+                "durability_loss_per_collision": 1.01
+            },
+            "RenderComp": {
+                "radius": 1.0,
+                "fill_color": [
+                    82,
+                    106,
+                    131,
+                    255
+                ],
+                "zorder": -1
+            }
+        }
+    },
+    "projectile-enemy force": {
+        "components": {
+            "PairComp": {
+                "source_entity": "projectile",
+                "target_entity": "[component:EnemyComp]"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -0.1
+            }
+        }
+    },
+    "projectile-enemy collisions": {
+        "components": {
+            "PairComp": {
+                "source_entity": "projectile",
+                "target_entity": "[component:EnemyComp]"
+            },
+            "CollisionComp": {}
+        }
+    }
+}

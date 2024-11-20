@@ -37,7 +37,9 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
                 bool is_resolved =
                     entity_map.find(pc.target_entity_name) != entity_map.end();
                 if (is_resolved) {
-                    pc.target_entity = entity_map[pc.target_entity_name];
+                    registry.patch<PairComp>(pair_entity, [&entity_map](auto& pc) {
+                        pc.target_entity = entity_map[pc.target_entity_name];
+                    });
                 } else {
                     // If the name cannot be resolved,
                     // mark the pair entity for destruction
@@ -67,7 +69,9 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
             }
         }
         // Follow through, destroying only once
-        if (destroy_pair_entity) { registry.destroy(pair_entity); }
+        if (destroy_pair_entity) {
+            registry.destroy(pair_entity);
+        }
     }
 }
 

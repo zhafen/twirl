@@ -47,7 +47,6 @@ struct SceneTriggerComp {
 };
 inline void from_json(const json& j, SceneTriggerComp& stc) {
     stc.scene_name = j.at("scene_name").get<std::string>();
-    stc.scene_entity = j.at("scene_entity").get<entt::entity>();
     stc.n_triggers = j.value("n_triggers", 0);
 }
 

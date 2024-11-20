@@ -22,6 +22,50 @@ TEST(SystemEntityTest, SpawnDeleteOrder) {
     entity_system.orderEntities(registry);
 }
 
+TEST(SystemEntityTest, StopWatchSpawn) {
+
+    entt::registry registry;
+    EntitySystem entity_system;
+
+    // Ready a scene to spawn
+    entt::entity scene_entity = registry.create();
+    registry.emplace<EntityName>(scene_entity, "test_scene");
+    auto& sc = registry.emplace<SceneComp>(scene_entity);
+    sc.json_data = R"(
+    {
+        "spawned_entity": {
+            "components": {
+                "PhysicsComp": {},
+                "RenderComp": {},
+            }
+        }
+    }
+    )"_json;
+
+    // Spawning entity
+    entt::entity spawner_entity = registry.create();
+    registry.emplace<SceneTriggerComp>(spawner_entity, "test_scene");
+    registry.emplace<PhysicsComp>(spawner_entity, 1.0f, sf::Vector2f(10.f, 10.f));
+    auto& swc = registry.emplace<StopWatchComp>(spawner_entity);
+    // We test stopwatch updates separately, so we set the trigger as ready to go
+    swc.end_reached = true;
+
+    // Trigger
+    entity_system.spawnEntities(registry);
+
+    // Check that the entity was created properly
+    EntityMap entity_map = entity_system.getEntityMap(registry);
+    entt::entity spawned_entity = entity_map["spawned_entity"];
+    ASSERT_TRUE(registry.valid(spawned_entity));
+    auto& pc = registry.get<PhysicsComp>(spawned_entity);
+    ASSERT_FLOAT_EQ(pc.mass, 1.0f);
+
+    // For this spawn the location of the spawned entity should be that of the spawner
+    auto& pc_spawner = registry.get<PhysicsComp>(spawner_entity);
+    ASSERT_FLOAT_EQ(pc.pos.x, pc_spawner.pos.x);
+    ASSERT_FLOAT_EQ(pc.pos.y, pc_spawner.pos.y);
+}
+
 TEST(SystemEntityTest, ResolveEntityNames) {
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");

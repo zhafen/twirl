@@ -27,7 +27,7 @@ EntityMap EntitySystem::getEntityMap(entt::registry& registry) {
  */
 void EntitySystem::resolveEntityPairs(entt::registry& registry) {
     auto entity_map = getEntityMap(registry);
-    auto rview = registry.view<PairComp>();
+    auto rview = registry.view<PairComp, UnresolvedNamesComp>();
     for (auto [pair_entity, pc] : rview.each()) {
         bool destroy_pair_entity = false;
         if (!registry.valid(pc.target_entity)) {
@@ -65,6 +65,8 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
                 // If not valid and there's no name, mark for destruction
                 destroy_pair_entity = true;
             }
+
+        // TODO: Delete resolved pair comps
         }
         // Follow through, destroying only once
         if (destroy_pair_entity) {

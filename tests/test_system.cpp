@@ -107,18 +107,21 @@ TEST(SystemEntityPhysicsTest, ResolveEntityPairs) {
     pc_12.target_entity_name = "entity1";
     pc_12.source_entity_name = "entity2";
     registry.emplace<PairComp>(rel_12, pc_12);
+    registry.emplace<UnresolvedNamesComp>(rel_12);
     registry.emplace<PairwiseForceComp>(rel_12);
     entt::entity rel_23 = registry.create();
     PairComp pc_23;
     pc_23.target_entity_name = "entity2";
     pc_23.source_entity_name = "entity3";
     registry.emplace<PairComp>(rel_23, pc_23);
+    registry.emplace<UnresolvedNamesComp>(rel_23);
     registry.emplace<PairwiseForceComp>(rel_23);
     entt::entity rel_31 = registry.create();
     PairComp pc_31;
     pc_31.target_entity_name = "entity3";
     pc_31.source_entity_name = "entity1";
     registry.emplace<PairComp>(rel_31, pc_31);
+    registry.emplace<UnresolvedNamesComp>(rel_31);
     registry.emplace<PairwiseForceComp>(rel_31);
 
     // Resolve names then forces

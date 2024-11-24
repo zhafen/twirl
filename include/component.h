@@ -112,6 +112,8 @@ inline void from_json(const json& j, PairComp& pc) {
     pc.source_entity_name = j.at("source_entity").get<EntityName>();
 }
 
+struct UnresolvedNamesComp {};
+
 struct PairwiseForceComp {
     float magnitude = -1.0f;  // In units of cfg.A
     float softening = 0.0f;

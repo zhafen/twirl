@@ -88,7 +88,6 @@ void SceneSystem::emplaceEntity(entt::registry& registry, EntityMap& scene_entit
         } else if (comp_key == "PairComp") {
             auto comp_inst = comp.template get<PairComp>();
             registry.emplace<PairComp>(entity, comp_inst);
-            registry.emplace<UnresolvedNamesComp>(entity);
         } else if (comp_key == "PairwiseForceComp") {
             auto comp_inst = comp.template get<PairwiseForceComp>();
             registry.emplace<PairwiseForceComp>(entity, comp_inst);

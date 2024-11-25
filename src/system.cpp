@@ -27,8 +27,10 @@ EntityMap EntitySystem::getEntityMap(entt::registry& registry) {
  */
 void EntitySystem::resolveEntityPairs(entt::registry& registry) {
     auto entity_map = getEntityMap(registry);
-    auto rview = registry.view<PairComp, UnresolvedNamesComp>();
+    auto rview = registry.view<UnresolvedNamesComp, PairComp>();
     for (auto [pair_entity, pc] : rview.each()) {
+        bool target_is_resolved = false;
+        bool source_is_resolved = false;
         bool destroy_pair_entity = false;
         if (!registry.valid(pc.target_entity)) {
             // If the the target name is not empty, try to resolve it
@@ -38,6 +40,7 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
                     entity_map.find(pc.target_entity_name) != entity_map.end();
                 if (is_resolved) {
                     pc.target_entity = entity_map[pc.target_entity_name];
+                    target_is_resolved = true;
                 } else {
                     // If the name cannot be resolved,
                     // mark the pair entity for destruction
@@ -56,6 +59,7 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
                     entity_map.find(pc.source_entity_name) != entity_map.end();
                 if (is_resolved) {
                     pc.source_entity = entity_map[pc.source_entity_name];
+                    source_is_resolved = true;
                 } else {
                     // If the name cannot be resolved,
                     // mark the pair entity for destruction
@@ -71,6 +75,10 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
         // Follow through, destroying only once
         if (destroy_pair_entity) {
             registry.destroy(pair_entity);
+        }
+        // Clear the unresolved name component if both target and source were resolved
+        if (target_is_resolved) {
+            registry.remove<UnresolvedNamesComp>(pair_entity);
         }
     }
 }

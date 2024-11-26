@@ -2,6 +2,7 @@
 
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/helper.hpp>
+#include <entt/entity/registry.hpp>
 #include <nlohmann/json.hpp>
 
 #include "component.h"
@@ -9,6 +10,28 @@
 #include "game.h"
 
 using namespace twirl;
+
+TEST(SystemEntityTest, GetEntityMap) {
+    entt::registry registry;
+    EntitySystem entity_system;
+
+    // Create entities with names
+    entt::entity entity1 = registry.create();
+    registry.emplace<EntityName>(entity1, "entity1");
+    entt::entity entity2 = registry.create();
+    registry.emplace<EntityName>(entity2, "entity2");
+    entt::entity entity3 = registry.create();
+    registry.emplace<EntityName>(entity3, "entity3");
+
+    // Get the entity map
+    EntityMap entity_map = entity_system.getEntityMap(registry);
+
+    // Check that the entity map contains the correct entities
+    ASSERT_EQ(entity_map["entity1"], entity1);
+    ASSERT_EQ(entity_map["entity2"], entity2);
+    ASSERT_EQ(entity_map["entity3"], entity3);
+    ASSERT_TRUE(entity_map.find("entity4") == entity_map.end());
+}
 
 TEST(SystemEntityTest, SpawnDeleteOrder) {
     // Initialize the game in its test state
@@ -36,7 +59,7 @@ TEST(SystemEntityTest, StopWatchSpawn) {
         "spawned_entity": {
             "components": {
                 "PhysicsComp": {},
-                "RenderComp": {},
+                "RenderComp": {}
             }
         }
     }
@@ -44,18 +67,42 @@ TEST(SystemEntityTest, StopWatchSpawn) {
 
     // Spawning entity
     entt::entity spawner_entity = registry.create();
+    registry.emplace<EntityName>(spawner_entity, "spawner_entity");
     registry.emplace<SceneTriggerComp>(spawner_entity, "test_scene");
     registry.emplace<PhysicsComp>(spawner_entity, 1.0f, sf::Vector2f(10.f, 10.f));
     auto& swc = registry.emplace<StopWatchComp>(spawner_entity);
     // We test stopwatch updates separately, so we set the trigger as ready to go
     swc.end_reached = true;
 
+    // Ensure that the spawned entity does not exist yet
+    EntityMap entity_map = entity_system.getEntityMap(registry);
+    ASSERT_EQ(entity_map.find("spawned_entity"), entity_map.end());
+
+    // DEBUG
+    std::cout << "Immediately before spawnEntities" << std::endl;
+
     // Trigger
     entity_system.spawnEntities(registry);
 
+    // DEBUG
+    std::cout << "Immediately after spawnEntities" << std::endl;
+    // List all physics components and the entity name for that component
+    auto view = registry.view<EntityName, PhysicsComp>();
+    for (auto [entity, entity_name, physics_comp] : view.each()) {
+        std::cout << "Entity: " << entity_name << ", Mass: " << physics_comp.mass << std::endl;
+    }
+    // List all entity names
+    auto name_view = registry.view<EntityName>();
+    for (auto entity : name_view) {
+        auto& entity_name = name_view.get<EntityName>(entity);
+        std::cout << "Entity: " << entity_name << std::endl;
+    }
+
     // Check that the entity was created properly
-    EntityMap entity_map = entity_system.getEntityMap(registry);
+    entity_map = entity_system.getEntityMap(registry);
     entt::entity spawned_entity = entity_map["spawned_entity"];
+    ASSERT_FALSE(spawned_entity == entt::null);
+    ASSERT_EQ(registry.get<EntityName>(spawned_entity), "spawned_entity");
     ASSERT_TRUE(registry.valid(spawned_entity));
     auto& pc = registry.get<PhysicsComp>(spawned_entity);
     ASSERT_FLOAT_EQ(pc.mass, 1.0f);

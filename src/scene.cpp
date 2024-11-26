@@ -34,6 +34,9 @@ void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) 
     auto& stc = registry.get<SceneTriggerComp>(entity);
     emplaceScene(registry, stc.scene_entity);
 
+    // DEBUG
+    std::cout << "Scene trigger activated for entity: " << static_cast<int>(entity) << std::endl;
+
     // Reset n_triggers
     stc.n_triggers = 0;
 }
@@ -59,6 +62,13 @@ void SceneSystem::emplaceEntity(entt::registry& registry, EntityMap& scene_entit
     scene_entity_map[entity_name] = entity;
 
     json components = entity_json["components"];
+
+    // DEBUG
+    std::cout << "Entity: " << entity_name_str << " has components: ";
+    for (const auto& [comp_key, comp] : components.items()) {
+        std::cout << comp_key << " ";
+    }
+    std::cout << std::endl;
 
     for (const auto& [comp_key, comp] : components.items()) {
         if (comp_key == "SceneComp") {

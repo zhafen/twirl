@@ -59,7 +59,7 @@ void SceneSystem::emplaceEntity(entt::registry& registry, EntityMap& scene_entit
     auto entity = registry.create();
     registry.emplace<EntityName>(entity, entity_name);
     // We also keep track of the inverse so we can parse PairComp
-    scene_entity_map[entity_name] = entity;
+    scene_entity_map.emplace(entity_name, entity);
 
     json components = entity_json["components"];
 

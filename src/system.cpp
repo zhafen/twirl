@@ -15,7 +15,7 @@ EntityMap EntitySystem::getEntityMap(entt::registry& registry) {
 
     auto rview = registry.view<EntityName>();
     for (auto [entity, name] : rview.each()) {
-        entity_map[name] = entity;
+        entity_map.emplace(name, entity);
     }
 
     return entity_map;
@@ -37,7 +37,7 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
                 bool is_resolved =
                     entity_map.find(pc.target_entity_name) != entity_map.end();
                 if (is_resolved) {
-                    pc.target_entity = entity_map[pc.target_entity_name];
+                    pc.target_entity = entity_map.at(pc.target_entity_name);
                 } else {
                     // If the name cannot be resolved,
                     // mark the pair entity for destruction
@@ -55,7 +55,7 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
                 bool is_resolved =
                     entity_map.find(pc.source_entity_name) != entity_map.end();
                 if (is_resolved) {
-                    pc.source_entity = entity_map[pc.source_entity_name];
+                    pc.source_entity = entity_map.at(pc.source_entity_name);
                 } else {
                     // If the name cannot be resolved,
                     // mark the pair entity for destruction

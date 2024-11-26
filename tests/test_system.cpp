@@ -101,7 +101,7 @@ TEST(SystemEntityTest, StopWatchSpawn) {
 
     // Check that the entity was created properly
     entity_map = entity_system.getEntityMap(registry);
-    entt::entity spawned_entity = entity_map["spawned_entity"];
+    entt::entity spawned_entity = entity_map.at("spawned_entity");
     ASSERT_FALSE(spawned_entity == entt::null);
     ASSERT_EQ(registry.get<EntityName>(spawned_entity), "spawned_entity");
     ASSERT_TRUE(registry.valid(spawned_entity));
@@ -128,8 +128,8 @@ TEST(SystemEntityTest, ResolveEntityNames) {
     auto rview = registry.view<EntityName, PairComp>();
     for (auto [pair_entity, pair_entity_name, pc] : rview.each()) {
         if (pair_entity_name == "player-beacon force") {
-            ASSERT_EQ(entity_map["player"], pc.target_entity);
-            ASSERT_EQ(entity_map["beacon"], pc.source_entity);
+            ASSERT_EQ(entity_map.at("player"), pc.target_entity);
+            ASSERT_EQ(entity_map.at("beacon"), pc.source_entity);
         }
     }
 }

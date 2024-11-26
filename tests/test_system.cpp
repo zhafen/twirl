@@ -30,6 +30,7 @@ TEST(SystemEntityTest, GetEntityMap) {
     ASSERT_EQ(entity_map["entity1"], entity1);
     ASSERT_EQ(entity_map["entity2"], entity2);
     ASSERT_EQ(entity_map["entity3"], entity3);
+    ASSERT_THROW(entity_map.at("entity4"), std::out_of_range);
     ASSERT_TRUE(entity_map.find("entity4") == entity_map.end());
 }
 

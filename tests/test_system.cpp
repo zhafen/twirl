@@ -47,7 +47,6 @@ TEST(SystemEntityTest, SpawnDeleteOrder) {
 }
 
 TEST(SystemEntityTest, StopWatchSpawn) {
-
     entt::registry registry;
     EntitySystem entity_system;
     SceneSystem scene_system;
@@ -95,6 +94,14 @@ TEST(SystemEntityTest, StopWatchSpawn) {
     ASSERT_FLOAT_EQ(pc.mass, 1.0f);
 
     // For this spawn the location of the spawned entity should be that of the spawner
+    // TODO: Figure out the best way to do this.
+    // Option A: Have a json field that is parsed at some point during execution, and it
+    // will point to a permanent function that will set the position of the spawned
+    // entity. Of note, I think that a function that sets the value of one component to
+    // that of another will be very common.
+    // Option B: Use Python to write arbitrary functions that will be called when the
+    // entity is spawned. I think I'll probably go with option B so I can have a more
+    // programmatic way to parse components.
     auto& pc_spawner = registry.get<PhysicsComp>(spawner_entity);
     ASSERT_FLOAT_EQ(pc.pos.x, pc_spawner.pos.x);
     ASSERT_FLOAT_EQ(pc.pos.y, pc_spawner.pos.y);

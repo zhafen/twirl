@@ -82,25 +82,8 @@ TEST(SystemEntityTest, StopWatchSpawn) {
     EntityMap entity_map = entity_system.getEntityMap(registry);
     ASSERT_EQ(entity_map.find("spawned_entity"), entity_map.end());
 
-    // DEBUG
-    std::cout << "Immediately before spawnEntities" << std::endl;
-
     // Trigger
     entity_system.spawnEntities(registry);
-
-    // DEBUG
-    std::cout << "Immediately after spawnEntities" << std::endl;
-    // List all physics components and the entity name for that component
-    auto view = registry.view<EntityName, PhysicsComp>();
-    for (auto [entity, entity_name, physics_comp] : view.each()) {
-        std::cout << "Entity: " << entity_name << ", Mass: " << physics_comp.mass << std::endl;
-    }
-    // List all entity names
-    auto name_view = registry.view<EntityName>();
-    for (auto entity : name_view) {
-        auto& entity_name = name_view.get<EntityName>(entity);
-        std::cout << "Entity: " << entity_name << std::endl;
-    }
 
     // Check that the entity was created properly
     entity_map = entity_system.getEntityMap(registry);

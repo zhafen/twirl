@@ -86,7 +86,6 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
             swc.current_time = 0.0f;
             swc.end_reached = false;
         }
-        std::cout << "Scene trigger activated for entity: " << static_cast<int>(entity) << std::endl;
 
         // If we got this far then we activate the scene trigger
         registry.patch<SceneTriggerComp>(entity, [](auto& stc) { stc.n_triggers++; });

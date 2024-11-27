@@ -1,16 +1,15 @@
 #ifndef SYSTEMS_H
 #define SYSTEMS_H
 
+#include <SFML/Graphics.hpp>
+#include <entt/entity/fwd.hpp>
+#include <entt/entity/registry.hpp>
 #include <functional>
 #include <memory>
 #include <unordered_map>
 
-#include <entt/entity/fwd.hpp>
-#include <entt/entity/registry.hpp>
-#include <SFML/Graphics.hpp>
-
-#include "config.h"
 #include "component.h"
+#include "config.h"
 
 namespace twirl {
 
@@ -18,6 +17,8 @@ class EntitySystem {
    public:
     EntitySystem() = default;
     EntityMap getEntityMap(entt::registry& registry);
+    entt::entity resolveEntityName(entt::registry& registry, EntityName name,
+                                   entt::entity entity);
     void resolveEntityPairs(entt::registry& registry);
     void spawnEntities(entt::registry& registry);
     void deleteEntities(entt::registry& registry);
@@ -25,6 +26,7 @@ class EntitySystem {
     void orderEntities(entt::registry& registry);
 
    private:
+    EntityMap entity_map;
     bool needs_ordering = true;
 };
 

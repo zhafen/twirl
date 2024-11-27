@@ -11,8 +11,6 @@
 namespace twirl {
 
 EntityMap EntitySystem::getEntityMap(entt::registry& registry) {
-    EntityMap entity_map;
-
     auto rview = registry.view<EntityName>();
     for (auto [entity, name] : rview.each()) {
         entity_map.emplace(name, entity);
@@ -21,64 +19,47 @@ EntityMap EntitySystem::getEntityMap(entt::registry& registry) {
     return entity_map;
 }
 
+entt::entity EntitySystem::resolveEntityName(entt::registry& registry, EntityName name,
+                               entt::entity entity) {
+    // If there's already a valid entity, return it
+    if (registry.valid(entity)) {
+        return entity;
+    }
+
+    // If the the name is not empty, try to resolve it
+    if (!name.empty()) {
+        // Try to get the entity name from the entity map
+        if (entity_map.find(name) != entity_map.end()) {
+            return entity_map.at(name);
+        }
+    }
+    return entt::null;
+}
+
 /**
  * OPTIMIZE: This function may not be able to loop over every paircomp if we use
  * listeners, and should probably not call getEntityMap every time.
  */
 void EntitySystem::resolveEntityPairs(entt::registry& registry) {
-    auto entity_map = getEntityMap(registry);
+    getEntityMap(registry);
     auto rview = registry.view<PairComp>();
     for (auto [pair_entity, pair_c] : rview.each()) {
-        bool destroy_pair_entity = false;
-        if (!registry.valid(pair_c.target_entity)) {
-            // If the the target name is not empty, try to resolve it
-            if (!pair_c.target_entity_name.empty()) {
-                // Try to resolve and use the target name
-                bool is_resolved =
-                    entity_map.find(pair_c.target_entity_name) != entity_map.end();
-                if (is_resolved) {
-                    pair_c.target_entity = entity_map.at(pair_c.target_entity_name);
-                } else {
-                    // If the name cannot be resolved,
-                    // mark the pair entity for destruction
-                    destroy_pair_entity = true;
-                }
-            } else {
-                // If not valid and there's no name, mark for destruction
-                destroy_pair_entity = true;
-            }
-        }
-        if (!registry.valid(pair_c.source_entity)) {
-            // If the the target name is not empty, try to resolve it
-            if (!pair_c.source_entity_name.empty()) {
-                // Try to resolve and use the target name
-                bool is_resolved =
-                    entity_map.find(pair_c.source_entity_name) != entity_map.end();
-                if (is_resolved) {
-                    pair_c.source_entity = entity_map.at(pair_c.source_entity_name);
-                } else {
-                    // If the name cannot be resolved,
-                    // mark the pair entity for destruction
-                    destroy_pair_entity = true;
-                }
-            } else {
-                // If not valid and there's no name, mark for destruction
-                destroy_pair_entity = true;
-            }
-
-        // TODO: Delete resolved pair comps
-        }
-        // Follow through, destroying only once
-        if (destroy_pair_entity) {
+        pair_c.target_entity = resolveEntityName(registry, pair_c.target_entity_name,
+                                                 pair_c.target_entity);
+        pair_c.source_entity = resolveEntityName(registry, pair_c.source_entity_name,
+                                                 pair_c.source_entity);
+        // If either entity is not resolved after trying to resolve the names,
+        // destroy the pair entity
+        if ((pair_c.target_entity == entt::null) ||
+            (pair_c.source_entity == entt::null)) {
             registry.destroy(pair_entity);
         }
     }
 }
 
-
 void EntitySystem::spawnEntities(entt::registry& registry) {
     auto rview = registry.view<SceneTriggerComp, StopWatchComp>();
-    for (auto [entity, scene_trigger_c, stopwatch_c] : rview.each()) {
+    for (auto [entity, scenetrigger_c, stopwatch_c] : rview.each()) {
         // Check if the end time was reached
         if (!stopwatch_c.end_reached) {
             continue;
@@ -114,7 +95,6 @@ void EntitySystem::orderEntities(entt::registry& registry) {
     needs_ordering = false;
 }
 
-
 /**
  * @brief Syncs entity values
  *
@@ -142,7 +122,8 @@ void EntitySystem::syncEntities(entt::registry& registry) {
 void PhysicsSystem::calculateForces(entt::registry& registry) {
     auto rview = registry.view<PhysicsComp, DragForceComp>();
     for (auto [entity, phys_c, dragforce_c] : rview.each()) {
-        float vel_mag = sqrtf(phys_c.vel.x * phys_c.vel.x + phys_c.vel.y * phys_c.vel.y);
+        float vel_mag =
+            sqrtf(phys_c.vel.x * phys_c.vel.x + phys_c.vel.y * phys_c.vel.y);
         sf::Vector2f vel_scaling =
             (phys_c.vel / cfg.V) * powf(vel_mag / cfg.V, dragforce_c.drag_power - 1.0f);
         phys_c.force -= cfg.A * dragforce_c.drag_coefficient * vel_scaling;
@@ -165,9 +146,10 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
         }
 
         auto r_hat = r / r_mag;
-        auto r_mag_scaled = (r_mag / cfg.L + pairforce_c.softening) / pairforce_c.distance_scaling;
-        auto force = cfg.A * r_hat * pairforce_c.magnitude * target_phys_c.mass * source_phys_c.mass *
-                     powf(r_mag_scaled, pairforce_c.power);
+        auto r_mag_scaled =
+            (r_mag / cfg.L + pairforce_c.softening) / pairforce_c.distance_scaling;
+        auto force = cfg.A * r_hat * pairforce_c.magnitude * target_phys_c.mass *
+                     source_phys_c.mass * powf(r_mag_scaled, pairforce_c.power);
 
         target_phys_c.force += force;
     }
@@ -226,7 +208,8 @@ void PhysicsSystem::updateStopWatches(entt::registry& registry) {
 void PhysicsSystem::resolveCollisions(entt::registry& registry) {
     for (auto [rel_id, pair_c] : registry.view<PairComp, CollisionComp>().each()) {
         // Check if the entities still exist
-        if (!registry.valid(pair_c.target_entity) || !registry.valid(pair_c.source_entity)) {
+        if (!registry.valid(pair_c.target_entity) ||
+            !registry.valid(pair_c.source_entity)) {
             registry.destroy(rel_id);
             continue;
         }
@@ -249,13 +232,17 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
         }
 
         // Calculate the momentum in the COM frame
-        auto T = 0.5f * (phys_c1.mass * (phys_c1.vel.x * phys_c1.vel.x + phys_c1.vel.y * phys_c1.vel.y) +
-                         phys_c2.mass * (phys_c2.vel.x * phys_c2.vel.x + phys_c2.vel.y * phys_c2.vel.y));
-        auto pcom_mag = sqrtf(2.0f * T * phys_c1.mass * phys_c2.mass / (phys_c1.mass + phys_c2.mass));
+        auto T = 0.5f * (phys_c1.mass * (phys_c1.vel.x * phys_c1.vel.x +
+                                         phys_c1.vel.y * phys_c1.vel.y) +
+                         phys_c2.mass * (phys_c2.vel.x * phys_c2.vel.x +
+                                         phys_c2.vel.y * phys_c2.vel.y));
+        auto pcom_mag = sqrtf(2.0f * T * phys_c1.mass * phys_c2.mass /
+                              (phys_c1.mass + phys_c2.mass));
         auto p1com = -pcom_mag * r_12 / r_12_mag;
 
         // Convert back to default frame
-        auto vcom = (phys_c1.vel * phys_c1.mass + phys_c2.vel * phys_c2.mass) / (phys_c1.mass + phys_c2.mass);
+        auto vcom = (phys_c1.vel * phys_c1.mass + phys_c2.vel * phys_c2.mass) /
+                    (phys_c1.mass + phys_c2.mass);
         phys_c1.vel = vcom + p1com / phys_c1.mass;
         phys_c2.vel = vcom - p1com / phys_c2.mass;
 

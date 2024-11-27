@@ -31,12 +31,12 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
 }
 
 void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) {
-    auto& scene_trigger_c = registry.get<SceneTriggerComp>(entity);
-    EntityName name_of_scene(registry.get<EntityName>(scene_trigger_c.scene_entity));
-    emplaceScene(registry, scene_trigger_c.scene_entity);
+    auto& scenetrigger_c = registry.get<SceneTriggerComp>(entity);
+    EntityName name_of_scene(registry.get<EntityName>(scenetrigger_c.scene_entity));
+    emplaceScene(registry, scenetrigger_c.scene_entity);
 
     // Reset n_triggers
-    scene_trigger_c.n_triggers = 0;
+    scenetrigger_c.n_triggers = 0;
 }
 
 void SceneSystem::emplaceScene(entt::registry& registry,

@@ -78,7 +78,7 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
 
 void EntitySystem::spawnEntities(entt::registry& registry) {
     auto rview = registry.view<SceneTriggerComp, StopWatchComp>();
-    for (auto [entity, scene_trigger_c, stopwatch_c] : rview.each()) {
+    for (auto [entity, scenetrigger_c, stopwatch_c] : rview.each()) {
         // Check if the end time was reached
         if (!stopwatch_c.end_reached) {
             continue;

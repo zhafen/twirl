@@ -26,15 +26,16 @@ TEST(SceneTest, TriggerScene) {
         "spawned_entity": {"components": {"EnemyComp": {}}}
     }
     )"_json;
-    registry.emplace<SceneComp>(scene, std::string(), false, json_data);
+    SceneComp& scene_c = registry.emplace<SceneComp>(scene);
+    scene_c.json_data = json_data;
 
     // Add the triggering entity
     entt::entity triggering_entity = registry.create();
     registry.emplace<SceneTriggerComp>(triggering_entity, "test_scene", scene);
 
     // Trigger the scene
-    registry.patch<SceneTriggerComp>(triggering_entity, [](auto& stc) {
-        stc.n_triggers++;
+    registry.patch<SceneTriggerComp>(triggering_entity, [](auto& scenetrigger_c) {
+        scenetrigger_c.n_triggers++;
     });
 
     // Check that the entity was added

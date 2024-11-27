@@ -6,7 +6,7 @@
 #include <entt/entity/registry.hpp>
 
 #include "scene.h"
-#include "system.h"
+#include "systems/system.h"
 
 
 namespace twirl {

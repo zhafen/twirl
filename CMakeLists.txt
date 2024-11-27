@@ -38,7 +38,7 @@ include_directories(include)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 # Build and link main files
-file(GLOB_RECURSE SOURCES "src/*.cpp")
+file(GLOB_RECURSE SOURCES "src/**/*.cpp")
 add_executable(twirl ${SOURCES})
 target_link_libraries(
     twirl
@@ -49,7 +49,7 @@ target_link_libraries(
 )
 
 # Build and link test files
-file(GLOB_RECURSE TEST_SOURCES "tests/*.cpp" "src/*.cpp")
+file(GLOB_RECURSE TEST_SOURCES "tests/**/*.cpp" "src/**/*.cpp")
 list(REMOVE_ITEM TEST_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
 add_executable(twirl_tests ${TEST_SOURCES})
 target_link_libraries(

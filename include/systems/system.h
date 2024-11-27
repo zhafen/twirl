@@ -1,15 +1,17 @@
 #ifndef SYSTEMS_H
 #define SYSTEMS_H
 
-#include <SFML/Graphics.hpp>
-#include <entt/entity/fwd.hpp>
-#include <entt/entity/registry.hpp>
 #include <functional>
 #include <memory>
 #include <unordered_map>
 
+#include <SFML/Graphics.hpp>
+#include <entt/entity/fwd.hpp>
+#include <entt/entity/registry.hpp>
+
 #include "component.h"
 #include "config.h"
+#include "shape.h"
 
 namespace twirl {
 

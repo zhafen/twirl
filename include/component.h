@@ -1,10 +1,11 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
+#include <string>
+
 #include <SFML/Graphics.hpp>
 #include <entt/entity/fwd.hpp>
 #include <nlohmann/json.hpp>
-#include <string>
 
 #include "config.h"
 #include "shape.h"

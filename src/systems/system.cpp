@@ -1,4 +1,4 @@
-#include "system.h"
+#include "systems/system.h"
 
 #include <SFML/Graphics.hpp>
 #include <cmath>
@@ -6,7 +6,9 @@
 #include <entt/entity/registry.hpp>
 #include <iostream>
 
+#include "component.h"
 #include "config.h"
+#include "shape.h"
 
 namespace twirl {
 

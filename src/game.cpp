@@ -12,7 +12,7 @@
 #include "config.h"
 #include "scene.h"
 #include "shape.h"
-#include "system.h"
+#include "systems/system.h"
 
 namespace twirl {
 

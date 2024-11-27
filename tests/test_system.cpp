@@ -57,9 +57,6 @@ TEST(SystemEntityTest, ResolveEntityNameInvalid) {
     entt::registry registry;
     EntitySystem entity_system;
 
-    // Create an entity with a name
-    entt::entity entity = registry.create();
-
     // Get the mapping
     entity_system.getEntityMap(registry);
 
@@ -68,7 +65,7 @@ TEST(SystemEntityTest, ResolveEntityNameInvalid) {
         entity_system.resolveEntityName(registry, "entity", entt::null);
 
     // Check that the entity was resolved
-    ASSERT_TRUE(entity == entt::null);
+    ASSERT_TRUE(resolved_entity == entt::null);
     ASSERT_FALSE(registry.valid(resolved_entity));
 }
 

@@ -8,6 +8,7 @@
 #include "component.h"
 #include "config.h"
 #include "scene.h"
+#include "system.h"
 
 using namespace twirl;
 
@@ -44,6 +45,54 @@ TEST(SceneTest, TriggerScene) {
     // Check that the entity was added
     auto rview = registry.view<EnemyComp>();
     ASSERT_FALSE(rview.empty());
+}
+
+// This test checks that the initial values for entities loaded from json
+// that require their names to be resolved are null
+TEST(SceneTest, EmplaceEntityUnresovledNames) {
+    entt::registry registry;
+    SceneSystem scene_system;
+    EntitySystem entity_system;
+
+    // For SceneTriggerComp
+    scene_system.emplaceEntity(registry, "entity1", R"(
+    {
+        "components": {
+            "SceneTriggerComp": {
+                "scene_name": "test_scene",
+            },
+        }
+    }
+    )"_json);
+    // For PairComp
+    scene_system.emplaceEntity(registry, "rel_12", R"(
+    {
+        "components": {
+            "PairComp": {
+                "target_entity_name": "entity1",
+                "source_entity_name": "entity2",
+            },
+        }
+    }
+    )"_json);
+
+    // Resolve the entity names and check the values
+    // We start by getting the map
+    EntityMap entity_map = entity_system.getEntityMap(registry);
+
+    // Check that SceneTriggerComp got emplaced correctly
+    entt::entity entity1 = entity_map.at("entity1");
+    auto scenetrigger_c = registry.get<SceneTriggerComp>(entity1);
+    ASSERT_TRUE(scenetrigger_c.scene_name == "test_scene");
+    ASSERT_TRUE(scenetrigger_c.scene_entity == entt::null);
+
+    // Check that PairComp got emplaced correctly
+    entt::entity rel_12 = entity_map.at("rel_12");
+    auto pair_c = registry.get<PairComp>(rel_12);
+    ASSERT_TRUE(pair_c.target_entity_name == "entity1");
+    ASSERT_TRUE(pair_c.source_entity_name == "entity2");
+    ASSERT_TRUE(pair_c.target_entity == entt::null);
+    ASSERT_TRUE(pair_c.source_entity == entt::null);
 }
 
 TEST(SceneTest, EmplaceSceneFromJson) {

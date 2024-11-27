@@ -44,13 +44,11 @@ class SceneSystem {
 
     void loadJsonData(entt::registry& registry);
     void onSceneTrigger(entt::registry& registry, entt::entity entity);
+    void emplaceEntity(entt::registry& registry, const std::string entity_name,
+                       const json& entity_json);
     void emplaceScene(entt::registry& registry, entt::entity scene_entity);
 
     json json_data;
-
-   private:
-    void emplaceEntity(entt::registry& registry, EntityMap& scene_entity_map, const std::string entity_name,
-                       const json& entity_json);
 };
 
 }  // namespace twirl

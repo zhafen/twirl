@@ -33,6 +33,7 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
 void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) {
     auto& scenetrigger_c = registry.get<SceneTriggerComp>(entity);
     EntityName name_of_scene(registry.get<EntityName>(scenetrigger_c.scene_entity));
+    bool is_null = scenetrigger_c.scene_entity == entt::null;
     emplaceScene(registry, scenetrigger_c.scene_entity);
 
     // Reset n_triggers
@@ -46,21 +47,18 @@ void SceneSystem::emplaceScene(entt::registry& registry,
     std::cout << "Emplacing scene: " << scene_c.scene_fp << std::endl;
 
     // Loop through and emplace entities
-    EntityMap scene_entity_map;
     for (const auto& [entity_name, entity_json] : scene_c.json_data.items()) {
-        emplaceEntity(registry, scene_entity_map, entity_name, entity_json);
+        emplaceEntity(registry, entity_name, entity_json);
     }
 }
 
-void SceneSystem::emplaceEntity(entt::registry& registry, EntityMap& scene_entity_map,
+void SceneSystem::emplaceEntity(entt::registry& registry, 
                                 const std::string entity_name_str,
                                 const json& entity_json) {
     // Create an entity and store its name and ID
     EntityName entity_name(entity_name_str);
     auto entity = registry.create();
     registry.emplace<EntityName>(entity, entity_name);
-    // We also keep track of the inverse so we can parse PairComp
-    scene_entity_map.emplace(entity_name, entity);
 
     json components = entity_json["components"];
     for (const auto& [comp_key, comp] : components.items()) {

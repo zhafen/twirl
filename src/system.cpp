@@ -128,7 +128,7 @@ void EntitySystem::syncEntities(entt::registry& registry) {
     // Sync entity positions
     auto rview = registry.view<PairComp, SyncPositionComp>();
     for (auto [rel_entity, pairc, syncposc] : rview.each()) {
-        PhysicsComp target_physc = registry.get<PhysicsComp>(pairc.target_entity);
+        PhysicsComp& target_physc = registry.get<PhysicsComp>(pairc.target_entity);
         PhysicsComp source_physc = registry.get<PhysicsComp>(pairc.source_entity);
         target_physc.pos = source_physc.pos;
 

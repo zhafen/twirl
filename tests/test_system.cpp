@@ -107,11 +107,9 @@ TEST(SystemEntityTest, SyncPosition) {
     // Entity 2 will be the target synced with the source, entity 1
     entt::entity entity2 = registry.create();
     registry.emplace<EntityName>(entity2, "entity2");
-    registry.emplace<PhysicsComp>(entity1);
+    registry.emplace<PhysicsComp>(entity2);
     entt::entity rel_entity = registry.create();
-    PairComp& pairc = registry.emplace<PairComp>(rel_entity);
-    pairc.target_entity_name = "entity2";
-    pairc.source_entity_name = "entity1";
+    registry.emplace<PairComp>(rel_entity, entity2, entity1);
     registry.emplace<SyncPositionComp>(rel_entity);
 
     // Sync positions
@@ -120,7 +118,8 @@ TEST(SystemEntityTest, SyncPosition) {
     // Check that the positions are the same
     auto& pc1 = registry.get<PhysicsComp>(entity1);
     auto& pc2 = registry.get<PhysicsComp>(entity2);
-    ASSERT_EQ(pc1.pos, pc2.pos);
+    ASSERT_EQ(pc1.pos.x, pc2.pos.x);
+    ASSERT_EQ(pc1.pos.y, pc2.pos.y);
 }
 
 TEST(SystemEntityTest, ResolveEntityNames) {

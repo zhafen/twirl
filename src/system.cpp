@@ -75,6 +75,7 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
     }
 }
 
+
 void EntitySystem::spawnEntities(entt::registry& registry) {
     auto rview = registry.view<SceneTriggerComp, StopWatchComp>();
     for (auto [entity, asc, swc] : rview.each()) {
@@ -113,6 +114,16 @@ void EntitySystem::orderEntities(entt::registry& registry) {
     needs_ordering = false;
 }
 
+
+/**
+ * @brief Syncs entity values
+ *
+ * Currently I have to hardcode each combination of synced values.
+ * Generalizing this requires reflection, which is perhaps easiest solved
+ * by writing Python to generate the functions.
+ *
+ * @param registry The registry containing all entities and components.
+ */
 void EntitySystem::syncEntities(entt::registry& registry) {
     // Sync entity positions
     auto rview = registry.view<PairComp, SyncPositionComp>();

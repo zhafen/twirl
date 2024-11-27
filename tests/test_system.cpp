@@ -64,15 +64,6 @@ TEST(SystemEntityTest, StopWatchSpawn) {
                 "PhysicsComp": {},
                 "RenderComp": {}
             }
-        },
-        "spawned_spawner_relation": {
-            "components": {
-                "PairComp": {
-                    "target_entity_name": "spawned_entity",
-                    "source_entity_name": "spawner_entity"
-                },
-                "SyncPositionComp": {}
-            }
         }
     }
     )"_json;
@@ -92,8 +83,9 @@ TEST(SystemEntityTest, StopWatchSpawn) {
 
     // Trigger
     entity_system.spawnEntities(registry);
+    entity_system.resolveEntityPairs(registry);
 
-    // Check that the entity was created properly
+    // Check that the entities were created properly
     entity_map = entity_system.getEntityMap(registry);
     entt::entity spawned_entity = entity_map.at("spawned_entity");
     ASSERT_FALSE(spawned_entity == entt::null);
@@ -102,18 +94,33 @@ TEST(SystemEntityTest, StopWatchSpawn) {
     auto& pc = registry.get<PhysicsComp>(spawned_entity);
     ASSERT_FLOAT_EQ(pc.mass, 1.0f);
 
-    // For this spawn the location of the spawned entity should be that of the spawner
-    // TODO: Figure out the best way to do this.
-    // Option A: Have a json field that is parsed at some point during execution, and it
-    // will point to a permanent function that will set the position of the spawned
-    // entity. Of note, I think that a function that sets the value of one component to
-    // that of another will be very common.
-    // Option B: Use Python to write arbitrary functions that will be called when the
-    // entity is spawned. I think I'll probably go with option B so I can have a more
-    // programmatic way to parse components.
-    auto& pc_spawner = registry.get<PhysicsComp>(spawner_entity);
-    ASSERT_FLOAT_EQ(pc.pos.x, pc_spawner.pos.x);
-    ASSERT_FLOAT_EQ(pc.pos.y, pc_spawner.pos.y);
+}
+
+TEST(SystemEntityTest, SyncPosition) {
+    entt::registry registry;
+    EntitySystem entity_system;
+
+    // Create test entities
+    entt::entity entity1 = registry.create();
+    registry.emplace<EntityName>(entity1, "entity1");
+    registry.emplace<PhysicsComp>(entity1, 1.0f, sf::Vector2f(10.f, 10.f));
+    // Entity 2 will be the target synced with the source, entity 1
+    entt::entity entity2 = registry.create();
+    registry.emplace<EntityName>(entity2, "entity2");
+    registry.emplace<PhysicsComp>(entity1);
+    entt::entity rel_entity = registry.create();
+    PairComp& pairc = registry.emplace<PairComp>(rel_entity);
+    pairc.target_entity_name = "entity2";
+    pairc.source_entity_name = "entity1";
+    registry.emplace<SyncPositionComp>(rel_entity);
+
+    // Sync positions
+    entity_system.syncEntities(registry);
+
+    // Check that the positions are the same
+    auto& pc1 = registry.get<PhysicsComp>(entity1);
+    auto& pc2 = registry.get<PhysicsComp>(entity2);
+    ASSERT_EQ(pc1.pos, pc2.pos);
 }
 
 TEST(SystemEntityTest, ResolveEntityNames) {

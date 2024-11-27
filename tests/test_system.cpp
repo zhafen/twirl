@@ -127,8 +127,8 @@ TEST(SystemEntityTest, ResolveEntityNameDeleted) {
         entity_system.resolveEntityName(registry, "entity", entt::null);
 
     // Check that the entity wasn't resolved
-    ASSERT_TRUE(resolved_entity == entt::null);
-    ASSERT_FALSE(registry.valid(resolved_entity));
+    ASSERT_TRUE(resolved_entity_final == entt::null);
+    ASSERT_FALSE(registry.valid(resolved_entity_final));
 }
 
 TEST(SystemEntityTest, SpawnDeleteOrder) {

@@ -21,6 +21,7 @@ TEST(SceneTest, TriggerScene) {
 
     // Add a scene to the registry (including some manually-input json data)
     entt::entity scene = registry.create();
+    registry.emplace<EntityName>(scene, "test_scene");
     json json_data = R"(
     {
         "spawned_entity": {"components": {"EnemyComp": {}}}
@@ -31,9 +32,11 @@ TEST(SceneTest, TriggerScene) {
 
     // Add the triggering entity
     entt::entity triggering_entity = registry.create();
+    registry.emplace<EntityName>(triggering_entity, "triggering_entity");
     registry.emplace<SceneTriggerComp>(triggering_entity, "test_scene", scene);
 
     // Trigger the scene
+    bool is_valid = registry.all_of<SceneTriggerComp>(triggering_entity);
     registry.patch<SceneTriggerComp>(triggering_entity, [](auto& scenetrigger_c) {
         scenetrigger_c.n_triggers++;
     });

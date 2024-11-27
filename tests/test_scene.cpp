@@ -55,7 +55,7 @@ TEST(SceneTest, EmplaceEntityUnresovledNames) {
     EntitySystem entity_system;
 
     // For SceneTriggerComp
-    scene_system.emplaceEntity(registry, "entity1", R"(
+    json entity1_json = R"(
     {
         "components": {
             "SceneTriggerComp": {
@@ -63,9 +63,10 @@ TEST(SceneTest, EmplaceEntityUnresovledNames) {
             }
         }
     }
-    )"_json);
+    )"_json;
+    scene_system.emplaceEntity(registry, "entity1", entity1_json);
     // For PairComp
-    scene_system.emplaceEntity(registry, "rel_12", R"(
+    json rel_12_json = R"(
     {
         "components": {
             "PairComp": {
@@ -74,7 +75,8 @@ TEST(SceneTest, EmplaceEntityUnresovledNames) {
             }
         }
     }
-    )"_json);
+    )"_json;
+    scene_system.emplaceEntity(registry, "rel_12", rel_12_json);
 
     // Resolve the entity names and check the values
     // We start by getting the map

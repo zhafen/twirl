@@ -108,8 +108,8 @@ struct PairComp {
     EntityName source_entity_name;
 };
 inline void from_json(const json& j, PairComp& pc) {
-    pc.target_entity_name = j.at("target_entity").get<EntityName>();
-    pc.source_entity_name = j.at("source_entity").get<EntityName>();
+    pc.target_entity_name = j.at("target_entity_name").get<EntityName>();
+    pc.source_entity_name = j.at("source_entity_name").get<EntityName>();
 }
 
 struct PairwiseForceComp {

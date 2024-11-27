@@ -176,7 +176,7 @@ TEST(SystemEntityTest, ResolveEntityNames) {
     }
 }
 
-TEST(SystemEntityPhysicsTest, ResolveEntityPairs) {
+TEST(SystemEntityTest, ResolveEntityPairs) {
     // Set up test objects
     entt::registry registry;
     EntitySystem entity_system;
@@ -193,50 +193,50 @@ TEST(SystemEntityPhysicsTest, ResolveEntityPairs) {
     registry.emplace<PhysicsComp>(entity3);
     // Entity-entity relationships
     entt::entity rel_12 = registry.create();
-    PairComp pc_12;
-    pc_12.target_entity_name = "entity1";
-    pc_12.source_entity_name = "entity2";
-    registry.emplace<PairComp>(rel_12, pc_12);
+    PairComp pair_c_12;
+    pair_c_12.target_entity_name = "entity1";
+    pair_c_12.source_entity_name = "entity2";
+    registry.emplace<PairComp>(rel_12, pair_c_12);
     registry.emplace<PairwiseForceComp>(rel_12);
     entt::entity rel_23 = registry.create();
-    PairComp pc_23;
-    pc_23.target_entity_name = "entity2";
-    pc_23.source_entity_name = "entity3";
-    registry.emplace<PairComp>(rel_23, pc_23);
+    PairComp pair_c_23;
+    pair_c_23.target_entity_name = "entity2";
+    pair_c_23.source_entity_name = "entity3";
+    registry.emplace<PairComp>(rel_23, pair_c_23);
     registry.emplace<PairwiseForceComp>(rel_23);
     entt::entity rel_31 = registry.create();
-    PairComp pc_31;
-    pc_31.target_entity_name = "entity3";
-    pc_31.source_entity_name = "entity1";
-    registry.emplace<PairComp>(rel_31, pc_31);
+    PairComp pair_c_31;
+    pair_c_31.target_entity_name = "entity3";
+    pair_c_31.source_entity_name = "entity1";
+    registry.emplace<PairComp>(rel_31, pair_c_31);
     registry.emplace<PairwiseForceComp>(rel_31);
 
     // Resolve names then forces
     entity_system.getEntityMap(registry);
     entity_system.resolveEntityPairs(registry);
-    physics_system.calculatePairwiseForces(registry);
     ASSERT_TRUE(registry.valid(rel_12));
     ASSERT_TRUE(registry.valid(rel_23));
     ASSERT_TRUE(registry.valid(rel_31));
-    PairComp pc_12_now = registry.get<PairComp>(rel_12);
-    PairComp pc_23_now = registry.get<PairComp>(rel_23);
-    PairComp pc_31_now = registry.get<PairComp>(rel_31);
-    ASSERT_EQ(pc_12_now.target_entity, entity1);
-    ASSERT_EQ(pc_12_now.source_entity, entity2);
-    ASSERT_EQ(pc_23_now.target_entity, entity2);
-    ASSERT_EQ(pc_23_now.source_entity, entity3);
-    ASSERT_EQ(pc_31_now.target_entity, entity3);
-    ASSERT_EQ(pc_31_now.source_entity, entity1);
+    PairComp pair_c_12_now = registry.get<PairComp>(rel_12);
+    PairComp pair_c_23_now = registry.get<PairComp>(rel_23);
+    PairComp pair_c_31_now = registry.get<PairComp>(rel_31);
+    ASSERT_EQ(pair_c_12_now.target_entity, entity1);
+    ASSERT_EQ(pair_c_12_now.source_entity, entity2);
+    ASSERT_EQ(pair_c_23_now.target_entity, entity2);
+    ASSERT_EQ(pair_c_23_now.source_entity, entity3);
+    ASSERT_EQ(pair_c_31_now.target_entity, entity3);
+    ASSERT_EQ(pair_c_31_now.source_entity, entity1);
 
     // Delete an entity and try again
     registry.destroy(entity1);
     entity_system.getEntityMap(registry);
     entity_system.resolveEntityPairs(registry);
-    physics_system.calculatePairwiseForces(registry);
+    ASSERT_FALSE(registry.valid(rel_12));
     ASSERT_TRUE(registry.valid(rel_23));
-    PairComp pc_23_final = registry.get<PairComp>(rel_23);
-    ASSERT_EQ(pc_23_final.target_entity, entity2);
-    ASSERT_EQ(pc_23_final.source_entity, entity3);
+    ASSERT_FALSE(registry.valid(rel_31));
+    PairComp pair_c_23_final = registry.get<PairComp>(rel_23);
+    ASSERT_EQ(pair_c_23_final.target_entity, entity2);
+    ASSERT_EQ(pair_c_23_final.source_entity, entity3);
 }
 
 TEST(SystemPhysicsTest, CalculateForces) {

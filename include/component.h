@@ -174,12 +174,12 @@ inline void from_json(const json& j, UIComp& uic) {
 
 struct StopWatchComp {
     float current_time = 0.0f;
-    float end_time = 1.0f;
+    float end_time = cfg.T;
     bool end_reached = false;
 };
 inline void from_json(const json& j, StopWatchComp& swc) {
     swc.current_time = j.value("current_time", 0.0f);
-    swc.end_time = j.value("end_time", 1.0f);
+    swc.end_time = j.value("end_time", cfg.T);
     swc.end_reached = j.value("end_reached", false);
 }
 

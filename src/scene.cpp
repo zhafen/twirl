@@ -32,6 +32,7 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
 
 void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) {
     auto& stc = registry.get<SceneTriggerComp>(entity);
+    EntityName name_of_scene(registry.get<EntityName>(stc.scene_entity));
     emplaceScene(registry, stc.scene_entity);
 
     // Reset n_triggers
@@ -42,6 +43,8 @@ void SceneSystem::emplaceScene(entt::registry& registry,
                                const entt::entity scene_entity) {
     auto& sc = registry.get<SceneComp>(scene_entity);
 
+    std::cout << "Emplacing scene: " << sc.scene_fp << std::endl;
+
     // Loop through and emplace entities
     EntityMap scene_entity_map;
     for (const auto& [entity_name, entity_json] : sc.json_data.items()) {
@@ -49,7 +52,8 @@ void SceneSystem::emplaceScene(entt::registry& registry,
     }
 }
 
-void SceneSystem::emplaceEntity(entt::registry& registry, EntityMap& scene_entity_map, const std::string entity_name_str,
+void SceneSystem::emplaceEntity(entt::registry& registry, EntityMap& scene_entity_map,
+                                const std::string entity_name_str,
                                 const json& entity_json) {
     // Create an entity and store its name and ID
     EntityName entity_name(entity_name_str);

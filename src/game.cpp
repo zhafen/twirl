@@ -38,6 +38,11 @@ void Game::run() {
 }
 
 void Game::initialize() {
+
+    // Hook up the scene trigger listener
+    registry.on_update<SceneTriggerComp>().connect<&SceneSystem::onSceneTrigger>(
+        scene_system);
+
     // Emplace the main scene
     entt::entity scene_entity = registry.create();
     registry.emplace<SceneComp>(scene_entity, main_scene_fp);

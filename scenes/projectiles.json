@@ -14,28 +14,8 @@
                     131,
                     255
                 ],
-                "zorder": -1
+                "zorder": 100
             }
-        }
-    },
-    "projectile-enemy force": {
-        "components": {
-            "PairComp": {
-                "source_entity": "projectile",
-                "target_entity": "[component:EnemyComp]"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -0.1
-            }
-        }
-    },
-    "projectile-enemy collisions": {
-        "components": {
-            "PairComp": {
-                "source_entity": "projectile",
-                "target_entity": "[component:EnemyComp]"
-            },
-            "CollisionComp": {}
         }
     }
 }

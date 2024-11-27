@@ -38,7 +38,7 @@ TEST(ComponentTest, EntityNameStorage) {
     }
 
     // Check that the only PhysicsComp component is entity2
-    for (auto [entity, pc] : registry.view<PhysicsComp>().each()) {
-        ASSERT_FLOAT_EQ(pc.mass, 2.0f);
+    for (auto [entity, phys_c] : registry.view<PhysicsComp>().each()) {
+        ASSERT_FLOAT_EQ(phys_c.mass, 2.0f);
     }
 }

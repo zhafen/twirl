@@ -13,41 +13,41 @@ using json = nlohmann::ordered_json;
 namespace twirl {
 
 void SceneSystem::loadJsonData(entt::registry& registry) {
-    for (auto [entity, sc] : registry.view<SceneComp>().each()) {
+    for (auto [entity, scene_c] : registry.view<SceneComp>().each()) {
         // Parse the file
-        std::ifstream file(sc.scene_fp);
+        std::ifstream file(scene_c.scene_fp);
         if (!file.is_open()) {
             throw std::runtime_error(
-                "Failed to open file: " + sc.scene_fp +
+                "Failed to open file: " + scene_c.scene_fp +
                 "\nCurrent directory: " + std::filesystem::current_path().string());
             return;
         }
-        sc.json_data = json::parse(file);
+        scene_c.json_data = json::parse(file);
 
-        if (sc.emplace_after_loading) {
+        if (scene_c.emplace_after_loading) {
             emplaceScene(registry, entity);
         }
     }
 }
 
 void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) {
-    auto& stc = registry.get<SceneTriggerComp>(entity);
-    EntityName name_of_scene(registry.get<EntityName>(stc.scene_entity));
-    emplaceScene(registry, stc.scene_entity);
+    auto& scene_trigger_c = registry.get<SceneTriggerComp>(entity);
+    EntityName name_of_scene(registry.get<EntityName>(scene_trigger_c.scene_entity));
+    emplaceScene(registry, scene_trigger_c.scene_entity);
 
     // Reset n_triggers
-    stc.n_triggers = 0;
+    scene_trigger_c.n_triggers = 0;
 }
 
 void SceneSystem::emplaceScene(entt::registry& registry,
                                const entt::entity scene_entity) {
-    auto& sc = registry.get<SceneComp>(scene_entity);
+    auto& scene_c = registry.get<SceneComp>(scene_entity);
 
-    std::cout << "Emplacing scene: " << sc.scene_fp << std::endl;
+    std::cout << "Emplacing scene: " << scene_c.scene_fp << std::endl;
 
     // Loop through and emplace entities
     EntityMap scene_entity_map;
-    for (const auto& [entity_name, entity_json] : sc.json_data.items()) {
+    for (const auto& [entity_name, entity_json] : scene_c.json_data.items()) {
         emplaceEntity(registry, scene_entity_map, entity_name, entity_json);
     }
 }

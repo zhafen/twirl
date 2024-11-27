@@ -134,10 +134,10 @@ TEST(SystemEntityTest, ResolveEntityNames) {
     // Check that the entities match up
     auto entity_map = game.getEntityMap();
     auto rview = registry.view<EntityName, PairComp>();
-    for (auto [pair_entity, pair_entity_name, pc] : rview.each()) {
+    for (auto [pair_entity, pair_entity_name, pair_c] : rview.each()) {
         if (pair_entity_name == "player-beacon force") {
-            ASSERT_EQ(entity_map.at("player"), pc.target_entity);
-            ASSERT_EQ(entity_map.at("beacon"), pc.source_entity);
+            ASSERT_EQ(entity_map.at("player"), pair_c.target_entity);
+            ASSERT_EQ(entity_map.at("beacon"), pair_c.source_entity);
         }
     }
 }

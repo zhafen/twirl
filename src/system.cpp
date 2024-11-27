@@ -28,16 +28,16 @@ EntityMap EntitySystem::getEntityMap(entt::registry& registry) {
 void EntitySystem::resolveEntityPairs(entt::registry& registry) {
     auto entity_map = getEntityMap(registry);
     auto rview = registry.view<PairComp>();
-    for (auto [pair_entity, pc] : rview.each()) {
+    for (auto [pair_entity, pair_c] : rview.each()) {
         bool destroy_pair_entity = false;
-        if (!registry.valid(pc.target_entity)) {
+        if (!registry.valid(pair_c.target_entity)) {
             // If the the target name is not empty, try to resolve it
-            if (!pc.target_entity_name.empty()) {
+            if (!pair_c.target_entity_name.empty()) {
                 // Try to resolve and use the target name
                 bool is_resolved =
-                    entity_map.find(pc.target_entity_name) != entity_map.end();
+                    entity_map.find(pair_c.target_entity_name) != entity_map.end();
                 if (is_resolved) {
-                    pc.target_entity = entity_map.at(pc.target_entity_name);
+                    pair_c.target_entity = entity_map.at(pair_c.target_entity_name);
                 } else {
                     // If the name cannot be resolved,
                     // mark the pair entity for destruction
@@ -48,14 +48,14 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
                 destroy_pair_entity = true;
             }
         }
-        if (!registry.valid(pc.source_entity)) {
+        if (!registry.valid(pair_c.source_entity)) {
             // If the the target name is not empty, try to resolve it
-            if (!pc.source_entity_name.empty()) {
+            if (!pair_c.source_entity_name.empty()) {
                 // Try to resolve and use the target name
                 bool is_resolved =
-                    entity_map.find(pc.source_entity_name) != entity_map.end();
+                    entity_map.find(pair_c.source_entity_name) != entity_map.end();
                 if (is_resolved) {
-                    pc.source_entity = entity_map.at(pc.source_entity_name);
+                    pair_c.source_entity = entity_map.at(pair_c.source_entity_name);
                 } else {
                     // If the name cannot be resolved,
                     // mark the pair entity for destruction
@@ -78,14 +78,14 @@ void EntitySystem::resolveEntityPairs(entt::registry& registry) {
 
 void EntitySystem::spawnEntities(entt::registry& registry) {
     auto rview = registry.view<SceneTriggerComp, StopWatchComp>();
-    for (auto [entity, asc, swc] : rview.each()) {
+    for (auto [entity, scene_trigger_c, stopwatch_c] : rview.each()) {
         // Check if the end time was reached
-        if (!swc.end_reached) {
+        if (!stopwatch_c.end_reached) {
             continue;
         } else {
             // Reset the stopwatch
-            swc.current_time = 0.0f;
-            swc.end_reached = false;
+            stopwatch_c.current_time = 0.0f;
+            stopwatch_c.end_reached = false;
         }
 
         // If we got this far then we activate the scene trigger
@@ -127,13 +127,13 @@ void EntitySystem::orderEntities(entt::registry& registry) {
 void EntitySystem::syncEntities(entt::registry& registry) {
     // Sync entity positions
     auto rview = registry.view<PairComp, SyncPositionComp>();
-    for (auto [rel_entity, pairc, syncposc] : rview.each()) {
-        PhysicsComp& target_physc = registry.get<PhysicsComp>(pairc.target_entity);
-        PhysicsComp source_physc = registry.get<PhysicsComp>(pairc.source_entity);
-        target_physc.pos = source_physc.pos;
+    for (auto [rel_entity, pair_c, syncpos_c] : rview.each()) {
+        PhysicsComp& target_phys_c = registry.get<PhysicsComp>(pair_c.target_entity);
+        PhysicsComp source_phys_c = registry.get<PhysicsComp>(pair_c.source_entity);
+        target_phys_c.pos = source_phys_c.pos;
 
         // Destroy the relationship if it's a one-time sync
-        if (syncposc.once_only) {
+        if (syncpos_c.once_only) {
             registry.remove<SyncPositionComp>(rel_entity);
         }
     }
@@ -141,65 +141,65 @@ void EntitySystem::syncEntities(entt::registry& registry) {
 
 void PhysicsSystem::calculateForces(entt::registry& registry) {
     auto rview = registry.view<PhysicsComp, DragForceComp>();
-    for (auto [entity, pc, fc] : rview.each()) {
-        float vel_mag = sqrtf(pc.vel.x * pc.vel.x + pc.vel.y * pc.vel.y);
+    for (auto [entity, phys_c, dragforce_c] : rview.each()) {
+        float vel_mag = sqrtf(phys_c.vel.x * phys_c.vel.x + phys_c.vel.y * phys_c.vel.y);
         sf::Vector2f vel_scaling =
-            (pc.vel / cfg.V) * powf(vel_mag / cfg.V, fc.drag_power - 1.0f);
-        pc.force -= cfg.A * fc.drag_coefficient * vel_scaling;
+            (phys_c.vel / cfg.V) * powf(vel_mag / cfg.V, dragforce_c.drag_power - 1.0f);
+        phys_c.force -= cfg.A * dragforce_c.drag_coefficient * vel_scaling;
     }
 }
 
 void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
     auto rview = registry.view<PairComp, PairwiseForceComp>();
 
-    for (auto [rel_id, prc, pfc] : rview.each()) {
-        auto& target_pc = registry.get<PhysicsComp>(prc.target_entity);
-        auto& source_pc = registry.get<PhysicsComp>(prc.source_entity);
+    for (auto [rel_id, pair_c, pairforce_c] : rview.each()) {
+        auto& target_phys_c = registry.get<PhysicsComp>(pair_c.target_entity);
+        auto& source_phys_c = registry.get<PhysicsComp>(pair_c.source_entity);
 
-        auto r = target_pc.pos - source_pc.pos;
+        auto r = target_phys_c.pos - source_phys_c.pos;
         auto r_mag = sqrtf(r.x * r.x + r.y * r.y);
 
         // Don't calculate the distance when too close
-        if (r_mag < pfc.min_distance * cfg.L) {
+        if (r_mag < pairforce_c.min_distance * cfg.L) {
             continue;
         }
 
         auto r_hat = r / r_mag;
-        auto r_mag_scaled = (r_mag / cfg.L + pfc.softening) / pfc.distance_scaling;
-        auto force = cfg.A * r_hat * pfc.magnitude * target_pc.mass * source_pc.mass *
-                     powf(r_mag_scaled, pfc.power);
+        auto r_mag_scaled = (r_mag / cfg.L + pairforce_c.softening) / pairforce_c.distance_scaling;
+        auto force = cfg.A * r_hat * pairforce_c.magnitude * target_phys_c.mass * source_phys_c.mass *
+                     powf(r_mag_scaled, pairforce_c.power);
 
-        target_pc.force += force;
+        target_phys_c.force += force;
     }
 }
 
 void PhysicsSystem::update(entt::registry& registry) {
     auto rview = registry.view<PhysicsComp>();
 
-    for (auto [entity, pc] : rview.each()) {
+    for (auto [entity, phys_c] : rview.each()) {
         // Update using leapfrog algorithm
-        auto acc = pc.force / pc.mass;
-        pc.vel += acc * cfg.dt / 2.f;
-        pc.pos += pc.vel * cfg.dt;
-        pc.vel += acc * cfg.dt / 2.f;
+        auto acc = phys_c.force / phys_c.mass;
+        phys_c.vel += acc * cfg.dt / 2.f;
+        phys_c.pos += phys_c.vel * cfg.dt;
+        phys_c.vel += acc * cfg.dt / 2.f;
 
         // Reset force
-        pc.force = {0.f, 0.f};
+        phys_c.force = {0.f, 0.f};
     }
 }
 
 void PhysicsSystem::updateStopWatches(entt::registry& registry) {
     auto rview = registry.view<StopWatchComp>();
-    for (auto [entity, swc] : rview.each()) {
+    for (auto [entity, stopwatch_c] : rview.each()) {
         // Keep going if the end time was already reached.
-        if (swc.end_reached) {
+        if (stopwatch_c.end_reached) {
             continue;
         }
 
-        swc.current_time += cfg.dt;
+        stopwatch_c.current_time += cfg.dt;
 
-        if (swc.current_time >= swc.end_time) {
-            swc.end_reached = true;
+        if (stopwatch_c.current_time >= stopwatch_c.end_time) {
+            stopwatch_c.end_reached = true;
         }
     }
 }
@@ -224,70 +224,70 @@ void PhysicsSystem::updateStopWatches(entt::registry& registry) {
  * are more-thorough constraints based on contact angles.
  */
 void PhysicsSystem::resolveCollisions(entt::registry& registry) {
-    for (auto [rel_id, prc] : registry.view<PairComp, CollisionComp>().each()) {
+    for (auto [rel_id, pair_c] : registry.view<PairComp, CollisionComp>().each()) {
         // Check if the entities still exist
-        if (!registry.valid(prc.target_entity) || !registry.valid(prc.source_entity)) {
+        if (!registry.valid(pair_c.target_entity) || !registry.valid(pair_c.source_entity)) {
             registry.destroy(rel_id);
             continue;
         }
 
         // Get first entity
-        auto& entity1 = prc.target_entity;
-        auto& pc1 = registry.get<PhysicsComp>(entity1);
-        auto& rc1 = registry.get<RenderComp>(entity1);
+        auto& entity1 = pair_c.target_entity;
+        auto& phys_c1 = registry.get<PhysicsComp>(entity1);
+        auto& rend_c1 = registry.get<RenderComp>(entity1);
 
         // Get second entity
-        auto& entity2 = prc.source_entity;
-        auto& pc2 = registry.get<PhysicsComp>(entity2);
-        auto& rc2 = registry.get<RenderComp>(entity2);
+        auto& entity2 = pair_c.source_entity;
+        auto& phys_c2 = registry.get<PhysicsComp>(entity2);
+        auto& rend_c2 = registry.get<RenderComp>(entity2);
 
         // Check for collision, assuming circular shapes for all objects that collide
-        auto r_12 = pc2.pos - pc1.pos;
+        auto r_12 = phys_c2.pos - phys_c1.pos;
         auto r_12_mag = sqrtf(r_12.x * r_12.x + r_12.y * r_12.y);
-        if (r_12_mag > rc1.shape.getRadius() + rc2.shape.getRadius()) {
+        if (r_12_mag > rend_c1.shape.getRadius() + rend_c2.shape.getRadius()) {
             continue;
         }
 
         // Calculate the momentum in the COM frame
-        auto T = 0.5f * (pc1.mass * (pc1.vel.x * pc1.vel.x + pc1.vel.y * pc1.vel.y) +
-                         pc2.mass * (pc2.vel.x * pc2.vel.x + pc2.vel.y * pc2.vel.y));
-        auto pcom_mag = sqrtf(2.0f * T * pc1.mass * pc2.mass / (pc1.mass + pc2.mass));
+        auto T = 0.5f * (phys_c1.mass * (phys_c1.vel.x * phys_c1.vel.x + phys_c1.vel.y * phys_c1.vel.y) +
+                         phys_c2.mass * (phys_c2.vel.x * phys_c2.vel.x + phys_c2.vel.y * phys_c2.vel.y));
+        auto pcom_mag = sqrtf(2.0f * T * phys_c1.mass * phys_c2.mass / (phys_c1.mass + phys_c2.mass));
         auto p1com = -pcom_mag * r_12 / r_12_mag;
 
         // Convert back to default frame
-        auto vcom = (pc1.vel * pc1.mass + pc2.vel * pc2.mass) / (pc1.mass + pc2.mass);
-        pc1.vel = vcom + p1com / pc1.mass;
-        pc2.vel = vcom - p1com / pc2.mass;
+        auto vcom = (phys_c1.vel * phys_c1.mass + phys_c2.vel * phys_c2.mass) / (phys_c1.mass + phys_c2.mass);
+        phys_c1.vel = vcom + p1com / phys_c1.mass;
+        phys_c2.vel = vcom - p1com / phys_c2.mass;
 
         // Indicate collision
-        pc1.collided = true;
-        pc2.collided = true;
+        phys_c1.collided = true;
+        phys_c2.collided = true;
     }
 }
 
 void PhysicsSystem::updateDurability(entt::registry& registry) {
     auto rview = registry.view<DurabilityComp, RenderComp, PhysicsComp>();
-    for (auto [entity, dc, rc, pc] : rview.each()) {
+    for (auto [entity, dur_c, rend_c, phys_c] : rview.each()) {
         // Regenerate durability
-        dc.durability += dc.durability_regen_rate * cfg.dt;
+        dur_c.durability += dur_c.durability_regen_rate * cfg.dt;
 
         // Apply durability loss from collision
-        if (pc.collided) {
-            dc.durability -= dc.durability_loss_per_collision;
-            pc.collided = false;
+        if (phys_c.collided) {
+            dur_c.durability -= dur_c.durability_loss_per_collision;
+            phys_c.collided = false;
         }
 
         // Cap durability at 1.0
-        if (dc.durability > 1.0f) {
-            dc.durability = 1.0f;
-            rc.shape.setFillColor(sf::Color::White);
-        } else if (dc.durability < 0.0f) {
+        if (dur_c.durability > 1.0f) {
+            dur_c.durability = 1.0f;
+            rend_c.shape.setFillColor(sf::Color::White);
+        } else if (dur_c.durability < 0.0f) {
             // When out of durability, set to 0 and change color
-            dc.durability = 0.0f;
-            if (dc.delete_at_zero) {
+            dur_c.durability = 0.0f;
+            if (dur_c.delete_at_zero) {
                 registry.emplace<DeleteComp>(entity);
             } else {
-                rc.shape.setFillColor(sf::Color(63, 63, 63));
+                rend_c.shape.setFillColor(sf::Color(63, 63, 63));
             }
         }
     }
@@ -303,9 +303,9 @@ void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     auto rview = registry.view<RenderComp, PhysicsComp>().use<RenderComp>();
 
     // draw frame
-    for (auto [entity, rc, pc] : rview.each()) {
-        rc.shape.setPosition(pc.pos);
-        window.draw(rc.shape);
+    for (auto [entity, rend_c, phys_c] : rview.each()) {
+        rend_c.shape.setPosition(phys_c.pos);
+        window.draw(rend_c.shape);
     }
 }
 
@@ -313,20 +313,20 @@ void RenderSystem::renderUI(entt::registry& registry, sf::RenderWindow& window) 
     window.setView(ui_view);
 
     // draw frame
-    for (auto [entity, uic] : registry.view<UIComp>().each()) {
+    for (auto [entity, ui_c] : registry.view<UIComp>().each()) {
         // Get versions of the size and position that can be modified
-        auto uic_size = uic.size;
-        auto uic_pos = uic.pos;
+        auto ui_c_size = ui_c.size;
+        auto ui_c_pos = ui_c.pos;
 
         // Scale size with the tracked value
-        uic_size.x *= *uic.tracked_value;
+        ui_c_size.x *= *ui_c.tracked_value;
         // Causing the bar to shrink from the center requires changing both
         // the size and position
-        uic_pos.x += (uic.size.x - uic_size.x) / 2.f;
-        uic.shape.setSize(uic_size);
-        uic.shape.setPosition(uic_pos);
+        ui_c_pos.x += (ui_c.size.x - ui_c_size.x) / 2.f;
+        ui_c.shape.setSize(ui_c_size);
+        ui_c.shape.setPosition(ui_c_pos);
 
-        window.draw(uic.shape);
+        window.draw(ui_c.shape);
     }
 }
 
@@ -335,13 +335,13 @@ void RenderSystem::setView(entt::registry& registry, sf::RenderWindow& window,
     // Pin the view to the ViewComp entity (the player)
     auto rview = registry.view<PhysicsComp, ViewComp>();
     size_t n_vc = 0;
-    for (auto [entity, pc] : rview.each()) {
+    for (auto [entity, phys_c] : rview.each()) {
         if (n_vc > 1) {
             std::cerr << "Warning: More than one ViewComp entity found. Using the "
                          "first one.\n";
             break;
         }
-        view.setCenter(pc.pos);
+        view.setCenter(phys_c.pos);
         window.setView(view);
         n_vc++;
     }

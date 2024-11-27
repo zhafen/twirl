@@ -78,8 +78,8 @@ void Game::handleEvents() {
                 sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
 
                 // convert it to world coordinates and store
-                auto& pc = registry.get<PhysicsComp>(entity);
-                pc.pos = window.mapPixelToCoords(pixelPos);
+                auto& phys_c = registry.get<PhysicsComp>(entity);
+                phys_c.pos = window.mapPixelToCoords(pixelPos);
             }
         } else if (event.type == sf::Event::KeyReleased &&
                    event.key.code == sf::Keyboard::R) {

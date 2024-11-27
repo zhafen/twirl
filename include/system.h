@@ -20,8 +20,9 @@ class EntitySystem {
     EntityMap getEntityMap(entt::registry& registry);
     void resolveEntityPairs(entt::registry& registry);
     void spawnEntities(entt::registry& registry);
-    void orderEntities(entt::registry& registry);
     void deleteEntities(entt::registry& registry);
+    void syncEntities(entt::registry& registry);
+    void orderEntities(entt::registry& registry);
 
    private:
     bool needs_ordering = true;

@@ -129,6 +129,13 @@ inline void from_json(const json& j, PairwiseForceComp& pfc) {
 
 struct CollisionComp {};
 
+struct SyncPositionComp {
+    bool once_only;
+};
+inline void from_json(const json& j, SyncPositionComp& spc) {
+    spc.once_only = j.value("once_only", false);
+}
+
 struct RenderComp {
     TwirlCircleShape shape;
     int zorder = 0;

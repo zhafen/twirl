@@ -64,6 +64,15 @@ TEST(SystemEntityTest, StopWatchSpawn) {
                 "PhysicsComp": {},
                 "RenderComp": {}
             }
+        },
+        "spawned_spawner_relation": {
+            "components": {
+                "PairComp": {
+                    "target_entity_name": "spawned_entity",
+                    "source_entity_name": "spawner_entity"
+                },
+                "SyncPositionComp": {}
+            }
         }
     }
     )"_json;

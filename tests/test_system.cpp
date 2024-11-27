@@ -180,7 +180,7 @@ TEST(SystemEntityTest, StopWatchSpawn) {
 
     // Trigger
     entity_system.spawnEntities(registry);
-    entity_system.resolveEntityPairs(registry);
+    entity_system.resolvePairNames(registry);
 
     // Check that the entities were created properly
     entity_map = entity_system.getEntityMap(registry);
@@ -225,7 +225,7 @@ TEST(SystemEntityTest, ResolveEntitPairs) {
     auto& entity_system = game.getEntitySystem();
 
     // Resolve entity names
-    entity_system.resolveEntityPairs(registry);
+    entity_system.resolvePairNames(registry);
 
     // Check that the entities match up
     auto entity_map = game.getEntityMap();
@@ -275,7 +275,7 @@ TEST(SystemEntityTest, ResolveEntityPairsDelete) {
 
     // Resolve names then forces
     entity_system.getEntityMap(registry);
-    entity_system.resolveEntityPairs(registry);
+    entity_system.resolvePairNames(registry);
     ASSERT_TRUE(registry.valid(rel_12));
     ASSERT_TRUE(registry.valid(rel_23));
     ASSERT_TRUE(registry.valid(rel_31));
@@ -292,7 +292,7 @@ TEST(SystemEntityTest, ResolveEntityPairsDelete) {
     // Delete an entity and try again
     registry.destroy(entity1);
     entity_system.getEntityMap(registry);
-    entity_system.resolveEntityPairs(registry);
+    entity_system.resolvePairNames(registry);
     ASSERT_FALSE(registry.valid(rel_12));
     ASSERT_TRUE(registry.valid(rel_23));
     ASSERT_FALSE(registry.valid(rel_31));
@@ -317,7 +317,7 @@ TEST(SystemPhysicsTest, CalculatePairwiseForces) {
     auto& registry = game.getRegistry();
     auto& physics_system = game.getPhysicsSystem();
     // Need to resolve entity names before calculating pairwise forces
-    game.getEntitySystem().resolveEntityPairs(registry);
+    game.getEntitySystem().resolvePairNames(registry);
 
     // Calculate forces
     physics_system.calculatePairwiseForces(registry);
@@ -347,12 +347,12 @@ TEST(SystemPhysicsTest, CalculatePairwiseForcesPostDelete) {
     registry.emplace<PairwiseForceComp>(rel_31);
 
     // Calculate forces
-    entity_system.resolveEntityPairs(registry);
+    entity_system.resolvePairNames(registry);
     physics_system.calculatePairwiseForces(registry);
 
     // Delete an entity and try again
     registry.destroy(entity1);
-    entity_system.resolveEntityPairs(registry);
+    entity_system.resolvePairNames(registry);
     physics_system.calculatePairwiseForces(registry);
 }
 

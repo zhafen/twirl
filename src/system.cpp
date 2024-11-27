@@ -40,11 +40,24 @@ entt::entity EntitySystem::resolveEntityName(entt::registry& registry, EntityNam
     return entt::null;
 }
 
+void EntitySystem::resolveEntityNames(entt::registry& registry) {
+    resolveSceneTriggerNames(registry);
+    resolvePairNames(registry);
+}
+
+void EntitySystem::resolveSceneTriggerNames(entt::registry& registry) {
+    auto rview = registry.view<SceneTriggerComp>();
+    for (auto [entity, scenetrigger_c] : rview.each()) {
+        scenetrigger_c.scene_entity = resolveEntityName(registry, scenetrigger_c.scene_name,
+                                                        scenetrigger_c.scene_entity);
+    }
+}
+
 /**
  * OPTIMIZE: This function may not be able to loop over every paircomp if we use
  * listeners, and should probably not call getEntityMap every time.
  */
-void EntitySystem::resolveEntityPairs(entt::registry& registry) {
+void EntitySystem::resolvePairNames(entt::registry& registry) {
     auto rview = registry.view<PairComp>();
     for (auto [pair_entity, pair_c] : rview.each()) {
         pair_c.target_entity = resolveEntityName(registry, pair_c.target_entity_name,

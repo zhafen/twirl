@@ -93,7 +93,7 @@ void Game::update() {
     entity_system.deleteEntities(registry);
     entity_system.spawnEntities(registry);
     entity_system.getEntityMap(registry);
-    entity_system.resolveEntityPairs(registry);
+    entity_system.resolveEntityNames(registry);
     entity_system.orderEntities(registry);
 
     // Calculate forces

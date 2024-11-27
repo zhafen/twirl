@@ -59,8 +59,8 @@ TEST(SceneTest, EmplaceEntityUnresovledNames) {
     {
         "components": {
             "SceneTriggerComp": {
-                "scene_name": "test_scene",
-            },
+                "scene_name": "test_scene"
+            }
         }
     }
     )"_json);
@@ -70,8 +70,8 @@ TEST(SceneTest, EmplaceEntityUnresovledNames) {
         "components": {
             "PairComp": {
                 "target_entity_name": "entity1",
-                "source_entity_name": "entity2",
-            },
+                "source_entity_name": "entity2"
+            }
         }
     }
     )"_json);

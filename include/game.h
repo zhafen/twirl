@@ -24,7 +24,7 @@ class Game {
 
     // Getter functions for private variables
     entt::registry& getRegistry() { return registry; }
-    std::unordered_map<std::string, entt::entity>& getEntityMap() { return entity_map; }
+    EntityMap& getEntityMap() { return entity_system.getEntityMap(registry); }
     sf::RenderWindow& getWindow() { return window; }
     sf::View& getView() { return view; }
     sf::View& getUiView() { return ui_view; }
@@ -39,7 +39,6 @@ class Game {
 
     // ECS
     entt::registry registry;
-    EntityMap entity_map;
 
     // Window and view
     sf::RenderWindow window;

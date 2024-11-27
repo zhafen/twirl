@@ -10,7 +10,7 @@
 
 namespace twirl {
 
-EntityMap EntitySystem::getEntityMap(entt::registry& registry) {
+EntityMap& EntitySystem::getEntityMap(entt::registry& registry) {
 
     // Clear the map to start
     entity_map.clear();

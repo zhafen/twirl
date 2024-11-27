@@ -53,7 +53,7 @@ void Game::initialize() {
     // Get the entity map at the start
     // The entity map is a mapping of entity names to entity IDs
     // It's used when loading scenes from json
-    entity_map = entity_system.getEntityMap(registry);
+    entity_system.getEntityMap(registry);
 
     // Load other scenes
     scene_system.loadJsonData(registry);

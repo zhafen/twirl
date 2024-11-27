@@ -16,7 +16,7 @@ namespace twirl {
 class EntitySystem {
    public:
     EntitySystem() = default;
-    EntityMap getEntityMap(entt::registry& registry);
+    EntityMap& getEntityMap(entt::registry& registry);
     entt::entity resolveEntityName(entt::registry& registry, EntityName name,
                                    entt::entity entity);
     void resolveEntityPairs(entt::registry& registry);

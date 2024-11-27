@@ -95,6 +95,7 @@ void Game::update() {
     entity_system.getEntityMap(registry);
     entity_system.resolveEntityNames(registry);
     entity_system.orderEntities(registry);
+    entity_system.syncEntities(registry);
 
     // Calculate forces
     physics_system.calculateForces(registry);

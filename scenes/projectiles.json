@@ -7,7 +7,7 @@
                 "durability_loss_per_collision": 1.01
             },
             "RenderComp": {
-                "radius": 1.0,
+                "radius": 0.5,
                 "fill_color": [
                     82,
                     106,
@@ -16,6 +16,15 @@
                 ],
                 "zorder": 100
             }
+        }
+    },
+    "projectile-player sync": {
+        "components": {
+            "PairComp": {
+                "target_entity_name": "projectile",
+                "source_entity_name": "player"
+            },
+            "SyncPositionComp": {}
         }
     }
 }

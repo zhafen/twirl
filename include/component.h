@@ -133,7 +133,7 @@ struct SyncPositionComp {
     bool once_only;
 };
 inline void from_json(const json& j, SyncPositionComp& spc) {
-    spc.once_only = j.value("once_only", false);
+    spc.once_only = j.value("once_only", true);
 }
 
 struct RenderComp {

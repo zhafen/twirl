@@ -41,7 +41,6 @@ entt::entity EntitySystem::resolveEntityName(entt::registry& registry, EntityNam
  * listeners, and should probably not call getEntityMap every time.
  */
 void EntitySystem::resolveEntityPairs(entt::registry& registry) {
-    getEntityMap(registry);
     auto rview = registry.view<PairComp>();
     for (auto [pair_entity, pair_c] : rview.each()) {
         pair_c.target_entity = resolveEntityName(registry, pair_c.target_entity_name,

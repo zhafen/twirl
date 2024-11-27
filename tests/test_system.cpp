@@ -34,6 +34,38 @@ TEST(SystemEntityTest, GetEntityMap) {
     ASSERT_TRUE(entity_map.find("entity4") == entity_map.end());
 }
 
+TEST(SystemEntityTest, ResolveEntityName) {
+    entt::registry registry;
+    EntitySystem entity_system;
+
+    // Create an entity with a name
+    entt::entity entity = registry.create();
+    registry.emplace<EntityName>(entity, "entity");
+
+    // Resolve the entity name
+    entt::entity resolved_entity =
+        entity_system.resolveEntityName(registry, "entity", entity);
+
+    // Check that the entity was resolved
+    ASSERT_TRUE(entity == resolved_entity);
+}
+
+TEST(SystemEntityTest, ResolveEntityNameInvalid) {
+    entt::registry registry;
+    EntitySystem entity_system;
+
+    // Create an entity with a name
+    entt::entity entity = registry.create();
+
+    // Resolve the entity name
+    entt::entity resolved_entity =
+        entity_system.resolveEntityName(registry, "entity", entity);
+
+    // Check that the entity was resolved
+    ASSERT_TRUE(entity == entt::null);
+    ASSERT_FALSE(registry.valid(resolved_entity));
+}
+
 TEST(SystemEntityTest, SpawnDeleteOrder) {
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
@@ -93,7 +125,6 @@ TEST(SystemEntityTest, StopWatchSpawn) {
     ASSERT_TRUE(registry.valid(spawned_entity));
     auto& pc = registry.get<PhysicsComp>(spawned_entity);
     ASSERT_FLOAT_EQ(pc.mass, 1.0f);
-
 }
 
 TEST(SystemEntityTest, SyncPosition) {
@@ -178,6 +209,7 @@ TEST(SystemEntityPhysicsTest, ResolveEntityPairs) {
     registry.emplace<PairwiseForceComp>(rel_31);
 
     // Resolve names then forces
+    entity_system.getEntityMap(registry);
     entity_system.resolveEntityPairs(registry);
     physics_system.calculatePairwiseForces(registry);
     ASSERT_TRUE(registry.valid(rel_12));
@@ -195,6 +227,7 @@ TEST(SystemEntityPhysicsTest, ResolveEntityPairs) {
 
     // Delete an entity and try again
     registry.destroy(entity1);
+    entity_system.getEntityMap(registry);
     entity_system.resolveEntityPairs(registry);
     physics_system.calculatePairwiseForces(registry);
     ASSERT_TRUE(registry.valid(rel_23));

@@ -11,6 +11,10 @@
 namespace twirl {
 
 EntityMap EntitySystem::getEntityMap(entt::registry& registry) {
+
+    // Clear the map to start
+    entity_map.clear();
+
     auto rview = registry.view<EntityName>();
     for (auto [entity, name] : rview.each()) {
         entity_map.emplace(name, entity);

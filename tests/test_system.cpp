@@ -34,6 +34,40 @@ TEST(SystemEntityTest, GetEntityMap) {
     ASSERT_TRUE(entity_map.find("entity4") == entity_map.end());
 }
 
+TEST(SystemEntityTest, GetEntityMapDeleted) {
+    entt::registry registry;
+    EntitySystem entity_system;
+
+    // Create entities with names
+    entt::entity entity1 = registry.create();
+    registry.emplace<EntityName>(entity1, "entity1");
+    entt::entity entity2 = registry.create();
+    registry.emplace<EntityName>(entity2, "entity2");
+    entt::entity entity3 = registry.create();
+    registry.emplace<EntityName>(entity3, "entity3");
+
+    // Get the entity map
+    EntityMap entity_map = entity_system.getEntityMap(registry);
+
+    // Check that the entity map contains the correct entities
+    ASSERT_EQ(entity_map["entity1"], entity1);
+    ASSERT_EQ(entity_map["entity2"], entity2);
+    ASSERT_EQ(entity_map["entity3"], entity3);
+    ASSERT_THROW(entity_map.at("entity4"), std::out_of_range);
+    ASSERT_TRUE(entity_map.find("entity4") == entity_map.end());
+
+    // Delete an entity and get the entity map again
+    registry.destroy(entity2);
+    entity_map = entity_system.getEntityMap(registry);
+    ASSERT_EQ(entity_map["entity1"], entity1);
+    ASSERT_THROW(entity_map.at("entity2"), std::out_of_range);
+    ASSERT_TRUE(entity_map.find("entity2") == entity_map.end());
+    ASSERT_EQ(entity_map["entity3"], entity3);
+    ASSERT_THROW(entity_map.at("entity4"), std::out_of_range);
+    ASSERT_TRUE(entity_map.find("entity4") == entity_map.end());
+
+}
+
 TEST(SystemEntityTest, ResolveEntityName) {
     entt::registry registry;
     EntitySystem entity_system;
@@ -64,7 +98,35 @@ TEST(SystemEntityTest, ResolveEntityNameInvalid) {
     entt::entity resolved_entity =
         entity_system.resolveEntityName(registry, "entity", entt::null);
 
+    // Check that the entity wasn't resolved
+    ASSERT_TRUE(resolved_entity == entt::null);
+    ASSERT_FALSE(registry.valid(resolved_entity));
+}
+
+TEST(SystemEntityTest, ResolveEntityNameDeleted) {
+    entt::registry registry;
+    EntitySystem entity_system;
+
+    // Create an entity with a name
+    entt::entity entity = registry.create();
+    registry.emplace<EntityName>(entity, "entity");
+
+    // Resolve the entity name
+    entity_system.getEntityMap(registry);
+    entt::entity resolved_entity =
+        entity_system.resolveEntityName(registry, "entity", entt::null);
+
     // Check that the entity was resolved
+    ASSERT_FALSE(resolved_entity == entt::null);
+    ASSERT_TRUE(registry.valid(resolved_entity));
+
+    // Delete the entity and try again
+    registry.destroy(entity);
+    entity_system.getEntityMap(registry);
+    entt::entity resolved_entity_final =
+        entity_system.resolveEntityName(registry, "entity", entt::null);
+
+    // Check that the entity wasn't resolved
     ASSERT_TRUE(resolved_entity == entt::null);
     ASSERT_FALSE(registry.valid(resolved_entity));
 }
@@ -156,7 +218,7 @@ TEST(SystemEntityTest, SyncPosition) {
     ASSERT_EQ(pc1.pos.y, pc2.pos.y);
 }
 
-TEST(SystemEntityTest, ResolveEntityNames) {
+TEST(SystemEntityTest, ResolveEntitPairs) {
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();
@@ -176,7 +238,7 @@ TEST(SystemEntityTest, ResolveEntityNames) {
     }
 }
 
-TEST(SystemEntityTest, ResolveEntityPairs) {
+TEST(SystemEntityTest, ResolveEntityPairsDelete) {
     // Set up test objects
     entt::registry registry;
     EntitySystem entity_system;

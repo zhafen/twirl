@@ -42,7 +42,7 @@ inline void from_json(const json& j, SceneComp& sc) {
 
 struct SceneTriggerComp {
     std::string scene_name;
-    entt::entity scene_entity;
+    entt::entity scene_entity = entt::null;
     int n_triggers = 0;
 };
 inline void from_json(const json& j, SceneTriggerComp& stc) {

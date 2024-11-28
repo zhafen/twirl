@@ -58,8 +58,8 @@
     "player-beacon force": {
         "components": {
             "PairComp": {
-                "target_entity": "player",
-                "source_entity": "beacon"
+                "target_entity_name": "player",
+                "source_entity_name": "beacon"
             },
             "PairwiseForceComp": {
                 "magnitude": -1.0

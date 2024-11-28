@@ -218,7 +218,7 @@ TEST(SystemEntityTest, SyncPosition) {
     ASSERT_EQ(pc1.pos.y, pc2.pos.y);
 }
 
-TEST(SystemEntityTest, ResolveEntitPairs) {
+TEST(SystemEntityTest, ResolveEntityPairs) {
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
     auto& registry = game.getRegistry();

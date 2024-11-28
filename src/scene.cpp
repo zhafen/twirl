@@ -60,6 +60,8 @@ void SceneSystem::emplaceEntity(entt::registry& registry,
     auto entity = registry.create();
     registry.emplace<EntityName>(entity, entity_name);
 
+    // TODO:Add per-component tests so we can track down when emplacing
+    // just one of the components is failing
     json components = entity_json["components"];
     for (const auto& [comp_key, comp] : components.items()) {
         if (comp_key == "SceneComp") {

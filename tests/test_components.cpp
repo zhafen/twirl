@@ -42,3 +42,20 @@ TEST(ComponentTest, EntityNameStorage) {
         ASSERT_FLOAT_EQ(phys_c.mass, 2.0f);
     }
 }
+
+TEST(ComponentTest, StopWatchComp) {
+
+    // Set up a registry and add some components
+    entt::registry registry;
+    entt::entity entity1 = registry.create();
+    registry.emplace<StopWatchComp>(entity1);
+
+    // Check that the components were added correctly
+    ASSERT_FLOAT_EQ(registry.get<StopWatchComp>(entity1).current_time, 0.0f);
+    ASSERT_FLOAT_EQ(registry.get<StopWatchComp>(entity1).end_time, 1.0f);
+    ASSERT_EQ(registry.get<StopWatchComp>(entity1).end_reached, false);
+
+    // Add another entity but with different defaults
+    entt::entity entity2 = registry.create();
+    registry.emplace<StopWatchComp>(entity2, 1.0f, 2.0f, true);
+}

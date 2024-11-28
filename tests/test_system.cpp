@@ -176,23 +176,11 @@ TEST(SystemEntityTest, StopWatchSpawn) {
     swc.end_reached = true;
 
     // Ensure that the scene entity is valid
-    ASSERT_TRUE(registry.valid(scene_entity));
+    ASSERT_TRUE(registry.valid(scenetrig_c.scene_entity));
 
     // Ensure that the spawned entity does not exist yet
     EntityMap entity_map = entity_system.getEntityMap(registry);
     ASSERT_EQ(entity_map.find("spawned_entity"), entity_map.end());
-
-    // Ensure that the spawner entity is valid
-    ASSERT_TRUE(registry.valid(spawner_entity));
-    // DEBUG
-    auto rview = registry.view<StopWatchComp, SceneTriggerComp>();
-    size_t n = 0;
-    for (auto [entity, stopwatch_c, scenetrigger_c] : rview.each()) {
-        // DEBUG
-        EntityName name(registry.get<EntityName>(entity));
-        ASSERT_TRUE(registry.valid(entity));
-        n++;
-    }
 
     // Trigger
     entity_system.spawnEntities(registry);

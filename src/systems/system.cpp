@@ -87,9 +87,6 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
             stopwatch_c.end_reached = false;
         }
 
-        // DEBUG
-        EntityName name(registry.get<EntityName>(entity));
-
         // If we got this far then we activate the scene trigger
         registry.patch<SceneTriggerComp>(entity, [](auto& stc) { stc.n_triggers++; });
     }

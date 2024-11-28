@@ -32,8 +32,6 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
 
 void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) {
     auto& scenetrigger_c = registry.get<SceneTriggerComp>(entity);
-    EntityName name_of_scene(registry.get<EntityName>(scenetrigger_c.scene_entity));
-    bool is_null = scenetrigger_c.scene_entity == entt::null;
     emplaceScene(registry, scenetrigger_c.scene_entity);
 
     // Reset n_triggers

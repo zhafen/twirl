@@ -76,8 +76,8 @@ void EntitySystem::resolvePairNames(entt::registry& registry) {
 }
 
 void EntitySystem::spawnEntities(entt::registry& registry) {
-    auto rview = registry.view<SceneTriggerComp, StopWatchComp>();
-    for (auto [entity, scenetrigger_c, stopwatch_c] : rview.each()) {
+    auto rview = registry.view<StopWatchComp, SceneTriggerComp>();
+    for (auto [entity, stopwatch_c, scenetrigger_c] : rview.each()) {
         // Check if the end time was reached
         if (!stopwatch_c.end_reached) {
             continue;
@@ -86,6 +86,9 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
             stopwatch_c.current_time = 0.0f;
             stopwatch_c.end_reached = false;
         }
+
+        // DEBUG
+        EntityName name(registry.get<EntityName>(entity));
 
         // If we got this far then we activate the scene trigger
         registry.patch<SceneTriggerComp>(entity, [](auto& stc) { stc.n_triggers++; });

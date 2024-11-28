@@ -153,8 +153,8 @@ TEST(SystemEntityTest, StopWatchSpawn) {
     // Ready a scene to spawn
     entt::entity scene_entity = registry.create();
     registry.emplace<EntityName>(scene_entity, "test_scene");
-    auto& sc = registry.emplace<SceneComp>(scene_entity);
-    sc.json_data = R"(
+    auto& scene_c = registry.emplace<SceneComp>(scene_entity);
+    scene_c.json_data = R"(
     {
         "spawned_entity": {
             "components": {
@@ -168,15 +168,31 @@ TEST(SystemEntityTest, StopWatchSpawn) {
     // Spawning entity
     entt::entity spawner_entity = registry.create();
     registry.emplace<EntityName>(spawner_entity, "spawner_entity");
-    registry.emplace<SceneTriggerComp>(spawner_entity, "test_scene");
+    auto& scenetrig_c = registry.emplace<SceneTriggerComp>(spawner_entity);
+    scenetrig_c.scene_entity = scene_entity;
     registry.emplace<PhysicsComp>(spawner_entity, 1.0f, sf::Vector2f(10.f, 10.f));
     auto& swc = registry.emplace<StopWatchComp>(spawner_entity);
     // We test stopwatch updates separately, so we set the trigger as ready to go
     swc.end_reached = true;
 
+    // Ensure that the scene entity is valid
+    ASSERT_TRUE(registry.valid(scene_entity));
+
     // Ensure that the spawned entity does not exist yet
     EntityMap entity_map = entity_system.getEntityMap(registry);
     ASSERT_EQ(entity_map.find("spawned_entity"), entity_map.end());
+
+    // Ensure that the spawner entity is valid
+    ASSERT_TRUE(registry.valid(spawner_entity));
+    // DEBUG
+    auto rview = registry.view<StopWatchComp, SceneTriggerComp>();
+    size_t n = 0;
+    for (auto [entity, stopwatch_c, scenetrigger_c] : rview.each()) {
+        // DEBUG
+        EntityName name(registry.get<EntityName>(entity));
+        ASSERT_TRUE(registry.valid(entity));
+        n++;
+    }
 
     // Trigger
     entity_system.spawnEntities(registry);

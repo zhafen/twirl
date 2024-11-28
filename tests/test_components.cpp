@@ -64,15 +64,20 @@ TEST(ComponentTest, StopWatchCompJson) {
 
     entt::registry registry;
     SceneSystem scene_system;
-    entt::entity entity = registry.create();
 
-    // Finally, load from json
-    json comp_json = R"(
+    // Load from json with no settings specified
+    entt::entity entity1 = registry.create();
+    json comp_json1 = R"({})"_json;
+    scene_system.emplaceComponent(registry, entity1, "StopWatchComp", comp_json1);
+
+    // Load from json with all settings specified
+    entt::entity entity2 = registry.create();
+    json comp_json2 = R"(
     {
         "current_time": 2.0,
         "end_time": 3.0,
         "end_reached": false
     }
     )"_json;
-    scene_system.emplaceComponent(registry, entity, "StopWatchComp", comp_json);
+    scene_system.emplaceComponent(registry, entity2, "StopWatchComp", comp_json2);
 }

@@ -99,18 +99,18 @@ TEST(ComponentTest, PairCompTest) {
     // Check that the components were added correctly
     entt::entity rel_empty = registry.create();
     registry.emplace<PairComp>(rel_empty);
-    ASSERT_EQ(registry.get<PairComp>(rel_empty).target_entity, entt::null);
-    ASSERT_EQ(registry.get<PairComp>(rel_empty).source_entity, entt::null);
-    ASSERT_EQ(registry.get<PairComp>(rel_empty).target_entity_name, "");
-    ASSERT_EQ(registry.get<PairComp>(rel_empty).source_entity_name, "");
+    ASSERT_TRUE(registry.get<PairComp>(rel_empty).target_entity == entt::null);
+    ASSERT_TRUE(registry.get<PairComp>(rel_empty).source_entity == entt::null);
+    ASSERT_TRUE(registry.get<PairComp>(rel_empty).target_entity_name == "");
+    ASSERT_TRUE(registry.get<PairComp>(rel_empty).source_entity_name == "");
 
     // Add another entity but with different defaults
     entt::entity rel_12 = registry.create();
     entt::entity entity1 = registry.create();
     entt::entity entity2 = registry.create();
     registry.emplace<PairComp>(rel_12, entity1, entity2);
-    ASSERT_EQ(registry.get<PairComp>(rel_12).target_entity, entity1);
-    ASSERT_EQ(registry.get<PairComp>(rel_12).source_entity, entity2);
+    ASSERT_TRUE(registry.get<PairComp>(rel_12).target_entity == entity1);
+    ASSERT_TRUE(registry.get<PairComp>(rel_12).source_entity == entity2);
 }
 
 TEST(ComponentTest, PairCompJson) {
@@ -122,10 +122,10 @@ TEST(ComponentTest, PairCompJson) {
     json comp_json_empty = R"({})"_json;
     entt::entity rel_empty = registry.create();
     scene_system.emplaceComponent(registry, rel_empty, "PairComp", comp_json_empty);
-    ASSERT_EQ(registry.get<PairComp>(rel_empty).target_entity, entt::null);
-    ASSERT_EQ(registry.get<PairComp>(rel_empty).source_entity, entt::null);
-    ASSERT_EQ(registry.get<PairComp>(rel_empty).target_entity_name, "");
-    ASSERT_EQ(registry.get<PairComp>(rel_empty).source_entity_name, "");
+    ASSERT_TRUE(registry.get<PairComp>(rel_empty).target_entity == entt::null);
+    ASSERT_TRUE(registry.get<PairComp>(rel_empty).source_entity == entt::null);
+    ASSERT_TRUE(registry.get<PairComp>(rel_empty).target_entity_name == "");
+    ASSERT_TRUE(registry.get<PairComp>(rel_empty).source_entity_name == "");
 
     // Add another entity but with different defaults
     json comp_json = R"(
@@ -136,8 +136,8 @@ TEST(ComponentTest, PairCompJson) {
     )"_json;
     entt::entity rel_12 = registry.create();
     scene_system.emplaceComponent(registry, rel_12, "PairComp", comp_json);
-    ASSERT_EQ(registry.get<PairComp>(rel_12).target_entity, entt::null);
-    ASSERT_EQ(registry.get<PairComp>(rel_12).source_entity, entt::null);
-    ASSERT_EQ(registry.get<PairComp>(rel_12).target_entity_name, "entity1");
-    ASSERT_EQ(registry.get<PairComp>(rel_12).source_entity_name, "entity2");
+    ASSERT_TRUE(registry.get<PairComp>(rel_12).target_entity == entt::null);
+    ASSERT_TRUE(registry.get<PairComp>(rel_12).source_entity == entt::null);
+    ASSERT_TRUE(registry.get<PairComp>(rel_12).target_entity_name == "entity1");
+    ASSERT_TRUE(registry.get<PairComp>(rel_12).source_entity_name == "entity2");
 }

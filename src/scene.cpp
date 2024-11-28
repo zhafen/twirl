@@ -52,7 +52,7 @@ void SceneSystem::emplaceScene(entt::registry& registry,
     }
 }
 
-void SceneSystem::emplaceEntity(entt::registry& registry, 
+void SceneSystem::emplaceEntity(entt::registry& registry,
                                 const std::string entity_name_str,
                                 const json& entity_json) {
     // Create an entity and store its name and ID
@@ -63,53 +63,58 @@ void SceneSystem::emplaceEntity(entt::registry& registry,
     // TODO:Add per-component tests so we can track down when emplacing
     // just one of the components is failing
     json components = entity_json["components"];
-    for (const auto& [comp_key, comp] : components.items()) {
-        if (comp_key == "SceneComp") {
-            auto comp_inst = comp.template get<SceneComp>();
-            registry.emplace<SceneComp>(entity, comp_inst);
-        } else if (comp_key == "SceneTriggerComp") {
-            auto comp_inst = comp.template get<SceneTriggerComp>();
-            registry.emplace<SceneTriggerComp>(entity, comp_inst);
-        } else if (comp_key == "PhysicsComp") {
-            auto comp_inst = comp.template get<PhysicsComp>();
-            registry.emplace<PhysicsComp>(entity, comp_inst);
-        } else if (comp_key == "DragForceComp") {
-            auto comp_inst = comp.template get<DragForceComp>();
-            registry.emplace<DragForceComp>(entity, comp_inst);
-        } else if (comp_key == "DurabilityComp") {
-            auto comp_inst = comp.template get<DurabilityComp>();
-            registry.emplace<DurabilityComp>(entity, comp_inst);
-        } else if (comp_key == "MouseButtonReleasedComp") {
-            registry.emplace<MouseButtonReleasedComp>(entity);
-        } else if (comp_key == "RenderComp") {
-            auto comp_inst = comp.template get<RenderComp>();
-            registry.emplace<RenderComp>(entity, comp_inst);
-        } else if (comp_key == "EnemyComp") {
-            registry.emplace<EnemyComp>(entity);
-        } else if (comp_key == "DeleteComp") {
-            registry.emplace<DeleteComp>(entity);
-        } else if (comp_key == "PairComp") {
-            auto comp_inst = comp.template get<PairComp>();
-            registry.emplace<PairComp>(entity, comp_inst);
-        } else if (comp_key == "SyncPositionComp") {
-            auto comp_inst = comp.template get<SyncPositionComp>();
-            registry.emplace<SyncPositionComp>(entity, comp_inst);
-        } else if (comp_key == "PairwiseForceComp") {
-            auto comp_inst = comp.template get<PairwiseForceComp>();
-            registry.emplace<PairwiseForceComp>(entity, comp_inst);
-        } else if (comp_key == "CollisionComp") {
-            registry.emplace<CollisionComp>(entity);
-        } else if (comp_key == "ViewComp") {
-            registry.emplace<ViewComp>(entity);
-        } else if (comp_key == "UIComp") {
-            auto comp_inst = comp.template get<UIComp>();
-            registry.emplace<UIComp>(entity, comp_inst);
-        } else if (comp_key == "StopWatchComp") {
-            auto comp_inst = comp.template get<StopWatchComp>();
-            registry.emplace<StopWatchComp>(entity, comp_inst);
-        } else {
-            throw std::runtime_error("Unknown component key: " + comp_key);
-        }
+    for (const auto& [comp_key, comp_json] : components.items()) {
+        emplaceComponent(registry, entity, comp_key, comp_json);
+    }
+}
+
+void SceneSystem::emplaceComponent(entt::registry& registry, entt::entity entity,
+                                   const std::string comp_key, const json& comp_json) {
+    if (comp_key == "SceneComp") {
+        auto comp_inst = comp_json.template get<SceneComp>();
+        registry.emplace<SceneComp>(entity, comp_inst);
+    } else if (comp_key == "SceneTriggerComp") {
+        auto comp_inst = comp_json.template get<SceneTriggerComp>();
+        registry.emplace<SceneTriggerComp>(entity, comp_inst);
+    } else if (comp_key == "PhysicsComp") {
+        auto comp_inst = comp_json.template get<PhysicsComp>();
+        registry.emplace<PhysicsComp>(entity, comp_inst);
+    } else if (comp_key == "DragForceComp") {
+        auto comp_inst = comp_json.template get<DragForceComp>();
+        registry.emplace<DragForceComp>(entity, comp_inst);
+    } else if (comp_key == "DurabilityComp") {
+        auto comp_inst = comp_json.template get<DurabilityComp>();
+        registry.emplace<DurabilityComp>(entity, comp_inst);
+    } else if (comp_key == "MouseButtonReleasedComp") {
+        registry.emplace<MouseButtonReleasedComp>(entity);
+    } else if (comp_key == "RenderComp") {
+        auto comp_inst = comp_json.template get<RenderComp>();
+        registry.emplace<RenderComp>(entity, comp_inst);
+    } else if (comp_key == "EnemyComp") {
+        registry.emplace<EnemyComp>(entity);
+    } else if (comp_key == "DeleteComp") {
+        registry.emplace<DeleteComp>(entity);
+    } else if (comp_key == "PairComp") {
+        auto comp_inst = comp_json.template get<PairComp>();
+        registry.emplace<PairComp>(entity, comp_inst);
+    } else if (comp_key == "SyncPositionComp") {
+        auto comp_inst = comp_json.template get<SyncPositionComp>();
+        registry.emplace<SyncPositionComp>(entity, comp_inst);
+    } else if (comp_key == "PairwiseForceComp") {
+        auto comp_inst = comp_json.template get<PairwiseForceComp>();
+        registry.emplace<PairwiseForceComp>(entity, comp_inst);
+    } else if (comp_key == "CollisionComp") {
+        registry.emplace<CollisionComp>(entity);
+    } else if (comp_key == "ViewComp") {
+        registry.emplace<ViewComp>(entity);
+    } else if (comp_key == "UIComp") {
+        auto comp_inst = comp_json.template get<UIComp>();
+        registry.emplace<UIComp>(entity, comp_inst);
+    } else if (comp_key == "StopWatchComp") {
+        auto comp_inst = comp_json.template get<StopWatchComp>();
+        registry.emplace<StopWatchComp>(entity, comp_inst);
+    } else {
+        throw std::runtime_error("Unknown component key: " + comp_key);
     }
 }
 

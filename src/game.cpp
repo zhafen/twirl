@@ -10,7 +10,6 @@
 #include <vector>
 
 #include "config.h"
-#include "scene.h"
 #include "shape.h"
 #include "systems/system.h"
 

@@ -8,7 +8,7 @@
 
 #include "component.h"
 #include "config.h"
-#include "scene.h"
+#include "systems/system.h"
 
 using namespace twirl;
 

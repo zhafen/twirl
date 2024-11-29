@@ -5,7 +5,6 @@
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/registry.hpp>
 
-#include "scene.h"
 #include "systems/system.h"
 
 

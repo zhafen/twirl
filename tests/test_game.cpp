@@ -19,8 +19,13 @@ TEST(GameTest, Initialize) {
     auto rview = game.getRegistry().view<EntityName>();
     ASSERT_FALSE(rview.empty());
 
+    // DEBUG
+    for (auto [entity, name] : rview.each()) {
+        std::cout << "Entity: " << name << std::endl;
+    }
+
     // Check that the player entity is present
-    entt::entity player_entity = game.getEntityMap()["player"];
+    entt::entity player_entity = game.getEntityMap().at("player");
     ASSERT_FALSE(player_entity == entt::null);
 
     // Check that the player entity has the correct components

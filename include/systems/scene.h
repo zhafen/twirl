@@ -44,7 +44,7 @@ class SceneSystem {
 
     void loadJsonData(entt::registry& registry);
     void onSceneTrigger(entt::registry& registry, entt::entity entity);
-    void emplaceEntity(entt::registry& registry, const std::string entity_name,
+    void emplaceEntity(entt::registry& registry, const EntityName entity_name,
                        const json& entity_json);
     void emplaceScene(entt::registry& registry, entt::entity scene_entity);
     void emplaceComponent(entt::registry& registry, entt::entity entity,

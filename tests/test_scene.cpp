@@ -1,9 +1,9 @@
-#include <regex>
+#include <gtest/gtest.h>
 
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/helper.hpp>
 #include <nlohmann/json.hpp>
-#include <gtest/gtest.h>
+#include <regex>
 
 #include "component.h"
 #include "config.h"
@@ -12,7 +12,6 @@
 using namespace twirl;
 
 TEST(SceneTest, TriggerScene) {
-
     // Set up registry and scene system, including the trigger
     SceneSystem scene_system;
     entt::registry registry;
@@ -37,9 +36,8 @@ TEST(SceneTest, TriggerScene) {
 
     // Trigger the scene
     bool is_valid = registry.all_of<SceneTriggerComp>(triggering_entity);
-    registry.patch<SceneTriggerComp>(triggering_entity, [](auto& scenetrigger_c) {
-        scenetrigger_c.n_triggers++;
-    });
+    registry.patch<SceneTriggerComp>(
+        triggering_entity, [](auto& scenetrigger_c) { scenetrigger_c.n_triggers++; });
 
     // Check that the entity was added
     auto rview = registry.view<EnemyComp>();
@@ -103,10 +101,15 @@ TEST(SceneTest, EmplaceSceneFromJson) {
 
     // Add a scene to the registry (including some manually-input json data)
     entt::entity scene = registry.create();
-    registry.emplace<SceneComp>(scene, "../../tests/test_data/test_scene.json");
+    auto& scene_c =
+        registry.emplace<SceneComp>(scene, "../../tests/test_data/test_scene.json");
+    scene_c.verbose_names = false;
+    registry.emplace<EntityName>(scene, "test_scene");
     scene_system.loadJsonData(registry);
 
     // Emplace the Scene
+    // DEBUG
+    bool is_valid = registry.valid(scene);
     scene_system.emplaceScene(registry, scene);
 
     // Loop through the registry and check if the components are added correctly

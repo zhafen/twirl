@@ -36,10 +36,12 @@ struct SceneComp {
     bool emplace_after_loading = false;
     json json_data;
     size_t n_emplaced = 0;
+    bool verbose_names = true;
 };
 inline void from_json(const json& j, SceneComp& sc) {
     sc.scene_fp = j.at("scene_fp").get<std::string>();
     sc.emplace_after_loading = j.value("emplace_after_loading", false);
+    sc.verbose_names = j.value("verbose_names", true);
 }
 
 struct SceneTriggerComp {

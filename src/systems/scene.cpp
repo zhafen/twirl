@@ -46,10 +46,14 @@ void SceneSystem::emplaceScene(entt::registry& registry,
     std::cout << "Emplacing scene: " << scene_c.scene_fp << std::endl;
 
     // Loop through and emplace entities
-    for (const auto& [entity_name_base, entity_json] : scene_c.json_data.items()) {
-        std::string entity_name_str = entity_name_base + "." + scene_name + "." +
-                                      std::to_string(scene_c.n_emplaced);
-        emplaceEntity(registry, entity_name_str, entity_json);
+    for (auto [entity_name_base, entity_json] : scene_c.json_data.items()) {
+        EntityName entity_name;
+        if (scene_c.verbose_names) {
+            entity_name = scene_name + "." + std::to_string(scene_c.n_emplaced) + "." + entity_name_base;
+        } else {
+            entity_name = entity_name_base;
+        }
+        emplaceEntity(registry, entity_name, entity_json);
     }
 
     // Increment n_emplaced
@@ -57,10 +61,9 @@ void SceneSystem::emplaceScene(entt::registry& registry,
 }
 
 void SceneSystem::emplaceEntity(entt::registry& registry,
-                                const std::string entity_name_str,
+                                const EntityName entity_name,
                                 const json& entity_json) {
     // Create an entity and store its name and ID
-    EntityName entity_name(entity_name_str);
     auto entity = registry.create();
     registry.emplace<EntityName>(entity, entity_name);
 

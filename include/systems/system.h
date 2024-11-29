@@ -1,6 +1,8 @@
 #ifndef SYSTEMS_H
 #define SYSTEMS_H
 
+#include "systems/render.h"
+
 #include <functional>
 #include <memory>
 #include <unordered_map>
@@ -43,18 +45,6 @@ class PhysicsSystem {
     void updateStopWatches(entt::registry& registry);
     void resolveCollisions(entt::registry& registry);
     void updateDurability(entt::registry& registry);
-};
-
-class RenderSystem {
-   public:
-    RenderSystem(sf::View& view, sf::View& ui_view);
-    void render(entt::registry& registry, sf::RenderWindow& window);
-    void renderUI(entt::registry& registry, sf::RenderWindow& window);
-    void setView(entt::registry& regsitry, sf::RenderWindow& window, sf::View& view);
-
-   private:
-    sf::View view;
-    sf::View ui_view;
 };
 
 }  // namespace twirl

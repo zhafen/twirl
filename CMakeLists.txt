@@ -31,14 +31,6 @@ FetchContent_Declare(
     EXCLUDE_FROM_ALL
     SYSTEM)
 FetchContent_MakeAvailable(nlohmann_json)
-FetchContent_Declare (
-tracy
-GIT_REPOSITORY https://github.com/wolfpld/tracy.git
-GIT_TAG master
-GIT_SHALLOW TRUE
-GIT_PROGRESS TRUE
-)
-FetchContent_MakeAvailable (tracy)
 find_package(GTest REQUIRED)
 
 # Include directories
@@ -54,10 +46,6 @@ target_link_libraries(
     sfml-graphics
     EnTT::EnTT
     nlohmann_json::nlohmann_json
-)
-target_link_libraries(
-    twirl
-    PUBLIC TracyClient
 )
 
 # Build and link test files
@@ -75,7 +63,6 @@ target_link_libraries(
 target_link_libraries(
     twirl_tests
     PUBLIC
-    TracyClient
 )
 
 target_compile_features(twirl PRIVATE cxx_std_17)

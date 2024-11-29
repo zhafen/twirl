@@ -1,6 +1,7 @@
 #ifndef SYSTEMS_H
 #define SYSTEMS_H
 
+#include "systems/physics.h"
 #include "systems/render.h"
 
 #include <functional>
@@ -34,17 +35,6 @@ class EntitySystem {
    private:
     EntityMap entity_map;
     bool needs_ordering = true;
-};
-
-class PhysicsSystem {
-   public:
-    PhysicsSystem() = default;
-    void calculateForces(entt::registry& registry);
-    void calculatePairwiseForces(entt::registry& registry);
-    void update(entt::registry& registry);
-    void updateStopWatches(entt::registry& registry);
-    void resolveCollisions(entt::registry& registry);
-    void updateDurability(entt::registry& registry);
 };
 
 }  // namespace twirl

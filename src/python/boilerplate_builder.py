@@ -98,17 +98,30 @@ class BoilerplateBuilder:
         ]
         body_str = " else ".join(emplacement_strs)
 
+        # Indent the body string
+        body_str = "    " + body_str.replace("\n", "\n    ")
+
+        return (
+            " void emplaceComponent(entt::registry& registry, entt::entity entity,\n"
+            "                       const std::string& comp_key, const json& comp_json) {\n"
+            + body_str
+            + " else {\n"
+            '        throw std::runtime_error("Unknown component type");\n'
+            "    }\n"
+            "}"
+        )
+
     def get_emplacement_str_for_comp(self, name: str, is_empty: bool = False) -> str:
 
         if is_empty:
             return (
-                f'(comp_key == "{name}") {{\n'
+                f'if (comp_key == "{name}") {{\n'
                 f"    registry.emplace<{name}>(entity);\n"
                 "}"
             )
 
         return (
-            f'(comp_key == "{name}") {{\n'
+            f'if (comp_key == "{name}") {{\n'
             f"    auto {name.lower()} = comp_json.template get<{name}>();\n"
             f"    registry.emplace<{name}>(entity, {name.lower()});\n"
             "}"

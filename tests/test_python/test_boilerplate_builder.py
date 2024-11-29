@@ -70,7 +70,8 @@ class TestBoilerplateBuilder(unittest.TestCase):
             "        registry.emplace<UIComp>(entity, uicomp);\n"
             "    } else {\n"
             "        throw std::runtime_error(\"Unknown component type\");\n"
-            "    }"
+            "    }\n"
+            "}"
         )
         output = self.builder.get_emplacecomponent_str(
             {
@@ -83,7 +84,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
     def test_get_emplacement_str_for_comp(self):
 
         expected_output_empty = (
-            '(comp_key == "ViewComp") {\n'
+            'if (comp_key == "ViewComp") {\n'
             "    registry.emplace<ViewComp>(entity);\n"
             "}"
         )
@@ -91,7 +92,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
         assert expected_output_empty == output_empty
 
         expected_output = (
-            '(comp_key == "UIComp") {\n'
+            'if (comp_key == "UIComp") {\n'
             "    auto uicomp = comp_json.template get<UIComp>();\n"
             "    registry.emplace<UIComp>(entity, uicomp);\n"
             "}"

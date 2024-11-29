@@ -142,6 +142,12 @@ TEST(ComponentTest, PairCompJson) {
     ASSERT_TRUE(registry.get<PairComp>(rel_12).source_entity_name == "entity2");
 }
 
+// TEST(ComponentTest, CompMap) {
+//     // Check that the component map works
+//     ASSERT_EQ(comp_map.at("EnemyComp"), std::type_index(typeid(EnemyComp)));
+//     ASSERT_EQ(comp_map.at("DebugComp"), std::type_index(typeid(DebugComp)));
+// }
+
 TEST(ComponentTest, EntityFromCompStr) {
     entt::registry registry;
 
@@ -151,5 +157,5 @@ TEST(ComponentTest, EntityFromCompStr) {
 
     // Get the entity out
     entt::entity entity_out = comp::getEntityFromCompStr(registry, "EnemyComp");
-    ASSERT_TRUE(entity_out == entity);
+    ASSERT_EQ(entity_out, entity);
 }

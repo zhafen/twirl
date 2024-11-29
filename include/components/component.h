@@ -6,6 +6,8 @@
 #include <entt/entity/entity.hpp>
 #include <nlohmann/json.hpp>
 #include <string>
+#include <typeinfo>
+#include <typeindex>
 
 #include "config.h"
 #include "shape.h"
@@ -183,6 +185,7 @@ inline void from_json(const json& j, StopWatchComp& swc) {
 
 struct DebugComp {};
 
+// This namespace is for component-related functions
 namespace comp {
 
 entt::entity getEntityFromCompStr(entt::registry& registry,

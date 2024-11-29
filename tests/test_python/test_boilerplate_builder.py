@@ -1,11 +1,18 @@
 import unittest
 from src.python.boilerplate_builder import BoilerplateBuilder
+import os
 
 
 class TestBoilerplateBuilder(unittest.TestCase):
 
     def setUp(self):
         self.builder = BoilerplateBuilder()
+        self.generated_components_fp = "tests/test_python/test_generated_components.h"
+
+    def tearDown(self):
+
+        if os.path.exists(self.generated_components_fp):
+            os.remove(self.generated_components_fp)
 
     def test_get_struct_str_empty_members(self):
         name = "MyStruct"
@@ -61,15 +68,15 @@ class TestBoilerplateBuilder(unittest.TestCase):
 
     def test_get_emplacecomponent_str(self):
         expected_output = (
-            " void emplaceComponent(entt::registry& registry, entt::entity entity,\n"
-            "                       const std::string& comp_key, const json& comp_json) {\n"
+            "void emplaceComponent(entt::registry& registry, entt::entity entity,\n"
+            "                      const std::string& comp_key, const json& comp_json) {\n"
             '    if (comp_key == "ViewComp") {\n'
             "        registry.emplace<ViewComp>(entity);\n"
             '    } else if (comp_key == "UIComp") {\n'
             "        auto uicomp = comp_json.template get<UIComp>();\n"
             "        registry.emplace<UIComp>(entity, uicomp);\n"
             "    } else {\n"
-            "        throw std::runtime_error(\"Unknown component type\");\n"
+            '        throw std::runtime_error("Unknown component type");\n'
             "    }\n"
             "}"
         )
@@ -100,3 +107,31 @@ class TestBoilerplateBuilder(unittest.TestCase):
         output = self.builder.get_emplacement_str_for_comp("UIComp")
         assert expected_output == output
 
+    def test_generate_components_file(self):
+
+        components = {
+            "EnemyComp": {},
+            "SceneComp": {
+                "scene_fp": ["std::string", True],
+                "emplace_after_loading": ["bool", True, "false"],
+                "json_data": "json",
+                "n_emplaced": ["size_t", False, "0"],
+                "verbose_names": ["bool", True, "true"],
+            },
+            "PhysicsComp": {
+                "mass": ["float", True, "1.0f"],
+                "pos": ["sf::Vector2f", True, "sf::Vector2f(0.0f, 0.0f)"],
+                "vel": ["sf::Vector2f", True, "sf::Vector2f(0.0f, 0.0f)"],
+                "force": ["sf::Vector2f", False, "sf::Vector2f(0.0f, 0.0f)"],
+                "collided": ["bool", False, "false"],
+            },
+        }
+
+        self.builder.generate_components_file(self.generated_components_fp, components)
+
+        with open("tests/test_python/test_expected_components.h", "r", encoding="utf-8") as file:
+            expected_output = file.read()
+        with open(self.generated_components_fp, "r", encoding="utf-8") as file:
+            output = file.read()
+
+        assert expected_output == output

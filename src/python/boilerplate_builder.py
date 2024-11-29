@@ -4,6 +4,23 @@ from typing import Tuple
 class BoilerplateBuilder:
     """Create boilerplate code for different the twirl C++ source code."""
 
+    def generate_components_file(self, save_fp: str, components: dict) -> None:
+        """
+        Generates a C++ header file with struct definitions and an emplaceComponent function.
+
+        Args:
+            save_fp (str): The file path to save the generated C++ header file.
+            components (dict): A dictionary where keys are component names and values
+                               are dictionaries of component members.
+
+        Returns:
+            None: The generated C++ header file is saved to the specified file path.
+        """
+
+        file_str = ""
+        with open(save_fp, "w", encoding="utf-8") as f:
+            f.write(file_str)
+
     def get_struct_def(self, name: str, members: dict = {}) -> str:
         """
         Generates a C++ struct definition and an optional JSON deserialization function.

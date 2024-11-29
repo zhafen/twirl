@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <entt/entity/fwd.hpp>
+#include <entt/entity/entity.hpp>
 #include <nlohmann/json.hpp>
 #include <string>
 

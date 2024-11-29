@@ -1,6 +1,7 @@
 #include "components/component.h"
 
 #include <entt/entity/fwd.hpp>
+#include <entt/entity/entity.hpp>
 
 namespace twirl {
 

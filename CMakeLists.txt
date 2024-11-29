@@ -31,6 +31,14 @@ FetchContent_Declare(
     EXCLUDE_FROM_ALL
     SYSTEM)
 FetchContent_MakeAvailable(nlohmann_json)
+FetchContent_Declare (
+tracy
+GIT_REPOSITORY https://github.com/wolfpld/tracy.git
+GIT_TAG master
+GIT_SHALLOW TRUE
+GIT_PROGRESS TRUE
+)
+FetchContent_MakeAvailable (tracy)
 find_package(GTest REQUIRED)
 
 # Include directories
@@ -47,6 +55,10 @@ target_link_libraries(
     EnTT::EnTT
     nlohmann_json::nlohmann_json
 )
+target_link_libraries(
+    twirl
+    PUBLIC TracyClient
+)
 
 # Build and link test files
 file(GLOB_RECURSE TEST_SOURCES "tests/*.cpp" "src/*.cpp" "tests/**/*.cpp" "src/**/*.cpp")
@@ -54,10 +66,16 @@ list(REMOVE_ITEM TEST_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
 add_executable(twirl_tests ${TEST_SOURCES})
 target_link_libraries(
     twirl_tests
+    PRIVATE
     ${GTEST_LIBRARIES}
     sfml-graphics
     EnTT::EnTT
     nlohmann_json::nlohmann_json
+)
+target_link_libraries(
+    twirl_tests
+    PUBLIC
+    TracyClient
 )
 
 target_compile_features(twirl PRIVATE cxx_std_17)

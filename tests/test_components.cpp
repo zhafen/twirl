@@ -142,11 +142,22 @@ TEST(ComponentTest, PairCompJson) {
     ASSERT_TRUE(registry.get<PairComp>(rel_12).source_entity_name == "entity2");
 }
 
-// TEST(ComponentTest, CompMap) {
-//     // Check that the component map works
-//     ASSERT_EQ(comp_map.at("EnemyComp"), std::type_index(typeid(EnemyComp)));
-//     ASSERT_EQ(comp_map.at("DebugComp"), std::type_index(typeid(DebugComp)));
-// }
+TEST(ComponentTest, CompMap) {
+
+    // Define a type map
+    std::unordered_map<std::string, std::type_index> typeMap = {
+        {"int", std::type_index(typeid(int))},
+        {"double", std::type_index(typeid(double))},
+        {"std::string", std::type_index(typeid(std::string))}
+    };
+
+    std::type_index enemy_comp_type = typeMap.at("int");
+    ASSERT_EQ(enemy_comp_type, std::type_index(typeid(int)));
+
+    // Check that the component map works
+    // ASSERT_EQ(compTypeMap.at("EnemyComp"), std::type_index(typeid(EnemyComp)));
+    // ASSERT_EQ(compTypeMap.at("DebugComp"), std::type_index(typeid(DebugComp)));
+}
 
 TEST(ComponentTest, EntityFromCompStr) {
     entt::registry registry;

@@ -91,6 +91,18 @@ class BoilerplateBuilder:
         return member_str, member_json_str
 
     def get_emplacecomponent_str(self, components: dict) -> str:
+        """
+        Generates a string representing the function definition for emplacing components
+        in an entity-component-system (ECS) registry.
+
+        Args:
+            components (dict): A dictionary where keys are component names and values
+                               are lists of component members.
+
+        Returns:
+            str: A string representing the function definition for emplacing components
+                 in the ECS registry.
+        """
 
         emplacement_strs = [
             self.get_emplacement_str_for_comp(comp_name, len(comp_members) == 0)
@@ -112,6 +124,16 @@ class BoilerplateBuilder:
         )
 
     def get_emplacement_str_for_comp(self, name: str, is_empty: bool = False) -> str:
+        """
+        Generates a string representing the emplacement code for a given component.
+
+        Args:
+            name (str): The name of the component.
+            is_empty (bool, optional): Flag indicating whether the component is empty. Defaults to False.
+
+        Returns:
+            str: The generated emplacement string for the component.
+        """
 
         if is_empty:
             return (

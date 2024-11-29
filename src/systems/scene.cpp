@@ -41,13 +41,19 @@ void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) 
 void SceneSystem::emplaceScene(entt::registry& registry,
                                const entt::entity scene_entity) {
     auto& scene_c = registry.get<SceneComp>(scene_entity);
+    auto scene_name = registry.get<EntityName>(scene_entity);
 
     std::cout << "Emplacing scene: " << scene_c.scene_fp << std::endl;
 
     // Loop through and emplace entities
-    for (const auto& [entity_name, entity_json] : scene_c.json_data.items()) {
-        emplaceEntity(registry, entity_name, entity_json);
+    for (const auto& [entity_name_base, entity_json] : scene_c.json_data.items()) {
+        std::string entity_name_str = entity_name_base + "." + scene_name + "." +
+                                      std::to_string(scene_c.n_emplaced);
+        emplaceEntity(registry, entity_name_str, entity_json);
     }
+
+    // Increment n_emplaced
+    scene_c.n_emplaced++;
 }
 
 void SceneSystem::emplaceEntity(entt::registry& registry,

@@ -35,6 +35,7 @@ struct SceneComp {
     std::string scene_fp;
     bool emplace_after_loading = false;
     json json_data;
+    size_t n_emplaced = 0;
 };
 inline void from_json(const json& j, SceneComp& sc) {
     sc.scene_fp = j.at("scene_fp").get<std::string>();

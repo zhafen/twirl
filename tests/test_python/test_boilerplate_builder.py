@@ -10,13 +10,13 @@ class TestBoilerplateBuilder(unittest.TestCase):
     def test_get_struct_str_empty_members(self):
         name = "MyStruct"
         members = {}
-        expected_output = "struct MyStruct {};"
+        expected_output = "struct MyStruct {};\n"
         self.assertEqual(self.builder.get_struct_def(name, members), expected_output)
 
     def test_get_struct_str_single_member(self):
         name = "MyStruct"
         members = {"member1": "int"}
-        expected_output = "struct MyStruct {\n    int member1;\n};"
+        expected_output = "struct MyStruct {\n    int member1;\n};\n"
         self.assertEqual(self.builder.get_struct_def(name, members), expected_output)
 
     def test_get_struct_str_multiple_members(self):
@@ -27,7 +27,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
             "    int member1;\n"
             "    float member2;\n"
             "    std::string member3;\n"
-            "};"
+            "};\n"
         )
         self.assertEqual(self.builder.get_struct_def(name, members), expected_output)
 

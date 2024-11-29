@@ -5,6 +5,19 @@ class BoilerplateBuilder:
     """Create boilerplate code for different the twirl C++ source code."""
 
     def get_struct_def(self, name: str, members: dict = {}) -> str:
+        """
+        Generates a C++ struct definition and an optional JSON deserialization function.
+
+        Args:
+            name (str): The name of the struct.
+            members (dict, optional): A dictionary where keys are member names and values are either
+                                      a single type as a string or a list of arguments for the member.
+                                      Defaults to an empty dictionary.
+
+        Returns:
+            str: The C++ struct definition as a string, including member variables and an optional
+                 JSON deserialization function if members are provided.
+        """
 
         if len(members) == 0:
             return f"struct {name} {{}};\n"
@@ -26,20 +39,15 @@ class BoilerplateBuilder:
                 json_body_str += f"    {instance_str}.{member_json_str}"
 
         # Add the struct and json strings to the final output
-        struct_str = (
-            f"struct {name} {{\n" +
-            struct_body_str +
-            "};\n"
-        )
+        struct_str = f"struct {name} {{\n" + struct_body_str + "};\n"
 
         # If there's json to load, add that too.
         if json_body_str != "":
             struct_str += (
-                f"inline void from_json(const json& j, {name}& {instance_str}) {{\n" +
-                json_body_str +
-                "}\n"
+                f"inline void from_json(const json& j, {name}& {instance_str}) {{\n"
+                + json_body_str
+                + "}\n"
             )
-
 
         return struct_str
 
@@ -50,6 +58,18 @@ class BoilerplateBuilder:
         json: bool = False,
         default: str = None,
     ) -> Tuple[str]:
+        """
+        Generates a member string for a struct def and optionally a from_json method string.
+
+        Args:
+            member_name (str): The name of the member.
+            member_type (str): The type of the member.
+            json (bool, optional): If True, also generate a string for the from_json method.
+            default (str, optional): The default value for the member. Defaults to None.
+
+        Returns:
+            Tuple[str]: A tuple containing the member string and optionally the JSON parsing string.
+        """
 
         # Get the member string for the struct
         member_str = f"{member_type} {member_name}"

@@ -89,3 +89,19 @@ class BoilerplateBuilder:
         member_json_str += ";\n"
 
         return member_str, member_json_str
+
+    def get_emplacement_str_for_comp(self, name: str, empty: bool = False):
+
+        if empty:
+            return (
+                f'(comp_key == "{name}") {{\n'
+                f"    registry.emplace<{name}>(entity);\n"
+                "}"
+            )
+
+        return (
+            f'(comp_key == "{name}") {{\n'
+            f"    auto {name.lower()} = comp_json.template get<{name}>();\n"
+            f"    registry.emplace<{name}>(entity, {name.lower()});\n"
+            "}"
+        )

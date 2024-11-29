@@ -114,8 +114,8 @@ class BoilerplateBuilder:
         body_str = "    " + body_str.replace("\n", "\n    ")
 
         return (
-            " void emplaceComponent(entt::registry& registry, entt::entity entity,\n"
-            "                       const std::string& comp_key, const json& comp_json) {\n"
+            "void emplaceComponent(entt::registry& registry, entt::entity entity,\n"
+            "                      const std::string& comp_key, const json& comp_json) {\n"
             + body_str
             + " else {\n"
             '        throw std::runtime_error("Unknown component type");\n'

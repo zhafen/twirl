@@ -16,7 +16,14 @@ namespace comp {
 entt::entity getEntityFromCompStr(entt::registry& registry,
                                   const std::string& comp_str) {
 
-    // return registry.view<compTypeMap.at(comp_str)>().front();
+    // Define a type map
+    std::unordered_map<std::string, std::type_index> typeMap = {
+        {"EnemyComp", std::type_index(typeid(EnemyComp))},
+        {"DebugComp", std::type_index(typeid(DebugComp))},
+    };
+
+    std::type_index comp_type = typeMap.at(comp_str);
+    auto rview = registry.view<comp_type>();
 
     return entt::null;
 }

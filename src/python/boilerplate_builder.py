@@ -4,15 +4,15 @@ from typing import Tuple
 class BoilerplateBuilder:
     """Create boilerplate code for different the twirl C++ source code."""
 
-    def get_struct_str(self, name: str, members: dict = {}) -> str:
+    def get_struct_def(self, name: str, members: dict = {}) -> str:
 
         if len(members) == 0:
-            return f"struct {name}Comp {{}};"
+            return f"struct {name} {{}};"
 
         # Add the members
         struct_body_str = ""
         json_body_str = ""
-        instance_str = name.lower() + "_c"
+        instance_str = name.lower()
         for member_name, member_args in members.items():
 
             # Formatting for each member

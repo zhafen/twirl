@@ -11,13 +11,13 @@ class TestBoilerplateBuilder(unittest.TestCase):
         name = "MyStruct"
         members = {}
         expected_output = "struct MyStruct {};"
-        self.assertEqual(self.builder.get_struct_str(name, members), expected_output)
+        self.assertEqual(self.builder.get_struct_def(name, members), expected_output)
 
     def test_get_struct_str_single_member(self):
         name = "MyStruct"
         members = {"member1": "int"}
         expected_output = "struct MyStruct {\n    int member1;\n};"
-        self.assertEqual(self.builder.get_struct_str(name, members), expected_output)
+        self.assertEqual(self.builder.get_struct_def(name, members), expected_output)
 
     def test_get_struct_str_multiple_members(self):
         name = "MyStruct"
@@ -29,7 +29,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
             "    std::string member3;\n"
             "};"
         )
-        self.assertEqual(self.builder.get_struct_str(name, members), expected_output)
+        self.assertEqual(self.builder.get_struct_def(name, members), expected_output)
 
     def test_get_struct_w_from_json(self):
 
@@ -39,13 +39,13 @@ class TestBoilerplateBuilder(unittest.TestCase):
             "    entt::entity scene_entity = entt::null;\n"
             "    int n_triggers = 0;\n"
             "};\n"
-            "inline void from_json(const json& j, SceneTriggerComp& scenetrigger_c) {\n"
-            '    scenetrigger_c.scene_name = j.at("scene_name").get<std::string>();\n'
-            '    scenetrigger_c.n_triggers = j.value("n_triggers", 0);\n'
+            "inline void from_json(const json& j, SceneTriggerComp& scenetriggercomp) {\n"
+            '    scenetriggercomp.scene_name = j.at("scene_name").get<std::string>();\n'
+            '    scenetriggercomp.n_triggers = j.value("n_triggers", 0);\n'
             "}\n"
         )
 
-        output = self.builder.get_struct_str(
+        output = self.builder.get_struct_def(
             "SceneTriggerComp",
             {
                 "scene_name": [

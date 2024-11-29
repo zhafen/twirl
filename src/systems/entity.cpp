@@ -1,4 +1,4 @@
-#include "systems/system.h"
+#include "systems/entity.h"
 
 #include <SFML/Graphics.hpp>
 #include <cmath>

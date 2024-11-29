@@ -58,3 +58,22 @@ class TestBoilerplateBuilder(unittest.TestCase):
         )
 
         assert expected_output == output
+
+    def test_get_emplacement_str(self):
+
+        expected_output_empty = (
+            '(comp_key == "ViewComp") {\n'
+            "    registry.emplace<ViewComp>(entity);\n"
+            "}\n"
+        )
+        output_empty = self.builder.get_emplacement_str("ViewComp")
+        assert expected_output_empty == output_empty
+
+        expected_output = (
+            '(comp_key == "UIComp") {\n'
+            "    auto comp_inst = comp_json.template get<UIComp>();\n"
+            "    registry.emplace<UIComp>(entity, comp_inst);\n"
+            "}\n"
+        )
+        output = self.builder.get_emplacement_str("UIComp", True)
+        assert expected_output == output

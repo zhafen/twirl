@@ -5,7 +5,7 @@
 #include <entt/entity/registry.hpp>
 #include <nlohmann/json.hpp>
 
-#include "component.h"
+#include "components/component.h"
 #include "config.h"
 #include "game.h"
 

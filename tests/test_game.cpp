@@ -5,7 +5,7 @@
 #include <nlohmann/json.hpp>
 
 #include "config.h"
-#include "component.h"
+#include "components/component.h"
 #include "game.h"
 
 using namespace twirl;

@@ -11,7 +11,7 @@
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/registry.hpp>
 
-#include "component.h"
+#include "components/component.h"
 #include "config.h"
 #include "shape.h"
 

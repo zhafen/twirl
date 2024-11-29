@@ -5,7 +5,7 @@
 #include <nlohmann/json.hpp>
 #include <regex>
 
-#include "component.h"
+#include "components/component.h"
 #include "config.h"
 #include "systems/system.h"
 

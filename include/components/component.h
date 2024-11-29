@@ -1,11 +1,10 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include <string>
-
 #include <SFML/Graphics.hpp>
 #include <entt/entity/fwd.hpp>
 #include <nlohmann/json.hpp>
+#include <string>
 
 #include "config.h"
 #include "shape.h"
@@ -182,6 +181,13 @@ inline void from_json(const json& j, StopWatchComp& swc) {
 }
 
 struct DebugComp {};
+
+namespace comp {
+
+entt::entity getEntityFromCompStr(entt::registry& registry,
+                                  const std::string& comp_str);
+
+}
 
 }  // namespace twirl
 

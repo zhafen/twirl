@@ -6,7 +6,7 @@
 #include <nlohmann/json.hpp>
 #include <gtest/gtest.h>
 
-#include "component.h"
+#include "components/component.h"
 #include "config.h"
 #include "systems/system.h"
 
@@ -140,4 +140,16 @@ TEST(ComponentTest, PairCompJson) {
     ASSERT_TRUE(registry.get<PairComp>(rel_12).source_entity == entt::null);
     ASSERT_TRUE(registry.get<PairComp>(rel_12).target_entity_name == "entity1");
     ASSERT_TRUE(registry.get<PairComp>(rel_12).source_entity_name == "entity2");
+}
+
+TEST(ComponentTest, EntityFromCompStr) {
+    entt::registry registry;
+
+    // Create an entity with a component
+    entt::entity entity = registry.create();
+    registry.emplace<EnemyComp>(entity);
+
+    // Get the entity out
+    entt::entity entity_out = comp::getEntityFromCompStr(registry, "EnemyComp");
+    ASSERT_TRUE(entity_out == entity);
 }

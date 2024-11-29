@@ -90,9 +90,17 @@ class BoilerplateBuilder:
 
         return member_str, member_json_str
 
-    def get_emplacement_str_for_comp(self, name: str, empty: bool = False):
+    def get_emplacecomponent_str(self, components: dict) -> str:
 
-        if empty:
+        emplacement_strs = [
+            self.get_emplacement_str_for_comp(comp_name, len(comp_members) == 0)
+            for comp_name, comp_members in components.items()
+        ]
+        body_str = " else ".join(emplacement_strs)
+
+    def get_emplacement_str_for_comp(self, name: str, is_empty: bool = False) -> str:
+
+        if is_empty:
             return (
                 f'(comp_key == "{name}") {{\n'
                 f"    registry.emplace<{name}>(entity);\n"

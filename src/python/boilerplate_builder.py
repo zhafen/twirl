@@ -7,7 +7,7 @@ class BoilerplateBuilder:
     def get_struct_def(self, name: str, members: dict = {}) -> str:
 
         if len(members) == 0:
-            return f"struct {name} {{}};"
+            return f"struct {name} {{}};\n"
 
         # Add the members
         struct_body_str = ""
@@ -27,9 +27,9 @@ class BoilerplateBuilder:
 
         # Add the struct and json strings to the final output
         struct_str = (
-            "struct {name}Comp {{\n" +
+            f"struct {name} {{\n" +
             struct_body_str +
-            ";}\n"
+            "};\n"
         )
 
         # If there's json to load, add that too.

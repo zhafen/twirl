@@ -15,7 +15,8 @@
                     255
                 ],
                 "zorder": 100
-            }
+            },
+            "DebugComp": {}
         }
     },
     "projectile-player sync": {

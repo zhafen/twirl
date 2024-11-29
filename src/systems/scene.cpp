@@ -111,6 +111,8 @@ void SceneSystem::emplaceComponent(entt::registry& registry, entt::entity entity
     } else if (comp_key == "StopWatchComp") {
         auto comp_inst = comp_json.template get<StopWatchComp>();
         registry.emplace<StopWatchComp>(entity, comp_inst);
+    } else if (comp_key == "DebugComp") {
+        registry.emplace<DebugComp>(entity);
     } else {
         throw std::runtime_error("Unknown component key: " + comp_key);
     }

@@ -51,12 +51,6 @@ inline void from_json(const json& j, SceneTriggerComp& stc) {
     stc.n_triggers = j.value("n_triggers", 0);
 }
 
-// We don't define a macro for MetadataComp because currently the key for a given
-// entity in the json is the name.
-struct MetadataComp {
-    std::string name;
-};
-
 struct EnemyComp {};
 
 struct DeleteComp {};
@@ -183,6 +177,8 @@ inline void from_json(const json& j, StopWatchComp& swc) {
     swc.end_time = j.value("end_time", cfg.T);
     swc.end_reached = j.value("end_reached", false);
 }
+
+struct DebugComp {};
 
 }  // namespace twirl
 

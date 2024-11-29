@@ -37,7 +37,6 @@ void Game::run() {
 }
 
 void Game::initialize() {
-
     // Hook up the scene trigger listener
     registry.on_update<SceneTriggerComp>().connect<&SceneSystem::onSceneTrigger>(
         scene_system);
@@ -95,6 +94,17 @@ void Game::update() {
     entity_system.resolveEntityNames(registry);
     entity_system.orderEntities(registry);
     entity_system.syncEntities(registry);
+
+    // DEBUG
+    auto rview =
+        registry.view<DebugComp, EntityName, PhysicsComp, RenderComp>();
+    for (auto [entity, name, phys_c, rend_c] : rview.each()) {
+        std::cout << "Entity: " << name << std::endl;
+        std::cout << "PhysicsCompPos: " << phys_c.pos.x << ", " << phys_c.pos.y
+                  << std::endl;
+        std::cout << "RenderCompPos: " << rend_c.shape.getPosition().x << ", "
+                  << rend_c.shape.getPosition().y << std::endl;
+    }
 
     // Calculate forces
     physics_system.calculateForces(registry);

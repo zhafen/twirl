@@ -33,33 +33,6 @@ namespace twirl {
 using EntityName = std::string;
 using EntityMap = std::unordered_map<std::string, entt::entity>;
 
-struct SceneComp {
-    std::string scene_fp;
-    bool emplace_after_loading = false;
-    json json_data;
-    size_t n_emplaced = 0;
-    bool verbose_names = true;
-};
-inline void from_json(const json& j, SceneComp& sc) {
-    sc.scene_fp = j.at("scene_fp").get<std::string>();
-    sc.emplace_after_loading = j.value("emplace_after_loading", false);
-    sc.verbose_names = j.value("verbose_names", true);
-}
-
-struct SceneTriggerComp {
-    std::string scene_name;
-    entt::entity scene_entity = entt::null;
-    int n_triggers = 0;
-};
-inline void from_json(const json& j, SceneTriggerComp& stc) {
-    stc.scene_name = j.at("scene_name").get<std::string>();
-    stc.n_triggers = j.value("n_triggers", 0);
-}
-
-struct EnemyComp {};
-
-struct DeleteComp {};
-
 struct PhysicsComp {
     float mass = 1.0f;
     sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f) * cfg.L;

@@ -32,6 +32,19 @@ inline void from_json(const json& j, DragForceComp& dragforcecomp) {
     dragforcecomp.drag_power = j.value("drag_power", 2.0f);
 }
 
+struct DurabilityComp {
+    float durability = 1.0f;
+    float durability_loss_per_collision = 0.34f;
+    float durability_regen_rate = 0.0f;
+    float delete_at_zero = true;
+};
+inline void from_json(const json& j, DurabilityComp& durabilitycomp) {
+    durabilitycomp.durability = j.value("durability", 1.0f);
+    durabilitycomp.durability_loss_per_collision = j.value("durability_loss_per_collision", 0.34f);
+    durabilitycomp.durability_regen_rate = j.value("durability_regen_rate", 0.0f);
+    durabilitycomp.delete_at_zero = j.value("delete_at_zero", true);
+}
+
 }  // namespace twirl
 
 #endif  // PHYSICS_COMPONENTS_H

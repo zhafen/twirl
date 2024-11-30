@@ -16,6 +16,7 @@
 #include "components/physics_components.h"
 #include "components/scene_components.h"
 #include "components/sfml_components.h"
+#include "components/ui_components.h"
 
 namespace twirl {
 

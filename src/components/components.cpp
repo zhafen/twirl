@@ -10,6 +10,28 @@ namespace twirl {
 
 namespace comp {
 
+entt::entity getEntityFromStr(entt::registry& registry,
+                                  const std::string& input_str) {
+
+    // Parse the input string
+    size_t colon = input_str.find(':');
+    if (colon == std::string::npos) {
+        throw std::runtime_error("Colon not found in component string");
+    }
+    std::string comp_str = input_str.substr(0, colon);
+    std::string selection_str = input_str.substr(colon + 1);
+
+    // Get the view based on the component string
+    auto rview = getViewFromStr(registry, comp_str);
+
+    // Get the entity from the view based on the selection string
+    if (selection_str == "0") {
+        return rview.front();
+    } else {
+        throw std::runtime_error("Selection string not recognized");
+    }
+}
+
 void emplaceComponent(entt::registry& registry, entt::entity entity,
                       const std::string& comp_key, const json& comp_json) {
     if (comp_key == "PlayerComp") {

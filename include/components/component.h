@@ -15,37 +15,12 @@
 #include "components/tags.h"
 #include "components/physics_components.h"
 #include "components/scene_components.h"
-
-using json = nlohmann::ordered_json;
-
-// from_json functions for sfml types
-namespace sf {
-inline void from_json(const json& j, sf::Vector2f& v) {
-    v.x = j.at(0).get<float>();
-    v.y = j.at(1).get<float>();
-}
-inline void from_json(const json& j, sf::Color& c) {
-    c.r = j.at(0).get<uint8_t>();
-    c.g = j.at(1).get<uint8_t>();
-    c.b = j.at(2).get<uint8_t>();
-    c.a = j.at(3).get<uint8_t>();
-}
-}  // namespace sf
+#include "components/sfml_components.h"
 
 namespace twirl {
 
 using EntityName = std::string;
 using EntityMap = std::unordered_map<std::string, entt::entity>;
-
-struct DragForceComp {
-    // In units of cfg.A
-    float drag_coefficient = 0.01f;
-    float drag_power = 2.0f;
-};
-inline void from_json(const json& j, DragForceComp& dfc) {
-    dfc.drag_coefficient = j.value("drag_coefficient", 0.01f);
-    dfc.drag_power = j.value("drag_power", 2.0f);
-}
 
 struct DurabilityComp {
     float durability = 1.0f;

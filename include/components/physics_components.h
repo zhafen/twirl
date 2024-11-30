@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <nlohmann/json.hpp>
 #include "config.h"
+#include "components/sfml_components.h"
 
 using json = nlohmann::ordered_json;
 

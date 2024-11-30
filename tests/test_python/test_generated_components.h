@@ -38,6 +38,6 @@ inline void from_json(const json& j, PhysicsComp& physicscomp) {
     physicscomp.vel = j.value("vel", sf::Vector2f(0.0f, 0.0f)) * cfg.V;
 }
 
-}  // namespace twirl 
+}  // namespace twirl
 
 #endif  // TEST_GENERATED_COMPONENTS_H

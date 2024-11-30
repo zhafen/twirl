@@ -48,8 +48,8 @@ class BoilerplateBuilder:
             file_str += self.get_struct_def(comp_name, comp_members) + "\n"
 
         # Wrap up with the namespace and the include guard
-        file_str += "}  // namespace twirl \n\n"
-        file_str += f"#endif  // {includeguard_name}\n"
+        file_str += "}  // namespace twirl\n\n"
+        file_str += f"#endif  // {includeguard_name}"
 
         with open(save_fp, "w", encoding="utf-8") as f:
             f.write(file_str)

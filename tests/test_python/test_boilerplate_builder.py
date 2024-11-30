@@ -3,6 +3,7 @@ import os
 import unittest
 from src.python.boilerplate_builder import BoilerplateBuilder
 
+
 class TestBoilerplateBuilder(unittest.TestCase):
 
     def setUp(self):
@@ -55,13 +56,50 @@ class TestBoilerplateBuilder(unittest.TestCase):
         output = self.builder.get_struct_def(
             "SceneTriggerComp",
             {
-                "scene_name": [
-                    "std::string",
-                    True,
-                ],
+                "scene_name": ["std::string", True],
                 "scene_entity": ["entt::entity", False, "entt::null"],
                 "n_triggers": ["int", True, 0],
             },
+        )
+
+        assert expected_output == output
+
+    def test_get_struct_w_custom_from_json(self):
+
+        expected_output = (
+            "struct RenderComp {\n"
+            "    TwirlCircleShape shape;\n"
+            "    int zorder = 0;\n"
+            "};\n"
+            "inline void from_json(const json& j, RenderComp& rendercomp) {\n"
+            '    rendercomp.zorder = j.value("zorder", 0);\n'
+            '    auto radius = j.value("radius", 1.0f) * cfg.L;\n'
+            '    auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
+            '    auto fill_color = j.value("fill_color", sf::Color::White);\n'
+            '    auto outline_color = j.value("outline_color", sf::Color::Black);\n'
+            "    rendercomp.shape = TwirlCircleShape(radius);\n"
+            "    rendercomp.shape.setOutlineThickness(outline_thickness);\n"
+            "    rendercomp.shape.setFillColor(fill_color);\n"
+            "    rendercomp.shape.setOutlineColor(outline_color);\n"
+            "}\n"
+        )
+
+        output = self.builder.get_struct_def(
+            "RenderComp",
+            {
+                "shape": "TwirlCircleShape",
+                "zorder": ["int", True, "0"],
+            },
+            manual_json_code = (
+                "auto radius = j.value(\"radius\", 1.0f) * cfg.L;\n"
+                "auto outline_thickness = j.value(\"outline_thickness\", 0.0f) * cfg.L;\n"
+                "auto fill_color = j.value(\"fill_color\", sf::Color::White);\n"
+                "auto outline_color = j.value(\"outline_color\", sf::Color::Black);\n"
+                "rendercomp.shape = TwirlCircleShape(radius);\n"
+                "rendercomp.shape.setOutlineThickness(outline_thickness);\n"
+                "rendercomp.shape.setFillColor(fill_color);\n"
+                "rendercomp.shape.setOutlineColor(outline_color);\n"
+            ),
         )
 
         assert expected_output == output

@@ -54,7 +54,7 @@ class BoilerplateBuilder:
         with open(save_fp, "w", encoding="utf-8") as f:
             f.write(file_str)
 
-    def get_struct_def(self, name: str, members: dict = {}) -> str:
+    def get_struct_def(self, name: str, members: dict = {}, manual_json_code: str = None) -> str:
         """
         Generates a C++ struct definition and an optional JSON deserialization function.
 
@@ -90,6 +90,10 @@ class BoilerplateBuilder:
 
         # Add the struct and json strings to the final output
         struct_str = f"struct {name} {{\n" + struct_body_str + "};\n"
+
+        if manual_json_code is not None:
+            # Assume the manual_json_code is not indented, so we indent it here.
+            json_body_str += "    " + manual_json_code.replace("\n", "\n    ")[:-4]
 
         # If there's json to load, add that too.
         if json_body_str != "":

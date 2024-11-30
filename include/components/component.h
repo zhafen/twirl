@@ -13,10 +13,8 @@
 #include "shape.h"
 
 #include "components/tags.h"
-#include "components/physics_components.h"
-#include "components/scene_components.h"
+#include "components/system_components.h"
 #include "components/base_components.h"
-#include "components/ui_components.h"
 
 namespace twirl {
 

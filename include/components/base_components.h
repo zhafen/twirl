@@ -1,5 +1,5 @@
-#ifndef SFML_COMPONENTS_H
-#define SFML_COMPONENTS_H
+#ifndef BASE_COMPONENTS_H
+#define BASE_COMPONENTS_H
 
 #include <SFML/Graphics.hpp>
 #include <nlohmann/json.hpp>
@@ -27,4 +27,4 @@ using EntityMap = std::unordered_map<std::string, entt::entity>;
 
 }
 
-#endif // SFML_COMPONENTS_H
+#endif // BASE_COMPONENTS_H

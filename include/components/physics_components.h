@@ -2,9 +2,9 @@
 #define PHYSICS_COMPONENTS_H
 
 #include <SFML/Graphics.hpp>
+#include "components/sfml_components.h"
 #include <nlohmann/json.hpp>
 #include "config.h"
-#include "components/sfml_components.h"
 
 using json = nlohmann::ordered_json;
 
@@ -24,11 +24,11 @@ inline void from_json(const json& j, PhysicsComp& physicscomp) {
 }
 
 struct DragForceComp {
-    float drag_coeff = 0.01f;
+    float drag_coefficient = 0.01f;
     float drag_power = 2.0f;
 };
 inline void from_json(const json& j, DragForceComp& dragforcecomp) {
-    dragforcecomp.drag_coeff = j.value("drag_coeff", 0.01f);
+    dragforcecomp.drag_coefficient = j.value("drag_coefficient", 0.01f);
     dragforcecomp.drag_power = j.value("drag_power", 2.0f);
 }
 

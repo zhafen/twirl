@@ -2,7 +2,7 @@
 #define PHYSICS_COMPONENTS_H
 
 #include <SFML/Graphics.hpp>
-#include "components/sfml_components.h"
+#include "components/base_components.h"
 #include <nlohmann/json.hpp>
 #include "config.h"
 
@@ -44,6 +44,23 @@ inline void from_json(const json& j, DurabilityComp& durabilitycomp) {
     durabilitycomp.durability_regen_rate = j.value("durability_regen_rate", 0.0f);
     durabilitycomp.delete_at_zero = j.value("delete_at_zero", true);
 }
+
+struct PairwiseForceComp {
+    float magnitude = -1.0f;
+    float softening = 0.0f;
+    float power = 2.0f;
+    float min_distance = 0.0f;
+    float distance_scaling = 1.0f;
+};
+inline void from_json(const json& j, PairwiseForceComp& pairwiseforcecomp) {
+    pairwiseforcecomp.magnitude = j.value("magnitude", -1.0f);
+    pairwiseforcecomp.softening = j.value("softening", 0.0f);
+    pairwiseforcecomp.power = j.value("power", 2.0f);
+    pairwiseforcecomp.min_distance = j.value("min_distance", 0.0f);
+    pairwiseforcecomp.distance_scaling = j.value("distance_scaling", 1.0f);
+}
+
+struct CollisionComp {};
 
 }  // namespace twirl
 

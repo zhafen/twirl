@@ -15,48 +15,10 @@
 #include "components/tags.h"
 #include "components/physics_components.h"
 #include "components/scene_components.h"
-#include "components/sfml_components.h"
+#include "components/base_components.h"
 #include "components/ui_components.h"
 
 namespace twirl {
-
-using EntityName = std::string;
-using EntityMap = std::unordered_map<std::string, entt::entity>;
-
-struct PairComp {
-    entt::entity target_entity = entt::null;
-    entt::entity source_entity = entt::null;
-    EntityName target_entity_name;
-    EntityName source_entity_name;
-};
-inline void from_json(const json& j, PairComp& pc) {
-    pc.target_entity_name = j.value("target_entity_name", "");
-    pc.source_entity_name = j.value("source_entity_name", "");
-}
-
-struct PairwiseForceComp {
-    float magnitude = -1.0f;  // In units of cfg.A
-    float softening = 0.0f;
-    float power = 2.0f;
-    float min_distance = 0.1f;      // In units of cfg.L
-    float distance_scaling = 1.0f;  // in units of cfg.L
-};
-inline void from_json(const json& j, PairwiseForceComp& pfc) {
-    pfc.magnitude = j.value("magnitude", -1.0f);
-    pfc.softening = j.value("softening", 0.0f);
-    pfc.power = j.value("power", 2.0f);
-    pfc.min_distance = j.value("min_distance", 0.1f);
-    pfc.distance_scaling = j.value("distance_scaling", 1.0f);
-}
-
-struct CollisionComp {};
-
-struct SyncPositionComp {
-    bool once_only;
-};
-inline void from_json(const json& j, SyncPositionComp& spc) {
-    spc.once_only = j.value("once_only", true);
-}
 
 struct RenderComp {
     TwirlCircleShape shape;

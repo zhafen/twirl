@@ -1,6 +1,7 @@
 #ifndef SCENE_COMPONENTS_H
 #define SCENE_COMPONENTS_H
 
+#include "components/base_components.h"
 #include <nlohmann/json.hpp>
 #include "config.h"
 
@@ -29,6 +30,24 @@ struct SceneTriggerComp {
 inline void from_json(const json& j, SceneTriggerComp& scenetriggercomp) {
     scenetriggercomp.scene_name = j.at("scene_name").get<std::string>();
     scenetriggercomp.n_triggers = j.value("n_triggers", 0);
+}
+
+struct PairComp {
+    entt::entity target_entity = entt::null;
+    entt::entity source_entity = entt::null;
+    EntityName target_entity_name;
+    EntityName source_entity_name;
+};
+inline void from_json(const json& j, PairComp& paircomp) {
+    paircomp.target_entity_name = j.at("target_entity_name").get<EntityName>();
+    paircomp.source_entity_name = j.at("source_entity_name").get<EntityName>();
+}
+
+struct SyncPositionComp {
+    bool once_only = false;
+};
+inline void from_json(const json& j, SyncPositionComp& syncpositioncomp) {
+    syncpositioncomp.once_only = j.value("once_only", false);
 }
 
 }  // namespace twirl

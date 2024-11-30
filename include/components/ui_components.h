@@ -2,7 +2,7 @@
 #define UI_COMPONENTS_H
 
 #include <SFML/Graphics.hpp>
-#include "components/sfml_components.h"
+#include "components/base_components.h"
 #include <nlohmann/json.hpp>
 #include "config.h"
 

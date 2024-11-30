@@ -9,10 +9,10 @@ class TestBoilerplateBuilder(unittest.TestCase):
         self.builder = BoilerplateBuilder()
         self.generated_components_fp = "tests/test_python/test_generated_components.h"
 
-    def tearDown(self):
+    # def tearDown(self):
 
-        if os.path.exists(self.generated_components_fp):
-            os.remove(self.generated_components_fp)
+    #     if os.path.exists(self.generated_components_fp):
+    #         os.remove(self.generated_components_fp)
 
     def test_get_struct_str_empty_members(self):
         name = "MyStruct"
@@ -127,9 +127,15 @@ class TestBoilerplateBuilder(unittest.TestCase):
             },
         }
 
-        self.builder.generate_components_file(self.generated_components_fp, components)
+        self.builder.generate_components_file(
+            self.generated_components_fp,
+            components,
+            includes=["<string>", "<SFML/Graphics.hpp>"],
+        )
 
-        with open("tests/test_python/test_expected_components.h", "r", encoding="utf-8") as file:
+        with open(
+            "tests/test_python/test_expected_components.h", "r", encoding="utf-8"
+        ) as file:
             expected_output = file.read()
         with open(self.generated_components_fp, "r", encoding="utf-8") as file:
             output = file.read()

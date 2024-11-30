@@ -31,12 +31,16 @@ class BoilerplateBuilder:
             f"#define {includeguard_name}\n\n"
         )
 
-        # Add the include statements. "config.h" is always included.
-        file_str += "#include " + "\n#include ".join(includes) + "\n\n"
-        file_str += '#include "config.h"\n\n'
+        # Add the include statements. nlohmann/json and config.h are always included.
+        if len(includes) > 0:
+            file_str += "#include " + "\n#include ".join(includes) + "\n"
+        file_str += (
+            "#include <nlohmann/json.hpp>\n"
+            '#include "config.h"\n\n'
+        )
 
         # Add the json shortcut and the namespace
-        file_str += "using json = nlohmann::json;\n\n"
+        file_str += "using json = nlohmann::ordered_json;\n\n"
         file_str += "namespace twirl {\n\n"
 
         # Loop through and add the struct definitions

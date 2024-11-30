@@ -120,9 +120,9 @@ class TestBoilerplateBuilder(unittest.TestCase):
             },
             "PhysicsComp": {
                 "mass": ["float", True, "1.0f"],
-                "pos": ["sf::Vector2f", True, "sf::Vector2f(0.0f, 0.0f)"],
-                "vel": ["sf::Vector2f", True, "sf::Vector2f(0.0f, 0.0f)"],
-                "force": ["sf::Vector2f", False, "sf::Vector2f(0.0f, 0.0f)"],
+                "pos": ["sf::Vector2f", True, "sf::Vector2f(0.0f, 0.0f)", "cfg.L"],
+                "vel": ["sf::Vector2f", True, "sf::Vector2f(0.0f, 0.0f)", "cfg.V"],
+                "force": ["sf::Vector2f", False, "sf::Vector2f(0.0f, 0.0f)", "cfg.A"],
                 "collided": ["bool", False, "false"],
             },
         }

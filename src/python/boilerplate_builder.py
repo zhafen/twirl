@@ -48,8 +48,8 @@ class BoilerplateBuilder:
             file_str += self.get_struct_def(comp_name, comp_members) + "\n"
 
         # Wrap up with the namespace and the include guard
-        file_str += "} // namespace twirl \n\n"
-        file_str += f"#endif // {includeguard_name}\n"
+        file_str += "}  // namespace twirl \n\n"
+        file_str += f"#endif  // {includeguard_name}\n"
 
         with open(save_fp, "w", encoding="utf-8") as f:
             f.write(file_str)
@@ -107,6 +107,7 @@ class BoilerplateBuilder:
         member_type: str,
         json: bool = False,
         default: str = None,
+        scale: str = None,
     ) -> Tuple[str]:
         """
         Generates a member string for a struct def and optionally a from_json method string.
@@ -125,6 +126,8 @@ class BoilerplateBuilder:
         member_str = f"{member_type} {member_name}"
         if default is not None:
             member_str += " = " + str(default)
+            if scale is not None:
+                member_str += f" * {scale}"
         member_str += ";\n"
 
         if not json:
@@ -134,6 +137,8 @@ class BoilerplateBuilder:
         member_json_str = f"{member_name} = j."
         if default is not None:
             member_json_str += f'value("{member_name}", {default})'
+            if scale is not None:
+                member_json_str += f" * {scale}"
         else:
             member_json_str += f'at("{member_name}").get<{member_type}>()'
         member_json_str += ";\n"

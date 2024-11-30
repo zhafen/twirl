@@ -63,6 +63,7 @@ class BoilerplateBuilder:
             members (dict, optional): A dictionary where keys are member names and values are either
                                       a single type as a string or a list of arguments for the member.
                                       Defaults to an empty dictionary.
+            manual_json_code (str, optional): A string of manual JSON deserialization code. Defaults to None.
 
         Returns:
             str: The C++ struct definition as a string, including member variables and an optional
@@ -121,6 +122,7 @@ class BoilerplateBuilder:
             member_type (str): The type of the member.
             json (bool, optional): If True, also generate a string for the from_json method.
             default (str, optional): The default value for the member. Defaults to None.
+            scale (str, optional): The scale factor for the member. Defaults to None.
 
         Returns:
             Tuple[str]: A tuple containing the member string and optionally the JSON parsing string.

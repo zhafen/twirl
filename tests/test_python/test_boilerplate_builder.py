@@ -1,7 +1,7 @@
-import unittest
-from src.python.boilerplate_builder import BoilerplateBuilder
 import os
 
+import unittest
+from src.python.boilerplate_builder import BoilerplateBuilder
 
 class TestBoilerplateBuilder(unittest.TestCase):
 

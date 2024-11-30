@@ -3,6 +3,7 @@
 
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/helper.hpp>
+#include <entt/entity/registry.hpp>
 #include <nlohmann/json.hpp>
 #include <gtest/gtest.h>
 
@@ -149,7 +150,6 @@ TEST(ComponentTest, EntityFromCompStr) {
     entt::entity entity = registry.create();
     registry.emplace<EnemyComp>(entity);
 
-    // Get the entity out
-    entt::entity entity_out = comp::getEntityFromCompStr(registry, "EnemyComp");
-    ASSERT_EQ(entity_out, entity);
+    ASSERT_TRUE(false);
+
 }

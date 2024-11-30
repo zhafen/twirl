@@ -23,7 +23,7 @@ class BoilerplateBuilder:
         self.generate_components_source_file(
             os.path.join(root_dir, "src/components/components.cpp"),
             all_components,
-            includes = ["<entt/entity/fwd.hpp>"]
+            includes = [],
         )
 
     def generate_components_header_file(
@@ -49,9 +49,11 @@ class BoilerplateBuilder:
         file_str += f"#ifndef {includeguard_name}\n" f"#define {includeguard_name}\n\n"
 
         # Add the include statements. nlohmann/json and config.h are always included.
-        if len(includes) > 0:
-            file_str += "#include " + "\n#include ".join(includes) + "\n"
-        file_str += "#include <nlohmann/json.hpp>\n" '#include "config.h"\n\n'
+        includes += [
+            "<nlohmann/json.hpp>",
+            '"config.h"',
+        ]
+        file_str += "#include " + "\n#include ".join(includes) + "\n\n"
 
         # Add the json shortcut and the namespace
         file_str += "using json = nlohmann::ordered_json;\n\n"
@@ -89,9 +91,14 @@ class BoilerplateBuilder:
         file_str = ""
 
         # Add the include statements. nlohmann/json and config.h are always included.
-        if len(includes) > 0:
-            file_str += "#include " + "\n#include ".join(includes) + "\n"
-        file_str += "#include <nlohmann/json.hpp>\n" '#include "config.h"\n\n'
+        includes += [
+            "<entt/entity/fwd.hpp>",
+            "<entt/entity/registry.hpp>",
+            "<nlohmann/json.hpp>",
+            '"config.h"',
+            '"components/components.h"',
+        ]
+        file_str += "#include " + "\n#include ".join(includes) + "\n\n"
 
         # Add the json shortcut and the namespace
         file_str += "using json = nlohmann::ordered_json;\n\n"

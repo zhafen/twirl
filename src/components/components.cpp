@@ -1,6 +1,8 @@
+#include <entt/entity/fwd.hpp>
+#include <entt/entity/registry.hpp>
 #include <nlohmann/json.hpp>
 #include "config.h"
-#include <entt/entity/fwd.hpp>
+#include "components/components.h"
 
 using json = nlohmann::ordered_json;
 

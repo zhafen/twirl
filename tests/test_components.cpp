@@ -67,12 +67,11 @@ TEST(ComponentTest, StopWatchComp) {
 TEST(ComponentTest, StopWatchCompJson) {
 
     entt::registry registry;
-    SceneSystem scene_system;
 
     // Load from json with no settings specified
     entt::entity entity1 = registry.create();
     json comp_json1 = R"({})"_json;
-    scene_system.emplaceComponent(registry, entity1, "StopWatchComp", comp_json1);
+    comp::emplaceComponent(registry, entity1, "StopWatchComp", comp_json1);
     ASSERT_FLOAT_EQ(registry.get<StopWatchComp>(entity1).current_time, 0.0f);
     ASSERT_FLOAT_EQ(registry.get<StopWatchComp>(entity1).end_time, 1.0f);
     ASSERT_EQ(registry.get<StopWatchComp>(entity1).end_reached, false);
@@ -86,7 +85,7 @@ TEST(ComponentTest, StopWatchCompJson) {
         "end_reached": true
     }
     )"_json;
-    scene_system.emplaceComponent(registry, entity2, "StopWatchComp", comp_json2);
+    comp::emplaceComponent(registry, entity2, "StopWatchComp", comp_json2);
     ASSERT_FLOAT_EQ(registry.get<StopWatchComp>(entity2).current_time, 1.0f);
     ASSERT_FLOAT_EQ(registry.get<StopWatchComp>(entity2).end_time, 2.0f);
     ASSERT_EQ(registry.get<StopWatchComp>(entity2).end_reached, true);
@@ -117,12 +116,11 @@ TEST(ComponentTest, PairCompTest) {
 TEST(ComponentTest, PairCompJson) {
 
     entt::registry registry;
-    SceneSystem scene_system;
 
     // Check that the components were added correctly
     json comp_json_empty = R"({})"_json;
     entt::entity rel_empty = registry.create();
-    scene_system.emplaceComponent(registry, rel_empty, "PairComp", comp_json_empty);
+    comp::emplaceComponent(registry, rel_empty, "PairComp", comp_json_empty);
     ASSERT_TRUE(registry.get<PairComp>(rel_empty).target_entity == entt::null);
     ASSERT_TRUE(registry.get<PairComp>(rel_empty).source_entity == entt::null);
     ASSERT_TRUE(registry.get<PairComp>(rel_empty).target_entity_name == "");
@@ -136,7 +134,7 @@ TEST(ComponentTest, PairCompJson) {
     }
     )"_json;
     entt::entity rel_12 = registry.create();
-    scene_system.emplaceComponent(registry, rel_12, "PairComp", comp_json);
+    comp::emplaceComponent(registry, rel_12, "PairComp", comp_json);
     ASSERT_TRUE(registry.get<PairComp>(rel_12).target_entity == entt::null);
     ASSERT_TRUE(registry.get<PairComp>(rel_12).source_entity == entt::null);
     ASSERT_TRUE(registry.get<PairComp>(rel_12).target_entity_name == "entity1");

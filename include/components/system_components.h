@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "components/base_components.h"
+#include "shape.h"
 #include <nlohmann/json.hpp>
 #include "config.h"
 

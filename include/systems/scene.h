@@ -47,8 +47,6 @@ class SceneSystem {
     void emplaceEntity(entt::registry& registry, const EntityName entity_name,
                        const json& entity_json);
     void emplaceScene(entt::registry& registry, entt::entity scene_entity);
-    void emplaceComponent(entt::registry& registry, entt::entity entity,
-                          const std::string comp_key, const json& comp_json);
 
     json json_data;
 };

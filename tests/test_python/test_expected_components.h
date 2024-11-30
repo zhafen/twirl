@@ -38,6 +38,22 @@ inline void from_json(const json& j, PhysicsComp& physicscomp) {
     physicscomp.vel = j.value("vel", sf::Vector2f(0.0f, 0.0f)) * cfg.V;
 }
 
+struct RenderComp {
+    TwirlCircleShape shape;
+    int zorder = 0;
+};
+inline void from_json(const json& j, RenderComp& rendercomp) {
+    rendercomp.zorder = j.value("zorder", 0);
+    auto radius = j.value("radius", 1.0f) * cfg.L;
+    auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;
+    auto fill_color = j.value("fill_color", sf::Color::White);
+    auto outline_color = j.value("outline_color", sf::Color::Black);
+    rendercomp.shape = TwirlCircleShape(radius);
+    rendercomp.shape.setOutlineThickness(outline_thickness);
+    rendercomp.shape.setFillColor(fill_color);
+    rendercomp.shape.setOutlineColor(outline_color);
+}
+
 }  // namespace twirl
 
 #endif  // TEST_GENERATED_COMPONENTS_H

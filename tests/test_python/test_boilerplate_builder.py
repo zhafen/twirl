@@ -90,11 +90,11 @@ class TestBoilerplateBuilder(unittest.TestCase):
                 "shape": "TwirlCircleShape",
                 "zorder": ["int", True, "0"],
             },
-            manual_json_code = (
-                "auto radius = j.value(\"radius\", 1.0f) * cfg.L;\n"
-                "auto outline_thickness = j.value(\"outline_thickness\", 0.0f) * cfg.L;\n"
-                "auto fill_color = j.value(\"fill_color\", sf::Color::White);\n"
-                "auto outline_color = j.value(\"outline_color\", sf::Color::Black);\n"
+            manual_json_code=(
+                'auto radius = j.value("radius", 1.0f) * cfg.L;\n'
+                'auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
+                'auto fill_color = j.value("fill_color", sf::Color::White);\n'
+                'auto outline_color = j.value("outline_color", sf::Color::Black);\n'
                 "rendercomp.shape = TwirlCircleShape(radius);\n"
                 "rendercomp.shape.setOutlineThickness(outline_thickness);\n"
                 "rendercomp.shape.setFillColor(fill_color);\n"
@@ -163,6 +163,22 @@ class TestBoilerplateBuilder(unittest.TestCase):
                 "force": ["sf::Vector2f", False, "sf::Vector2f(0.0f, 0.0f)", "cfg.A"],
                 "collided": ["bool", False, "false"],
             },
+            "RenderComp": [
+                {
+                    "shape": "TwirlCircleShape",
+                    "zorder": ["int", True, "0"],
+                },
+                (
+                    'auto radius = j.value("radius", 1.0f) * cfg.L;\n'
+                    'auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
+                    'auto fill_color = j.value("fill_color", sf::Color::White);\n'
+                    'auto outline_color = j.value("outline_color", sf::Color::Black);\n'
+                    "rendercomp.shape = TwirlCircleShape(radius);\n"
+                    "rendercomp.shape.setOutlineThickness(outline_thickness);\n"
+                    "rendercomp.shape.setFillColor(fill_color);\n"
+                    "rendercomp.shape.setOutlineColor(outline_color);\n"
+                ),
+            ],
         }
 
         self.builder.generate_components_file(

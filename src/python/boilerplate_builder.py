@@ -44,8 +44,10 @@ class BoilerplateBuilder:
         file_str += "namespace twirl {\n\n"
 
         # Loop through and add the struct definitions
-        for comp_name, comp_members in components.items():
-            file_str += self.get_struct_def(comp_name, comp_members) + "\n"
+        for comp_name, comp_args in components.items():
+            if isinstance(comp_args, dict):
+                comp_args = [comp_args]
+            file_str += self.get_struct_def(comp_name, *comp_args) + "\n"
 
         # Wrap up with the namespace and the include guard
         file_str += "}  // namespace twirl\n\n"

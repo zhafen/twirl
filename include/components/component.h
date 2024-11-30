@@ -22,21 +22,6 @@ namespace twirl {
 using EntityName = std::string;
 using EntityMap = std::unordered_map<std::string, entt::entity>;
 
-struct DurabilityComp {
-    float durability = 1.0f;
-    float durability_loss_per_collision = 0.34f;
-    float durability_regen_rate = 0.0f;
-    bool delete_at_zero = true;
-};
-inline void from_json(const json& j, DurabilityComp& dc) {
-    dc.durability = j.value("durability", 1.0f);
-    dc.durability_loss_per_collision = j.value("durability_loss_per_collision", 0.34f);
-    dc.durability_regen_rate = j.value("durability_regen_rate", 0.0f);
-    dc.delete_at_zero = j.value("delete_at_zero", true);
-}
-
-struct MouseButtonReleasedComp {};
-
 struct PairComp {
     entt::entity target_entity = entt::null;
     entt::entity source_entity = entt::null;

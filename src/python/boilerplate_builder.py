@@ -112,7 +112,7 @@ class BoilerplateBuilder:
         self,
         member_name: str,
         member_type: str,
-        json: bool = False,
+        is_serializable: bool = False,
         default: str = None,
         scale: str = None,
     ) -> Tuple[str]:
@@ -122,7 +122,7 @@ class BoilerplateBuilder:
         Args:
             member_name (str): The name of the member.
             member_type (str): The type of the member.
-            json (bool, optional): If True, also generate a string for the from_json method.
+            is_serializable (bool, optional): If True, also generate a string for the from_json method.
             default (str, optional): The default value for the member. Defaults to None.
             scale (str, optional): The scale factor for the member. Defaults to None.
 
@@ -138,7 +138,7 @@ class BoilerplateBuilder:
                 member_str += f" * {scale}"
         member_str += ";\n"
 
-        if not json:
+        if not is_serializable:
             return member_str, None
 
         # Get the from_json string

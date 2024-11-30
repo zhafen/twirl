@@ -101,14 +101,20 @@ class BoilerplateBuilder:
         file_str += "#include " + "\n#include ".join(includes) + "\n\n"
 
         # Add the json shortcut and the namespace
-        file_str += "using json = nlohmann::ordered_json;\n\n"
-        file_str += "namespace twirl {\n\n"
+        file_str += (
+            "using json = nlohmann::ordered_json;\n\n"
+            "namespace twirl {\n\n"
+            "namespace comp {\n\n"
+        )
 
         # Add the emplaceComponent function
         file_str += self.get_emplacecomponent_str(components) + "\n"
 
-        # Wrap up with the namespace
-        file_str += "}  // namespace twirl"
+        # Wrap up with the namespaces
+        file_str += (
+            "}  // namespace comp\n"
+            "}  // namespace twirl"
+        )
 
         with open(save_fp, "w", encoding="utf-8") as f:
             f.write(file_str)

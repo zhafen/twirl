@@ -8,6 +8,8 @@ using json = nlohmann::ordered_json;
 
 namespace twirl {
 
+namespace comp {
+
 void emplaceComponent(entt::registry& registry, entt::entity entity,
                       const std::string& comp_key, const json& comp_json) {
     if (comp_key == "PlayerComp") {
@@ -61,4 +63,5 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
         throw std::runtime_error("Unknown component type");
     }
 }
+}  // namespace comp
 }  // namespace twirl

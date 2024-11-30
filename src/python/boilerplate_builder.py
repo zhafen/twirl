@@ -5,7 +5,27 @@ from typing import Tuple
 class BoilerplateBuilder:
     """Create boilerplate code for different the twirl C++ source code."""
 
-    def generate_components_file(
+    def generate_components_files(
+        self, root_dir: str, components_by_file: dict, includes_by_file: dict = {}
+    ) -> None:
+
+        # Loop through and generate the header files.
+        all_components = {}
+        for comp_filename, components in components_by_file.items():
+            header_fp = os.path.join(root_dir, f"include/components/{comp_filename}.h")
+            self.generate_components_header_file(
+                header_fp, components, includes_by_file[comp_filename]
+            )
+            # We combine all the components into one big dictionary=
+            # for use in the source file.
+            all_components.update(components)
+
+        self.generate_components_source_file(
+            os.path.join(root_dir, "src/components/components.cpp"),
+            all_components,
+        )
+
+    def generate_components_header_file(
         self, save_fp: str, components: dict, includes: list = []
     ) -> None:
         """
@@ -21,23 +41,16 @@ class BoilerplateBuilder:
             None: The generated C++ header file is saved to the specified file path.
         """
 
-
         file_str = ""
 
         # Add the include guards
         includeguard_name = os.path.basename(save_fp).upper().replace(".", "_")
-        file_str += (
-            f"#ifndef {includeguard_name}\n"
-            f"#define {includeguard_name}\n\n"
-        )
+        file_str += f"#ifndef {includeguard_name}\n" f"#define {includeguard_name}\n\n"
 
         # Add the include statements. nlohmann/json and config.h are always included.
         if len(includes) > 0:
             file_str += "#include " + "\n#include ".join(includes) + "\n"
-        file_str += (
-            "#include <nlohmann/json.hpp>\n"
-            '#include "config.h"\n\n'
-        )
+        file_str += "#include <nlohmann/json.hpp>\n" '#include "config.h"\n\n'
 
         # Add the json shortcut and the namespace
         file_str += "using json = nlohmann::ordered_json;\n\n"
@@ -56,7 +69,45 @@ class BoilerplateBuilder:
         with open(save_fp, "w", encoding="utf-8") as f:
             f.write(file_str)
 
-    def get_struct_def(self, name: str, members: dict = {}, manual_json_code: str = None) -> str:
+    def generate_components_source_file(
+        self, save_fp: str, components: dict, includes: list = []
+    ) -> None:
+        """
+        Generates a C++ source file with an emplaceComponent function for an entity-component-system (ECS).
+
+        Args:
+            save_fp (str): The file path to save the generated C++ source file.
+            components (dict): A dictionary where keys are component names and values
+                               are dictionaries of component members.
+            includes (list, optional): A list of includes to add to the file.
+
+        Returns:
+            None: The generated C++ source file is saved to the specified file path.
+        """
+
+        file_str = ""
+
+        # Add the include statements. nlohmann/json and config.h are always included.
+        if len(includes) > 0:
+            file_str += "#include " + "\n#include ".join(includes) + "\n"
+        file_str += "#include <nlohmann/json.hpp>\n" '#include "config.h"\n\n'
+
+        # Add the json shortcut and the namespace
+        file_str += "using json = nlohmann::ordered_json;\n\n"
+        file_str += "namespace twirl {\n\n"
+
+        # Add the emplaceComponent function
+        file_str += self.get_emplacecomponent_str(components) + "\n"
+
+        # Wrap up with the namespace
+        file_str += "}  // namespace twirl"
+
+        with open(save_fp, "w", encoding="utf-8") as f:
+            f.write(file_str)
+
+    def get_struct_def(
+        self, name: str, members: dict = {}, manual_json_code: str = None
+    ) -> str:
         """
         Generates a C++ struct definition and an optional JSON deserialization function.
 

@@ -181,7 +181,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
             ],
         }
 
-        self.builder.generate_components_file(
+        self.builder.generate_components_files(
             self.generated_components_fp,
             components,
             includes=["<string>", "<SFML/Graphics.hpp>"],

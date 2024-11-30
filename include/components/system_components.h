@@ -51,6 +51,17 @@ inline void from_json(const json& j, SyncPositionComp& syncpositioncomp) {
     syncpositioncomp.once_only = j.value("once_only", false);
 }
 
+struct StopWatchComp {
+    float current_time = 0.0f;
+    float end_time = 1.0f * cfg.T;
+    bool end_reached = false;
+};
+inline void from_json(const json& j, StopWatchComp& stopwatchcomp) {
+    stopwatchcomp.current_time = j.value("current_time", 0.0f);
+    stopwatchcomp.end_time = j.value("end_time", 1.0f) * cfg.T;
+    stopwatchcomp.end_reached = j.value("end_reached", false);
+}
+
 struct PhysicsComp {
     float mass = 1.0f;
     sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f) * cfg.L;
@@ -119,6 +130,17 @@ inline void from_json(const json& j, RenderComp& rendercomp) {
     rendercomp.shape.setOutlineThickness(outline_thickness);
     rendercomp.shape.setFillColor(fill_color);
     rendercomp.shape.setOutlineColor(outline_color);
+}
+
+struct UIComp {
+    sf::RectangleShape shape;
+    sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f) * cfg.L;
+    sf::Vector2f size = sf::Vector2f(5.0f, 1.0f) * cfg.L;
+    float* tracked_value = nullptr;
+};
+inline void from_json(const json& j, UIComp& uicomp) {
+    uicomp.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f)) * cfg.L;
+    uicomp.size = j.value("size", sf::Vector2f(5.0f, 1.0f)) * cfg.L;
 }
 
 }  // namespace twirl

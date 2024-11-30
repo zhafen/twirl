@@ -18,22 +18,6 @@
 
 namespace twirl {
 
-struct RenderComp {
-    TwirlCircleShape shape;
-    int zorder = 0;
-};
-inline void from_json(const json& j, RenderComp& rc) {
-    auto radius = j.value("radius", 1.0f) * cfg.L;
-    auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;
-    auto fill_color = j.value("fill_color", sf::Color::White);
-    auto outline_color = j.value("outline_color", sf::Color::Black);
-    rc.shape = TwirlCircleShape(radius);
-    rc.shape.setOutlineThickness(outline_thickness);
-    rc.shape.setFillColor(fill_color);
-    rc.shape.setOutlineColor(outline_color);
-    rc.zorder = j.value("zorder", 0);
-}
-
 // All UI components are assumed to be rectangles that track floats.
 // If I start using substructures, I may need to change ui_comps to holding pointers.
 struct UIComp {

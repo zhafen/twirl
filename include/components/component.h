@@ -12,6 +12,10 @@
 #include "config.h"
 #include "shape.h"
 
+#include "components/tags.h"
+#include "components/physics_components.h"
+#include "components/scene_components.h"
+
 using json = nlohmann::ordered_json;
 
 // from_json functions for sfml types
@@ -32,19 +36,6 @@ namespace twirl {
 
 using EntityName = std::string;
 using EntityMap = std::unordered_map<std::string, entt::entity>;
-
-struct PhysicsComp {
-    float mass = 1.0f;
-    sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f) * cfg.L;
-    sf::Vector2f vel = sf::Vector2f(0.0f, 0.0f) * cfg.V;
-    sf::Vector2f force = sf::Vector2f(0.0f, 0.0f) * cfg.A;
-    bool collided = false;
-};
-inline void from_json(const json& j, PhysicsComp& physicscomp) {
-    physicscomp.mass = j.value("mass", 1.0f);
-    physicscomp.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f)) * cfg.L;
-    physicscomp.vel = j.value("vel", sf::Vector2f(0.0f, 0.0f)) * cfg.V;
-}
 
 struct DragForceComp {
     // In units of cfg.A
@@ -121,8 +112,6 @@ inline void from_json(const json& j, RenderComp& rc) {
     rc.shape.setOutlineColor(outline_color);
     rc.zorder = j.value("zorder", 0);
 }
-
-struct ViewComp {};
 
 // All UI components are assumed to be rectangles that track floats.
 // If I start using substructures, I may need to change ui_comps to holding pointers.

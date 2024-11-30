@@ -14,6 +14,8 @@ struct EnemyComp {};
 
 struct ViewComp {};
 
+struct DeleteComp {};
+
 }  // namespace twirl
 
 #endif  // TAGS_H

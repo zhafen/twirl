@@ -7,7 +7,7 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
-#include "components/component.h"
+#include "components/components.h"
 
 using json = nlohmann::ordered_json;
 

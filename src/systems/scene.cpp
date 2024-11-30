@@ -6,7 +6,7 @@
 #include <nlohmann/json.hpp>
 #include <unordered_map>
 
-#include "components/component.h"
+#include "components/components.h"
 
 using json = nlohmann::ordered_json;
 

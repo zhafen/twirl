@@ -1,5 +1,6 @@
 #include <nlohmann/json.hpp>
 #include "config.h"
+#include <entt/entity/fwd.hpp>
 
 using json = nlohmann::ordered_json;
 

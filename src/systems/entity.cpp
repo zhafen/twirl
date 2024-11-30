@@ -6,7 +6,7 @@
 #include <entt/entity/registry.hpp>
 #include <iostream>
 
-#include "components/component.h"
+#include "components/components.h"
 #include "config.h"
 #include "shape.h"
 

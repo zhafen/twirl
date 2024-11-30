@@ -23,6 +23,7 @@ class BoilerplateBuilder:
         self.generate_components_source_file(
             os.path.join(root_dir, "src/components/components.cpp"),
             all_components,
+            includes = ["<entt/entity/fwd.hpp>"]
         )
 
     def generate_components_header_file(

@@ -24,6 +24,9 @@ namespace comp {
 entt::entity getEntityFromCompStr(entt::registry& registry,
                                   const std::string& comp_str);
 
+void emplaceComponent(entt::registry& registry, entt::entity entity,
+                      const std::string& comp_key, const json& comp_json);
+
 }
 
 }  // namespace twirl

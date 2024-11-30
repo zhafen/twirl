@@ -6,7 +6,7 @@
 #include <nlohmann/json.hpp>
 #include <gtest/gtest.h>
 
-#include "components/component.h"
+#include "components/components.h"
 #include "config.h"
 #include "systems/system.h"
 

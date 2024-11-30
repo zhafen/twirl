@@ -1,10 +1,13 @@
+import os
 from typing import Tuple
 
 
 class BoilerplateBuilder:
     """Create boilerplate code for different the twirl C++ source code."""
 
-    def generate_components_file(self, save_fp: str, components: dict) -> None:
+    def generate_components_file(
+        self, save_fp: str, components: dict, includes: list = []
+    ) -> None:
         """
         Generates a C++ header file with struct definitions and an emplaceComponent function.
 
@@ -12,12 +15,38 @@ class BoilerplateBuilder:
             save_fp (str): The file path to save the generated C++ header file.
             components (dict): A dictionary where keys are component names and values
                                are dictionaries of component members.
+            includes (list, optional): A list of includes to add to the file.
 
         Returns:
             None: The generated C++ header file is saved to the specified file path.
         """
 
+
         file_str = ""
+
+        # Add the include guards
+        includeguard_name = os.path.basename(save_fp).upper().replace(".", "_")
+        file_str += (
+            f"#ifndef {includeguard_name}\n"
+            f"#define {includeguard_name}\n\n"
+        )
+
+        # Add the include statements. "config.h" is always included.
+        file_str += "#include " + "\n#include ".join(includes) + "\n\n"
+        file_str += '#include "config.h"\n\n'
+
+        # Add the json shortcut and the namespace
+        file_str += "using json = nlohmann::json;\n\n"
+        file_str += "namespace twirl {\n\n"
+
+        # Loop through and add the struct definitions
+        for comp_name, comp_members in components.items():
+            file_str += self.get_struct_def(comp_name, comp_members) + "\n"
+
+        # Wrap up with the namespace and the include guard
+        file_str += "} // namespace twirl \n\n"
+        file_str += f"#endif // {includeguard_name}\n"
+
         with open(save_fp, "w", encoding="utf-8") as f:
             f.write(file_str)
 

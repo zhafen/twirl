@@ -9,10 +9,10 @@ class TestBoilerplateBuilder(unittest.TestCase):
         self.builder = BoilerplateBuilder()
         self.generated_components_fp = "tests/test_python/test_generated_components.h"
 
-    # def tearDown(self):
+    def tearDown(self):
 
-    #     if os.path.exists(self.generated_components_fp):
-    #         os.remove(self.generated_components_fp)
+        if os.path.exists(self.generated_components_fp):
+            os.remove(self.generated_components_fp)
 
     def test_get_struct_str_empty_members(self):
         name = "MyStruct"

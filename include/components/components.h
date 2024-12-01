@@ -30,7 +30,7 @@ template <typename Type>
     auto rview = registry.view<Type>();
 
     // Get the entity from the view based on the selection string
-    if (selection_str == "0") {
+    if (selection_str == "first") {
     // In this case return the first entity in the view
         return rview.front();
     } else if (selection_str.substr(0, 5) == "name:") {

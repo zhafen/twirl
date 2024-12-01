@@ -150,8 +150,8 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_EQ(fill_color.a, 255);
 
             auto& scenetrigger_c = registry.get<SceneTriggerComp>(entity);
-            EXPECT_EQ(scenetrigger_c.scene_name, "test_scene");
-            EXPECT_EQ(scenetrigger_c.scene_entity, scene);
+            EXPECT_EQ(scenetrigger_c.scene_name, "[SceneComp|name:test_scene]");
+            EXPECT_EQ(scenetrigger_c.scene_entity, entity_map["test_scene"]);
 
             auto& swc = registry.get<StopWatchComp>(entity);
             EXPECT_FLOAT_EQ(swc.current_time, 0.0f);
@@ -208,7 +208,7 @@ TEST(SceneTest, EmplaceSceneFromJson) {
         } else if (name == "player-enemy force") {
             auto& prc = registry.get<PairComp>(entity);
             EXPECT_EQ(prc.target_entity_name, "player");
-            EXPECT_EQ(prc.source_entity_name, "[EnemyComp:0]");
+            EXPECT_EQ(prc.source_entity_name, "[EnemyComp|first]");
             EXPECT_EQ(prc.target_entity, entity_map["player"]);
             EXPECT_EQ(prc.source_entity, entity_map["enemy"]);
         }

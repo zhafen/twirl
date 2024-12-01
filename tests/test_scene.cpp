@@ -96,8 +96,9 @@ TEST(SceneTest, EmplaceEntityUnresovledNames) {
 
 TEST(SceneTest, EmplaceSceneFromJson) {
     // Set up registry and scene system, including the trigger
-    SceneSystem scene_system;
     entt::registry registry;
+    SceneSystem scene_system;
+    EntitySystem entity_system;
 
     // Add a scene to the registry (including some manually-input json data)
     entt::entity scene = registry.create();
@@ -115,6 +116,7 @@ TEST(SceneTest, EmplaceSceneFromJson) {
     // Loop through the registry and check if the components are added correctly
     auto rview = registry.view<EntityName>();
     ASSERT_FALSE(rview.empty());
+    EntityMap entity_map = entity_system.getEntityMap(registry);
     for (auto [entity, name] : rview.each()) {
         // Check that the name mappings are correct
         EXPECT_EQ(entity, entt::to_entity(registry, name));
@@ -171,11 +173,11 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_EQ(outline_color.a, 255);
 
         } else if (name == "player-beacon force") {
-            // We don't check for the correct entities themselves here because
-            // that's part of resolvePairNames
             auto& prc = registry.get<PairComp>(entity);
             EXPECT_EQ(prc.target_entity_name, "player");
             EXPECT_EQ(prc.source_entity_name, "beacon");
+            EXPECT_EQ(prc.target_entity, entity_map["player"]);
+            EXPECT_EQ(prc.source_entity, entity_map["beacon"]);
 
             auto& pfc = registry.get<PairwiseForceComp>(entity);
             EXPECT_FLOAT_EQ(pfc.magnitude, -1.0f);
@@ -183,6 +185,7 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_FLOAT_EQ(pfc.power, 2.0f);
             EXPECT_FLOAT_EQ(pfc.min_distance, 0.0f);
             EXPECT_FLOAT_EQ(pfc.distance_scaling, 1.0f);
+
         } else if (std::regex_match(name, std::regex("bkgrd.*"))) {
             // Background circle
             auto& rc = registry.get<RenderComp>(entity);
@@ -198,6 +201,12 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_EQ(outline_color.g, 63);
             EXPECT_EQ(outline_color.b, 63);
             EXPECT_EQ(outline_color.a, 255);
+        } else if (name == "player-enemy force") {
+            auto& prc = registry.get<PairComp>(entity);
+            EXPECT_EQ(prc.target_entity_name, "player");
+            EXPECT_EQ(prc.source_entity_name, "[EnemyComp:0]");
+            EXPECT_EQ(prc.target_entity, entity_map["player"]);
+            EXPECT_EQ(prc.source_entity, entity_map["enemy"]);
         }
     }
 }

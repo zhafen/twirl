@@ -66,6 +66,17 @@
             }
         }
     },
+    "player-enemy force": {
+        "components": {
+            "PairComp": {
+                "target_entity": "player",
+                "source_entity": "[EnemyComp:0]"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -1.0
+            }
+        }
+    },
     "enemy": {
         "components": {
             "EnemyComp": {},

@@ -62,11 +62,14 @@ void SceneSystem::emplaceScene(entt::registry& registry,
     // Resolve names
     auto rview = registry.view<UnresolvedNameComp>();
     for (auto entity : rview) {
+        // DEBUG
+        EntityName entity_name = registry.get<EntityName>(entity);
         auto& pair_c = registry.get<PairComp>(entity);
         pair_c.target_entity =
             resolveEntityName(registry, scene_entity_map, pair_c.target_entity_name);
         pair_c.source_entity =
             resolveEntityName(registry, scene_entity_map, pair_c.source_entity_name);
+        registry.remove<UnresolvedNameComp>(entity);
     }
 
     // Increment n_emplaced
@@ -94,8 +97,8 @@ entt::entity SceneSystem::resolveEntityName(entt::registry& registry,
                                             EntityName entity_name) {
     // Parse as needed
     if (entity_name.front() == '[' && entity_name.back() == ']') {
-        return comp::getEntityFromStr(registry,
-                                      entity_name.substr(1, entity_name.size() - 2));
+        std::string input_str = entity_name.substr(1, entity_name.size() - 2);
+        return comp::getEntityFromStr(registry, input_str);
     }
 
     // Otherwise return simply

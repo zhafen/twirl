@@ -1,8 +1,10 @@
+#include "components/components.h"
+
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/registry.hpp>
 #include <nlohmann/json.hpp>
+
 #include "config.h"
-#include "components/components.h"
 
 using json = nlohmann::ordered_json;
 
@@ -10,9 +12,7 @@ namespace twirl {
 
 namespace comp {
 
-entt::entity getEntityFromStr(entt::registry& registry,
-                                  const std::string& input_str) {
-
+entt::entity getEntityFromStrWrapper(entt::registry& registry, const std::string& input_str) {
     // Parse the input string
     size_t colon = input_str.find(':');
     if (colon == std::string::npos) {
@@ -22,13 +22,10 @@ entt::entity getEntityFromStr(entt::registry& registry,
     std::string selection_str = input_str.substr(colon + 1);
 
     // Get the view based on the component string
-    auto rview = getViewFromStr(registry, comp_str);
-
-    // Get the entity from the view based on the selection string
-    if (selection_str == "0") {
-        return rview.front();
+    if (comp_str == "EnemyComp") {
+        return getEntityFromStr<EnemyComp>(registry, selection_str);
     } else {
-        throw std::runtime_error("Selection string not recognized");
+        throw std::runtime_error("Unknown view type");
     }
 }
 

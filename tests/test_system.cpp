@@ -27,11 +27,11 @@ TEST(SystemEntityTest, GetEntityMap) {
     EntityMap entity_map = entity_system.getEntityMap(registry);
 
     // Check that the entity map contains the correct entities
-    ASSERT_EQ(entity_map["entity1"], entity1);
-    ASSERT_EQ(entity_map["entity2"], entity2);
-    ASSERT_EQ(entity_map["entity3"], entity3);
-    ASSERT_THROW(entity_map.at("entity4"), std::out_of_range);
-    ASSERT_TRUE(entity_map.find("entity4") == entity_map.end());
+    EXPECT_EQ(entity_map["entity1"], entity1);
+    EXPECT_EQ(entity_map["entity2"], entity2);
+    EXPECT_EQ(entity_map["entity3"], entity3);
+    EXPECT_THROW(entity_map.at("entity4"), std::out_of_range);
+    EXPECT_TRUE(entity_map.find("entity4") == entity_map.end());
 }
 
 TEST(SystemEntityTest, GetEntityMapDeleted) {
@@ -50,21 +50,21 @@ TEST(SystemEntityTest, GetEntityMapDeleted) {
     EntityMap entity_map = entity_system.getEntityMap(registry);
 
     // Check that the entity map contains the correct entities
-    ASSERT_EQ(entity_map["entity1"], entity1);
-    ASSERT_EQ(entity_map["entity2"], entity2);
-    ASSERT_EQ(entity_map["entity3"], entity3);
-    ASSERT_THROW(entity_map.at("entity4"), std::out_of_range);
-    ASSERT_TRUE(entity_map.find("entity4") == entity_map.end());
+    EXPECT_EQ(entity_map["entity1"], entity1);
+    EXPECT_EQ(entity_map["entity2"], entity2);
+    EXPECT_EQ(entity_map["entity3"], entity3);
+    EXPECT_THROW(entity_map.at("entity4"), std::out_of_range);
+    EXPECT_TRUE(entity_map.find("entity4") == entity_map.end());
 
     // Delete an entity and get the entity map again
     registry.destroy(entity2);
     entity_map = entity_system.getEntityMap(registry);
-    ASSERT_EQ(entity_map["entity1"], entity1);
-    ASSERT_THROW(entity_map.at("entity2"), std::out_of_range);
-    ASSERT_TRUE(entity_map.find("entity2") == entity_map.end());
-    ASSERT_EQ(entity_map["entity3"], entity3);
-    ASSERT_THROW(entity_map.at("entity4"), std::out_of_range);
-    ASSERT_TRUE(entity_map.find("entity4") == entity_map.end());
+    EXPECT_EQ(entity_map["entity1"], entity1);
+    EXPECT_THROW(entity_map.at("entity2"), std::out_of_range);
+    EXPECT_TRUE(entity_map.find("entity2") == entity_map.end());
+    EXPECT_EQ(entity_map["entity3"], entity3);
+    EXPECT_THROW(entity_map.at("entity4"), std::out_of_range);
+    EXPECT_TRUE(entity_map.find("entity4") == entity_map.end());
 
 }
 
@@ -84,7 +84,7 @@ TEST(SystemEntityTest, ResolveEntityName) {
         entity_system.resolveEntityName(registry, "entity", entt::null);
 
     // Check that the entity was resolved
-    ASSERT_TRUE(entity == resolved_entity);
+    EXPECT_TRUE(entity == resolved_entity);
 }
 
 TEST(SystemEntityTest, ResolveEntityNameInvalid) {
@@ -99,8 +99,8 @@ TEST(SystemEntityTest, ResolveEntityNameInvalid) {
         entity_system.resolveEntityName(registry, "entity", entt::null);
 
     // Check that the entity wasn't resolved
-    ASSERT_TRUE(resolved_entity == entt::null);
-    ASSERT_FALSE(registry.valid(resolved_entity));
+    EXPECT_TRUE(resolved_entity == entt::null);
+    EXPECT_FALSE(registry.valid(resolved_entity));
 }
 
 TEST(SystemEntityTest, ResolveEntityNameDeleted) {
@@ -117,8 +117,8 @@ TEST(SystemEntityTest, ResolveEntityNameDeleted) {
         entity_system.resolveEntityName(registry, "entity", entt::null);
 
     // Check that the entity was resolved
-    ASSERT_FALSE(resolved_entity == entt::null);
-    ASSERT_TRUE(registry.valid(resolved_entity));
+    EXPECT_FALSE(resolved_entity == entt::null);
+    EXPECT_TRUE(registry.valid(resolved_entity));
 
     // Delete the entity and try again
     registry.destroy(entity);
@@ -127,8 +127,8 @@ TEST(SystemEntityTest, ResolveEntityNameDeleted) {
         entity_system.resolveEntityName(registry, "entity", entt::null);
 
     // Check that the entity wasn't resolved
-    ASSERT_TRUE(resolved_entity_final == entt::null);
-    ASSERT_FALSE(registry.valid(resolved_entity_final));
+    EXPECT_TRUE(resolved_entity_final == entt::null);
+    EXPECT_FALSE(registry.valid(resolved_entity_final));
 }
 
 TEST(SystemEntityTest, SpawnDeleteOrder) {
@@ -176,11 +176,11 @@ TEST(SystemEntityTest, StopWatchSpawn) {
     swc.end_reached = true;
 
     // Ensure that the scene entity is valid
-    ASSERT_TRUE(registry.valid(scenetrig_c.scene_entity));
+    EXPECT_TRUE(registry.valid(scenetrig_c.scene_entity));
 
     // Ensure that the spawned entity does not exist yet
     EntityMap entity_map = entity_system.getEntityMap(registry);
-    ASSERT_EQ(entity_map.find("test_scene.0.spawned_entity"), entity_map.end());
+    EXPECT_EQ(entity_map.find("test_scene.0.spawned_entity"), entity_map.end());
 
     // Trigger
     entity_system.spawnEntities(registry);
@@ -189,11 +189,11 @@ TEST(SystemEntityTest, StopWatchSpawn) {
     // Check that the entities were created properly
     entity_map = entity_system.getEntityMap(registry);
     entt::entity spawned_entity = entity_map.at("test_scene.0.spawned_entity");
-    ASSERT_FALSE(spawned_entity == entt::null);
-    ASSERT_EQ(registry.get<EntityName>(spawned_entity), "test_scene.0.spawned_entity");
-    ASSERT_TRUE(registry.valid(spawned_entity));
+    EXPECT_FALSE(spawned_entity == entt::null);
+    EXPECT_EQ(registry.get<EntityName>(spawned_entity), "test_scene.0.spawned_entity");
+    EXPECT_TRUE(registry.valid(spawned_entity));
     auto& pc = registry.get<PhysicsComp>(spawned_entity);
-    ASSERT_FLOAT_EQ(pc.mass, 1.0f);
+    EXPECT_FLOAT_EQ(pc.mass, 1.0f);
 }
 
 TEST(SystemEntityTest, SyncPosition) {
@@ -218,8 +218,8 @@ TEST(SystemEntityTest, SyncPosition) {
     // Check that the positions are the same
     auto& pc1 = registry.get<PhysicsComp>(entity1);
     auto& pc2 = registry.get<PhysicsComp>(entity2);
-    ASSERT_EQ(pc1.pos.x, pc2.pos.x);
-    ASSERT_EQ(pc1.pos.y, pc2.pos.y);
+    EXPECT_EQ(pc1.pos.x, pc2.pos.x);
+    EXPECT_EQ(pc1.pos.y, pc2.pos.y);
 }
 
 TEST(SystemEntityTest, ResolveEntityPairs) {
@@ -236,8 +236,8 @@ TEST(SystemEntityTest, ResolveEntityPairs) {
     auto rview = registry.view<EntityName, PairComp>();
     for (auto [pair_entity, pair_entity_name, pair_c] : rview.each()) {
         if (pair_entity_name == "player-beacon force") {
-            ASSERT_EQ(entity_map.at("player"), pair_c.target_entity);
-            ASSERT_EQ(entity_map.at("beacon"), pair_c.source_entity);
+            EXPECT_EQ(entity_map.at("player"), pair_c.target_entity);
+            EXPECT_EQ(entity_map.at("beacon"), pair_c.source_entity);
         }
     }
 }
@@ -280,29 +280,29 @@ TEST(SystemEntityTest, ResolveEntityPairsDelete) {
     // Resolve names then forces
     entity_system.getEntityMap(registry);
     entity_system.resolvePairNames(registry);
-    ASSERT_TRUE(registry.valid(rel_12));
-    ASSERT_TRUE(registry.valid(rel_23));
-    ASSERT_TRUE(registry.valid(rel_31));
+    EXPECT_TRUE(registry.valid(rel_12));
+    EXPECT_TRUE(registry.valid(rel_23));
+    EXPECT_TRUE(registry.valid(rel_31));
     PairComp pair_c_12_now = registry.get<PairComp>(rel_12);
     PairComp pair_c_23_now = registry.get<PairComp>(rel_23);
     PairComp pair_c_31_now = registry.get<PairComp>(rel_31);
-    ASSERT_EQ(pair_c_12_now.target_entity, entity1);
-    ASSERT_EQ(pair_c_12_now.source_entity, entity2);
-    ASSERT_EQ(pair_c_23_now.target_entity, entity2);
-    ASSERT_EQ(pair_c_23_now.source_entity, entity3);
-    ASSERT_EQ(pair_c_31_now.target_entity, entity3);
-    ASSERT_EQ(pair_c_31_now.source_entity, entity1);
+    EXPECT_EQ(pair_c_12_now.target_entity, entity1);
+    EXPECT_EQ(pair_c_12_now.source_entity, entity2);
+    EXPECT_EQ(pair_c_23_now.target_entity, entity2);
+    EXPECT_EQ(pair_c_23_now.source_entity, entity3);
+    EXPECT_EQ(pair_c_31_now.target_entity, entity3);
+    EXPECT_EQ(pair_c_31_now.source_entity, entity1);
 
     // Delete an entity and try again
     registry.destroy(entity1);
     entity_system.getEntityMap(registry);
     entity_system.resolvePairNames(registry);
-    ASSERT_FALSE(registry.valid(rel_12));
-    ASSERT_TRUE(registry.valid(rel_23));
-    ASSERT_FALSE(registry.valid(rel_31));
+    EXPECT_FALSE(registry.valid(rel_12));
+    EXPECT_TRUE(registry.valid(rel_23));
+    EXPECT_FALSE(registry.valid(rel_31));
     PairComp pair_c_23_final = registry.get<PairComp>(rel_23);
-    ASSERT_EQ(pair_c_23_final.target_entity, entity2);
-    ASSERT_EQ(pair_c_23_final.source_entity, entity3);
+    EXPECT_EQ(pair_c_23_final.target_entity, entity2);
+    EXPECT_EQ(pair_c_23_final.source_entity, entity3);
 }
 
 TEST(SystemPhysicsTest, CalculateForces) {

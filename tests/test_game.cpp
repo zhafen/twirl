@@ -17,7 +17,7 @@ TEST(GameTest, Initialize) {
 
     // Check that the registry is not empty
     auto rview = game.getRegistry().view<EntityName>();
-    ASSERT_FALSE(rview.empty());
+    EXPECT_FALSE(rview.empty());
 
     // DEBUG
     for (auto [entity, name] : rview.each()) {
@@ -26,7 +26,7 @@ TEST(GameTest, Initialize) {
 
     // Check that the player entity is present
     entt::entity player_entity = game.getEntityMap().at("player");
-    ASSERT_FALSE(player_entity == entt::null);
+    EXPECT_FALSE(player_entity == entt::null);
 
     // Check that the player entity has the correct components
     auto& pc = game.getRegistry().get<PhysicsComp>(player_entity);
@@ -39,7 +39,7 @@ TEST(GameTest, HandleEvents) {
 
     // Get window
     sf::RenderWindow& window = game.getWindow();
-    ASSERT_TRUE(window.isOpen());
+    EXPECT_TRUE(window.isOpen());
 
     // Run the handle events function once
     game.handleEvents();
@@ -54,7 +54,7 @@ TEST(GameTest, Update) {
 
     // Get window
     sf::RenderWindow& window = game.getWindow();
-    ASSERT_TRUE(window.isOpen());
+    EXPECT_TRUE(window.isOpen());
 
     // Run the handle events function once
     game.update();
@@ -69,7 +69,7 @@ TEST(GameTest, Render) {
 
     // Get window
     sf::RenderWindow& window = game.getWindow();
-    ASSERT_TRUE(window.isOpen());
+    EXPECT_TRUE(window.isOpen());
 
     // Run the handle events function once
     game.render();

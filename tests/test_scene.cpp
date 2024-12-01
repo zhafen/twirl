@@ -41,7 +41,7 @@ TEST(SceneTest, TriggerScene) {
 
     // Check that the entity was added
     auto rview = registry.view<EnemyComp>();
-    ASSERT_FALSE(rview.empty());
+    EXPECT_FALSE(rview.empty());
 }
 
 // This test checks that the initial values for entities loaded from json
@@ -82,16 +82,16 @@ TEST(SceneTest, EmplaceEntityUnresovledNames) {
     // Check that SceneTriggerComp got emplaced correctly
     entt::entity entity1 = entity_map.at("entity1");
     auto scenetrigger_c = registry.get<SceneTriggerComp>(entity1);
-    ASSERT_TRUE(scenetrigger_c.scene_name == "test_scene");
-    ASSERT_TRUE(scenetrigger_c.scene_entity == entt::null);
+    EXPECT_TRUE(scenetrigger_c.scene_name == "test_scene");
+    EXPECT_TRUE(scenetrigger_c.scene_entity == entt::null);
 
     // Check that PairComp got emplaced correctly
     entt::entity rel_12 = entity_map.at("rel_12");
     auto pair_c = registry.get<PairComp>(rel_12);
-    ASSERT_TRUE(pair_c.target_entity_name == "entity1");
-    ASSERT_TRUE(pair_c.source_entity_name == "[EnemyComp:0]");
-    ASSERT_TRUE(pair_c.target_entity == entt::null);
-    ASSERT_TRUE(pair_c.source_entity == entt::null);
+    EXPECT_TRUE(pair_c.target_entity_name == "entity1");
+    EXPECT_TRUE(pair_c.source_entity_name == "[EnemyComp:0]");
+    EXPECT_TRUE(pair_c.target_entity == entt::null);
+    EXPECT_TRUE(pair_c.source_entity == entt::null);
 }
 
 TEST(SceneTest, EmplaceSceneFromJson) {
@@ -115,7 +115,7 @@ TEST(SceneTest, EmplaceSceneFromJson) {
 
     // Loop through the registry and check if the components are added correctly
     auto rview = registry.view<EntityName>();
-    ASSERT_FALSE(rview.empty());
+    EXPECT_FALSE(rview.empty());
     EntityMap entity_map = entity_system.getEntityMap(registry);
     for (auto [entity, name] : rview.each()) {
         // Check that the name mappings are correct
@@ -151,7 +151,7 @@ TEST(SceneTest, EmplaceSceneFromJson) {
 
             auto& scenetrigger_c = registry.get<SceneTriggerComp>(entity);
             EXPECT_EQ(scenetrigger_c.scene_name, "[SceneComp|name:test_scene]");
-            EXPECT_EQ(scenetrigger_c.scene_entity, entity_map["test_scene"]);
+            EXPECT_EQ(scenetrigger_c.scene_entity, entity_map.at("test_scene"));
 
             auto& swc = registry.get<StopWatchComp>(entity);
             EXPECT_FLOAT_EQ(swc.current_time, 0.0f);
@@ -209,8 +209,8 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             auto& prc = registry.get<PairComp>(entity);
             EXPECT_EQ(prc.target_entity_name, "player");
             EXPECT_EQ(prc.source_entity_name, "[EnemyComp|first]");
-            EXPECT_EQ(prc.target_entity, entity_map["player"]);
-            EXPECT_EQ(prc.source_entity, entity_map["enemy"]);
+            EXPECT_EQ(prc.target_entity, entity_map.at("player"));
+            EXPECT_EQ(prc.source_entity, entity_map.at("enemy"));
         }
     }
 }

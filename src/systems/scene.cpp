@@ -62,6 +62,8 @@ void SceneSystem::emplaceScene(entt::registry& registry,
     // Resolve names
     auto rview = registry.view<UnresolvedNameComp>();
     for (auto entity : rview) {
+        // DEBUG
+        auto this_entity_name = registry.get<EntityName>(entity);
         // Check for each component that could have an unresolved name
         auto* pair_c_ptr = registry.try_get<PairComp>(entity);
         if (pair_c_ptr != nullptr) {
@@ -109,7 +111,7 @@ entt::entity SceneSystem::resolveEntityName(entt::registry& registry,
         return comp::getEntityFromStr(registry, input_str);
     }
 
-    // Otherwise return simply
+    // Otherwise return simply the name for the map
     return entity_map.at(entity_name);
 }
 

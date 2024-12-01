@@ -8,14 +8,14 @@ class TestBoilerplateBuilder(unittest.TestCase):
 
     def setUp(self):
         self.builder = BoilerplateBuilder()
-        self.output_header_fp = "tests/test_python/test_generated_components.h"
-        self.output_source_fp = "tests/test_python/test_generated_components.cpp"
+        self.output_header_fp = "tests/test_python/test_generated_components.h.test"
+        self.output_source_fp = "tests/test_python/test_generated_components.cpp.test"
 
-    # def tearDown(self):
-    #     if os.path.exists(self.output_header_fp):
-    #         os.remove(self.output_header_fp)
-    #     if os.path.exists(self.output_source_fp):
-    #         os.remove(self.output_source_fp)
+    def tearDown(self):
+        if os.path.exists(self.output_header_fp):
+            os.remove(self.output_header_fp)
+        if os.path.exists(self.output_source_fp):
+            os.remove(self.output_source_fp)
 
     def test_get_struct_str_empty_members(self):
         name = "MyStruct"

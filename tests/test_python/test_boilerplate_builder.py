@@ -8,12 +8,14 @@ class TestBoilerplateBuilder(unittest.TestCase):
 
     def setUp(self):
         self.builder = BoilerplateBuilder()
-        self.generated_components_fp = "tests/test_python/test_generated_components.h"
+        self.output_header_fp = "tests/test_python/test_generated_components.h"
+        self.output_source_fp = "tests/test_python/test_generated_components.cpp"
 
     def tearDown(self):
-
-        if os.path.exists(self.generated_components_fp):
-            os.remove(self.generated_components_fp)
+        if os.path.exists(self.output_header_fp):
+            os.remove(self.output_header_fp)
+        if os.path.exists(self.output_source_fp):
+            os.remove(self.output_source_fp)
 
     def test_get_struct_str_empty_members(self):
         name = "MyStruct"
@@ -145,7 +147,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
         output = self.builder.get_emplacement_str_for_comp("UIComp")
         assert expected_output == output
 
-    def test_generate_components_file(self):
+    def test_generate_components_header_file(self):
 
         components = {
             "EnemyComp": {},
@@ -182,7 +184,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
         }
 
         self.builder.generate_components_header_file(
-            self.generated_components_fp,
+            self.output_header_fp,
             components,
             includes=["<string>", "<SFML/Graphics.hpp>"],
         )
@@ -191,7 +193,34 @@ class TestBoilerplateBuilder(unittest.TestCase):
             "tests/test_python/test_expected_components.h", "r", encoding="utf-8"
         ) as file:
             expected_output = file.read()
-        with open(self.generated_components_fp, "r", encoding="utf-8") as file:
+        with open(self.output_header_fp, "r", encoding="utf-8") as file:
+            output = file.read()
+
+        assert expected_output == output
+
+    def test_generate_components_source_file(self):
+
+        components = {
+            "EnemyComp": {},
+            "PhysicsComp": {
+                "mass": ["float", True, "1.0f"],
+                "pos": ["sf::Vector2f", True, "sf::Vector2f(0.0f, 0.0f)", "cfg.L"],
+                "vel": ["sf::Vector2f", True, "sf::Vector2f(0.0f, 0.0f)", "cfg.V"],
+                "force": ["sf::Vector2f", False, "sf::Vector2f(0.0f, 0.0f)", "cfg.A"],
+                "collided": ["bool", False, "false"],
+            },
+        }
+
+        self.builder.generate_components_source_file(
+            self.output_source_fp,
+            components,
+        )
+
+        with open(
+            "tests/test_python/test_expected_components.cpp", "r", encoding="utf-8"
+        ) as file:
+            expected_output = file.read()
+        with open(self.output_header_fp, "r", encoding="utf-8") as file:
             output = file.read()
 
         assert expected_output == output

@@ -1,9 +1,7 @@
-#include "components/components.h"
-
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/registry.hpp>
 #include <nlohmann/json.hpp>
-
+#include "components/components.h"
 #include "config.h"
 
 using json = nlohmann::ordered_json;
@@ -11,23 +9,6 @@ using json = nlohmann::ordered_json;
 namespace twirl {
 
 namespace comp {
-
-entt::entity getEntityFromStr(entt::registry& registry, const std::string& input_str) {
-    // Parse the input string
-    size_t colon = input_str.find(':');
-    if (colon == std::string::npos) {
-        throw std::runtime_error("Colon not found in component string");
-    }
-    std::string comp_str = input_str.substr(0, colon);
-    std::string selection_str = input_str.substr(colon + 1);
-
-    // Get the view based on the component string
-    if (comp_str == "EnemyComp") {
-        return getEntityFromSelectionStr<EnemyComp>(registry, selection_str);
-    } else {
-        throw std::runtime_error("Unknown view type");
-    }
-}
 
 void emplaceComponent(entt::registry& registry, entt::entity entity,
                       const std::string& comp_key, const json& comp_json) {
@@ -82,5 +63,57 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
         throw std::runtime_error("Unknown component type");
     }
 }
+
+entt::entity getEntityFromStr(entt::registry& registry, const std::string& input_str) {
+    // Parse the input string
+    size_t colon = input_str.find(':');
+    if (colon == std::string::npos) {
+        throw std::runtime_error("Colon not found in component string");
+    }
+    std::string comp_key = input_str.substr(0, colon);
+    std::string selection_str = input_str.substr(colon + 1);
+
+    // Get the view based on the component string
+    if (comp_key == "PlayerComp") {
+        return getEntityFromSelectionStr<PlayerComp>(registry, selection_str);
+    } else if (comp_key == "EnemyComp") {
+        return getEntityFromSelectionStr<EnemyComp>(registry, selection_str);
+    } else if (comp_key == "ViewComp") {
+        return getEntityFromSelectionStr<ViewComp>(registry, selection_str);
+    } else if (comp_key == "DeleteComp") {
+        return getEntityFromSelectionStr<DeleteComp>(registry, selection_str);
+    } else if (comp_key == "DebugComp") {
+        return getEntityFromSelectionStr<DebugComp>(registry, selection_str);
+    } else if (comp_key == "SceneComp") {
+        return getEntityFromSelectionStr<SceneComp>(registry, selection_str);
+    } else if (comp_key == "SceneTriggerComp") {
+        return getEntityFromSelectionStr<SceneTriggerComp>(registry, selection_str);
+    } else if (comp_key == "PairComp") {
+        return getEntityFromSelectionStr<PairComp>(registry, selection_str);
+    } else if (comp_key == "SyncPositionComp") {
+        return getEntityFromSelectionStr<SyncPositionComp>(registry, selection_str);
+    } else if (comp_key == "StopWatchComp") {
+        return getEntityFromSelectionStr<StopWatchComp>(registry, selection_str);
+    } else if (comp_key == "PhysicsComp") {
+        return getEntityFromSelectionStr<PhysicsComp>(registry, selection_str);
+    } else if (comp_key == "DragForceComp") {
+        return getEntityFromSelectionStr<DragForceComp>(registry, selection_str);
+    } else if (comp_key == "DurabilityComp") {
+        return getEntityFromSelectionStr<DurabilityComp>(registry, selection_str);
+    } else if (comp_key == "PairwiseForceComp") {
+        return getEntityFromSelectionStr<PairwiseForceComp>(registry, selection_str);
+    } else if (comp_key == "CollisionComp") {
+        return getEntityFromSelectionStr<CollisionComp>(registry, selection_str);
+    } else if (comp_key == "MouseButtonReleasedComp") {
+        return getEntityFromSelectionStr<MouseButtonReleasedComp>(registry, selection_str);
+    } else if (comp_key == "RenderComp") {
+        return getEntityFromSelectionStr<RenderComp>(registry, selection_str);
+    } else if (comp_key == "UIComp") {
+        return getEntityFromSelectionStr<UIComp>(registry, selection_str);
+    } else {
+        throw std::runtime_error("Unknown component type");
+    }
+}
+
 }  // namespace comp
 }  // namespace twirl

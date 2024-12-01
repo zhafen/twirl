@@ -109,8 +109,6 @@ TEST(SceneTest, EmplaceSceneFromJson) {
     scene_system.loadJsonData(registry);
 
     // Emplace the Scene
-    // DEBUG
-    bool is_valid = registry.valid(scene);
     scene_system.emplaceScene(registry, scene);
 
     // Loop through the registry and check if the components are added correctly

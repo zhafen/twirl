@@ -62,8 +62,6 @@ void SceneSystem::emplaceScene(entt::registry& registry,
     // Resolve names
     auto rview = registry.view<UnresolvedNameComp>();
     for (auto entity : rview) {
-        // DEBUG
-        auto this_entity_name = registry.get<EntityName>(entity);
         // Check for each component that could have an unresolved name
         auto* pair_c_ptr = registry.try_get<PairComp>(entity);
         if (pair_c_ptr != nullptr) {

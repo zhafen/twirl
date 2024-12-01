@@ -29,6 +29,8 @@
                     255
                 ]
             },
+            "SceneTriggerComp": {"scene_name": "[SceneComp|name:test_scene]"},
+            "UnresolvedNameComp": {},
             "StopWatchComp": {}
         }
     },

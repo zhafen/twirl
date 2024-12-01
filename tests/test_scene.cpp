@@ -149,6 +149,10 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_EQ(fill_color.b, 128);
             EXPECT_EQ(fill_color.a, 255);
 
+            auto& scenetrigger_c = registry.get<SceneTriggerComp>(entity);
+            EXPECT_EQ(scenetrigger_c.scene_name, "test_scene");
+            EXPECT_EQ(scenetrigger_c.scene_entity, scene);
+
             auto& swc = registry.get<StopWatchComp>(entity);
             EXPECT_FLOAT_EQ(swc.current_time, 0.0f);
             EXPECT_FLOAT_EQ(swc.end_time, 1.0f);

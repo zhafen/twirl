@@ -31,7 +31,17 @@ template <typename Type>
 
     // Get the entity from the view based on the selection string
     if (selection_str == "0") {
+    // In this case return the first entity in the view
         return rview.front();
+    } else if (selection_str.substr(0, 5) == "name:") {
+    // In this case return the first entity in the view with the matching name
+        for (auto entity: rview) {
+            if (registry.get<EntityName>(entity) == selection_str.substr(5)) {
+                return entity;
+            }
+        }
+        // If we get to the end without finding it, throw an error
+        throw std::runtime_error("Entity name not found");
     } else {
         throw std::runtime_error("Selection string not recognized");
     }

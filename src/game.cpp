@@ -91,8 +91,6 @@ void Game::update() {
     // Try spawning, deleting, and ordering entities
     entity_system.deleteEntities(registry);
     entity_system.spawnEntities(registry);
-    entity_system.getEntityMap(registry);
-    entity_system.resolveEntityNames(registry);
     entity_system.orderEntities(registry);
     entity_system.syncEntities(registry);
 

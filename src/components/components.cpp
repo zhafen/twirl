@@ -16,6 +16,8 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
         registry.emplace<PlayerComp>(entity);
     } else if (comp_key == "EnemyComp") {
         registry.emplace<EnemyComp>(entity);
+    } else if (comp_key == "UnresolvedNameComp") {
+        registry.emplace<UnresolvedNameComp>(entity);
     } else if (comp_key == "ViewComp") {
         registry.emplace<ViewComp>(entity);
     } else if (comp_key == "DeleteComp") {
@@ -78,6 +80,8 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<PlayerComp>(registry, selection_str);
     } else if (comp_key == "EnemyComp") {
         return getEntityFromSelectionStr<EnemyComp>(registry, selection_str);
+    } else if (comp_key == "UnresolvedNameComp") {
+        return getEntityFromSelectionStr<UnresolvedNameComp>(registry, selection_str);
     } else if (comp_key == "ViewComp") {
         return getEntityFromSelectionStr<ViewComp>(registry, selection_str);
     } else if (comp_key == "DeleteComp") {

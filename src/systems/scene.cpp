@@ -46,33 +46,60 @@ void SceneSystem::emplaceScene(entt::registry& registry,
     std::cout << "Emplacing scene: " << scene_c.scene_fp << std::endl;
 
     // Loop through and emplace entities
+    EntityMap scene_entity_map;
     for (auto [entity_name_base, entity_json] : scene_c.json_data.items()) {
         EntityName entity_name;
         if (scene_c.verbose_names) {
-            entity_name = scene_name + "." + std::to_string(scene_c.n_emplaced) + "." + entity_name_base;
+            entity_name = scene_name + "." + std::to_string(scene_c.n_emplaced) + "." +
+                          entity_name_base;
         } else {
             entity_name = entity_name_base;
         }
-        emplaceEntity(registry, entity_name, entity_json);
+        scene_entity_map[entity_name] =
+            emplaceEntity(registry, entity_name, entity_json);
+    }
+
+    // Resolve names
+    auto rview = registry.view<UnresolvedNameComp>();
+    for (auto entity : rview) {
+        auto& pair_c = registry.get<PairComp>(entity);
+        pair_c.target_entity =
+            resolveEntityName(registry, scene_entity_map, pair_c.target_entity_name);
+        pair_c.source_entity =
+            resolveEntityName(registry, scene_entity_map, pair_c.source_entity_name);
     }
 
     // Increment n_emplaced
     scene_c.n_emplaced++;
 }
 
-void SceneSystem::emplaceEntity(entt::registry& registry,
-                                const EntityName entity_name,
-                                const json& entity_json) {
+entt::entity SceneSystem::emplaceEntity(entt::registry& registry,
+                                        const EntityName entity_name,
+                                        const json& entity_json) {
     // Create an entity and store its name and ID
     auto entity = registry.create();
     registry.emplace<EntityName>(entity, entity_name);
 
-    // TODO:Add per-component tests so we can track down when emplacing
     // just one of the components is failing
     json components = entity_json["components"];
     for (const auto& [comp_key, comp_json] : components.items()) {
         comp::emplaceComponent(registry, entity, comp_key, comp_json);
     }
+
+    return entity;
+}
+
+entt::entity SceneSystem::resolveEntityName(entt::registry& registry,
+                                            EntityMap entity_map,
+                                            EntityName entity_name) {
+    // Parse as needed
+    if (entity_name.front() == '[' && entity_name.back() == ']') {
+        return comp::getEntityFromStr(registry,
+                                      entity_name.substr(1, entity_name.size() - 2));
+    }
+
+    // Otherwise return simply
+    return entity_map.at(entity_name);
 }
 
 }  // namespace twirl

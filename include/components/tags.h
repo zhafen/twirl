@@ -12,6 +12,8 @@ struct PlayerComp {};
 
 struct EnemyComp {};
 
+struct UnresolvedNameComp {};
+
 struct ViewComp {};
 
 struct DeleteComp {};

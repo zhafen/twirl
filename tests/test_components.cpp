@@ -149,7 +149,7 @@ TEST(ComponentTest, EntityFromCompStr) {
     registry.emplace<EnemyComp>(entity);
 
     // Check that the entity can be retrieved from the component string
-    entt::entity entity_out = comp::getEntityFromStrWrapper(registry, "EnemyComp:0");
+    entt::entity entity_out = comp::getEntityFromStr(registry, "EnemyComp:0");
     ASSERT_EQ(entity, entity_out);
 
 }

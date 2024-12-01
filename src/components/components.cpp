@@ -12,7 +12,7 @@ namespace twirl {
 
 namespace comp {
 
-entt::entity getEntityFromStrWrapper(entt::registry& registry, const std::string& input_str) {
+entt::entity getEntityFromStr(entt::registry& registry, const std::string& input_str) {
     // Parse the input string
     size_t colon = input_str.find(':');
     if (colon == std::string::npos) {
@@ -23,7 +23,7 @@ entt::entity getEntityFromStrWrapper(entt::registry& registry, const std::string
 
     // Get the view based on the component string
     if (comp_str == "EnemyComp") {
-        return getEntityFromStr<EnemyComp>(registry, selection_str);
+        return getEntityFromSelectionStr<EnemyComp>(registry, selection_str);
     } else {
         throw std::runtime_error("Unknown view type");
     }

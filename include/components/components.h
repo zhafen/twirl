@@ -4,8 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <entt/entity/entity.hpp>
 #include <entt/entity/fwd.hpp>
-#include <entt/entity/view.hpp>
 #include <entt/entity/registry.hpp>
+#include <entt/entity/view.hpp>
 #include <nlohmann/json.hpp>
 #include <string>
 #include <typeindex>
@@ -21,13 +21,11 @@ namespace twirl {
 
 namespace comp {
 
-entt::entity getEntityFromStrWrapper(entt::registry& registry,
-                                     const std::string& comp_str);
+entt::entity getEntityFromStr(entt::registry& registry, const std::string& comp_str);
 
 template <typename Type>
-[[nodiscard]] entt::entity getEntityFromStr(entt::registry& registry,
-                                            const std::string& selection_str) {
-
+[[nodiscard]] entt::entity getEntityFromSelectionStr(entt::registry& registry,
+                                                     const std::string& selection_str) {
     // Get the view
     auto rview = registry.view<Type>();
 

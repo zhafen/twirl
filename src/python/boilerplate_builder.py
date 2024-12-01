@@ -107,8 +107,9 @@ class BoilerplateBuilder:
             "namespace comp {\n\n"
         )
 
-        # Add the emplaceComponent function
-        file_str += self.get_emplacecomponent_str(components) + "\n"
+        # Add generations for individual functions
+        file_str += self.get_emplacecomponent_str(components) + "\n\n"
+        file_str += self.get_getentityfromstr_str(components) + "\n\n"
 
         # Wrap up with the namespaces
         file_str += (
@@ -307,9 +308,10 @@ class BoilerplateBuilder:
             "    if (colon == std::string::npos) {\n"
             '        throw std::runtime_error("Colon not found in component string");\n'
             "    }\n"
-            "    std::string comp_str = input_str.substr(0, colon);\n"
+            "    std::string comp_key = input_str.substr(0, colon);\n"
             "    std::string selection_str = input_str.substr(colon + 1);\n"
             "\n"
+            "    // Get the view based on the component string\n"
             + body_str
             + " else {\n"
             '        throw std::runtime_error("Unknown component type");\n'

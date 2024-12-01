@@ -11,11 +11,11 @@ class TestBoilerplateBuilder(unittest.TestCase):
         self.output_header_fp = "tests/test_python/test_generated_components.h"
         self.output_source_fp = "tests/test_python/test_generated_components.cpp"
 
-    def tearDown(self):
-        if os.path.exists(self.output_header_fp):
-            os.remove(self.output_header_fp)
-        if os.path.exists(self.output_source_fp):
-            os.remove(self.output_source_fp)
+    # def tearDown(self):
+    #     if os.path.exists(self.output_header_fp):
+    #         os.remove(self.output_header_fp)
+    #     if os.path.exists(self.output_source_fp):
+    #         os.remove(self.output_source_fp)
 
     def test_get_struct_str_empty_members(self):
         name = "MyStruct"
@@ -220,7 +220,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
             "tests/test_python/test_expected_components.cpp", "r", encoding="utf-8"
         ) as file:
             expected_output = file.read()
-        with open(self.output_header_fp, "r", encoding="utf-8") as file:
+        with open(self.output_source_fp, "r", encoding="utf-8") as file:
             output = file.read()
 
         assert expected_output == output

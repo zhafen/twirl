@@ -68,7 +68,7 @@ TEST(SceneTest, EmplaceEntityUnresovledNames) {
         "components": {
             "PairComp": {
                 "target_entity_name": "entity1",
-                "source_entity_name": "entity2"
+                "source_entity_name": "[EnemyComp:0]"
             }
         }
     }

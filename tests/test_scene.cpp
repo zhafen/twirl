@@ -89,7 +89,7 @@ TEST(SceneTest, EmplaceEntityUnresovledNames) {
     entt::entity rel_12 = entity_map.at("rel_12");
     auto pair_c = registry.get<PairComp>(rel_12);
     ASSERT_TRUE(pair_c.target_entity_name == "entity1");
-    ASSERT_TRUE(pair_c.source_entity_name == "entity2");
+    ASSERT_TRUE(pair_c.source_entity_name == "[EnemyComp:0]");
     ASSERT_TRUE(pair_c.target_entity == entt::null);
     ASSERT_TRUE(pair_c.source_entity == entt::null);
 }

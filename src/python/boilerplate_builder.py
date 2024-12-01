@@ -95,8 +95,8 @@ class BoilerplateBuilder:
             "<entt/entity/fwd.hpp>",
             "<entt/entity/registry.hpp>",
             "<nlohmann/json.hpp>",
-            '"config.h"',
             '"components/components.h"',
+            '"config.h"',
         ]
         file_str += "#include " + "\n#include ".join(includes) + "\n\n"
 
@@ -274,5 +274,63 @@ class BoilerplateBuilder:
             f'if (comp_key == "{name}") {{\n'
             f"    auto {name.lower()} = comp_json.template get<{name}>();\n"
             f"    registry.emplace<{name}>(entity, {name.lower()});\n"
+            "}"
+        )
+
+    def get_getentityfromstr_str(self, components: dict) -> str:
+        """
+        Generates a string representing the function definition for emplacing components
+        in an entity-component-system (ECS) registry.
+
+        Args:
+            components (dict): A dictionary where keys are component names and values
+                               are lists of component members.
+
+        Returns:
+            str: A string representing the function definition for emplacing components
+                 in the ECS registry.
+        """
+
+        emplacement_strs = [
+            self.get_getentityfromstr_str_for_comp(comp_name)
+            for comp_name in components.keys()
+        ]
+        body_str = " else ".join(emplacement_strs)
+
+        # Indent the body string
+        body_str = "    " + body_str.replace("\n", "\n    ")
+
+        return (
+            "entt::entity getEntityFromStr(entt::registry& registry, const std::string& input_str) {\n"
+            "    // Parse the input string\n"
+            "    size_t colon = input_str.find(':');\n"
+            "    if (colon == std::string::npos) {\n"
+            '        throw std::runtime_error("Colon not found in component string");\n'
+            "    }\n"
+            "    std::string comp_str = input_str.substr(0, colon);\n"
+            "    std::string selection_str = input_str.substr(colon + 1);\n"
+            "\n"
+            + body_str
+            + " else {\n"
+            '        throw std::runtime_error("Unknown component type");\n'
+            "    }\n"
+            "}"
+        )
+
+    def get_getentityfromstr_str_for_comp(self, name: str) -> str:
+        """
+        Generates a string representing the emplacement code for a given component.
+
+        Args:
+            name (str): The name of the component.
+            is_empty (bool, optional): Flag indicating whether the component is empty. Defaults to False.
+
+        Returns:
+            str: The generated emplacement string for the component.
+        """
+
+        return (
+            f'if (comp_key == "{name}") {{\n'
+            f"    return getEntityFromSelectionStr<{name}>(registry, selection_str);\n"
             "}"
         )

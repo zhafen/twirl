@@ -67,17 +67,15 @@ void SceneSystem::emplaceScene(entt::registry& registry,
         // Check for each component that could have an unresolved name
         auto* pair_c_ptr = registry.try_get<PairComp>(entity);
         if (pair_c_ptr != nullptr) {
-            auto pair_c = *pair_c_ptr;
-            pair_c.target_entity = resolveEntityName(registry, scene_entity_map,
-                                                     pair_c.target_entity_name);
-            pair_c.source_entity = resolveEntityName(registry, scene_entity_map,
-                                                     pair_c.source_entity_name);
+            pair_c_ptr->target_entity = resolveEntityName(
+                registry, scene_entity_map, pair_c_ptr->target_entity_name);
+            pair_c_ptr->source_entity = resolveEntityName(
+                registry, scene_entity_map, pair_c_ptr->source_entity_name);
         }
         auto* scenetrigger_c_ptr = registry.try_get<SceneTriggerComp>(entity);
         if (scenetrigger_c_ptr != nullptr) {
-            auto scenetrigger_c = *scenetrigger_c_ptr;
-            scenetrigger_c.scene_entity = resolveEntityName(registry, scene_entity_map,
-                                                     scenetrigger_c.scene_name);
+            scenetrigger_c_ptr->scene_entity = resolveEntityName(
+                registry, scene_entity_map, scenetrigger_c_ptr->scene_name);
         }
         registry.remove<UnresolvedNameComp>(entity);
     }

@@ -134,7 +134,7 @@ TEST(SystemEntityTest, GetEntityMapDeleted) {
 
 TEST(SystemEntityTest, SpawnDeleteOrder) {
     // Initialize the game in its test state
-    Game game("../../tests/test_data/test_scene.json");
+    Game game("../../scenes/main_scene.json");
     auto& registry = game.getRegistry();
     auto& entity_system = game.getEntitySystem();
 
@@ -225,7 +225,7 @@ TEST(SystemEntityTest, SyncPosition) {
 // TODO: Implement or fulluy deprecate this.
 // TEST(SystemEntityTest, ResolveEntityPairs) {
 //     // Initialize the game in its test state
-//     Game game("../../tests/test_data/test_scene.json");
+//     Game game("../../scenes/main_scene.json");
 //     auto& registry = game.getRegistry();
 //     auto& entity_system = game.getEntitySystem();
 // 
@@ -308,7 +308,7 @@ TEST(SystemEntityTest, SyncPosition) {
 // 
 TEST(SystemPhysicsTest, CalculateForces) {
     // Initialize the game in its test state
-    Game game("../../tests/test_data/test_scene.json");
+    Game game("../../scenes/main_scene.json");
     auto& registry = game.getRegistry();
     auto& physics_system = game.getPhysicsSystem();
 
@@ -318,7 +318,7 @@ TEST(SystemPhysicsTest, CalculateForces) {
 
 TEST(SystemPhysicsTest, CalculatePairwiseForces) {
     // Initialize the game in its test state
-    Game game("../../tests/test_data/test_scene.json");
+    Game game("../../scenes/main_scene.json");
     auto& registry = game.getRegistry();
     auto& physics_system = game.getPhysicsSystem();
     // Need to resolve entity names before calculating pairwise forces
@@ -360,7 +360,7 @@ TEST(SystemPhysicsTest, CalculatePairwiseForcesPostDelete) {
 
 TEST(SystemPhysicsTest, Update) {
     // Initialize the game in its test state
-    Game game("../../tests/test_data/test_scene.json");
+    Game game("../../scenes/main_scene.json");
     auto& registry = game.getRegistry();
     auto& physics_system = game.getPhysicsSystem();
 
@@ -370,7 +370,7 @@ TEST(SystemPhysicsTest, Update) {
 
 TEST(SystemPhysicsTest, UpdateStopWatches) {
     // Initialize the game in its test state
-    Game game("../../tests/test_data/test_scene.json");
+    Game game("../../scenes/main_scene.json");
     auto& registry = game.getRegistry();
     auto& physics_system = game.getPhysicsSystem();
 
@@ -380,7 +380,7 @@ TEST(SystemPhysicsTest, UpdateStopWatches) {
 
 TEST(SystemPhysicsTest, ResolveCollisions) {
     // Initialize the game in its test state
-    Game game("../../tests/test_data/test_scene.json");
+    Game game("../../scenes/main_scene.json");
     auto& registry = game.getRegistry();
     auto& physics_system = game.getPhysicsSystem();
 
@@ -390,7 +390,7 @@ TEST(SystemPhysicsTest, ResolveCollisions) {
 
 TEST(SystemPhysicsTest, UpdateDurability) {
     // Initialize the game in its test state
-    Game game("../../tests/test_data/test_scene.json");
+    Game game("../../scenes/main_scene.json");
     auto& registry = game.getRegistry();
     auto& physics_system = game.getPhysicsSystem();
 
@@ -400,7 +400,7 @@ TEST(SystemPhysicsTest, UpdateDurability) {
 
 TEST(SystemRenderTest, Render) {
     // Initialize the game in its test state
-    Game game("../../tests/test_data/test_scene.json");
+    Game game("../../scenes/main_scene.json");
     auto& registry = game.getRegistry();
     auto& render_system = game.getRenderSystem();
     auto& window = game.getWindow();
@@ -411,7 +411,7 @@ TEST(SystemRenderTest, Render) {
 
 TEST(SystemRenderTest, RenderUI) {
     // Initialize the game in its test state
-    Game game("../../tests/test_data/test_scene.json");
+    Game game("../../scenes/main_scene.json");
     auto& registry = game.getRegistry();
     auto& render_system = game.getRenderSystem();
     auto& window = game.getWindow();
@@ -424,7 +424,7 @@ TEST(SystemRenderTest, RenderUI) {
 
 TEST(SystemRenderTest, SetView) {
     // Initialize the game in its test state
-    Game game("../../tests/test_data/test_scene.json");
+    Game game("../../scenes/main_scene.json");
     auto& registry = game.getRegistry();
     auto& render_system = game.getRenderSystem();
     auto& window = game.getWindow();

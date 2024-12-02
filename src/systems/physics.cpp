@@ -27,8 +27,16 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
     auto rview = registry.view<PairComp, PairwiseForceComp>();
 
     for (auto [rel_id, pair_c, pairforce_c] : rview.each()) {
-        auto& target_phys_c = registry.get<PhysicsComp>(pair_c.target_entity);
-        auto& source_phys_c = registry.get<PhysicsComp>(pair_c.source_entity);
+        auto* target_phys_c_ptr = registry.try_get<PhysicsComp>(pair_c.target_entity);
+        auto* source_phys_c_ptr = registry.try_get<PhysicsComp>(pair_c.source_entity);
+
+        // Keep going if the entities don't exist
+        if ((target_phys_c_ptr == nullptr) || (source_phys_c_ptr == nullptr)) {
+            registry.destroy(rel_id);
+            continue;
+        }
+        auto target_phys_c = *target_phys_c_ptr;
+        auto source_phys_c = *source_phys_c_ptr;
 
         auto r = target_phys_c.pos - source_phys_c.pos;
         auto r_mag = sqrtf(r.x * r.x + r.y * r.y);

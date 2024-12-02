@@ -13,7 +13,7 @@ using namespace twirl;
 TEST(GameTest, Initialize) {
 
     // Initialize the game, hidden in the constructor
-    Game game("../../scenes/main_scene.json");
+    Game game("../../tests/test_data/test_scene.json");
 
     // Check that the registry is not empty
     auto rview = game.getRegistry().view<EntityName>();
@@ -30,7 +30,7 @@ TEST(GameTest, Initialize) {
 
 TEST(GameTest, HandleEvents) {
     // Initialize the game
-    Game game("../../scenes/main_scene.json");
+    Game game("../../tests/test_data/test_scene.json");
 
     // Get window
     sf::RenderWindow& window = game.getWindow();
@@ -45,7 +45,7 @@ TEST(GameTest, HandleEvents) {
 
 TEST(GameTest, Update) {
     // Initialize the game
-    Game game("../../scenes/main_scene.json");
+    Game game("../../tests/test_data/test_scene.json");
 
     // Get window
     sf::RenderWindow& window = game.getWindow();
@@ -60,7 +60,7 @@ TEST(GameTest, Update) {
 
 TEST(GameTest, Render) {
     // Initialize the game
-    Game game("../../scenes/main_scene.json");
+    Game game("../../tests/test_data/test_scene.json");
 
     // Get window
     sf::RenderWindow& window = game.getWindow();

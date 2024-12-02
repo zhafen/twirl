@@ -94,6 +94,8 @@ entt::entity SceneSystem::emplaceEntity(entt::registry& registry,
     // just one of the components is failing
     json components = entity_json["components"];
     for (const auto& [comp_key, comp_json] : components.items()) {
+        // DEBUG
+        std::cout << "Emplacing component: " << comp_key << std::endl;
         comp::emplaceComponent(registry, entity, comp_key, comp_json);
     }
 

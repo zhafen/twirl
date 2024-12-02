@@ -68,68 +68,69 @@ TEST(SystemEntityTest, GetEntityMapDeleted) {
 
 }
 
-TEST(SystemEntityTest, ResolveEntityName) {
-    entt::registry registry;
-    EntitySystem entity_system;
-
-    // Create an entity with a name
-    entt::entity entity = registry.create();
-    registry.emplace<EntityName>(entity, "entity");
-
-    // Get the mapping
-    entity_system.getEntityMap(registry);
-
-    // Resolve the entity name
-    entt::entity resolved_entity =
-        entity_system.resolveEntityName(registry, "entity", entt::null);
-
-    // Check that the entity was resolved
-    EXPECT_TRUE(entity == resolved_entity);
-}
-
-TEST(SystemEntityTest, ResolveEntityNameInvalid) {
-    entt::registry registry;
-    EntitySystem entity_system;
-
-    // Get the mapping
-    entity_system.getEntityMap(registry);
-
-    // Resolve the entity name
-    entt::entity resolved_entity =
-        entity_system.resolveEntityName(registry, "entity", entt::null);
-
-    // Check that the entity wasn't resolved
-    EXPECT_TRUE(resolved_entity == entt::null);
-    EXPECT_FALSE(registry.valid(resolved_entity));
-}
-
-TEST(SystemEntityTest, ResolveEntityNameDeleted) {
-    entt::registry registry;
-    EntitySystem entity_system;
-
-    // Create an entity with a name
-    entt::entity entity = registry.create();
-    registry.emplace<EntityName>(entity, "entity");
-
-    // Resolve the entity name
-    entity_system.getEntityMap(registry);
-    entt::entity resolved_entity =
-        entity_system.resolveEntityName(registry, "entity", entt::null);
-
-    // Check that the entity was resolved
-    EXPECT_FALSE(resolved_entity == entt::null);
-    EXPECT_TRUE(registry.valid(resolved_entity));
-
-    // Delete the entity and try again
-    registry.destroy(entity);
-    entity_system.getEntityMap(registry);
-    entt::entity resolved_entity_final =
-        entity_system.resolveEntityName(registry, "entity", entt::null);
-
-    // Check that the entity wasn't resolved
-    EXPECT_TRUE(resolved_entity_final == entt::null);
-    EXPECT_FALSE(registry.valid(resolved_entity_final));
-}
+// TODO: Implement or fully deprecate this.
+// TEST(SystemEntityTest, ResolveEntityName) {
+//     entt::registry registry;
+//     EntitySystem entity_system;
+// 
+//     // Create an entity with a name
+//     entt::entity entity = registry.create();
+//     registry.emplace<EntityName>(entity, "entity");
+// 
+//     // Get the mapping
+//     entity_system.getEntityMap(registry);
+// 
+//     // Resolve the entity name
+//     entt::entity resolved_entity =
+//         entity_system.resolveEntityName(registry, "entity", entt::null);
+// 
+//     // Check that the entity was resolved
+//     EXPECT_TRUE(entity == resolved_entity);
+// }
+// 
+// TEST(SystemEntityTest, ResolveEntityNameInvalid) {
+//     entt::registry registry;
+//     EntitySystem entity_system;
+// 
+//     // Get the mapping
+//     entity_system.getEntityMap(registry);
+// 
+//     // Resolve the entity name
+//     entt::entity resolved_entity =
+//         entity_system.resolveEntityName(registry, "entity", entt::null);
+// 
+//     // Check that the entity wasn't resolved
+//     EXPECT_TRUE(resolved_entity == entt::null);
+//     EXPECT_FALSE(registry.valid(resolved_entity));
+// }
+// 
+// TEST(SystemEntityTest, ResolveEntityNameDeleted) {
+//     entt::registry registry;
+//     EntitySystem entity_system;
+// 
+//     // Create an entity with a name
+//     entt::entity entity = registry.create();
+//     registry.emplace<EntityName>(entity, "entity");
+// 
+//     // Resolve the entity name
+//     entity_system.getEntityMap(registry);
+//     entt::entity resolved_entity =
+//         entity_system.resolveEntityName(registry, "entity", entt::null);
+// 
+//     // Check that the entity was resolved
+//     EXPECT_FALSE(resolved_entity == entt::null);
+//     EXPECT_TRUE(registry.valid(resolved_entity));
+// 
+//     // Delete the entity and try again
+//     registry.destroy(entity);
+//     entity_system.getEntityMap(registry);
+//     entt::entity resolved_entity_final =
+//         entity_system.resolveEntityName(registry, "entity", entt::null);
+// 
+//     // Check that the entity wasn't resolved
+//     EXPECT_TRUE(resolved_entity_final == entt::null);
+//     EXPECT_FALSE(registry.valid(resolved_entity_final));
+// }
 
 TEST(SystemEntityTest, SpawnDeleteOrder) {
     // Initialize the game in its test state
@@ -184,7 +185,6 @@ TEST(SystemEntityTest, StopWatchSpawn) {
 
     // Trigger
     entity_system.spawnEntities(registry);
-    entity_system.resolvePairNames(registry);
 
     // Check that the entities were created properly
     entity_map = entity_system.getEntityMap(registry);
@@ -222,89 +222,90 @@ TEST(SystemEntityTest, SyncPosition) {
     EXPECT_EQ(pc1.pos.y, pc2.pos.y);
 }
 
-TEST(SystemEntityTest, ResolveEntityPairs) {
-    // Initialize the game in its test state
-    Game game("../../tests/test_data/test_scene.json");
-    auto& registry = game.getRegistry();
-    auto& entity_system = game.getEntitySystem();
-
-    // Resolve entity names
-    entity_system.resolvePairNames(registry);
-
-    // Check that the entities match up
-    auto entity_map = game.getEntityMap();
-    auto rview = registry.view<EntityName, PairComp>();
-    for (auto [pair_entity, pair_entity_name, pair_c] : rview.each()) {
-        if (pair_entity_name == "player-beacon force") {
-            EXPECT_EQ(entity_map.at("player"), pair_c.target_entity);
-            EXPECT_EQ(entity_map.at("beacon"), pair_c.source_entity);
-        }
-    }
-}
-
-TEST(SystemEntityTest, ResolveEntityPairsDelete) {
-    // Set up test objects
-    entt::registry registry;
-    EntitySystem entity_system;
-    PhysicsSystem physics_system;
-    // Entities themselves
-    entt::entity entity1 = registry.create();
-    registry.emplace<EntityName>(entity1, "entity1");
-    registry.emplace<PhysicsComp>(entity1);
-    entt::entity entity2 = registry.create();
-    registry.emplace<EntityName>(entity2, "entity2");
-    registry.emplace<PhysicsComp>(entity2);
-    entt::entity entity3 = registry.create();
-    registry.emplace<EntityName>(entity3, "entity3");
-    registry.emplace<PhysicsComp>(entity3);
-    // Entity-entity relationships
-    entt::entity rel_12 = registry.create();
-    PairComp pair_c_12;
-    pair_c_12.target_entity_name = "entity1";
-    pair_c_12.source_entity_name = "entity2";
-    registry.emplace<PairComp>(rel_12, pair_c_12);
-    registry.emplace<PairwiseForceComp>(rel_12);
-    entt::entity rel_23 = registry.create();
-    PairComp pair_c_23;
-    pair_c_23.target_entity_name = "entity2";
-    pair_c_23.source_entity_name = "entity3";
-    registry.emplace<PairComp>(rel_23, pair_c_23);
-    registry.emplace<PairwiseForceComp>(rel_23);
-    entt::entity rel_31 = registry.create();
-    PairComp pair_c_31;
-    pair_c_31.target_entity_name = "entity3";
-    pair_c_31.source_entity_name = "entity1";
-    registry.emplace<PairComp>(rel_31, pair_c_31);
-    registry.emplace<PairwiseForceComp>(rel_31);
-
-    // Resolve names then forces
-    entity_system.getEntityMap(registry);
-    entity_system.resolvePairNames(registry);
-    EXPECT_TRUE(registry.valid(rel_12));
-    EXPECT_TRUE(registry.valid(rel_23));
-    EXPECT_TRUE(registry.valid(rel_31));
-    PairComp pair_c_12_now = registry.get<PairComp>(rel_12);
-    PairComp pair_c_23_now = registry.get<PairComp>(rel_23);
-    PairComp pair_c_31_now = registry.get<PairComp>(rel_31);
-    EXPECT_EQ(pair_c_12_now.target_entity, entity1);
-    EXPECT_EQ(pair_c_12_now.source_entity, entity2);
-    EXPECT_EQ(pair_c_23_now.target_entity, entity2);
-    EXPECT_EQ(pair_c_23_now.source_entity, entity3);
-    EXPECT_EQ(pair_c_31_now.target_entity, entity3);
-    EXPECT_EQ(pair_c_31_now.source_entity, entity1);
-
-    // Delete an entity and try again
-    registry.destroy(entity1);
-    entity_system.getEntityMap(registry);
-    entity_system.resolvePairNames(registry);
-    EXPECT_FALSE(registry.valid(rel_12));
-    EXPECT_TRUE(registry.valid(rel_23));
-    EXPECT_FALSE(registry.valid(rel_31));
-    PairComp pair_c_23_final = registry.get<PairComp>(rel_23);
-    EXPECT_EQ(pair_c_23_final.target_entity, entity2);
-    EXPECT_EQ(pair_c_23_final.source_entity, entity3);
-}
-
+// TODO: Implement or fulluy deprecate this.
+// TEST(SystemEntityTest, ResolveEntityPairs) {
+//     // Initialize the game in its test state
+//     Game game("../../tests/test_data/test_scene.json");
+//     auto& registry = game.getRegistry();
+//     auto& entity_system = game.getEntitySystem();
+// 
+//     // Resolve entity names
+//     entity_system.resolvePairNames(registry);
+// 
+//     // Check that the entities match up
+//     auto entity_map = game.getEntityMap();
+//     auto rview = registry.view<EntityName, PairComp>();
+//     for (auto [pair_entity, pair_entity_name, pair_c] : rview.each()) {
+//         if (pair_entity_name == "player-beacon force") {
+//             EXPECT_EQ(entity_map.at("player"), pair_c.target_entity);
+//             EXPECT_EQ(entity_map.at("beacon"), pair_c.source_entity);
+//         }
+//     }
+// }
+// 
+// TEST(SystemEntityTest, ResolveEntityPairsDelete) {
+//     // Set up test objects
+//     entt::registry registry;
+//     EntitySystem entity_system;
+//     PhysicsSystem physics_system;
+//     // Entities themselves
+//     entt::entity entity1 = registry.create();
+//     registry.emplace<EntityName>(entity1, "entity1");
+//     registry.emplace<PhysicsComp>(entity1);
+//     entt::entity entity2 = registry.create();
+//     registry.emplace<EntityName>(entity2, "entity2");
+//     registry.emplace<PhysicsComp>(entity2);
+//     entt::entity entity3 = registry.create();
+//     registry.emplace<EntityName>(entity3, "entity3");
+//     registry.emplace<PhysicsComp>(entity3);
+//     // Entity-entity relationships
+//     entt::entity rel_12 = registry.create();
+//     PairComp pair_c_12;
+//     pair_c_12.target_entity_name = "entity1";
+//     pair_c_12.source_entity_name = "entity2";
+//     registry.emplace<PairComp>(rel_12, pair_c_12);
+//     registry.emplace<PairwiseForceComp>(rel_12);
+//     entt::entity rel_23 = registry.create();
+//     PairComp pair_c_23;
+//     pair_c_23.target_entity_name = "entity2";
+//     pair_c_23.source_entity_name = "entity3";
+//     registry.emplace<PairComp>(rel_23, pair_c_23);
+//     registry.emplace<PairwiseForceComp>(rel_23);
+//     entt::entity rel_31 = registry.create();
+//     PairComp pair_c_31;
+//     pair_c_31.target_entity_name = "entity3";
+//     pair_c_31.source_entity_name = "entity1";
+//     registry.emplace<PairComp>(rel_31, pair_c_31);
+//     registry.emplace<PairwiseForceComp>(rel_31);
+// 
+//     // Resolve names then forces
+//     entity_system.getEntityMap(registry);
+//     entity_system.resolvePairNames(registry);
+//     EXPECT_TRUE(registry.valid(rel_12));
+//     EXPECT_TRUE(registry.valid(rel_23));
+//     EXPECT_TRUE(registry.valid(rel_31));
+//     PairComp pair_c_12_now = registry.get<PairComp>(rel_12);
+//     PairComp pair_c_23_now = registry.get<PairComp>(rel_23);
+//     PairComp pair_c_31_now = registry.get<PairComp>(rel_31);
+//     EXPECT_EQ(pair_c_12_now.target_entity, entity1);
+//     EXPECT_EQ(pair_c_12_now.source_entity, entity2);
+//     EXPECT_EQ(pair_c_23_now.target_entity, entity2);
+//     EXPECT_EQ(pair_c_23_now.source_entity, entity3);
+//     EXPECT_EQ(pair_c_31_now.target_entity, entity3);
+//     EXPECT_EQ(pair_c_31_now.source_entity, entity1);
+// 
+//     // Delete an entity and try again
+//     registry.destroy(entity1);
+//     entity_system.getEntityMap(registry);
+//     entity_system.resolvePairNames(registry);
+//     EXPECT_FALSE(registry.valid(rel_12));
+//     EXPECT_TRUE(registry.valid(rel_23));
+//     EXPECT_FALSE(registry.valid(rel_31));
+//     PairComp pair_c_23_final = registry.get<PairComp>(rel_23);
+//     EXPECT_EQ(pair_c_23_final.target_entity, entity2);
+//     EXPECT_EQ(pair_c_23_final.source_entity, entity3);
+// }
+// 
 TEST(SystemPhysicsTest, CalculateForces) {
     // Initialize the game in its test state
     Game game("../../tests/test_data/test_scene.json");
@@ -321,7 +322,6 @@ TEST(SystemPhysicsTest, CalculatePairwiseForces) {
     auto& registry = game.getRegistry();
     auto& physics_system = game.getPhysicsSystem();
     // Need to resolve entity names before calculating pairwise forces
-    game.getEntitySystem().resolvePairNames(registry);
 
     // Calculate forces
     physics_system.calculatePairwiseForces(registry);
@@ -351,12 +351,10 @@ TEST(SystemPhysicsTest, CalculatePairwiseForcesPostDelete) {
     registry.emplace<PairwiseForceComp>(rel_31);
 
     // Calculate forces
-    entity_system.resolvePairNames(registry);
     physics_system.calculatePairwiseForces(registry);
 
     // Delete an entity and try again
     registry.destroy(entity1);
-    entity_system.resolvePairNames(registry);
     physics_system.calculatePairwiseForces(registry);
 }
 

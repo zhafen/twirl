@@ -150,11 +150,11 @@ TEST(ComponentTest, EntityFromCompStr) {
     registry.emplace<PhysicsComp>(entity, 10.0f);
 
     // Check that the entity can be retrieved from the component string
-    entt::entity entity_out = comp::getEntityFromStr(registry, "EnemyComp:0");
+    entt::entity entity_out = comp::getEntityFromStr(registry, "EnemyComp|first");
     EXPECT_EQ(entity, entity_out);
 
     // Check that the entity can be retrieved from the component string
-    entt::entity entity_out2 = comp::getEntityFromStr(registry, "PhysicsComp:0");
+    entt::entity entity_out2 = comp::getEntityFromStr(registry, "PhysicsComp|first");
     EXPECT_EQ(entity, entity_out2);
 
 }

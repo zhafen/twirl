@@ -112,7 +112,11 @@ entt::entity SceneSystem::resolveEntityName(entt::registry& registry,
     }
 
     // Otherwise return simply the name for the map
-    return entity_map.at(entity_name);
+    try {
+        return entity_map.at(entity_name);
+    } catch (const std::out_of_range& e) {
+        throw std::runtime_error("Entity name not found: " + entity_name);
+    }
 }
 
 }  // namespace twirl

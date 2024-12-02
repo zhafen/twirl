@@ -29,9 +29,11 @@
                     255
                 ]
             },
-            "SceneTriggerComp": {"scene_name": "[SceneComp|name:test_scene]"},
-            "UnresolvedNameComp": {},
-            "StopWatchComp": {}
+            "SceneTriggerComp": {
+                "scene_name": "[SceneComp|name:triggered_scene]"
+            },
+            "StopWatchComp": {},
+            "ViewComp": {}
         }
     },
     "beacon": {
@@ -63,92 +65,16 @@
                 "target_entity_name": "player",
                 "source_entity_name": "beacon"
             },
-            "UnresolvedNameComp": {},
             "PairwiseForceComp": {
                 "magnitude": -1.0
             }
-        }
-    },
-    "player-enemy force": {
-        "components": {
-            "PairComp": {
-                "target_entity_name": "player",
-                "source_entity_name": "[EnemyComp|first]"
-            },
-            "UnresolvedNameComp": {},
-            "PairwiseForceComp": {
-                "magnitude": -1.0
-            }
-        }
-    },
-    "enemy": {
-        "components": {
-            "EnemyComp": {},
-            "PhysicsComp": {
-                "pos": [
-                    -23.457256091797902,
-                    -71.76402923925386
-                ],
-                "vel": [
-                    0.0,
-                    0.0
-                ]
-            },
-            "DragForceComp": {},
-            "DurabilityComp": {},
-            "RenderComp": {
-                "radius": 1.0,
-                "fill_color": [
-                    115,
-                    111,
-                    76,
-                    255
-                ]
-            }
-        }
-    },
-    "player-enemy inverse square": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy"
-            },
-            "UnresolvedNameComp": {},
-            "PairwiseForceComp": {
-                "magnitude": -1.0,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 10.0
-            }
-        }
-    },
-    "player-enemy spring": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy"
-            },
-            "UnresolvedNameComp": {},
-            "PairwiseForceComp": {
-                "magnitude": -0.05
-            }
-        }
-    },
-    "player-enemy collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy"
-            },
-            "UnresolvedNameComp": {},
-            "CollisionComp": {}
         }
     },
     "bkgrd": {
         "components": {
             "PhysicsComp": {},
             "RenderComp": {
-                "radius": 0.0,
+                "radius": 10.0,
                 "outline_thickness": 0.2,
                 "fill_color": [
                     127,
@@ -162,7 +88,14 @@
                     63,
                     255
                 ],
-                "zorder": 0
+                "zorder": -101
+            }
+        }
+    },
+    "triggered_scene": {
+        "components": {
+            "SceneComp": {
+                "scene_fp": "../../tests/test_data/triggered_scene.json"
             }
         }
     }

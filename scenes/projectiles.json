@@ -7,14 +7,14 @@
                 "durability_loss_per_collision": 1.01
             },
             "RenderComp": {
-                "radius": 10,
+                "radius": 0.5,
                 "fill_color": [
                     82,
                     106,
                     131,
                     255
                 ],
-                "zorder": 100
+                "zorder": -1
             },
             "DebugComp": {}
         }

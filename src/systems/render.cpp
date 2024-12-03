@@ -18,13 +18,6 @@ RenderSystem::RenderSystem(sf::View& view, sf::View& ui_view)
 void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     window.clear(sf::Color::Black);
 
-    // DEBUG
-    auto rview_debug = registry.view<DebugComp>();
-    for (auto entity : rview_debug) {
-        std::cout << "  entity: " << static_cast<int>(entity) << std::endl;
-        auto entity_name = registry.get<EntityName>(entity);
-    }
-
     // The .use ensures we use the order of render components
     auto rview = registry.view<RenderComp, PhysicsComp>().use<RenderComp>();
 
@@ -34,15 +27,6 @@ void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
             std::cerr << "Warning: Entity " << static_cast<int>(entity)
                       << " has NaN position.\n";
             continue;
-        }
-
-        // DEBUG
-        auto debug_c_ptr = registry.try_get<DebugComp>(entity);
-        if (debug_c_ptr != nullptr) {
-            std::cout << "    RenderComp:" << std::endl;
-            auto pos = rend_c.shape.getPosition();
-            std::cout << "      Position:" << pos.x << ", " << pos.y << std::endl;
-            std::cout << "      Radius:" << rend_c.shape.getRadius() << std::endl;
         }
 
         rend_c.shape.setPosition(phys_c.pos);

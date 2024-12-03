@@ -89,6 +89,9 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
 
         // If we got this far then we activate the scene trigger
         registry.patch<SceneTriggerComp>(entity, [](auto& stc) { stc.n_triggers++; });
+
+        // Spawning means we need to reorder
+        needs_ordering = true;
     }
 }
 

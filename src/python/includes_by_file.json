@@ -10,16 +10,4 @@
         "<nlohmann/json.hpp>",
         "\"config.h\""
     ]
-}{
-    "tags": [
-        "<nlohmann/json.hpp>",
-        "\"config.h\""
-    ],
-    "system_components": [
-        "<SFML/Graphics.hpp>",
-        "\"components/base_components.h\"",
-        "\"shape.h\"",
-        "<nlohmann/json.hpp>",
-        "\"config.h\""
-    ]
 }

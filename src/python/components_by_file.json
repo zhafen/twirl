@@ -1,0 +1,451 @@
+{
+    "tags": {
+        "PlayerComp": {},
+        "EnemyComp": {},
+        "UnresolvedNameComp": {},
+        "ViewComp": {},
+        "DeleteComp": {},
+        "DebugComp": {}
+    },
+    "system_components": {
+        "SceneComp": {
+            "scene_fp": [
+                "std::string",
+                true
+            ],
+            "emplace_after_loading": [
+                "bool",
+                true,
+                "false"
+            ],
+            "json_data": "json",
+            "n_emplaced": [
+                "size_t",
+                false,
+                0
+            ],
+            "verbose_names": [
+                "bool",
+                true,
+                "false"
+            ]
+        },
+        "SceneTriggerComp": {
+            "scene_name": [
+                "std::string",
+                true
+            ],
+            "scene_entity": [
+                "entt::entity",
+                false,
+                "entt::null"
+            ],
+            "n_triggers": [
+                "int",
+                true,
+                0
+            ]
+        },
+        "PairComp": {
+            "target_entity": [
+                "entt::entity",
+                false,
+                "entt::null"
+            ],
+            "source_entity": [
+                "entt::entity",
+                false,
+                "entt::null"
+            ],
+            "target_entity_name": [
+                "EntityName",
+                true,
+                "\"\""
+            ],
+            "source_entity_name": [
+                "EntityName",
+                true,
+                "\"\""
+            ]
+        },
+        "SyncPositionComp": {
+            "once_only": [
+                "bool",
+                true,
+                "false"
+            ]
+        },
+        "StopWatchComp": {
+            "current_time": [
+                "float",
+                true,
+                "0.0f"
+            ],
+            "end_time": [
+                "float",
+                true,
+                "1.0f",
+                "cfg.T"
+            ],
+            "end_reached": [
+                "bool",
+                true,
+                "false"
+            ]
+        },
+        "PhysicsComp": {
+            "mass": [
+                "float",
+                true,
+                "1.0f"
+            ],
+            "pos": [
+                "sf::Vector2f",
+                true,
+                "sf::Vector2f(0.0f, 0.0f)",
+                "cfg.L"
+            ],
+            "vel": [
+                "sf::Vector2f",
+                true,
+                "sf::Vector2f(0.0f, 0.0f)",
+                "cfg.V"
+            ],
+            "force": [
+                "sf::Vector2f",
+                false,
+                "sf::Vector2f(0.0f, 0.0f)",
+                "cfg.A"
+            ],
+            "collided": [
+                "bool",
+                false,
+                "false"
+            ]
+        },
+        "DragForceComp": {
+            "drag_coefficient": [
+                "float",
+                true,
+                "0.01f",
+                "cfg.A"
+            ],
+            "drag_power": [
+                "float",
+                true,
+                "2.0f"
+            ]
+        },
+        "DurabilityComp": {
+            "durability": [
+                "float",
+                true,
+                "1.0f"
+            ],
+            "durability_loss_per_collision": [
+                "float",
+                true,
+                "0.34f"
+            ],
+            "durability_regen_rate": [
+                "float",
+                true,
+                "0.0f"
+            ],
+            "delete_at_zero": [
+                "float",
+                true,
+                "true"
+            ]
+        },
+        "PairwiseForceComp": {
+            "magnitude": [
+                "float",
+                true,
+                "-1.0f",
+                "cfg.A"
+            ],
+            "softening": [
+                "float",
+                true,
+                "0.0f",
+                "cfg.L"
+            ],
+            "power": [
+                "float",
+                true,
+                "2.0f"
+            ],
+            "min_distance": [
+                "float",
+                true,
+                "0.1f",
+                "cfg.L"
+            ],
+            "distance_scaling": [
+                "float",
+                true,
+                "1.0f",
+                "cfg.L"
+            ]
+        },
+        "CollisionComp": {},
+        "MouseButtonReleasedComp": {},
+        "RenderComp": [
+            {
+                "shape": "TwirlCircleShape",
+                "zorder": [
+                    "int",
+                    true,
+                    "0"
+                ]
+            },
+            "auto radius = j.value(\"radius\", 1.0f) * cfg.L;\nauto outline_thickness = j.value(\"outline_thickness\", 0.0f) * cfg.L;\nauto fill_color = j.value(\"fill_color\", sf::Color::White);\nauto outline_color = j.value(\"outline_color\", sf::Color::Black);\nrendercomp.shape = TwirlCircleShape(radius);\nrendercomp.shape.setOutlineThickness(outline_thickness);\nrendercomp.shape.setFillColor(fill_color);\nrendercomp.shape.setOutlineColor(outline_color);\n"
+        ],
+        "UIComp": {
+            "shape": "sf::RectangleShape",
+            "pos": [
+                "sf::Vector2f",
+                true,
+                "sf::Vector2f(0.0f, 0.0f)",
+                "cfg.L"
+            ],
+            "size": [
+                "sf::Vector2f",
+                true,
+                "sf::Vector2f(5.0f, 1.0f)",
+                "cfg.L"
+            ],
+            "tracked_value": [
+                "float*",
+                false,
+                "nullptr"
+            ]
+        }
+    }
+}{
+    "tags": {
+        "PlayerComp": {},
+        "EnemyComp": {},
+        "UnresolvedNameComp": {},
+        "ViewComp": {},
+        "DeleteComp": {},
+        "DebugComp": {}
+    },
+    "system_components": {
+        "SceneComp": {
+            "scene_fp": [
+                "std::string",
+                true
+            ],
+            "emplace_after_loading": [
+                "bool",
+                true,
+                "false"
+            ],
+            "json_data": "json",
+            "n_emplaced": [
+                "size_t",
+                false,
+                0
+            ],
+            "verbose_names": [
+                "bool",
+                true,
+                "false"
+            ]
+        },
+        "SceneTriggerComp": {
+            "scene_name": [
+                "std::string",
+                true
+            ],
+            "scene_entity": [
+                "entt::entity",
+                false,
+                "entt::null"
+            ],
+            "n_triggers": [
+                "int",
+                true,
+                0
+            ]
+        },
+        "PairComp": {
+            "target_entity": [
+                "entt::entity",
+                false,
+                "entt::null"
+            ],
+            "source_entity": [
+                "entt::entity",
+                false,
+                "entt::null"
+            ],
+            "target_entity_name": [
+                "EntityName",
+                true,
+                "\"\""
+            ],
+            "source_entity_name": [
+                "EntityName",
+                true,
+                "\"\""
+            ]
+        },
+        "SyncPositionComp": {
+            "once_only": [
+                "bool",
+                true,
+                "false"
+            ]
+        },
+        "StopWatchComp": {
+            "current_time": [
+                "float",
+                true,
+                "0.0f"
+            ],
+            "end_time": [
+                "float",
+                true,
+                "1.0f",
+                "cfg.T"
+            ],
+            "end_reached": [
+                "bool",
+                true,
+                "false"
+            ]
+        },
+        "PhysicsComp": {
+            "mass": [
+                "float",
+                true,
+                "1.0f"
+            ],
+            "pos": [
+                "sf::Vector2f",
+                true,
+                "sf::Vector2f(0.0f, 0.0f)",
+                "cfg.L"
+            ],
+            "vel": [
+                "sf::Vector2f",
+                true,
+                "sf::Vector2f(0.0f, 0.0f)",
+                "cfg.V"
+            ],
+            "force": [
+                "sf::Vector2f",
+                false,
+                "sf::Vector2f(0.0f, 0.0f)",
+                "cfg.A"
+            ],
+            "collided": [
+                "bool",
+                false,
+                "false"
+            ]
+        },
+        "DragForceComp": {
+            "drag_coefficient": [
+                "float",
+                true,
+                "0.01f",
+                "cfg.A"
+            ],
+            "drag_power": [
+                "float",
+                true,
+                "2.0f"
+            ]
+        },
+        "DurabilityComp": {
+            "durability": [
+                "float",
+                true,
+                "1.0f"
+            ],
+            "durability_loss_per_collision": [
+                "float",
+                true,
+                "0.34f"
+            ],
+            "durability_regen_rate": [
+                "float",
+                true,
+                "0.0f"
+            ],
+            "delete_at_zero": [
+                "float",
+                true,
+                "true"
+            ]
+        },
+        "PairwiseForceComp": {
+            "magnitude": [
+                "float",
+                true,
+                "-1.0f",
+                "cfg.A"
+            ],
+            "softening": [
+                "float",
+                true,
+                "0.0f",
+                "cfg.L"
+            ],
+            "power": [
+                "float",
+                true,
+                "2.0f"
+            ],
+            "min_distance": [
+                "float",
+                true,
+                "0.1f",
+                "cfg.L"
+            ],
+            "distance_scaling": [
+                "float",
+                true,
+                "1.0f",
+                "cfg.L"
+            ]
+        },
+        "CollisionComp": {},
+        "MouseButtonReleasedComp": {},
+        "RenderComp": [
+            {
+                "shape": "TwirlCircleShape",
+                "zorder": [
+                    "int",
+                    true,
+                    "0"
+                ]
+            },
+            "auto radius = j.value(\"radius\", 1.0f) * cfg.L;\nauto outline_thickness = j.value(\"outline_thickness\", 0.0f) * cfg.L;\nauto fill_color = j.value(\"fill_color\", sf::Color::White);\nauto outline_color = j.value(\"outline_color\", sf::Color::Black);\nrendercomp.shape = TwirlCircleShape(radius);\nrendercomp.shape.setOutlineThickness(outline_thickness);\nrendercomp.shape.setFillColor(fill_color);\nrendercomp.shape.setOutlineColor(outline_color);\n"
+        ],
+        "UIComp": {
+            "shape": "sf::RectangleShape",
+            "pos": [
+                "sf::Vector2f",
+                true,
+                "sf::Vector2f(0.0f, 0.0f)",
+                "cfg.L"
+            ],
+            "size": [
+                "sf::Vector2f",
+                true,
+                "sf::Vector2f(5.0f, 1.0f)",
+                "cfg.L"
+            ],
+            "tracked_value": [
+                "float*",
+                false,
+                "nullptr"
+            ]
+        }
+    }
+}

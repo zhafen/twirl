@@ -25,7 +25,8 @@
                 "target_entity_name": "projectile",
                 "source_entity_name": "[PlayerComp|first]"
             },
-            "SyncPositionComp": {}
+            "SyncPositionComp": {},
+            "UnresolvedNameComp": {}
         }
     }
 }

@@ -77,11 +77,11 @@ inline void from_json(const json& j, PhysicsComp& physicscomp) {
 }
 
 struct DragForceComp {
-    float drag_coefficient = 0.01f;
+    float drag_coefficient = 0.01f * cfg.A;
     float drag_power = 2.0f;
 };
 inline void from_json(const json& j, DragForceComp& dragforcecomp) {
-    dragforcecomp.drag_coefficient = j.value("drag_coefficient", 0.01f);
+    dragforcecomp.drag_coefficient = j.value("drag_coefficient", 0.01f) * cfg.A;
     dragforcecomp.drag_power = j.value("drag_power", 2.0f);
 }
 
@@ -99,18 +99,18 @@ inline void from_json(const json& j, DurabilityComp& durabilitycomp) {
 }
 
 struct PairwiseForceComp {
-    float magnitude = -1.0f;
-    float softening = 0.0f;
+    float magnitude = -1.0f * cfg.A;
+    float softening = 0.0f * cfg.L;
     float power = 2.0f;
-    float min_distance = 0.1f;
-    float distance_scaling = 1.0f;
+    float min_distance = 0.1f * cfg.L;
+    float distance_scaling = 1.0f * cfg.L;
 };
 inline void from_json(const json& j, PairwiseForceComp& pairwiseforcecomp) {
-    pairwiseforcecomp.magnitude = j.value("magnitude", -1.0f);
-    pairwiseforcecomp.softening = j.value("softening", 0.0f);
+    pairwiseforcecomp.magnitude = j.value("magnitude", -1.0f) * cfg.A;
+    pairwiseforcecomp.softening = j.value("softening", 0.0f) * cfg.L;
     pairwiseforcecomp.power = j.value("power", 2.0f);
-    pairwiseforcecomp.min_distance = j.value("min_distance", 0.1f);
-    pairwiseforcecomp.distance_scaling = j.value("distance_scaling", 1.0f);
+    pairwiseforcecomp.min_distance = j.value("min_distance", 0.1f) * cfg.L;
+    pairwiseforcecomp.distance_scaling = j.value("distance_scaling", 1.0f) * cfg.L;
 }
 
 struct CollisionComp {};

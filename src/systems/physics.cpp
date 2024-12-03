@@ -41,14 +41,14 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
         auto r_mag = sqrtf(r.x * r.x + r.y * r.y);
 
         // Don't calculate the distance when too close
-        if (r_mag < pairforce_c.min_distance * cfg.L) {
+        if (r_mag < pairforce_c.min_distance) {
             continue;
         }
 
         auto r_hat = r / r_mag;
         auto r_mag_scaled =
-            (r_mag / cfg.L + pairforce_c.softening) / pairforce_c.distance_scaling;
-        auto force = cfg.A * r_hat * pairforce_c.magnitude * target_phys_c.mass *
+            (r_mag + pairforce_c.softening) / pairforce_c.distance_scaling;
+        auto force = r_hat * pairforce_c.magnitude * target_phys_c.mass *
                      source_phys_c.mass * powf(r_mag_scaled, pairforce_c.power);
 
         target_phys_c.force += force;

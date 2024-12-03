@@ -4,8 +4,7 @@
         "EnemyComp": {},
         "UnresolvedNameComp": {},
         "ViewComp": {},
-        "DeleteComp": {},
-        "DebugComp": {}
+        "DeleteComp": {}
     },
     "system_components": {
         "SceneComp": {
@@ -220,6 +219,13 @@
                 "float*",
                 false,
                 "nullptr"
+            ]
+        },
+        "DebugComp": {
+            "verbose": [
+                "bool",
+                true,
+                "true"
             ]
         }
     }

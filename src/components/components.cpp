@@ -22,8 +22,6 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
         registry.emplace<ViewComp>(entity);
     } else if (comp_key == "DeleteComp") {
         registry.emplace<DeleteComp>(entity);
-    } else if (comp_key == "DebugComp") {
-        registry.emplace<DebugComp>(entity);
     } else if (comp_key == "SceneComp") {
         auto scenecomp = comp_json.template get<SceneComp>();
         registry.emplace<SceneComp>(entity, scenecomp);
@@ -61,6 +59,9 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
     } else if (comp_key == "UIComp") {
         auto uicomp = comp_json.template get<UIComp>();
         registry.emplace<UIComp>(entity, uicomp);
+    } else if (comp_key == "DebugComp") {
+        auto debugcomp = comp_json.template get<DebugComp>();
+        registry.emplace<DebugComp>(entity, debugcomp);
     } else {
         throw std::runtime_error("Unknown component type");
     }
@@ -86,8 +87,6 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<ViewComp>(registry, selection_str);
     } else if (comp_key == "DeleteComp") {
         return getEntityFromSelectionStr<DeleteComp>(registry, selection_str);
-    } else if (comp_key == "DebugComp") {
-        return getEntityFromSelectionStr<DebugComp>(registry, selection_str);
     } else if (comp_key == "SceneComp") {
         return getEntityFromSelectionStr<SceneComp>(registry, selection_str);
     } else if (comp_key == "SceneTriggerComp") {
@@ -114,6 +113,8 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<RenderComp>(registry, selection_str);
     } else if (comp_key == "UIComp") {
         return getEntityFromSelectionStr<UIComp>(registry, selection_str);
+    } else if (comp_key == "DebugComp") {
+        return getEntityFromSelectionStr<DebugComp>(registry, selection_str);
     } else {
         throw std::runtime_error("Unknown component type");
     }

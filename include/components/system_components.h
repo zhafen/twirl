@@ -144,6 +144,13 @@ inline void from_json(const json& j, UIComp& uicomp) {
     uicomp.size = j.value("size", sf::Vector2f(5.0f, 1.0f)) * cfg.L;
 }
 
+struct DebugComp {
+    bool verbose = true;
+};
+inline void from_json(const json& j, DebugComp& debugcomp) {
+    debugcomp.verbose = j.value("verbose", true);
+}
+
 }  // namespace twirl
 
 #endif  // SYSTEM_COMPONENTS_H

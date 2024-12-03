@@ -18,8 +18,6 @@ struct ViewComp {};
 
 struct DeleteComp {};
 
-struct DebugComp {};
-
 }  // namespace twirl
 
 #endif  // TAGS_H

@@ -140,13 +140,19 @@ void EntitySystem::syncEntities(entt::registry& registry) {
 void EntitySystem::debugEntities(entt::registry& registry, std::string message) {
     auto rview = registry.view<DebugComp>();
     bool message_printed = false;
-    for (auto entity : rview) {
+    for (auto [entity, debug_c] : rview.each()) {
         if (!message_printed) {
             std::cout << message << std::endl;
             message_printed = true;
         }
         std::cout << "  entity: " << static_cast<int>(entity) << std::endl;
         auto entity_name_ptr = registry.try_get<EntityName>(entity);
+
+        // Skip the rest if not verbose
+        if (!debug_c.verbose) {
+            continue;
+        }
+
         if (entity_name_ptr != nullptr) {
             std::cout << "    Entity Name: " << *entity_name_ptr << std::endl;
         }
@@ -162,6 +168,7 @@ void EntitySystem::debugEntities(entt::registry& registry, std::string message) 
             std::cout << "    RenderComp:" << std::endl;
             auto pos = render_c.shape.getPosition();
             std::cout << "      Position:" << pos.x << ", " << pos.y << std::endl;
+            std::cout << "      Radius:" << render_c.shape.getRadius() << std::endl;
         }
     }
 }

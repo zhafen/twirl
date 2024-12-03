@@ -2,6 +2,7 @@
     "projectile": {
         "components": {
             "PhysicsComp": {},
+            "DragForceComp": {},
             "DurabilityComp": {
                 "durability_loss_per_collision": 1.01
             },
@@ -38,7 +39,6 @@
             "PairwiseForceComp": {
                 "magnitude": -10.0
             },
-            "DebugComp": {},
             "UnresolvedNameComp": {}
         }
     },

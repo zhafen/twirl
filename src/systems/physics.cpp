@@ -52,6 +52,14 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
                      source_phys_c.mass * powf(r_mag_scaled, pairforce_c.power);
 
         target_phys_c.force += force;
+
+        // DEBUG
+        if (registry.try_get<DebugComp>(rel_id) != nullptr) {
+            std::cout << "DEBUG: Pairwise force between entities "
+                      << static_cast<int>(pair_c.target_entity) << " and "
+                      << static_cast<int>(pair_c.source_entity) << " is "
+                      << force.x << ", " << force.y << std::endl;
+        }
     }
 }
 

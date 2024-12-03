@@ -2,7 +2,6 @@
     "projectile": {
         "components": {
             "PhysicsComp": {},
-            "DragForceComp": {},
             "DurabilityComp": {
                 "durability_loss_per_collision": 1.01
             },
@@ -33,8 +32,8 @@
     "projectile-enemy force": {
         "components": {
             "PairComp": {
-                "source_entity_name": "projectile",
-                "target_entity_name": "[EnemyComp|first]"
+                "target_entity_name": "projectile",
+                "source_entity_name": "[EnemyComp|first]"
             },
             "PairwiseForceComp": {
                 "magnitude": -10.0

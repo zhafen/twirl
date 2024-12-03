@@ -1,6 +1,7 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <entt/entity/entity.hpp>
 #include <entt/entity/fwd.hpp>
@@ -49,6 +50,8 @@ template <typename Type>
 
 void emplaceComponent(entt::registry& registry, entt::entity entity,
                       const std::string& comp_key, const json& comp_json);
+
+void debugEntities(entt::registry& registry, std::string message);
 
 }  // namespace comp
 

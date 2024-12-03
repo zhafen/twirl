@@ -15,8 +15,7 @@
                     255
                 ],
                 "zorder": -1
-            },
-            "DebugComp": {}
+            }
         }
     },
     "projectile-player sync": {
@@ -38,8 +37,9 @@
                 "target_entity_name": "[EnemyComp|first]"
             },
             "PairwiseForceComp": {
-                "magnitude": -0.1
+                "magnitude": -10.0
             },
+            "DebugComp": {},
             "UnresolvedNameComp": {}
         }
     },

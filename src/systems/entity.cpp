@@ -13,7 +13,6 @@
 namespace twirl {
 
 EntityMap& EntitySystem::getEntityMap(entt::registry& registry) {
-
     // Clear the map to start
     entity_map.clear();
 
@@ -25,13 +24,14 @@ EntityMap& EntitySystem::getEntityMap(entt::registry& registry) {
     return entity_map;
 }
 // TODO: Reimplement or fully deprecate.
-// entt::entity EntitySystem::resolveEntityName(entt::registry& registry, EntityName name,
+// entt::entity EntitySystem::resolveEntityName(entt::registry& registry, EntityName
+// name,
 //                                entt::entity entity) {
 //     // If there's already a valid entity, return it
 //     if (registry.valid(entity)) {
 //         return entity;
 //     }
-// 
+//
 //     // If the the name is not empty, try to resolve it
 //     if (!name.empty()) {
 //         // Try to get the entity name from the entity map
@@ -41,20 +41,21 @@ EntityMap& EntitySystem::getEntityMap(entt::registry& registry) {
 //     }
 //     return entt::null;
 // }
-// 
+//
 // void EntitySystem::resolveEntityNames(entt::registry& registry) {
 //     resolveSceneTriggerNames(registry);
 //     resolvePairNames(registry);
 // }
-// 
+//
 // void EntitySystem::resolveSceneTriggerNames(entt::registry& registry) {
 //     auto rview = registry.view<SceneTriggerComp>();
 //     for (auto [entity, scenetrigger_c] : rview.each()) {
-//         scenetrigger_c.scene_entity = resolveEntityName(registry, scenetrigger_c.scene_name,
+//         scenetrigger_c.scene_entity = resolveEntityName(registry,
+//         scenetrigger_c.scene_name,
 //                                                         scenetrigger_c.scene_entity);
 //     }
 // }
-// 
+//
 // /**
 //  * OPTIMIZE: This function may not be able to loop over every paircomp if we use
 //  * listeners, and should probably not call getEntityMap every time.
@@ -136,42 +137,6 @@ void EntitySystem::syncEntities(entt::registry& registry) {
         // Destroy the relationship if it's a one-time sync
         if (syncpos_c.once_only) {
             registry.remove<SyncPositionComp>(rel_entity);
-        }
-    }
-}
-
-void EntitySystem::debugEntities(entt::registry& registry, std::string message) {
-    auto rview = registry.view<DebugComp>();
-    bool message_printed = false;
-    for (auto [entity, debug_c] : rview.each()) {
-        if (!message_printed) {
-            std::cout << message << std::endl;
-            message_printed = true;
-        }
-        std::cout << "  entity: " << static_cast<int>(entity) << std::endl;
-        auto entity_name_ptr = registry.try_get<EntityName>(entity);
-
-        // Skip the rest if not verbose
-        if (!debug_c.verbose) {
-            continue;
-        }
-
-        if (entity_name_ptr != nullptr) {
-            std::cout << "    Entity Name: " << *entity_name_ptr << std::endl;
-        }
-        auto phys_c_ptr = registry.try_get<PhysicsComp>(entity);
-        if (phys_c_ptr != nullptr) {
-            auto phys_c = *phys_c_ptr;
-            std::cout << "    PhysicsComp:" << std::endl;
-            std::cout << "      Position:" << phys_c.pos.x << ", " << phys_c.pos.y << std::endl;
-        }
-        auto render_c_ptr = registry.try_get<RenderComp>(entity);
-        if (render_c_ptr != nullptr) {
-            auto render_c = *render_c_ptr;
-            std::cout << "    RenderComp:" << std::endl;
-            auto pos = render_c.shape.getPosition();
-            std::cout << "      Position:" << pos.x << ", " << pos.y << std::endl;
-            std::cout << "      Radius:" << render_c.shape.getRadius() << std::endl;
         }
     }
 }

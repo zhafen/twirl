@@ -120,5 +120,42 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
     }
 }
 
+void debugEntities(entt::registry& registry, std::string message) {
+    auto rview = registry.view<DebugComp>();
+    bool message_printed = false;
+    for (auto [entity, debug_c] : rview.each()) {
+        if (!message_printed) {
+            std::cout << message << std::endl;
+            message_printed = true;
+        }
+        std::cout << "  entity: " << static_cast<int>(entity) << std::endl;
+        auto entity_name_ptr = registry.try_get<EntityName>(entity);
+
+        // Skip the rest if not verbose
+        if (!debug_c.verbose) {
+            continue;
+        }
+
+        if (entity_name_ptr != nullptr) {
+            std::cout << "    Entity Name: " << *entity_name_ptr << std::endl;
+        }
+        auto phys_c_ptr = registry.try_get<PhysicsComp>(entity);
+        if (phys_c_ptr != nullptr) {
+            auto phys_c = *phys_c_ptr;
+            std::cout << "    PhysicsComp:" << std::endl;
+            std::cout << "      Position:" << phys_c.pos.x << ", " << phys_c.pos.y << std::endl;
+        }
+        auto render_c_ptr = registry.try_get<RenderComp>(entity);
+        if (render_c_ptr != nullptr) {
+            auto render_c = *render_c_ptr;
+            std::cout << "    RenderComp:" << std::endl;
+            auto pos = render_c.shape.getPosition();
+            std::cout << "      Position:" << pos.x << ", " << pos.y << std::endl;
+            std::cout << "      Radius:" << render_c.shape.getRadius() << std::endl;
+        }
+    }
+}
+
+
 }  // namespace comp
 }  // namespace twirl

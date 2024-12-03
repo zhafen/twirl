@@ -138,10 +138,12 @@ struct UIComp {
     sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f) * cfg.L;
     sf::Vector2f size = sf::Vector2f(5.0f, 1.0f) * cfg.L;
     float* tracked_value = nullptr;
+    EntityName tracked_entity_name = "";
 };
 inline void from_json(const json& j, UIComp& uicomp) {
     uicomp.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f)) * cfg.L;
     uicomp.size = j.value("size", sf::Vector2f(5.0f, 1.0f)) * cfg.L;
+    uicomp.tracked_entity_name = j.value("tracked_entity_name", "");
 }
 
 struct DebugComp {

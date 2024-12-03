@@ -219,6 +219,11 @@
                 "float*",
                 false,
                 "nullptr"
+            ],
+            "tracked_entity_name": [
+                "EntityName",
+                true,
+                "\"\""
             ]
         },
         "DebugComp": {

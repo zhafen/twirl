@@ -1,0 +1,10 @@
+{
+    "durability_bar": {
+        "components": {
+            "UIComp": {
+                "tracked_entity_name": "[PlayerComp|first]"
+            },
+            "UnresolvedNameComp": {}
+        }
+    }
+}

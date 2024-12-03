@@ -7,6 +7,14 @@
             }
         }
     },
+    "user_interface": {
+        "components": {
+            "SceneComp": {
+                "scene_fp": "../../scenes/user_interface.json",
+                "emplace_after_loading": true
+            }
+        }
+    },
     "projectiles": {
         "components": {
             "SceneComp": {

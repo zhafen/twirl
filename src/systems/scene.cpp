@@ -77,6 +77,12 @@ void SceneSystem::emplaceScene(entt::registry& registry,
             scenetrigger_c_ptr->scene_entity = resolveEntityName(
                 registry, scene_entity_map, scenetrigger_c_ptr->scene_name);
         }
+        auto* ui_c_ptr = registry.try_get<UIComp>(entity);
+        if (ui_c_ptr != nullptr) {
+            entt::entity tracked_entity = resolveEntityName(
+                registry, scene_entity_map, ui_c_ptr->tracked_entity_name);
+            ui_c_ptr->tracked_value = &registry.get<DurabilityComp>(tracked_entity).durability;
+        }
         registry.remove<UnresolvedNameComp>(entity);
     }
 

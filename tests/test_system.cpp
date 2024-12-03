@@ -181,16 +181,16 @@ TEST(SystemEntityTest, StopWatchSpawn) {
 
     // Ensure that the spawned entity does not exist yet
     EntityMap entity_map = entity_system.getEntityMap(registry);
-    EXPECT_EQ(entity_map.find("test_scene.0.spawned_entity"), entity_map.end());
+    EXPECT_EQ(entity_map.find("spawned_entity"), entity_map.end());
 
     // Trigger
     entity_system.spawnEntities(registry);
 
     // Check that the entities were created properly
     entity_map = entity_system.getEntityMap(registry);
-    entt::entity spawned_entity = entity_map.at("test_scene.0.spawned_entity");
+    entt::entity spawned_entity = entity_map.at("spawned_entity");
     EXPECT_FALSE(spawned_entity == entt::null);
-    EXPECT_EQ(registry.get<EntityName>(spawned_entity), "test_scene.0.spawned_entity");
+    EXPECT_EQ(registry.get<EntityName>(spawned_entity), "spawned_entity");
     EXPECT_TRUE(registry.valid(spawned_entity));
     auto& pc = registry.get<PhysicsComp>(spawned_entity);
     EXPECT_FLOAT_EQ(pc.mass, 1.0f);

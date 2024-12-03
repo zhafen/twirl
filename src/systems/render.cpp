@@ -24,10 +24,11 @@ void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     // draw frame
     for (auto [entity, rend_c, phys_c] : rview.each()) {
         if (std::isnan(phys_c.pos.x) || std::isnan(phys_c.pos.y)) {
-            std::cerr << "Warning: Entity " << static_cast<int>(entity) << " has NaN position.\n";
+            std::cerr << "Warning: Entity " << static_cast<int>(entity)
+                      << " has NaN position.\n";
             continue;
         }
-          rend_c.shape.setPosition(phys_c.pos);
+        rend_c.shape.setPosition(phys_c.pos);
         window.draw(rend_c.shape);
     }
 }

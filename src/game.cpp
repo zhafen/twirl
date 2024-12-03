@@ -105,6 +105,9 @@ void Game::update() {
     // Resolve collisions
     physics_system.resolveCollisions(registry);
     physics_system.updateDurability(registry);
+
+    // Debug when such components exist
+    entity_system.debugEntities(registry, "DEBUG: End of update");
 }
 
 void Game::render() {
@@ -112,6 +115,9 @@ void Game::render() {
     render_system.render(registry, window);
     render_system.renderUI(registry, window);
     render_system.setView(registry, window, view);
+
+    // Debug when such components exist
+    entity_system.debugEntities(registry, "DEBUG: End of render");
 
     window.display();
 }

@@ -29,6 +29,7 @@ class EntitySystem {
     void deleteEntities(entt::registry& registry);
     void syncEntities(entt::registry& registry);
     void orderEntities(entt::registry& registry);
+    void debugEntities(entt::registry& registry, std::string message);
 
    private:
     EntityMap entity_map;

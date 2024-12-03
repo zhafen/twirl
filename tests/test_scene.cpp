@@ -130,7 +130,7 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_FLOAT_EQ(pc.force.y, 0.0f);
 
             auto& dfc = registry.get<DragForceComp>(entity);
-            EXPECT_FLOAT_EQ(dfc.drag_coefficient, 0.05f);
+            EXPECT_FLOAT_EQ(dfc.drag_coefficient, 0.05f * cfg.A);
             EXPECT_FLOAT_EQ(dfc.drag_power, 2.5f);
 
             auto& dc = registry.get<DurabilityComp>(entity);
@@ -182,11 +182,11 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_EQ(prc.source_entity, entity_map["beacon"]);
 
             auto& pfc = registry.get<PairwiseForceComp>(entity);
-            EXPECT_FLOAT_EQ(pfc.magnitude, -1.0f);
+            EXPECT_FLOAT_EQ(pfc.magnitude, -1.0f * cfg.A);
             EXPECT_FLOAT_EQ(pfc.softening, 0.0f);
             EXPECT_FLOAT_EQ(pfc.power, 2.0f);
-            EXPECT_FLOAT_EQ(pfc.min_distance, 0.0f);
-            EXPECT_FLOAT_EQ(pfc.distance_scaling, 1.0f);
+            EXPECT_FLOAT_EQ(pfc.min_distance, 0.1f * cfg.L);
+            EXPECT_FLOAT_EQ(pfc.distance_scaling, 1.0f * cfg.L);
 
         } else if (std::regex_match(name, std::regex("bkgrd.*"))) {
             // Background circle

@@ -304,9 +304,9 @@ class BoilerplateBuilder:
         return (
             "entt::entity getEntityFromStr(entt::registry& registry, const std::string& input_str) {\n"
             "    // Parse the input string\n"
-            "    size_t colon = input_str.find(':');\n"
+            "    size_t colon = input_str.find('|');\n"
             "    if (colon == std::string::npos) {\n"
-            '        throw std::runtime_error("Colon not found in component string");\n'
+            '        throw std::runtime_error("Pipe not found in component string");\n'
             "    }\n"
             "    std::string comp_key = input_str.substr(0, colon);\n"
             "    std::string selection_str = input_str.substr(colon + 1);\n"

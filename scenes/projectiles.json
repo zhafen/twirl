@@ -25,7 +25,31 @@
                 "target_entity_name": "projectile",
                 "source_entity_name": "[PlayerComp|first]"
             },
-            "SyncPositionComp": {},
+            "SyncPositionComp": {
+                "only_once": true
+            },
+            "UnresolvedNameComp": {}
+        }
+    },
+    "projectile-enemy force": {
+        "components": {
+            "PairComp": {
+                "source_entity_name": "projectile",
+                "target_entity_name": "[EnemyComp|first]"
+            },
+            "PairwiseForceComp": {
+                "magnitude": -0.1
+            },
+            "UnresolvedNameComp": {}
+        }
+    },
+    "projectile-enemy collisions": {
+        "components": {
+            "PairComp": {
+                "source_entity_name": "projectile",
+                "target_entity_name": "[EnemyComp|first]"
+            },
+            "CollisionComp": {},
             "UnresolvedNameComp": {}
         }
     }

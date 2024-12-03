@@ -145,24 +145,25 @@ void EntitySystem::debugEntities(entt::registry& registry, std::string message) 
             std::cout << message << std::endl;
             message_printed = true;
         }
-        std::cout << "Debugging entity: " << static_cast<int>(entity) << std::endl;
+        std::cout << "  entity: " << static_cast<int>(entity) << std::endl;
         auto entity_name_ptr = registry.try_get<EntityName>(entity);
         if (entity_name_ptr != nullptr) {
-            std::cout << "  Entity Name: " << *entity_name_ptr << std::endl;
+            std::cout << "    Entity Name: " << *entity_name_ptr << std::endl;
         }
         auto phys_c_ptr = registry.try_get<PhysicsComp>(entity);
         if (phys_c_ptr != nullptr) {
             auto phys_c = *phys_c_ptr;
-            std::cout << "  PhysicsComp:" << std::endl;
-            std::cout << "     Position:" << phys_c.pos.x << ", " << phys_c.pos.y << std::endl;
+            std::cout << "    PhysicsComp:" << std::endl;
+            std::cout << "      Position:" << phys_c.pos.x << ", " << phys_c.pos.y << std::endl;
         }
         auto render_c_ptr = registry.try_get<RenderComp>(entity);
         if (render_c_ptr != nullptr) {
             auto render_c = *render_c_ptr;
-            std::cout << "  RenderComp:" << std::endl;
+            std::cout << "    RenderComp:" << std::endl;
             auto pos = render_c.shape.getPosition();
-            std::cout << "     Position:" << pos.x << ", " << pos.y << std::endl;
+            std::cout << "      Position:" << pos.x << ", " << pos.y << std::endl;
         }
     }
+}
 
 }  // namespace twirl

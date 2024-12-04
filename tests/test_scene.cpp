@@ -51,13 +51,20 @@ TEST(SceneTest, ResolveEntityName) {
     SceneSystem scene_system;
     EntitySystem entity_system;
 
-    // Check that we get a null entity when the name is not in the map
+    // Check that we throw an error if the entity name is not found
     EntityMap entity_map;
-    entt::entity entity_not_found =
-        scene_system.resolveEntityName(registry, entity_map, "entity1");
-    EXPECT_TRUE(entity_not_found == entt::null);
+    EXPECT_THROW(scene_system.resolveEntityName(registry, entity_map, "entity1"),
+                 std::runtime_error);
 
+    // Add entities to the registry and try again
+    entt::entity entity1 = registry.create();
+    entt::entity entity2 = registry.create();
+    registry.emplace<EntityName>(entity1, "entity1");
+    registry.emplace<EntityName>(entity2, "entity2");
     entity_map = entity_system.getEntityMap(registry);
+    entt::entity resolved_entity =
+        scene_system.resolveEntityName(registry, entity_map, "entity2");
+    EXPECT_EQ(resolved_entity, entity2);
 }
 
 // This test checks that the initial values for entities loaded from json

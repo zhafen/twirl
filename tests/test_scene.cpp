@@ -67,6 +67,31 @@ TEST(SceneTest, ResolveEntityName) {
     EXPECT_EQ(resolved_entity, entity2);
 }
 
+TEST(SceneTest, ResolveEntityNameFromSelectionStr) {
+    // Set up registry and scene system
+    entt::registry registry;
+    SceneSystem scene_system;
+    EntitySystem entity_system;
+
+    // Add entities to the registry
+    entt::entity entity1 = registry.create();
+    entt::entity entity2 = registry.create();
+    registry.emplace<EntityName>(entity1, "entity1");
+    registry.emplace<DebugComp>(entity1);
+    registry.emplace<EntityName>(entity2, "entity2");
+
+    EntityMap entity_map = entity_system.getEntityMap(registry);
+
+    // Check for each of the methods of resolving entity names
+    entt::entity resolved_entity =
+        scene_system.resolveEntityName(registry, entity_map, "[DebugComp|first]");
+    EXPECT_EQ(resolved_entity, entity1);
+
+    resolved_entity =
+        scene_system.resolveEntityName(registry, entity_map, "[EntityName|name:entity2]");
+    EXPECT_EQ(resolved_entity, entity2);
+}
+
 // This test checks that the initial values for entities loaded from json
 // that require their names to be resolved are null
 TEST(SceneTest, EmplaceEntityUnresovledNames) {

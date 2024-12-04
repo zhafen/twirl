@@ -389,7 +389,7 @@ class BoilerplateBuilder:
         body_str = "\n".join(debug_strs)
 
         # Indent the body string
-        body_str = "        " + body_str.replace("\n", "\n        ")
+        body_str = "        " + body_str.replace("\n", "\n        ")[:-4]
 
         return (
             "void debugEntities(entt::registry& registry, std::string message) {\n"
@@ -404,13 +404,14 @@ class BoilerplateBuilder:
             "        auto entity_name_ptr = registry.try_get<EntityName>(entity);\n"
             "        if (entity_name_ptr != nullptr) {\n"
             '            std::cout << "  Entity Name: " << *entity_name_ptr << std::endl;\n'
+            "        }\n"
             "\n"
             "        // Skip the rest if not verbose\n"
             "        if (!debug_c.verbose) {\n"
             "            continue;\n"
             "        }\n"
-            "\n"
-            "        }\n" + body_str + "    }\n"
+            "\n" +
+            body_str + "}\n"
             "}"
         )
 
@@ -422,11 +423,11 @@ class BoilerplateBuilder:
         instance_str = comp_name.lower()
         body_str = ""
         for member_name in comp_members.keys():
-            body_str += f'    std::cout << "      {member_name}: " << {instance_str}.{member_name} << std::endl;'
+            body_str += f'    std::cout << "      {member_name}: " << {instance_str}.{member_name} << std::endl;\n'
 
         return (
             f"auto {instance_str}_ptr = registry.try_get<{comp_name}>(entity);\n"
             f"if ({instance_str}_ptr != nullptr) {{\n"
             f"    auto {instance_str} = *{instance_str}_ptr;\n"
-            f'std::cout << "    {comp_name}:" << std::endl;\n' + body_str + "}\n"
+            f'    std::cout << "    {comp_name}:" << std::endl;\n' + body_str + "}\n"
         )

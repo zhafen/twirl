@@ -1,9 +1,54 @@
+import copy
+import json
 import os
 from typing import Tuple
 
 
 class BoilerplateBuilder:
     """Create boilerplate code for different the twirl C++ source code."""
+
+    def __init__(
+        self,
+        comps_using_names=["PairComp", "SceneTriggerComp", "UIComp"],
+    ):
+        self.comps_using_names = comps_using_names
+
+    def save_scene_to_json(
+        self,
+        scene_key: str,
+        scene_dir_from_nb_dir: str,
+        scene_data: dict,
+        valid_components: dict,
+    ):
+        for name, entity_data in scene_data.items():
+            # Validate components
+            for comp_key, comp_json in copy.deepcopy(entity_data["components"]).items():
+
+                # Validate all input options exist
+                for option_key in comp_json.keys():
+                    try:
+                        assert (
+                            option_key in valid_components[comp_key].keys()
+                        ), f"Option '{option_key}' not found in {comp_key}"
+                    # List format occurs when manual code is used.
+                    except AttributeError:
+                        # Check both the typical arguments and the manual code
+                        assert (option_key in valid_components[comp_key][0].keys()) or (
+                            f'"{option_key}"' in valid_components[comp_key][1]
+                        ), f"Option '{option_key}' not found in {comp_key}"
+
+                # Add the unresolved name component if the component has unresolved names
+                unresolved_comp_included = False
+                if (comp_key in self.comps_using_names) and ~unresolved_comp_included:
+                    print(f"Adding UnresolvedNameComp to '{name}'")
+                    scene_data[name]["components"]["UnresolvedNameComp"] = {}
+                    # Only add the UnresolvedNameComp once
+                    unresolved_comp_included = True
+
+        with open(
+            f"{scene_dir_from_nb_dir}/{scene_key}.json", "w", encoding="utf-8"
+        ) as json_file:
+            json.dump(scene_data, json_file, indent=4)
 
     def generate_components_files(
         self, root_dir: str, components_by_file: dict, includes_by_file: dict = {}
@@ -23,7 +68,7 @@ class BoilerplateBuilder:
         self.generate_components_source_file(
             os.path.join(root_dir, "src/components/components.cpp"),
             all_components,
-            includes = [],
+            includes=[],
         )
 
     def generate_components_header_file(
@@ -112,10 +157,7 @@ class BoilerplateBuilder:
         file_str += self.get_getentityfromstr_str(components) + "\n\n"
 
         # Wrap up with the namespaces
-        file_str += (
-            "}  // namespace comp\n"
-            "}  // namespace twirl"
-        )
+        file_str += "}  // namespace comp\n" "}  // namespace twirl"
 
         with open(save_fp, "w", encoding="utf-8") as f:
             f.write(file_str)

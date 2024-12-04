@@ -155,6 +155,7 @@ class BoilerplateBuilder:
         # Add generations for individual functions
         file_str += self.get_emplacecomponent_str(components) + "\n\n"
         file_str += self.get_getentityfromstr_str(components) + "\n\n"
+        file_str += self.get_debugentities_str(components) + "\n\n"
 
         # Wrap up with the namespaces
         file_str += "}  // namespace comp\n" "}  // namespace twirl"
@@ -377,4 +378,52 @@ class BoilerplateBuilder:
             f'if (comp_key == "{name}") {{\n'
             f"    return getEntityFromSelectionStr<{name}>(registry, selection_str);\n"
             "}"
+        )
+
+    def get_debugentities_str(self, components: dict) -> str:
+
+        debug_strs = [
+            self.get_debugentity_str_for_comp(comp_name, comp_members)
+            for comp_name, comp_members in components.items()
+        ]
+        body_str = "\n".join(debug_strs)
+
+        # Indent the body string
+        body_str = "        " + body_str.replace("\n", "\n        ")
+
+        return (
+            "void debugEntities(entt::registry& registry, std::string message) {\n"
+            "    auto rview = registry.view<DebugComp>();\n"
+            "    bool message_printed = false;\n"
+            "    for (auto [entity, debug_c] : rview.each()) {\n"
+            "        if (!message_printed) {\n"
+            "            std::cout << message << std::endl;\n"
+            "            message_printed = true;\n"
+            "        }\n"
+            '        std::cout << "  entity: " << static_cast<int>(entity) << std::endl;\n'
+            "        auto entity_name_ptr = registry.try_get<EntityName>(entity);\n"
+            "        if (entity_name_ptr != nullptr) {\n"
+            '            std::cout << "  Entity Name: " << *entity_name_ptr << std::endl;\n'
+            "\n"
+            "        // Skip the rest if not verbose\n"
+            "        if (!debug_c.verbose) {\n"
+            "            continue;\n"
+            "        }\n"
+            "\n"
+            "        }\n" + body_str + "    }\n"
+            "}"
+        )
+
+    def get_debugentity_str_for_comp(self, comp_name: str, comp_members: dict) -> str:
+
+        instance_str = comp_name.lower()
+        body_str = ""
+        for member_name in comp_members.keys():
+            body_str += f'    std::cout << "      {member_name}: " << {instance_str}.{member_name} << std::endl;'
+
+        return (
+            f"auto {instance_str}_ptr = registry.try_get<{comp_name}>(entity);\n"
+            f"if ({instance_str}_ptr != nullptr) {{\n"
+            f"    auto {instance_str} = *{instance_str}_ptr;\n"
+            'std::cout << "    RenderComp:" << std::endl;\n' + body_str + "}\n"
         )

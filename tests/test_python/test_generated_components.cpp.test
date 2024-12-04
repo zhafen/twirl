@@ -58,37 +58,32 @@ void debugEntities(entt::registry& registry, std::string message) {
         auto entity_name_ptr = registry.try_get<EntityName>(entity);
         if (entity_name_ptr != nullptr) {
             std::cout << "  Entity Name: " << *entity_name_ptr << std::endl;
-        }
 
         // Skip the rest if not verbose
         if (!debug_c.verbose) {
             continue;
         }
 
+        }
         auto enemycomp_ptr = registry.try_get<EnemyComp>(entity);
         if (enemycomp_ptr != nullptr) {
             auto enemycomp = *enemycomp_ptr;
-            std::cout << "    EnemyComp:" << std::endl;
+        std::cout << "    RenderComp:" << std::endl;
         }
-
+        
         auto physicscomp_ptr = registry.try_get<PhysicsComp>(entity);
         if (physicscomp_ptr != nullptr) {
             auto physicscomp = *physicscomp_ptr;
-            std::cout << "    PhysicsComp:" << std::endl;
-            std::cout << "      Position:" << physicscomp.pos.x << ", " << physicscomp.pos.y << std::endl;
-        }
-
+        std::cout << "    RenderComp:" << std::endl;
+            std::cout << "      mass: " << physicscomp.mass << std::endl;    std::cout << "      pos: " << physicscomp.pos << std::endl;    std::cout << "      vel: " << physicscomp.vel << std::endl;    std::cout << "      force: " << physicscomp.force << std::endl;    std::cout << "      collided: " << physicscomp.collided << std::endl;}
+        
         auto rendercomp_ptr = registry.try_get<RenderComp>(entity);
         if (rendercomp_ptr != nullptr) {
             auto rendercomp = *rendercomp_ptr;
-            std::cout << "    RenderComp:" << std::endl;
-            auto pos = rendercomp.shape.getPosition();
-            std::cout << "      Position:" << pos.x << ", " << pos.y << std::endl;
-            std::cout << "      Radius:" << rendercomp.shape.getRadius() << std::endl;
-        }
-    }
+        std::cout << "    RenderComp:" << std::endl;
+            std::cout << "      shape: " << rendercomp.shape << std::endl;    std::cout << "      zorder: " << rendercomp.zorder << std::endl;}
+            }
 }
-
 
 }  // namespace comp
 }  // namespace twirl

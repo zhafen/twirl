@@ -11,11 +11,12 @@ class TestBoilerplateBuilder(unittest.TestCase):
         self.output_header_fp = "tests/test_python/test_generated_components.h.test"
         self.output_source_fp = "tests/test_python/test_generated_components.cpp.test"
 
-    def tearDown(self):
-        if os.path.exists(self.output_header_fp):
-            os.remove(self.output_header_fp)
-        if os.path.exists(self.output_source_fp):
-            os.remove(self.output_source_fp)
+    # DEBUG
+    # def tearDown(self):
+    #     if os.path.exists(self.output_header_fp):
+    #         os.remove(self.output_header_fp)
+    #     if os.path.exists(self.output_source_fp):
+    #         os.remove(self.output_source_fp)
 
     def test_get_struct_str_empty_members(self):
         name = "MyStruct"
@@ -190,7 +191,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
         )
 
         with open(
-            "tests/test_python/test_expected_components.h", "r", encoding="utf-8"
+            "tests/test_python/test_expected_components.h.test", "r", encoding="utf-8"
         ) as file:
             expected_output = file.read()
         with open(self.output_header_fp, "r", encoding="utf-8") as file:
@@ -209,6 +210,22 @@ class TestBoilerplateBuilder(unittest.TestCase):
                 "force": ["sf::Vector2f", False, "sf::Vector2f(0.0f, 0.0f)", "cfg.A"],
                 "collided": ["bool", False, "false"],
             },
+            "RenderComp": [
+                {
+                    "shape": "TwirlCircleShape",
+                    "zorder": ["int", True, "0"],
+                },
+                (
+                    'auto radius = j.value("radius", 1.0f) * cfg.L;\n'
+                    'auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
+                    'auto fill_color = j.value("fill_color", sf::Color::White);\n'
+                    'auto outline_color = j.value("outline_color", sf::Color::Black);\n'
+                    "rendercomp.shape = TwirlCircleShape(radius);\n"
+                    "rendercomp.shape.setOutlineThickness(outline_thickness);\n"
+                    "rendercomp.shape.setFillColor(fill_color);\n"
+                    "rendercomp.shape.setOutlineColor(outline_color);\n"
+                ),
+            ],
         }
 
         self.builder.generate_components_source_file(
@@ -217,7 +234,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
         )
 
         with open(
-            "tests/test_python/test_expected_components.cpp", "r", encoding="utf-8"
+            "tests/test_python/test_expected_components.cpp.test", "r", encoding="utf-8"
         ) as file:
             expected_output = file.read()
         with open(self.output_source_fp, "r", encoding="utf-8") as file:

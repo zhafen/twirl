@@ -416,6 +416,9 @@ class BoilerplateBuilder:
 
     def get_debugentity_str_for_comp(self, comp_name: str, comp_members: dict) -> str:
 
+        if not isinstance(comp_members, dict):
+            comp_members = comp_members[0]
+
         instance_str = comp_name.lower()
         body_str = ""
         for member_name in comp_members.keys():
@@ -425,5 +428,5 @@ class BoilerplateBuilder:
             f"auto {instance_str}_ptr = registry.try_get<{comp_name}>(entity);\n"
             f"if ({instance_str}_ptr != nullptr) {{\n"
             f"    auto {instance_str} = *{instance_str}_ptr;\n"
-            'std::cout << "    RenderComp:" << std::endl;\n' + body_str + "}\n"
+            f'std::cout << "    {comp_name}:" << std::endl;\n' + body_str + "}\n"
         )

@@ -2,6 +2,7 @@
 
 #include <entt/entity/fwd.hpp>
 #include <entt/entity/helper.hpp>
+#include <entt/entity/registry.hpp>
 #include <nlohmann/json.hpp>
 #include <regex>
 
@@ -44,6 +45,21 @@ TEST(SceneTest, TriggerScene) {
     EXPECT_FALSE(rview.empty());
 }
 
+TEST(SceneTest, ResolveEntityName) {
+    // Set up registry and scene system
+    entt::registry registry;
+    SceneSystem scene_system;
+    EntitySystem entity_system;
+
+    // Check that we get a null entity when the name is not in the map
+    EntityMap entity_map;
+    entt::entity entity_not_found =
+        scene_system.resolveEntityName(registry, entity_map, "entity1");
+    EXPECT_TRUE(entity_not_found == entt::null);
+
+    entity_map = entity_system.getEntityMap(registry);
+}
+
 // This test checks that the initial values for entities loaded from json
 // that require their names to be resolved are null
 TEST(SceneTest, EmplaceEntityUnresovledNames) {
@@ -68,7 +84,7 @@ TEST(SceneTest, EmplaceEntityUnresovledNames) {
         "components": {
             "PairComp": {
                 "target_entity_name": "entity1",
-                "source_entity_name": "[EnemyComp:0]"
+                "source_entity_name": "[EnemyComp|first]"
             }
         }
     }
@@ -89,7 +105,7 @@ TEST(SceneTest, EmplaceEntityUnresovledNames) {
     entt::entity rel_12 = entity_map.at("rel_12");
     auto pair_c = registry.get<PairComp>(rel_12);
     EXPECT_TRUE(pair_c.target_entity_name == "entity1");
-    EXPECT_TRUE(pair_c.source_entity_name == "[EnemyComp:0]");
+    EXPECT_TRUE(pair_c.source_entity_name == "[EnemyComp|first]");
     EXPECT_TRUE(pair_c.target_entity == entt::null);
     EXPECT_TRUE(pair_c.source_entity == entt::null);
 }

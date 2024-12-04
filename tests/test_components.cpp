@@ -156,5 +156,4 @@ TEST(ComponentTest, EntityFromCompStr) {
     // Check that the entity can be retrieved from the component string
     entt::entity entity_out2 = comp::getEntityFromStr(registry, "PhysicsComp|first");
     EXPECT_EQ(entity, entity_out2);
-
 }

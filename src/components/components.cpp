@@ -130,32 +130,99 @@ void debugEntities(entt::registry& registry, std::string message) {
         }
         std::cout << "  entity: " << static_cast<int>(entity) << std::endl;
         auto entity_name_ptr = registry.try_get<EntityName>(entity);
+        if (entity_name_ptr != nullptr) {
+            std::cout << "  Entity Name: " << *entity_name_ptr << std::endl;
+        }
 
         // Skip the rest if not verbose
         if (!debug_c.verbose) {
             continue;
         }
 
-        if (entity_name_ptr != nullptr) {
-            std::cout << "    Entity Name: " << *entity_name_ptr << std::endl;
+        
+        
+        
+        
+        
+        auto scenecomp_ptr = registry.try_get<SceneComp>(entity);
+        if (scenecomp_ptr != nullptr) {
+            auto scenecomp = *scenecomp_ptr;
+            std::cout << "    SceneComp:" << std::endl;
+            std::cout << "      scene_fp: " << scenecomp.scene_fp << std::endl;
         }
-        auto phys_c_ptr = registry.try_get<PhysicsComp>(entity);
-        if (phys_c_ptr != nullptr) {
-            auto phys_c = *phys_c_ptr;
+        
+        auto scenetriggercomp_ptr = registry.try_get<SceneTriggerComp>(entity);
+        if (scenetriggercomp_ptr != nullptr) {
+            auto scenetriggercomp = *scenetriggercomp_ptr;
+            std::cout << "    SceneTriggerComp:" << std::endl;
+            std::cout << "      scene_name: " << scenetriggercomp.scene_name << std::endl;
+            std::cout << "      n_triggers: " << scenetriggercomp.n_triggers << std::endl;
+        }
+        
+        auto paircomp_ptr = registry.try_get<PairComp>(entity);
+        if (paircomp_ptr != nullptr) {
+            auto paircomp = *paircomp_ptr;
+            std::cout << "    PairComp:" << std::endl;
+        }
+        
+        auto syncpositioncomp_ptr = registry.try_get<SyncPositionComp>(entity);
+        if (syncpositioncomp_ptr != nullptr) {
+            auto syncpositioncomp = *syncpositioncomp_ptr;
+            std::cout << "    SyncPositionComp:" << std::endl;
+        }
+        
+        auto stopwatchcomp_ptr = registry.try_get<StopWatchComp>(entity);
+        if (stopwatchcomp_ptr != nullptr) {
+            auto stopwatchcomp = *stopwatchcomp_ptr;
+            std::cout << "    StopWatchComp:" << std::endl;
+        }
+        
+        auto physicscomp_ptr = registry.try_get<PhysicsComp>(entity);
+        if (physicscomp_ptr != nullptr) {
+            auto physicscomp = *physicscomp_ptr;
             std::cout << "    PhysicsComp:" << std::endl;
-            std::cout << "      Position:" << phys_c.pos.x << ", " << phys_c.pos.y << std::endl;
         }
-        auto render_c_ptr = registry.try_get<RenderComp>(entity);
-        if (render_c_ptr != nullptr) {
-            auto render_c = *render_c_ptr;
+        
+        auto dragforcecomp_ptr = registry.try_get<DragForceComp>(entity);
+        if (dragforcecomp_ptr != nullptr) {
+            auto dragforcecomp = *dragforcecomp_ptr;
+            std::cout << "    DragForceComp:" << std::endl;
+        }
+        
+        auto durabilitycomp_ptr = registry.try_get<DurabilityComp>(entity);
+        if (durabilitycomp_ptr != nullptr) {
+            auto durabilitycomp = *durabilitycomp_ptr;
+            std::cout << "    DurabilityComp:" << std::endl;
+        }
+        
+        auto pairwiseforcecomp_ptr = registry.try_get<PairwiseForceComp>(entity);
+        if (pairwiseforcecomp_ptr != nullptr) {
+            auto pairwiseforcecomp = *pairwiseforcecomp_ptr;
+            std::cout << "    PairwiseForceComp:" << std::endl;
+        }
+        
+        
+        
+        auto rendercomp_ptr = registry.try_get<RenderComp>(entity);
+        if (rendercomp_ptr != nullptr) {
+            auto rendercomp = *rendercomp_ptr;
             std::cout << "    RenderComp:" << std::endl;
-            auto pos = render_c.shape.getPosition();
-            std::cout << "      Position:" << pos.x << ", " << pos.y << std::endl;
-            std::cout << "      Radius:" << render_c.shape.getRadius() << std::endl;
+            std::cout << "      zorder: " << rendercomp.zorder << std::endl;
+        }
+        
+        auto uicomp_ptr = registry.try_get<UIComp>(entity);
+        if (uicomp_ptr != nullptr) {
+            auto uicomp = *uicomp_ptr;
+            std::cout << "    UIComp:" << std::endl;
+        }
+        
+        auto debugcomp_ptr = registry.try_get<DebugComp>(entity);
+        if (debugcomp_ptr != nullptr) {
+            auto debugcomp = *debugcomp_ptr;
+            std::cout << "    DebugComp:" << std::endl;
         }
     }
 }
-
 
 }  // namespace comp
 }  // namespace twirl

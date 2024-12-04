@@ -420,14 +420,21 @@ class BoilerplateBuilder:
         if not isinstance(comp_members, dict):
             comp_members = comp_members[0]
 
+        if len(comp_members) == 0:
+            return ""
+
         instance_str = comp_name.lower()
         body_str = ""
-        for member_name in comp_members.keys():
+        for member_name, member_args in comp_members.items():
+            if isinstance(member_args, str):
+                member_args = [member_args]
+            if not member_args[0] in ["std::string", "int"]:
+                continue
             body_str += f'    std::cout << "      {member_name}: " << {instance_str}.{member_name} << std::endl;\n'
 
         return (
             f"auto {instance_str}_ptr = registry.try_get<{comp_name}>(entity);\n"
             f"if ({instance_str}_ptr != nullptr) {{\n"
             f"    auto {instance_str} = *{instance_str}_ptr;\n"
-            f'    std::cout << "    {comp_name}:" << std::endl;\n' + body_str + "}\n"
+            f'    std::cout << "    {comp_name}" << std::endl;\n' + body_str + "}\n"
         )

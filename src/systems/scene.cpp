@@ -110,17 +110,20 @@ entt::entity SceneSystem::resolveEntityName(entt::registry& registry,
                                             EntityMap entity_map,
                                             EntityName entity_name) {
     // Parse as needed
+    entt::entity entity;
     if (entity_name.front() == '[' && entity_name.back() == ']') {
         std::string input_str = entity_name.substr(1, entity_name.size() - 2);
-        return comp::getEntityFromStr(registry, input_str);
+        entity =  comp::getEntityFromStr(registry, input_str);
+    } else {
+        entity = entity_map[entity_name];
     }
 
     // Otherwise return simply the name for the map
-    try {
-        return entity_map.at(entity_name);
-    } catch (const std::out_of_range& e) {
-        throw std::runtime_error("Entity name not found: " + entity_name);
+    if (!registry.valid(entity)) {
+        throw std::runtime_error("Entity with name '" + entity_name + "' not found");
     }
+
+    return entity;
 }
 
 }  // namespace twirl

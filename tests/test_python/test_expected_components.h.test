@@ -1,5 +1,5 @@
-#ifndef TEST_GENERATED_COMPONENTS_H
-#define TEST_GENERATED_COMPONENTS_H
+#ifndef TEST_GENERATED_COMPONENTS_H_TEST
+#define TEST_GENERATED_COMPONENTS_H_TEST
 
 #include <string>
 #include <SFML/Graphics.hpp>
@@ -56,4 +56,4 @@ inline void from_json(const json& j, RenderComp& rendercomp) {
 
 }  // namespace twirl
 
-#endif  // TEST_GENERATED_COMPONENTS_H
+#endif  // TEST_GENERATED_COMPONENTS_H_TEST

@@ -94,7 +94,7 @@ TEST(SceneTest, ResolveEntityNameFromSelectionStr) {
 
 // This test checks that the initial values for entities loaded from json
 // that require their names to be resolved are null
-TEST(SceneTest, EmplaceEntityUnresovledNames) {
+TEST(SceneTest, EmplaceEntityUnresolvedNames) {
     entt::registry registry;
     SceneSystem scene_system;
     EntitySystem entity_system;

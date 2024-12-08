@@ -342,7 +342,7 @@ class BoilerplateBuilder:
         body_str = " else ".join(emplacement_strs)
 
         # Indent the body string
-        body_str = "    " + body_str.replace("\n", "\n    ")
+        body_str = body_str.replace("\n", "\n    ")
 
         return (
             "entt::entity getEntityFromStr(entt::registry& registry, const std::string& input_str) {\n"
@@ -355,6 +355,9 @@ class BoilerplateBuilder:
             "    std::string selection_str = input_str.substr(colon + 1);\n"
             "\n"
             "    // Get the view based on the component string\n"
+            '    if (comp_key == "EntityName") {\n'
+            "        return getEntityFromSelectionStr<EntityName>(registry, selection_str);\n"
+            "    } else "
             + body_str
             + " else {\n"
             '        throw std::runtime_error("Unknown component type: " + comp_key);\n'

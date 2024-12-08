@@ -77,7 +77,9 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
     std::string selection_str = input_str.substr(colon + 1);
 
     // Get the view based on the component string
-    if (comp_key == "PlayerComp") {
+    if (comp_key == "EntityName") {
+        return getEntityFromSelectionStr<EntityName>(registry, selection_str);
+    } else if (comp_key == "PlayerComp") {
         return getEntityFromSelectionStr<PlayerComp>(registry, selection_str);
     } else if (comp_key == "EnemyComp") {
         return getEntityFromSelectionStr<EnemyComp>(registry, selection_str);

@@ -17,6 +17,11 @@
                 true,
                 "false"
             ],
+            "emplace_order": [
+                "int",
+                true,
+                "0"
+            ],
             "json_data": "json",
             "n_emplaced": [
                 "size_t",

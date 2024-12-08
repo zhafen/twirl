@@ -13,6 +13,7 @@ using json = nlohmann::ordered_json;
 namespace twirl {
 
 void SceneSystem::loadJsonData(entt::registry& registry) {
+    
     for (auto [entity, scene_c] : registry.view<SceneComp>().each()) {
         // Parse the file
         std::ifstream file(scene_c.scene_fp);

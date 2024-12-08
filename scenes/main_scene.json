@@ -3,7 +3,8 @@
         "components": {
             "SceneComp": {
                 "scene_fp": "../../scenes/initial_conditions.json",
-                "emplace_after_loading": true
+                "emplace_after_loading": true,
+                "emplace_order": -1
             }
         }
     },

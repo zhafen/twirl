@@ -14,6 +14,7 @@ namespace twirl {
 struct SceneComp {
     std::string scene_fp;
     bool emplace_after_loading = false;
+    int emplace_order = 0;
     json json_data;
     size_t n_emplaced = 0;
     bool verbose_names = false;
@@ -21,6 +22,7 @@ struct SceneComp {
 inline void from_json(const json& j, SceneComp& scenecomp) {
     scenecomp.scene_fp = j.at("scene_fp").get<std::string>();
     scenecomp.emplace_after_loading = j.value("emplace_after_loading", false);
+    scenecomp.emplace_order = j.value("emplace_order", 0);
     scenecomp.verbose_names = j.value("verbose_names", false);
 }
 

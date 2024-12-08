@@ -150,6 +150,7 @@ void debugEntities(entt::registry& registry, std::string message) {
             auto scenecomp = *scenecomp_ptr;
             std::cout << "    SceneComp" << std::endl;
             std::cout << "      scene_fp: " << scenecomp.scene_fp << std::endl;
+            std::cout << "      emplace_order: " << scenecomp.emplace_order << std::endl;
         }
         
         auto scenetriggercomp_ptr = registry.try_get<SceneTriggerComp>(entity);

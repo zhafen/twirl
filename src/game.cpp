@@ -54,7 +54,11 @@ void Game::initialize() {
     // It's used when loading scenes from json
     entity_system.getEntityMap(registry);
 
-    // Load other scenes
+    // Load other scenes.
+    // We sort by emplace order first.
+    registry.sort<SceneComp>([](const auto lhs, const auto rhs) {
+        return lhs.emplace_order < rhs.emplace_order;
+    });
     scene_system.loadJsonData(registry);
 }
 

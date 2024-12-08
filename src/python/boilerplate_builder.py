@@ -290,7 +290,7 @@ class BoilerplateBuilder:
             "                      const std::string& comp_key, const json& comp_json) {\n"
             + body_str
             + " else {\n"
-            '        throw std::runtime_error("Unknown component type");\n'
+            '        throw std::runtime_error("Unknown component type: " + comp_key);\n'
             "    }\n"
             "}"
         )
@@ -357,7 +357,7 @@ class BoilerplateBuilder:
             "    // Get the view based on the component string\n"
             + body_str
             + " else {\n"
-            '        throw std::runtime_error("Unknown component type");\n'
+            '        throw std::runtime_error("Unknown component type: " + comp_key);\n'
             "    }\n"
             "}"
         )

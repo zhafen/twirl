@@ -21,7 +21,7 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
         auto rendercomp = comp_json.template get<RenderComp>();
         registry.emplace<RenderComp>(entity, rendercomp);
     } else {
-        throw std::runtime_error("Unknown component type");
+        throw std::runtime_error("Unknown component type: " + comp_key);
     }
 }
 
@@ -42,7 +42,7 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
     } else if (comp_key == "RenderComp") {
         return getEntityFromSelectionStr<RenderComp>(registry, selection_str);
     } else {
-        throw std::runtime_error("Unknown component type");
+        throw std::runtime_error("Unknown component type: " + comp_key);
     }
 }
 

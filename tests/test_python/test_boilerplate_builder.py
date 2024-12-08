@@ -116,7 +116,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
             "        auto uicomp = comp_json.template get<UIComp>();\n"
             "        registry.emplace<UIComp>(entity, uicomp);\n"
             "    } else {\n"
-            '        throw std::runtime_error("Unknown component type");\n'
+            '        throw std::runtime_error("Unknown component type: " + comp_key);\n'
             "    }\n"
             "}"
         )

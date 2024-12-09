@@ -23,6 +23,7 @@ Game::Game(std::string main_scene_fp)
       registry(),
       render_system(view, ui_view),
       entity_system(),
+      interface_system(),
       physics_system() {
     window.setFramerateLimit(cfg.fps);
     initialize();
@@ -31,7 +32,9 @@ Game::Game(std::string main_scene_fp)
 void Game::run() {
     while (window.isOpen()) {
         handleEvents();
-        update();
+        if (!interface_system.isGameSuspended(registry)) {
+            update();
+        }
         render();
     }
 }

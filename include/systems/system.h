@@ -2,6 +2,7 @@
 #define SYSTEM_H
 
 #include "systems/entity.h"
+#include "systems/interface.h"
 #include "systems/physics.h"
 #include "systems/render.h"
 #include "systems/scene.h"

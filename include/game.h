@@ -35,6 +35,7 @@ class Game {
 
    private:
     std::string main_scene_fp;
+    bool game_suspended = false;
 
     // ECS
     entt::registry registry;
@@ -45,10 +46,11 @@ class Game {
     sf::View ui_view;
 
     // Systems
-    SceneSystem scene_system;
     EntitySystem entity_system;
-    RenderSystem render_system;
+    InterfaceSystem interface_system;
     PhysicsSystem physics_system;
+    RenderSystem render_system;
+    SceneSystem scene_system;
 
     // Methods
     void initialize();

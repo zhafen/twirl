@@ -3,7 +3,8 @@
         "components": {
             "ValueBarComp": {
                 "tracked_entity_name": "[PlayerComp|first]"
-            }
+            },
+            "UnresolvedNameComp": {}
         }
     }
 }

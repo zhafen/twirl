@@ -4,7 +4,7 @@
     auto bar = registry.create();
     // Have to pass in a shape to the component or it crashes, unlike with RenderComp
     // Not sure why
-    auto& uic_bar = registry.emplace<UIComp>(bar, sf::RectangleShape());
+    auto& uic_bar = registry.emplace<ValueBarComp>(bar, sf::RectangleShape());
     uic_bar.shape.setFillColor(sf::Color::White);
     uic_bar.shape.setOutlineThickness(cfg.L / 10.f);
     uic_bar.shape.setOutlineColor(sf::Color::Black);

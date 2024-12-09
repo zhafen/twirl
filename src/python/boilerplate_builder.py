@@ -9,7 +9,7 @@ class BoilerplateBuilder:
 
     def __init__(
         self,
-        comps_using_names=["PairComp", "SceneTriggerComp", "UIComp"],
+        comps_using_names=["PairComp", "SceneTriggerComp", "ValueBarComp"],
     ):
         self.comps_using_names = comps_using_names
 

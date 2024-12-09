@@ -112,9 +112,9 @@ class TestBoilerplateBuilder(unittest.TestCase):
             "                      const std::string& comp_key, const json& comp_json) {\n"
             '    if (comp_key == "ViewComp") {\n'
             "        registry.emplace<ViewComp>(entity);\n"
-            '    } else if (comp_key == "UIComp") {\n'
-            "        auto uicomp = comp_json.template get<UIComp>();\n"
-            "        registry.emplace<UIComp>(entity, uicomp);\n"
+            '    } else if (comp_key == "ValueBarComp") {\n'
+            "        auto valuebarcomp = comp_json.template get<ValueBarComp>();\n"
+            "        registry.emplace<ValueBarComp>(entity, valuebarcomp);\n"
             "    } else {\n"
             '        throw std::runtime_error("Unknown component type: " + comp_key);\n'
             "    }\n"
@@ -123,7 +123,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
         output = self.builder.get_emplacecomponent_str(
             {
                 "ViewComp": [],
-                "UIComp": ["uicomp"],
+                "ValueBarComp": ["ValueBarComp"],
             }
         )
         assert expected_output == output
@@ -139,12 +139,12 @@ class TestBoilerplateBuilder(unittest.TestCase):
         assert expected_output_empty == output_empty
 
         expected_output = (
-            'if (comp_key == "UIComp") {\n'
-            "    auto uicomp = comp_json.template get<UIComp>();\n"
-            "    registry.emplace<UIComp>(entity, uicomp);\n"
+            'if (comp_key == "ValueBarComp") {\n'
+            "    auto valuebarcomp = comp_json.template get<ValueBarComp>();\n"
+            "    registry.emplace<ValueBarComp>(entity, valuebarcomp);\n"
             "}"
         )
-        output = self.builder.get_emplacement_str_for_comp("UIComp")
+        output = self.builder.get_emplacement_str_for_comp("ValueBarComp")
         assert expected_output == output
 
     def test_generate_components_header_file(self):

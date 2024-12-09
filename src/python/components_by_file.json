@@ -211,13 +211,13 @@
             "pos": [
                 "sf::Vector2f",
                 true,
-                "sf::Vector2f(0.0f, 0.0f)",
+                "sf::Vector2f(-50.f, -45.f)",
                 "cfg.L"
             ],
             "size": [
                 "sf::Vector2f",
                 true,
-                "sf::Vector2f(5.0f, 1.0f)",
+                "sf::Vector2f(100.f, 1.0f)",
                 "cfg.L"
             ],
             "tracked_value": [

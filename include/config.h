@@ -12,7 +12,7 @@ using EntityRelationId = int;
 struct Config {
     static constexpr uint16_t window_size_x = 1920u;
     static constexpr uint16_t window_size_y = 1080u;
-    static constexpr float L = 0.01f * window_size_x;
+    static constexpr float L = 0.01f * window_size_y;
     static constexpr float T = 1.0f;
     static constexpr float V = 0.1 * L / T;
     static constexpr float A = V / T;

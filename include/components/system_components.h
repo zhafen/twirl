@@ -135,17 +135,17 @@ inline void from_json(const json& j, RenderComp& rendercomp) {
     rendercomp.shape.setOutlineColor(outline_color);
 }
 
-struct UIComp {
+struct ValueBarComp {
     sf::RectangleShape shape;
     sf::Vector2f pos = sf::Vector2f(-50.f, -45.f) * cfg.L;
     sf::Vector2f size = sf::Vector2f(100.f, 1.0f) * cfg.L;
     float* tracked_value = nullptr;
     EntityName tracked_entity_name = "";
 };
-inline void from_json(const json& j, UIComp& uicomp) {
-    uicomp.pos = j.value("pos", sf::Vector2f(-50.f, -45.f)) * cfg.L;
-    uicomp.size = j.value("size", sf::Vector2f(100.f, 1.0f)) * cfg.L;
-    uicomp.tracked_entity_name = j.value("tracked_entity_name", "");
+inline void from_json(const json& j, ValueBarComp& valuebarcomp) {
+    valuebarcomp.pos = j.value("pos", sf::Vector2f(-50.f, -45.f)) * cfg.L;
+    valuebarcomp.size = j.value("size", sf::Vector2f(100.f, 1.0f)) * cfg.L;
+    valuebarcomp.tracked_entity_name = j.value("tracked_entity_name", "");
 }
 
 struct DebugComp {

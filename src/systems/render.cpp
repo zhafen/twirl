@@ -38,20 +38,20 @@ void RenderSystem::renderUI(entt::registry& registry, sf::RenderWindow& window) 
     window.setView(ui_view);
 
     // draw frame
-    for (auto [entity, ui_c] : registry.view<UIComp>().each()) {
+    for (auto [entity, vb_c] : registry.view<ValueBarComp>().each()) {
         // Get versions of the size and position that can be modified
-        auto ui_c_size = ui_c.size;
-        auto ui_c_pos = ui_c.pos;
+        auto vb_c_size = vb_c.size;
+        auto vb_c_pos = vb_c.pos;
 
         // Scale size with the tracked value
-        ui_c_size.x *= *ui_c.tracked_value;
+        vb_c_size.x *= *vb_c.tracked_value;
         // Causing the bar to shrink from the center requires changing both
         // the size and position
-        ui_c_pos.x += (ui_c.size.x - ui_c_size.x) / 2.f;
-        ui_c.shape.setSize(ui_c_size);
-        ui_c.shape.setPosition(ui_c_pos);
+        vb_c_pos.x += (vb_c.size.x - vb_c_size.x) / 2.f;
+        vb_c.shape.setSize(vb_c_size);
+        vb_c.shape.setPosition(vb_c_pos);
 
-        window.draw(ui_c.shape);
+        window.draw(vb_c.shape);
     }
 }
 

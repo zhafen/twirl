@@ -56,9 +56,9 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
     } else if (comp_key == "RenderComp") {
         auto rendercomp = comp_json.template get<RenderComp>();
         registry.emplace<RenderComp>(entity, rendercomp);
-    } else if (comp_key == "UIComp") {
-        auto uicomp = comp_json.template get<UIComp>();
-        registry.emplace<UIComp>(entity, uicomp);
+    } else if (comp_key == "ValueBarComp") {
+        auto valuebarcomp = comp_json.template get<ValueBarComp>();
+        registry.emplace<ValueBarComp>(entity, valuebarcomp);
     } else if (comp_key == "DebugComp") {
         auto debugcomp = comp_json.template get<DebugComp>();
         registry.emplace<DebugComp>(entity, debugcomp);
@@ -113,8 +113,8 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<MouseButtonReleasedComp>(registry, selection_str);
     } else if (comp_key == "RenderComp") {
         return getEntityFromSelectionStr<RenderComp>(registry, selection_str);
-    } else if (comp_key == "UIComp") {
-        return getEntityFromSelectionStr<UIComp>(registry, selection_str);
+    } else if (comp_key == "ValueBarComp") {
+        return getEntityFromSelectionStr<ValueBarComp>(registry, selection_str);
     } else if (comp_key == "DebugComp") {
         return getEntityFromSelectionStr<DebugComp>(registry, selection_str);
     } else {
@@ -212,10 +212,10 @@ void debugEntities(entt::registry& registry, std::string message) {
             std::cout << "      zorder: " << rendercomp.zorder << std::endl;
         }
         
-        auto uicomp_ptr = registry.try_get<UIComp>(entity);
-        if (uicomp_ptr != nullptr) {
-            auto uicomp = *uicomp_ptr;
-            std::cout << "    UIComp" << std::endl;
+        auto valuebarcomp_ptr = registry.try_get<ValueBarComp>(entity);
+        if (valuebarcomp_ptr != nullptr) {
+            auto valuebarcomp = *valuebarcomp_ptr;
+            std::cout << "    ValueBarComp" << std::endl;
         }
         
         auto debugcomp_ptr = registry.try_get<DebugComp>(entity);

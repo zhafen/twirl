@@ -207,7 +207,7 @@
             },
             "auto radius = j.value(\"radius\", 1.0f) * cfg.L;\nauto outline_thickness = j.value(\"outline_thickness\", 0.0f) * cfg.L;\nauto fill_color = j.value(\"fill_color\", sf::Color::White);\nauto outline_color = j.value(\"outline_color\", sf::Color::Black);\nrendercomp.shape = TwirlCircleShape(radius);\nrendercomp.shape.setOutlineThickness(outline_thickness);\nrendercomp.shape.setFillColor(fill_color);\nrendercomp.shape.setOutlineColor(outline_color);\n"
         ],
-        "UIComp": {
+        "ValueBarComp": {
             "shape": "sf::RectangleShape",
             "pos": [
                 "sf::Vector2f",

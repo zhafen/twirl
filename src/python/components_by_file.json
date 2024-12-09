@@ -154,7 +154,8 @@
             "durability_regen_rate": [
                 "float",
                 true,
-                "0.0f"
+                "0.0f",
+                "1.0f / cfg.T"
             ],
             "delete_at_zero": [
                 "float",

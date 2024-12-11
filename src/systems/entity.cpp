@@ -90,6 +90,8 @@ void EntitySystem::spawnEntities(entt::registry& registry) {
 
         // If we got this far then we activate the scene trigger
         registry.patch<SceneTriggerComp>(entity, [](auto& stc) { stc.n_triggers++; });
+        // TODO: Is there an advantage to using patch here, rather than just calling
+        // emplaceScene directly?
 
         // Spawning means we need to reorder
         needs_ordering = true;

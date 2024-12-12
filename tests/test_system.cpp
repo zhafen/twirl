@@ -143,6 +143,9 @@ TEST(SystemEntityTest, SpawnDeleteOrder) {
     entity_system.deleteEntities(registry);
     scene_system.checkSceneTriggers(registry);
     entity_system.orderEntities(registry);
+
+    // Adding a failing assert because I need to check for zorder in this test
+    ASSERT_TRUE(false);
 }
 
 TEST(SystemEntityTest, WatchSpawn) {

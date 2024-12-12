@@ -1,55 +1,47 @@
 {
     "projectile": {
-        "components": {
-            "PhysicsComp": {},
-            "DragForceComp": {},
-            "DurabilityComp": {
-                "durability_loss_per_collision": 1.01
-            },
-            "RenderComp": {
-                "radius": 0.5,
-                "fill_color": [
-                    82,
-                    106,
-                    131,
-                    255
-                ],
-                "zorder": -1
-            }
+        "PhysicsComp": {},
+        "DragForceComp": {},
+        "DurabilityComp": {
+            "durability_loss_per_collision": 1.01
+        },
+        "RenderComp": {
+            "radius": 0.5,
+            "fill_color": [
+                82,
+                106,
+                131,
+                255
+            ],
+            "zorder": -1
         }
     },
     "projectile-player sync": {
-        "components": {
-            "PairComp": {
-                "target_entity_name": "projectile",
-                "source_entity_name": "[PlayerFlag|first]"
-            },
-            "SyncPositionComp": {
-                "once_only": true
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "target_entity_name": "projectile",
+            "source_entity_name": "[PlayerFlag|first]"
+        },
+        "SyncPositionComp": {
+            "once_only": true
+        },
+        "UnresolvedNameFlag": {}
     },
     "projectile-enemy force": {
-        "components": {
-            "PairComp": {
-                "target_entity_name": "projectile",
-                "source_entity_name": "[EnemyFlag|first]"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -10.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "target_entity_name": "projectile",
+            "source_entity_name": "[EnemyFlag|first]"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -10.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "projectile-enemy collisions": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "projectile",
-                "target_entity_name": "[EnemyFlag|first]"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "projectile",
+            "target_entity_name": "[EnemyFlag|first]"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     }
 }

@@ -20,9 +20,9 @@ class BoilerplateBuilder:
         scene_data: dict,
         valid_components: dict,
     ):
-        for name, entity_data in scene_data.items():
+        for name, entity_components in scene_data.items():
             # Validate components
-            for comp_key, comp_json in copy.deepcopy(entity_data["components"]).items():
+            for comp_key, comp_json in copy.deepcopy(entity_components).items():
 
                 # Validate all input options exist
                 for option_key in comp_json.keys():
@@ -41,7 +41,7 @@ class BoilerplateBuilder:
                 unresolved_comp_included = False
                 if (comp_key in self.comps_using_names) and ~unresolved_comp_included:
                     print(f"Adding UnresolvedNameFlag to '{name}'")
-                    scene_data[name]["components"]["UnresolvedNameFlag"] = {}
+                    scene_data[name]["UnresolvedNameFlag"] = {}
                     # Only add the UnresolvedNameFlag once
                     unresolved_comp_included = True
 

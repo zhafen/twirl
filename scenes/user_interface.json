@@ -1,10 +1,8 @@
 {
     "durability_bar": {
-        "components": {
-            "ValueBarComp": {
-                "tracked_entity_name": "[PlayerFlag|first]"
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "ValueBarComp": {
+            "tracked_entity_name": "[PlayerFlag|first]"
+        },
+        "UnresolvedNameFlag": {}
     }
 }

@@ -1,26 +1,20 @@
 {
     "initial_conditions": {
-        "components": {
-            "SceneComp": {
-                "scene_fp": "../../scenes/initial_conditions.json",
-                "emplace_after_loading": true,
-                "emplace_order": -1
-            }
+        "SceneComp": {
+            "scene_fp": "../../scenes/initial_conditions.json",
+            "emplace_after_loading": true,
+            "emplace_order": -1
         }
     },
     "user_interface": {
-        "components": {
-            "SceneComp": {
-                "scene_fp": "../../scenes/user_interface.json",
-                "emplace_after_loading": true
-            }
+        "SceneComp": {
+            "scene_fp": "../../scenes/user_interface.json",
+            "emplace_after_loading": true
         }
     },
     "projectiles": {
-        "components": {
-            "SceneComp": {
-                "scene_fp": "../../scenes/projectiles.json"
-            }
+        "SceneComp": {
+            "scene_fp": "../../scenes/projectiles.json"
         }
     }
 }

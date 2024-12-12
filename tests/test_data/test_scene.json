@@ -1,114 +1,100 @@
 {
     "player": {
-        "components": {
-            "PhysicsComp": {
-                "mass": 1.0,
-                "pos": [
-                    1.0,
-                    1.0
-                ],
-                "vel": [
-                    2.0,
-                    2.0
-                ],
-                "collided": true
-            },
-            "DragForceComp": {
-                "drag_coefficient": 0.05,
-                "drag_power": 2.5
-            },
-            "DurabilityComp": {
-                "delete_at_zero": false
-            },
-            "RenderComp": {
-                "radius": 1.0,
-                "fill_color": [
-                    255,
-                    128,
-                    128,
-                    255
-                ]
-            },
-            "ViewFlag": {}
-        }
+        "PhysicsComp": {
+            "mass": 1.0,
+            "pos": [
+                1.0,
+                1.0
+            ],
+            "vel": [
+                2.0,
+                2.0
+            ],
+            "collided": true
+        },
+        "DragForceComp": {
+            "drag_coefficient": 0.05,
+            "drag_power": 2.5
+        },
+        "DurabilityComp": {
+            "delete_at_zero": false
+        },
+        "RenderComp": {
+            "radius": 1.0,
+            "fill_color": [
+                255,
+                128,
+                128,
+                255
+            ]
+        },
+        "ViewFlag": {}
     },
     "beacon": {
-        "components": {
-            "PhysicsComp": {},
-            "MouseButtonReleasedComp": {},
-            "RenderComp": {
-                "radius": 0.5,
-                "outline_thickness": 0.1,
-                "fill_color": [
-                    0,
-                    0,
-                    0,
-                    255
-                ],
-                "outline_color": [
-                    255,
-                    255,
-                    255,
-                    255
-                ],
-                "zorder": 1
-            }
+        "PhysicsComp": {},
+        "MouseButtonReleasedComp": {},
+        "RenderComp": {
+            "radius": 0.5,
+            "outline_thickness": 0.1,
+            "fill_color": [
+                0,
+                0,
+                0,
+                255
+            ],
+            "outline_color": [
+                255,
+                255,
+                255,
+                255
+            ],
+            "zorder": 1
         }
     },
     "player-beacon force": {
-        "components": {
-            "PairComp": {
-                "target_entity_name": "player",
-                "source_entity_name": "beacon"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "target_entity_name": "player",
+            "source_entity_name": "beacon"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "bkgrd": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 10.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -101
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 10.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -101
         }
     },
     "triggered_scene": {
-        "components": {
-            "SceneComp": {
-                "scene_fp": "../../tests/test_data/triggered_scene.json"
-            }
+        "SceneComp": {
+            "scene_fp": "../../tests/test_data/triggered_scene.json"
         }
     },
     "watch": {
-        "components": {
-            "WatchComp": {}
-        }
+        "WatchComp": {}
     },
     "watch_trigger": {
-        "components": {
-            "WatchTriggerFlag": {},
-            "PairComp": {
-                "source_entity_name": "watch",
-                "target_entity_name": "[SceneComp|name:triggered_scene]"
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "WatchTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "watch",
+            "target_entity_name": "[SceneComp|name:triggered_scene]"
+        },
+        "UnresolvedNameFlag": {}
     }
 }

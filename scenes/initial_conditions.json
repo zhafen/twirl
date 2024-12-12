@@ -1,3356 +1,2976 @@
 {
     "player": {
-        "components": {
-            "PhysicsComp": {},
-            "DragForceComp": {
-                "drag_coefficient": 0.05,
-                "drag_power": 2.5
-            },
-            "DurabilityComp": {
-                "delete_at_zero": false,
-                "durability_regen_rate": 0.1
-            },
-            "RenderComp": {
-                "radius": 1.0,
-                "fill_color": [
-                    175,
-                    100,
-                    88,
-                    255
-                ]
-            },
-            "PlayerFlag": {},
-            "ViewFlag": {}
-        }
+        "PhysicsComp": {},
+        "DragForceComp": {
+            "drag_coefficient": 0.05,
+            "drag_power": 2.5
+        },
+        "DurabilityComp": {
+            "delete_at_zero": false,
+            "durability_regen_rate": 0.1
+        },
+        "RenderComp": {
+            "radius": 1.0,
+            "fill_color": [
+                175,
+                100,
+                88,
+                255
+            ]
+        },
+        "PlayerFlag": {},
+        "ViewFlag": {}
     },
     "beacon": {
-        "components": {
-            "PhysicsComp": {},
-            "MouseButtonReleasedComp": {},
-            "RenderComp": {
-                "radius": 0.5,
-                "outline_thickness": 0.1,
-                "fill_color": [
-                    0,
-                    0,
-                    0,
-                    255
-                ],
-                "outline_color": [
-                    255,
-                    255,
-                    255,
-                    255
-                ],
-                "zorder": 1
-            }
+        "PhysicsComp": {},
+        "MouseButtonReleasedComp": {},
+        "RenderComp": {
+            "radius": 0.5,
+            "outline_thickness": 0.1,
+            "fill_color": [
+                0,
+                0,
+                0,
+                255
+            ],
+            "outline_color": [
+                255,
+                255,
+                255,
+                255
+            ],
+            "zorder": 1
         }
     },
     "player-beacon force": {
-        "components": {
-            "PairComp": {
-                "target_entity_name": "player",
-                "source_entity_name": "beacon"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -2.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "target_entity_name": "player",
+            "source_entity_name": "beacon"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -2.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy.000": {
-        "components": {
-            "EnemyFlag": {},
-            "PhysicsComp": {
-                "pos": [
-                    19.830983668344487,
-                    -69.31247033414625
-                ],
-                "vel": [
-                    0.0,
-                    0.0
-                ]
-            },
-            "DragForceComp": {},
-            "DurabilityComp": {},
-            "RenderComp": {
-                "radius": 1.0,
-                "fill_color": [
-                    115,
-                    111,
-                    76,
-                    255
-                ]
-            }
+        "EnemyFlag": {},
+        "PhysicsComp": {
+            "pos": [
+                73.33444552288853,
+                -45.70396320122691
+            ],
+            "vel": [
+                0.0,
+                0.0
+            ]
+        },
+        "DragForceComp": {},
+        "DurabilityComp": {},
+        "RenderComp": {
+            "radius": 1.0,
+            "fill_color": [
+                115,
+                111,
+                76,
+                255
+            ]
         }
     },
     "enemy-player.000 inverse square": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.000"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.000"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0,
+            "power": -2.0,
+            "softening": 1.0,
+            "distance_scaling": 1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.000 spring": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.000"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.000"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.000 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.000"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.000"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.001": {
-        "components": {
-            "EnemyFlag": {},
-            "PhysicsComp": {
-                "pos": [
-                    -35.20290378932887,
-                    -113.66169624807821
-                ],
-                "vel": [
-                    0.0,
-                    0.0
-                ]
-            },
-            "DragForceComp": {},
-            "DurabilityComp": {},
-            "RenderComp": {
-                "radius": 1.0,
-                "fill_color": [
-                    115,
-                    111,
-                    76,
-                    255
-                ]
-            }
+        "EnemyFlag": {},
+        "PhysicsComp": {
+            "pos": [
+                11.918521403497834,
+                -79.72806868445923
+            ],
+            "vel": [
+                0.0,
+                0.0
+            ]
+        },
+        "DragForceComp": {},
+        "DurabilityComp": {},
+        "RenderComp": {
+            "radius": 1.0,
+            "fill_color": [
+                115,
+                111,
+                76,
+                255
+            ]
         }
     },
     "enemy-player.001 inverse square": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.001"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.001"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0,
+            "power": -2.0,
+            "softening": 1.0,
+            "distance_scaling": 1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.001 spring": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.001"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.001"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.001 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.001"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.001"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.002": {
-        "components": {
-            "EnemyFlag": {},
-            "PhysicsComp": {
-                "pos": [
-                    -18.60846687970333,
-                    -99.905757924465
-                ],
-                "vel": [
-                    0.0,
-                    0.0
-                ]
-            },
-            "DragForceComp": {},
-            "DurabilityComp": {},
-            "RenderComp": {
-                "radius": 1.0,
-                "fill_color": [
-                    115,
-                    111,
-                    76,
-                    255
-                ]
-            }
+        "EnemyFlag": {},
+        "PhysicsComp": {
+            "pos": [
+                86.6978642207107,
+                -110.17310258031729
+            ],
+            "vel": [
+                0.0,
+                0.0
+            ]
+        },
+        "DragForceComp": {},
+        "DurabilityComp": {},
+        "RenderComp": {
+            "radius": 1.0,
+            "fill_color": [
+                115,
+                111,
+                76,
+                255
+            ]
         }
     },
     "enemy-player.002 inverse square": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.002"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.002"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0,
+            "power": -2.0,
+            "softening": 1.0,
+            "distance_scaling": 1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.002 spring": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.002"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.002"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.002 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.002"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.002"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.003": {
-        "components": {
-            "EnemyFlag": {},
-            "PhysicsComp": {
-                "pos": [
-                    -38.59336103661355,
-                    -58.54406865150794
-                ],
-                "vel": [
-                    0.0,
-                    0.0
-                ]
-            },
-            "DragForceComp": {},
-            "DurabilityComp": {},
-            "RenderComp": {
-                "radius": 1.0,
-                "fill_color": [
-                    115,
-                    111,
-                    76,
-                    255
-                ]
-            }
+        "EnemyFlag": {},
+        "PhysicsComp": {
+            "pos": [
+                20.178493525348813,
+                -106.8789091191928
+            ],
+            "vel": [
+                0.0,
+                0.0
+            ]
+        },
+        "DragForceComp": {},
+        "DurabilityComp": {},
+        "RenderComp": {
+            "radius": 1.0,
+            "fill_color": [
+                115,
+                111,
+                76,
+                255
+            ]
         }
     },
     "enemy-player.003 inverse square": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.003"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.003"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0,
+            "power": -2.0,
+            "softening": 1.0,
+            "distance_scaling": 1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.003 spring": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.003"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.003"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.003 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.003"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.003"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.004": {
-        "components": {
-            "EnemyFlag": {},
-            "PhysicsComp": {
-                "pos": [
-                    28.607503308195902,
-                    -62.16104983536441
-                ],
-                "vel": [
-                    0.0,
-                    0.0
-                ]
-            },
-            "DragForceComp": {},
-            "DurabilityComp": {},
-            "RenderComp": {
-                "radius": 1.0,
-                "fill_color": [
-                    115,
-                    111,
-                    76,
-                    255
-                ]
-            }
+        "EnemyFlag": {},
+        "PhysicsComp": {
+            "pos": [
+                9.004816295330613,
+                -97.97420370207138
+            ],
+            "vel": [
+                0.0,
+                0.0
+            ]
+        },
+        "DragForceComp": {},
+        "DurabilityComp": {},
+        "RenderComp": {
+            "radius": 1.0,
+            "fill_color": [
+                115,
+                111,
+                76,
+                255
+            ]
         }
     },
     "enemy-player.004 inverse square": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.004"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.004"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0,
+            "power": -2.0,
+            "softening": 1.0,
+            "distance_scaling": 1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.004 spring": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.004"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.004"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.004 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.004"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.004"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.005": {
-        "components": {
-            "EnemyFlag": {},
-            "PhysicsComp": {
-                "pos": [
-                    -39.28786571002794,
-                    -98.317882054599
-                ],
-                "vel": [
-                    0.0,
-                    0.0
-                ]
-            },
-            "DragForceComp": {},
-            "DurabilityComp": {},
-            "RenderComp": {
-                "radius": 1.0,
-                "fill_color": [
-                    115,
-                    111,
-                    76,
-                    255
-                ]
-            }
+        "EnemyFlag": {},
+        "PhysicsComp": {
+            "pos": [
+                2.5295647723698096,
+                -32.921865581458164
+            ],
+            "vel": [
+                0.0,
+                0.0
+            ]
+        },
+        "DragForceComp": {},
+        "DurabilityComp": {},
+        "RenderComp": {
+            "radius": 1.0,
+            "fill_color": [
+                115,
+                111,
+                76,
+                255
+            ]
         }
     },
     "enemy-player.005 inverse square": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.005"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.005"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0,
+            "power": -2.0,
+            "softening": 1.0,
+            "distance_scaling": 1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.005 spring": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.005"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.005"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.005 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.005"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.005"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.006": {
-        "components": {
-            "EnemyFlag": {},
-            "PhysicsComp": {
-                "pos": [
-                    43.32079768158775,
-                    -112.42591807581182
-                ],
-                "vel": [
-                    0.0,
-                    0.0
-                ]
-            },
-            "DragForceComp": {},
-            "DurabilityComp": {},
-            "RenderComp": {
-                "radius": 1.0,
-                "fill_color": [
-                    115,
-                    111,
-                    76,
-                    255
-                ]
-            }
+        "EnemyFlag": {},
+        "PhysicsComp": {
+            "pos": [
+                -32.09251496236844,
+                -58.11388259906779
+            ],
+            "vel": [
+                0.0,
+                0.0
+            ]
+        },
+        "DragForceComp": {},
+        "DurabilityComp": {},
+        "RenderComp": {
+            "radius": 1.0,
+            "fill_color": [
+                115,
+                111,
+                76,
+                255
+            ]
         }
     },
     "enemy-player.006 inverse square": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.006"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.006"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0,
+            "power": -2.0,
+            "softening": 1.0,
+            "distance_scaling": 1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.006 spring": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.006"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.006"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.006 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.006"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.006"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.007": {
-        "components": {
-            "EnemyFlag": {},
-            "PhysicsComp": {
-                "pos": [
-                    76.79416115854255,
-                    -34.24621304314924
-                ],
-                "vel": [
-                    0.0,
-                    0.0
-                ]
-            },
-            "DragForceComp": {},
-            "DurabilityComp": {},
-            "RenderComp": {
-                "radius": 1.0,
-                "fill_color": [
-                    115,
-                    111,
-                    76,
-                    255
-                ]
-            }
+        "EnemyFlag": {},
+        "PhysicsComp": {
+            "pos": [
+                2.284834476963283,
+                -117.51345758529988
+            ],
+            "vel": [
+                0.0,
+                0.0
+            ]
+        },
+        "DragForceComp": {},
+        "DurabilityComp": {},
+        "RenderComp": {
+            "radius": 1.0,
+            "fill_color": [
+                115,
+                111,
+                76,
+                255
+            ]
         }
     },
     "enemy-player.007 inverse square": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.007"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.007"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0,
+            "power": -2.0,
+            "softening": 1.0,
+            "distance_scaling": 1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.007 spring": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.007"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.007"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.007 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.007"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.007"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.008": {
-        "components": {
-            "EnemyFlag": {},
-            "PhysicsComp": {
-                "pos": [
-                    56.381427423363135,
-                    -67.93240148537355
-                ],
-                "vel": [
-                    0.0,
-                    0.0
-                ]
-            },
-            "DragForceComp": {},
-            "DurabilityComp": {},
-            "RenderComp": {
-                "radius": 1.0,
-                "fill_color": [
-                    115,
-                    111,
-                    76,
-                    255
-                ]
-            }
+        "EnemyFlag": {},
+        "PhysicsComp": {
+            "pos": [
+                -81.12706787732947,
+                -82.33010404459955
+            ],
+            "vel": [
+                0.0,
+                0.0
+            ]
+        },
+        "DragForceComp": {},
+        "DurabilityComp": {},
+        "RenderComp": {
+            "radius": 1.0,
+            "fill_color": [
+                115,
+                111,
+                76,
+                255
+            ]
         }
     },
     "enemy-player.008 inverse square": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.008"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.008"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0,
+            "power": -2.0,
+            "softening": 1.0,
+            "distance_scaling": 1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.008 spring": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.008"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.008"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.008 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.008"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.008"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.009": {
-        "components": {
-            "EnemyFlag": {},
-            "PhysicsComp": {
-                "pos": [
-                    -98.74129606973767,
-                    -98.30699879711939
-                ],
-                "vel": [
-                    0.0,
-                    0.0
-                ]
-            },
-            "DragForceComp": {},
-            "DurabilityComp": {},
-            "RenderComp": {
-                "radius": 1.0,
-                "fill_color": [
-                    115,
-                    111,
-                    76,
-                    255
-                ]
-            }
+        "EnemyFlag": {},
+        "PhysicsComp": {
+            "pos": [
+                -28.529924045881103,
+                -50.99476215246251
+            ],
+            "vel": [
+                0.0,
+                0.0
+            ]
+        },
+        "DragForceComp": {},
+        "DurabilityComp": {},
+        "RenderComp": {
+            "radius": 1.0,
+            "fill_color": [
+                115,
+                111,
+                76,
+                255
+            ]
         }
     },
     "enemy-player.009 inverse square": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.009"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0,
-                "power": -2.0,
-                "softening": 1.0,
-                "distance_scaling": 1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.009"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0,
+            "power": -2.0,
+            "softening": 1.0,
+            "distance_scaling": 1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.009 spring": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.009"
-            },
-            "PairwiseForceComp": {
-                "magnitude": -1.0
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.009"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -1.0
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.009 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "player",
-                "target_entity_name": "enemy.009"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "enemy.009"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.000-enemy.001 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.000",
-                "target_entity_name": "enemy.001"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.000",
+            "target_entity_name": "enemy.001"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.000-enemy.002 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.000",
-                "target_entity_name": "enemy.002"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.000",
+            "target_entity_name": "enemy.002"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.000-enemy.003 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.000",
-                "target_entity_name": "enemy.003"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.000",
+            "target_entity_name": "enemy.003"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.000-enemy.004 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.000",
-                "target_entity_name": "enemy.004"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.000",
+            "target_entity_name": "enemy.004"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.000-enemy.005 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.000",
-                "target_entity_name": "enemy.005"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.000",
+            "target_entity_name": "enemy.005"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.000-enemy.006 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.000",
-                "target_entity_name": "enemy.006"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.000",
+            "target_entity_name": "enemy.006"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.000-enemy.007 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.000",
-                "target_entity_name": "enemy.007"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.000",
+            "target_entity_name": "enemy.007"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.000-enemy.008 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.000",
-                "target_entity_name": "enemy.008"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.000",
+            "target_entity_name": "enemy.008"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.000-enemy.009 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.000",
-                "target_entity_name": "enemy.009"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.000",
+            "target_entity_name": "enemy.009"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.001-enemy.002 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.001",
-                "target_entity_name": "enemy.002"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.001",
+            "target_entity_name": "enemy.002"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.001-enemy.003 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.001",
-                "target_entity_name": "enemy.003"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.001",
+            "target_entity_name": "enemy.003"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.001-enemy.004 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.001",
-                "target_entity_name": "enemy.004"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.001",
+            "target_entity_name": "enemy.004"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.001-enemy.005 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.001",
-                "target_entity_name": "enemy.005"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.001",
+            "target_entity_name": "enemy.005"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.001-enemy.006 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.001",
-                "target_entity_name": "enemy.006"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.001",
+            "target_entity_name": "enemy.006"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.001-enemy.007 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.001",
-                "target_entity_name": "enemy.007"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.001",
+            "target_entity_name": "enemy.007"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.001-enemy.008 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.001",
-                "target_entity_name": "enemy.008"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.001",
+            "target_entity_name": "enemy.008"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.001-enemy.009 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.001",
-                "target_entity_name": "enemy.009"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.001",
+            "target_entity_name": "enemy.009"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.002-enemy.003 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.002",
-                "target_entity_name": "enemy.003"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.002",
+            "target_entity_name": "enemy.003"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.002-enemy.004 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.002",
-                "target_entity_name": "enemy.004"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.002",
+            "target_entity_name": "enemy.004"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.002-enemy.005 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.002",
-                "target_entity_name": "enemy.005"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.002",
+            "target_entity_name": "enemy.005"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.002-enemy.006 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.002",
-                "target_entity_name": "enemy.006"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.002",
+            "target_entity_name": "enemy.006"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.002-enemy.007 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.002",
-                "target_entity_name": "enemy.007"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.002",
+            "target_entity_name": "enemy.007"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.002-enemy.008 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.002",
-                "target_entity_name": "enemy.008"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.002",
+            "target_entity_name": "enemy.008"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.002-enemy.009 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.002",
-                "target_entity_name": "enemy.009"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.002",
+            "target_entity_name": "enemy.009"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.003-enemy.004 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.003",
-                "target_entity_name": "enemy.004"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.003",
+            "target_entity_name": "enemy.004"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.003-enemy.005 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.003",
-                "target_entity_name": "enemy.005"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.003",
+            "target_entity_name": "enemy.005"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.003-enemy.006 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.003",
-                "target_entity_name": "enemy.006"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.003",
+            "target_entity_name": "enemy.006"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.003-enemy.007 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.003",
-                "target_entity_name": "enemy.007"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.003",
+            "target_entity_name": "enemy.007"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.003-enemy.008 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.003",
-                "target_entity_name": "enemy.008"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.003",
+            "target_entity_name": "enemy.008"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.003-enemy.009 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.003",
-                "target_entity_name": "enemy.009"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.003",
+            "target_entity_name": "enemy.009"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.004-enemy.005 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.004",
-                "target_entity_name": "enemy.005"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.004",
+            "target_entity_name": "enemy.005"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.004-enemy.006 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.004",
-                "target_entity_name": "enemy.006"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.004",
+            "target_entity_name": "enemy.006"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.004-enemy.007 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.004",
-                "target_entity_name": "enemy.007"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.004",
+            "target_entity_name": "enemy.007"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.004-enemy.008 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.004",
-                "target_entity_name": "enemy.008"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.004",
+            "target_entity_name": "enemy.008"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.004-enemy.009 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.004",
-                "target_entity_name": "enemy.009"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.004",
+            "target_entity_name": "enemy.009"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.005-enemy.006 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.005",
-                "target_entity_name": "enemy.006"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.005",
+            "target_entity_name": "enemy.006"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.005-enemy.007 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.005",
-                "target_entity_name": "enemy.007"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.005",
+            "target_entity_name": "enemy.007"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.005-enemy.008 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.005",
-                "target_entity_name": "enemy.008"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.005",
+            "target_entity_name": "enemy.008"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.005-enemy.009 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.005",
-                "target_entity_name": "enemy.009"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.005",
+            "target_entity_name": "enemy.009"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.006-enemy.007 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.006",
-                "target_entity_name": "enemy.007"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.006",
+            "target_entity_name": "enemy.007"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.006-enemy.008 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.006",
-                "target_entity_name": "enemy.008"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.006",
+            "target_entity_name": "enemy.008"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.006-enemy.009 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.006",
-                "target_entity_name": "enemy.009"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.006",
+            "target_entity_name": "enemy.009"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.007-enemy.008 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.007",
-                "target_entity_name": "enemy.008"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.007",
+            "target_entity_name": "enemy.008"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.007-enemy.009 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.007",
-                "target_entity_name": "enemy.009"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.007",
+            "target_entity_name": "enemy.009"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "enemy.008-enemy.009 collision": {
-        "components": {
-            "PairComp": {
-                "source_entity_name": "enemy.008",
-                "target_entity_name": "enemy.009"
-            },
-            "CollisionComp": {},
-            "UnresolvedNameFlag": {}
-        }
+        "PairComp": {
+            "source_entity_name": "enemy.008",
+            "target_entity_name": "enemy.009"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     },
     "player_projectile_watch": {
-        "components": {
-            "WatchComp": {}
-        }
+        "WatchComp": {}
     },
     "player_projectile_watch_trigger": {
-        "components": {
-            "WatchTriggerFlag": {},
-            "PairComp": {
-                "source_entity_name": "player_projectile_watch",
-                "target_entity_name": "[SceneComp|name:projectiles]"
-            },
-            "UnresolvedNameFlag": {}
-        }
+        "WatchTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "player_projectile_watch",
+            "target_entity_name": "[SceneComp|name:projectiles]"
+        },
+        "UnresolvedNameFlag": {}
     },
     "bkgrd.000": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 0.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -100
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 0.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -100
         }
     },
     "bkgrd.001": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 10.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -101
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 10.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -101
         }
     },
     "bkgrd.002": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 20.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -102
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 20.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -102
         }
     },
     "bkgrd.003": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 30.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -103
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 30.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -103
         }
     },
     "bkgrd.004": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 40.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -104
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 40.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -104
         }
     },
     "bkgrd.005": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 50.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -105
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 50.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -105
         }
     },
     "bkgrd.006": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 60.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -106
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 60.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -106
         }
     },
     "bkgrd.007": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 70.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -107
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 70.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -107
         }
     },
     "bkgrd.008": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 80.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -108
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 80.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -108
         }
     },
     "bkgrd.009": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 90.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -109
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 90.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -109
         }
     },
     "bkgrd.010": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 100.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -110
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 100.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -110
         }
     },
     "bkgrd.011": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 110.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -111
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 110.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -111
         }
     },
     "bkgrd.012": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 120.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -112
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 120.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -112
         }
     },
     "bkgrd.013": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 130.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -113
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 130.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -113
         }
     },
     "bkgrd.014": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 140.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -114
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 140.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -114
         }
     },
     "bkgrd.015": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 150.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -115
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 150.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -115
         }
     },
     "bkgrd.016": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 160.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -116
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 160.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -116
         }
     },
     "bkgrd.017": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 170.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -117
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 170.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -117
         }
     },
     "bkgrd.018": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 180.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -118
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 180.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -118
         }
     },
     "bkgrd.019": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 190.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -119
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 190.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -119
         }
     },
     "bkgrd.020": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 200.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -120
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 200.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -120
         }
     },
     "bkgrd.021": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 210.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -121
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 210.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -121
         }
     },
     "bkgrd.022": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 220.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -122
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 220.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -122
         }
     },
     "bkgrd.023": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 230.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -123
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 230.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -123
         }
     },
     "bkgrd.024": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 240.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -124
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 240.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -124
         }
     },
     "bkgrd.025": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 250.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -125
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 250.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -125
         }
     },
     "bkgrd.026": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 260.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -126
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 260.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -126
         }
     },
     "bkgrd.027": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 270.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -127
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 270.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -127
         }
     },
     "bkgrd.028": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 280.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -128
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 280.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -128
         }
     },
     "bkgrd.029": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 290.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -129
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 290.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -129
         }
     },
     "bkgrd.030": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 300.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -130
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 300.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -130
         }
     },
     "bkgrd.031": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 310.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -131
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 310.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -131
         }
     },
     "bkgrd.032": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 320.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -132
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 320.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -132
         }
     },
     "bkgrd.033": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 330.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -133
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 330.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -133
         }
     },
     "bkgrd.034": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 340.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -134
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 340.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -134
         }
     },
     "bkgrd.035": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 350.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -135
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 350.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -135
         }
     },
     "bkgrd.036": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 360.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -136
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 360.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -136
         }
     },
     "bkgrd.037": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 370.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -137
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 370.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -137
         }
     },
     "bkgrd.038": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 380.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -138
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 380.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -138
         }
     },
     "bkgrd.039": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 390.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -139
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 390.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -139
         }
     },
     "bkgrd.040": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 400.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -140
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 400.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -140
         }
     },
     "bkgrd.041": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 410.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -141
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 410.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -141
         }
     },
     "bkgrd.042": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 420.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -142
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 420.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -142
         }
     },
     "bkgrd.043": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 430.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -143
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 430.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -143
         }
     },
     "bkgrd.044": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 440.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -144
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 440.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -144
         }
     },
     "bkgrd.045": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 450.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -145
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 450.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -145
         }
     },
     "bkgrd.046": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 460.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -146
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 460.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -146
         }
     },
     "bkgrd.047": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 470.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -147
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 470.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -147
         }
     },
     "bkgrd.048": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 480.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -148
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 480.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -148
         }
     },
     "bkgrd.049": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 490.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -149
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 490.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -149
         }
     },
     "bkgrd.050": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 500.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -150
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 500.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -150
         }
     },
     "bkgrd.051": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 510.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -151
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 510.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -151
         }
     },
     "bkgrd.052": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 520.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -152
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 520.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -152
         }
     },
     "bkgrd.053": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 530.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -153
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 530.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -153
         }
     },
     "bkgrd.054": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 540.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -154
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 540.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -154
         }
     },
     "bkgrd.055": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 550.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -155
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 550.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -155
         }
     },
     "bkgrd.056": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 560.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -156
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 560.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -156
         }
     },
     "bkgrd.057": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 570.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -157
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 570.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -157
         }
     },
     "bkgrd.058": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 580.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -158
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 580.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -158
         }
     },
     "bkgrd.059": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 590.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -159
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 590.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -159
         }
     },
     "bkgrd.060": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 600.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -160
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 600.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -160
         }
     },
     "bkgrd.061": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 610.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -161
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 610.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -161
         }
     },
     "bkgrd.062": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 620.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -162
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 620.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -162
         }
     },
     "bkgrd.063": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 630.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -163
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 630.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -163
         }
     },
     "bkgrd.064": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 640.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -164
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 640.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -164
         }
     },
     "bkgrd.065": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 650.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -165
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 650.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -165
         }
     },
     "bkgrd.066": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 660.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -166
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 660.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -166
         }
     },
     "bkgrd.067": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 670.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -167
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 670.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -167
         }
     },
     "bkgrd.068": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 680.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -168
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 680.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -168
         }
     },
     "bkgrd.069": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 690.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -169
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 690.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -169
         }
     },
     "bkgrd.070": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 700.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -170
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 700.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -170
         }
     },
     "bkgrd.071": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 710.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -171
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 710.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -171
         }
     },
     "bkgrd.072": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 720.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -172
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 720.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -172
         }
     },
     "bkgrd.073": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 730.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -173
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 730.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -173
         }
     },
     "bkgrd.074": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 740.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -174
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 740.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -174
         }
     },
     "bkgrd.075": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 750.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -175
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 750.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -175
         }
     },
     "bkgrd.076": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 760.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -176
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 760.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -176
         }
     },
     "bkgrd.077": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 770.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -177
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 770.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -177
         }
     },
     "bkgrd.078": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 780.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -178
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 780.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -178
         }
     },
     "bkgrd.079": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 790.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -179
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 790.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -179
         }
     },
     "bkgrd.080": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 800.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -180
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 800.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -180
         }
     },
     "bkgrd.081": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 810.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -181
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 810.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -181
         }
     },
     "bkgrd.082": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 820.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -182
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 820.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -182
         }
     },
     "bkgrd.083": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 830.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -183
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 830.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -183
         }
     },
     "bkgrd.084": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 840.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -184
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 840.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -184
         }
     },
     "bkgrd.085": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 850.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -185
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 850.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -185
         }
     },
     "bkgrd.086": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 860.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -186
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 860.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -186
         }
     },
     "bkgrd.087": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 870.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -187
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 870.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -187
         }
     },
     "bkgrd.088": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 880.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -188
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 880.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -188
         }
     },
     "bkgrd.089": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 890.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -189
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 890.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -189
         }
     },
     "bkgrd.090": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 900.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -190
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 900.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -190
         }
     },
     "bkgrd.091": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 910.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -191
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 910.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -191
         }
     },
     "bkgrd.092": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 920.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -192
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 920.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -192
         }
     },
     "bkgrd.093": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 930.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -193
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 930.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -193
         }
     },
     "bkgrd.094": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 940.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -194
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 940.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -194
         }
     },
     "bkgrd.095": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 950.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -195
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 950.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -195
         }
     },
     "bkgrd.096": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 960.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -196
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 960.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -196
         }
     },
     "bkgrd.097": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 970.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -197
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 970.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -197
         }
     },
     "bkgrd.098": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 980.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -198
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 980.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -198
         }
     },
     "bkgrd.099": {
-        "components": {
-            "PhysicsComp": {},
-            "RenderComp": {
-                "radius": 990.0,
-                "outline_thickness": 0.2,
-                "fill_color": [
-                    127,
-                    127,
-                    127,
-                    255
-                ],
-                "outline_color": [
-                    63,
-                    63,
-                    63,
-                    255
-                ],
-                "zorder": -199
-            }
+        "PhysicsComp": {},
+        "RenderComp": {
+            "radius": 990.0,
+            "outline_thickness": 0.2,
+            "fill_color": [
+                127,
+                127,
+                127,
+                255
+            ],
+            "outline_color": [
+                63,
+                63,
+                63,
+                255
+            ],
+            "zorder": -199
         }
     }
 }

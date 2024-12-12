@@ -156,7 +156,6 @@ class TestBoilerplateBuilder(unittest.TestCase):
                 "emplace_after_loading": ["bool", True, "false"],
                 "json_data": "json",
                 "n_emplaced": ["size_t", False, "0"],
-                "verbose_names": ["bool", True, "true"],
             },
             "PhysicsComp": {
                 "mass": ["float", True, "1.0f"],

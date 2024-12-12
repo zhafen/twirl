@@ -28,11 +28,6 @@
                 "size_t",
                 false,
                 0
-            ],
-            "verbose_names": [
-                "bool",
-                true,
-                "false"
             ]
         },
         "TriggerComp": {

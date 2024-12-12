@@ -151,7 +151,6 @@ TEST(SceneTest, EmplaceSceneFromJson) {
     entt::entity scene = registry.create();
     auto& scene_c =
         registry.emplace<SceneComp>(scene, "../../tests/test_data/test_scene.json");
-    scene_c.verbose_names = false;
     registry.emplace<EntityName>(scene, "test_scene");
     scene_system.loadJsonData(registry);
 

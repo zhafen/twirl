@@ -17,13 +17,11 @@ struct SceneComp {
     int emplace_order = 0;
     json json_data;
     size_t n_emplaced = 0;
-    bool verbose_names = false;
 };
 inline void from_json(const json& j, SceneComp& scenecomp) {
     scenecomp.scene_fp = j.at("scene_fp").get<std::string>();
     scenecomp.emplace_after_loading = j.value("emplace_after_loading", false);
     scenecomp.emplace_order = j.value("emplace_order", 0);
-    scenecomp.verbose_names = j.value("verbose_names", false);
 }
 
 struct TriggerComp {

@@ -71,14 +71,7 @@ void SceneSystem::emplaceScene(entt::registry& registry,
     // We keep track of the names for this scene so we can efficiently resolve them
     // during emplacement.
     EntityMap scene_entity_map;
-    for (auto [entity_name_base, entity_components] : scene_c.json_data.items()) {
-        EntityName entity_name;
-        if (scene_c.verbose_names) {
-            entity_name = scene_name + "." + std::to_string(scene_c.n_emplaced) + "." +
-                          entity_name_base;
-        } else {
-            entity_name = entity_name_base;
-        }
+    for (auto [entity_name, entity_components] : scene_c.json_data.items()) {
         scene_entity_map[entity_name] =
             emplaceEntity(registry, entity_name, entity_components);
     }

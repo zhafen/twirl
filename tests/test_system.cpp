@@ -177,6 +177,7 @@ TEST(SystemEntityTest, WatchSpawn) {
     entt::entity trigger_entity = registry.create();
     registry.emplace<WatchTriggerFlag>(trigger_entity);
     auto& pair_c = registry.emplace<PairComp>(trigger_entity);
+    pair_c.source_entity = watch_entity;
     pair_c.target_entity = scene_entity;
 
     // Ensure that the scene entity is valid

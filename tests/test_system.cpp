@@ -159,10 +159,8 @@ TEST(SystemEntityTest, WatchSpawn) {
     scene_c.json_data = R"(
     {
         "spawned_entity": {
-            "components": {
-                "PhysicsComp": {},
-                "RenderComp": {}
-            }
+            "PhysicsComp": {},
+            "RenderComp": {}
         }
     }
     )"_json;

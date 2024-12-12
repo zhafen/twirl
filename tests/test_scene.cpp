@@ -24,7 +24,7 @@ TEST(SceneTest, TriggerScene) {
     registry.emplace<EntityName>(scene_entity, "test_scene");
     json json_data = R"(
     {
-        "spawned_entity": {"components": {"EnemyFlag": {}}}
+        "spawned_entity": {"EnemyFlag": {}}
     }
     )"_json;
     SceneComp& scene_c = registry.emplace<SceneComp>(scene_entity);
@@ -111,10 +111,8 @@ TEST(SceneTest, EmplaceEntityUnresolvedNames) {
     // For WatchTriggerFlag
     json entity1_json = R"(
     {
-        "components": {
-            "WatchTriggerFlag": {
-                "scene_name": "test_scene"
-            }
+        "WatchTriggerFlag": {
+            "scene_name": "test_scene"
         }
     }
     )"_json;
@@ -122,11 +120,9 @@ TEST(SceneTest, EmplaceEntityUnresolvedNames) {
     // For PairComp
     json rel_12_json = R"(
     {
-        "components": {
-            "PairComp": {
-                "target_entity_name": "entity1",
-                "source_entity_name": "[EnemyFlag|first]"
-            }
+        "PairComp": {
+            "target_entity_name": "entity1",
+            "source_entity_name": "[EnemyFlag|first]"
         }
     }
     )"_json;

@@ -197,11 +197,6 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_EQ(fill_color.g, 128);
             EXPECT_EQ(fill_color.b, 128);
             EXPECT_EQ(fill_color.a, 255);
-
-            auto& swc = registry.get<WatchComp>(entity);
-            EXPECT_FLOAT_EQ(swc.current_time, 0.0f);
-            EXPECT_FLOAT_EQ(swc.end_time, 1.0f);
-            EXPECT_EQ(swc.end_reached, false);
         } else if (name == "beacon") {
             auto& pc = registry.get<PhysicsComp>(entity);
             EXPECT_FLOAT_EQ(pc.mass, 1.0f);

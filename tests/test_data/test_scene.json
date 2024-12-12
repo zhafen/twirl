@@ -106,7 +106,7 @@
             "WatchTriggerFlag": {},
             "PairComp": {
                 "source_entity_name": "watch",
-                "target_entity_name": "triggered_scene"
+                "target_entity_name": "[SceneComp|name:triggered_scene]"
             },
             "UnresolvedNameFlag": {}
         }

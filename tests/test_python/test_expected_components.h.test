@@ -10,7 +10,7 @@ using json = nlohmann::ordered_json;
 
 namespace twirl {
 
-struct EnemyComp {};
+struct EnemyFlag {};
 
 struct SceneComp {
     std::string scene_fp;

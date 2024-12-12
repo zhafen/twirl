@@ -15,12 +15,12 @@ bool InterfaceSystem::isGameSuspended(entt::registry& registry) {
     bool game_suspended = false;
 
     // Is the player dead?
-    entt::entity player_entity = registry.view<PlayerComp>().front();
+    entt::entity player_entity = registry.view<PlayerFlag>().front();
     auto durability_c = registry.get<DurabilityComp>(player_entity);
     game_suspended = game_suspended || (durability_c.durability <= 0);
 
     // Are all the enemies dead?
-    auto enemy_view = registry.view<EnemyComp>();
+    auto enemy_view = registry.view<EnemyFlag>();
     game_suspended = game_suspended || enemy_view.empty();
 
     return game_suspended;

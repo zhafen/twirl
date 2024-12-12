@@ -79,15 +79,18 @@ void PhysicsSystem::update(entt::registry& registry) {
 }
 
 void PhysicsSystem::updateStopWatches(entt::registry& registry) {
-    auto rview = registry.view<StopWatchComp>();
+    auto rview = registry.view<WatchComp>();
     for (auto [entity, stopwatch_c] : rview.each()) {
-        // Keep going if the end time was already reached.
+        // If the end time was reached, reset
         if (stopwatch_c.end_reached) {
-            continue;
+            stopwatch_c.current_time = 0.0f;
+            stopwatch_c.end_reached = false;
         }
 
         stopwatch_c.current_time += cfg.dt;
 
+        // Check if the end time was reached,
+        // and set end_reached to true until the next frame
         if (stopwatch_c.current_time >= stopwatch_c.end_time) {
             stopwatch_c.end_reached = true;
         }
@@ -180,7 +183,7 @@ void PhysicsSystem::updateDurability(entt::registry& registry) {
             // When out of durability, set to 0 and change color
             dur_c.durability = 0.0f;
             if (dur_c.delete_at_zero) {
-                registry.emplace<DeleteComp>(entity);
+                registry.emplace<DeleteFlag>(entity);
             } else {
                 rend_c.shape.setFillColor(sf::Color(63, 63, 63));
             }

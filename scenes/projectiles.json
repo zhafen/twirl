@@ -22,34 +22,34 @@
         "components": {
             "PairComp": {
                 "target_entity_name": "projectile",
-                "source_entity_name": "[PlayerComp|first]"
+                "source_entity_name": "[PlayerFlag|first]"
             },
             "SyncPositionComp": {
                 "once_only": true
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "projectile-enemy force": {
         "components": {
             "PairComp": {
                 "target_entity_name": "projectile",
-                "source_entity_name": "[EnemyComp|first]"
+                "source_entity_name": "[EnemyFlag|first]"
             },
             "PairwiseForceComp": {
                 "magnitude": -10.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "projectile-enemy collisions": {
         "components": {
             "PairComp": {
                 "source_entity_name": "projectile",
-                "target_entity_name": "[EnemyComp|first]"
+                "target_entity_name": "[EnemyFlag|first]"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     }
 }

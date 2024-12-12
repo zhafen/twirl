@@ -31,12 +31,34 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
     }
 }
 
+bool SceneSystem::checkSceneTriggers(entt::registry& registry) {
+    bool any_scene_triggered = false;
+
+    auto rview = registry.view<WatchTriggerFlag, PairComp>();
+    for (auto [entity, pair_c] : rview.each()) {
+        // Check if the end time was reached
+        if (!registry.get<WatchComp>(pair_c.source_entity).end_reached) {
+            continue;
+        }
+
+        // Emplace the scene
+        emplaceScene(registry, pair_c.target_entity);
+
+        any_scene_triggered = true;
+    }
+
+    return any_scene_triggered;
+}
+
+// This function can get called by patching the TriggerComp.
+// In many (most?) cases it's easier to use checkSceneTriggers once per frame.
 void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) {
-    auto& scenetrigger_c = registry.get<SceneTriggerComp>(entity);
-    emplaceScene(registry, scenetrigger_c.scene_entity);
+    auto& pair_c = registry.get<PairComp>(entity);
+    emplaceScene(registry, pair_c.target_entity);
 
     // Reset n_triggers
-    scenetrigger_c.n_triggers = 0;
+    auto& trigger_c = registry.get<TriggerComp>(entity);
+    trigger_c.n_triggers = 0;
 }
 
 void SceneSystem::emplaceScene(entt::registry& registry,
@@ -63,7 +85,7 @@ void SceneSystem::emplaceScene(entt::registry& registry,
     }
 
     // Resolve names
-    auto rview = registry.view<UnresolvedNameComp>();
+    auto rview = registry.view<UnresolvedNameFlag>();
     for (auto entity : rview) {
         // Check for each component that could have an unresolved name
         auto* pair_c_ptr = registry.try_get<PairComp>(entity);
@@ -73,7 +95,7 @@ void SceneSystem::emplaceScene(entt::registry& registry,
             pair_c_ptr->source_entity = resolveEntityName(
                 registry, scene_entity_map, pair_c_ptr->source_entity_name);
         }
-        auto* scenetrigger_c_ptr = registry.try_get<SceneTriggerComp>(entity);
+        auto* scenetrigger_c_ptr = registry.try_get<WatchTriggerFlag>(entity);
         if (scenetrigger_c_ptr != nullptr) {
             scenetrigger_c_ptr->scene_entity = resolveEntityName(
                 registry, scene_entity_map, scenetrigger_c_ptr->scene_name);
@@ -84,7 +106,7 @@ void SceneSystem::emplaceScene(entt::registry& registry,
                 registry, scene_entity_map, vb_c_ptr->tracked_entity_name);
             vb_c_ptr->tracked_value = &registry.get<DurabilityComp>(tracked_entity).durability;
         }
-        registry.remove<UnresolvedNameComp>(entity);
+        registry.remove<UnresolvedNameFlag>(entity);
     }
 
     // Increment n_emplaced

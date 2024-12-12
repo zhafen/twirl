@@ -12,22 +12,24 @@ namespace comp {
 
 void emplaceComponent(entt::registry& registry, entt::entity entity,
                       const std::string& comp_key, const json& comp_json) {
-    if (comp_key == "PlayerComp") {
-        registry.emplace<PlayerComp>(entity);
-    } else if (comp_key == "EnemyComp") {
-        registry.emplace<EnemyComp>(entity);
-    } else if (comp_key == "UnresolvedNameComp") {
-        registry.emplace<UnresolvedNameComp>(entity);
-    } else if (comp_key == "ViewComp") {
-        registry.emplace<ViewComp>(entity);
-    } else if (comp_key == "DeleteComp") {
-        registry.emplace<DeleteComp>(entity);
+    if (comp_key == "PlayerFlag") {
+        registry.emplace<PlayerFlag>(entity);
+    } else if (comp_key == "EnemyFlag") {
+        registry.emplace<EnemyFlag>(entity);
+    } else if (comp_key == "UnresolvedNameFlag") {
+        registry.emplace<UnresolvedNameFlag>(entity);
+    } else if (comp_key == "ViewFlag") {
+        registry.emplace<ViewFlag>(entity);
+    } else if (comp_key == "DeleteFlag") {
+        registry.emplace<DeleteFlag>(entity);
+    } else if (comp_key == "WatchTriggerFlag") {
+        registry.emplace<WatchTriggerFlag>(entity);
     } else if (comp_key == "SceneComp") {
         auto scenecomp = comp_json.template get<SceneComp>();
         registry.emplace<SceneComp>(entity, scenecomp);
-    } else if (comp_key == "SceneTriggerComp") {
-        auto scenetriggercomp = comp_json.template get<SceneTriggerComp>();
-        registry.emplace<SceneTriggerComp>(entity, scenetriggercomp);
+    } else if (comp_key == "TriggerComp") {
+        auto triggercomp = comp_json.template get<TriggerComp>();
+        registry.emplace<TriggerComp>(entity, triggercomp);
     } else if (comp_key == "PairComp") {
         auto paircomp = comp_json.template get<PairComp>();
         registry.emplace<PairComp>(entity, paircomp);
@@ -59,6 +61,9 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
     } else if (comp_key == "ValueBarComp") {
         auto valuebarcomp = comp_json.template get<ValueBarComp>();
         registry.emplace<ValueBarComp>(entity, valuebarcomp);
+    } else if (comp_key == "TextComp") {
+        auto textcomp = comp_json.template get<TextComp>();
+        registry.emplace<TextComp>(entity, textcomp);
     } else if (comp_key == "DebugComp") {
         auto debugcomp = comp_json.template get<DebugComp>();
         registry.emplace<DebugComp>(entity, debugcomp);
@@ -79,20 +84,22 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
     // Get the view based on the component string
     if (comp_key == "EntityName") {
         return getEntityFromSelectionStr<EntityName>(registry, selection_str);
-    } else if (comp_key == "PlayerComp") {
-        return getEntityFromSelectionStr<PlayerComp>(registry, selection_str);
-    } else if (comp_key == "EnemyComp") {
-        return getEntityFromSelectionStr<EnemyComp>(registry, selection_str);
-    } else if (comp_key == "UnresolvedNameComp") {
-        return getEntityFromSelectionStr<UnresolvedNameComp>(registry, selection_str);
-    } else if (comp_key == "ViewComp") {
-        return getEntityFromSelectionStr<ViewComp>(registry, selection_str);
-    } else if (comp_key == "DeleteComp") {
-        return getEntityFromSelectionStr<DeleteComp>(registry, selection_str);
+    } else if (comp_key == "PlayerFlag") {
+        return getEntityFromSelectionStr<PlayerFlag>(registry, selection_str);
+    } else if (comp_key == "EnemyFlag") {
+        return getEntityFromSelectionStr<EnemyFlag>(registry, selection_str);
+    } else if (comp_key == "UnresolvedNameFlag") {
+        return getEntityFromSelectionStr<UnresolvedNameFlag>(registry, selection_str);
+    } else if (comp_key == "ViewFlag") {
+        return getEntityFromSelectionStr<ViewFlag>(registry, selection_str);
+    } else if (comp_key == "DeleteFlag") {
+        return getEntityFromSelectionStr<DeleteFlag>(registry, selection_str);
+    } else if (comp_key == "WatchTriggerFlag") {
+        return getEntityFromSelectionStr<WatchTriggerFlag>(registry, selection_str);
     } else if (comp_key == "SceneComp") {
         return getEntityFromSelectionStr<SceneComp>(registry, selection_str);
-    } else if (comp_key == "SceneTriggerComp") {
-        return getEntityFromSelectionStr<SceneTriggerComp>(registry, selection_str);
+    } else if (comp_key == "TriggerComp") {
+        return getEntityFromSelectionStr<TriggerComp>(registry, selection_str);
     } else if (comp_key == "PairComp") {
         return getEntityFromSelectionStr<PairComp>(registry, selection_str);
     } else if (comp_key == "SyncPositionComp") {
@@ -115,6 +122,8 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<RenderComp>(registry, selection_str);
     } else if (comp_key == "ValueBarComp") {
         return getEntityFromSelectionStr<ValueBarComp>(registry, selection_str);
+    } else if (comp_key == "TextComp") {
+        return getEntityFromSelectionStr<TextComp>(registry, selection_str);
     } else if (comp_key == "DebugComp") {
         return getEntityFromSelectionStr<DebugComp>(registry, selection_str);
     } else {
@@ -145,6 +154,7 @@ void debugEntities(entt::registry& registry, std::string message) {
         
         
         
+        
         auto scenecomp_ptr = registry.try_get<SceneComp>(entity);
         if (scenecomp_ptr != nullptr) {
             auto scenecomp = *scenecomp_ptr;
@@ -153,12 +163,11 @@ void debugEntities(entt::registry& registry, std::string message) {
             std::cout << "      emplace_order: " << scenecomp.emplace_order << std::endl;
         }
         
-        auto scenetriggercomp_ptr = registry.try_get<SceneTriggerComp>(entity);
-        if (scenetriggercomp_ptr != nullptr) {
-            auto scenetriggercomp = *scenetriggercomp_ptr;
-            std::cout << "    SceneTriggerComp" << std::endl;
-            std::cout << "      scene_name: " << scenetriggercomp.scene_name << std::endl;
-            std::cout << "      n_triggers: " << scenetriggercomp.n_triggers << std::endl;
+        auto triggercomp_ptr = registry.try_get<TriggerComp>(entity);
+        if (triggercomp_ptr != nullptr) {
+            auto triggercomp = *triggercomp_ptr;
+            std::cout << "    TriggerComp" << std::endl;
+            std::cout << "      n_triggers: " << triggercomp.n_triggers << std::endl;
         }
         
         auto paircomp_ptr = registry.try_get<PairComp>(entity);
@@ -216,6 +225,14 @@ void debugEntities(entt::registry& registry, std::string message) {
         if (valuebarcomp_ptr != nullptr) {
             auto valuebarcomp = *valuebarcomp_ptr;
             std::cout << "    ValueBarComp" << std::endl;
+        }
+        
+        auto textcomp_ptr = registry.try_get<TextComp>(entity);
+        if (textcomp_ptr != nullptr) {
+            auto textcomp = *textcomp_ptr;
+            std::cout << "    TextComp" << std::endl;
+            std::cout << "      string: " << textcomp.string << std::endl;
+            std::cout << "      fontsize: " << textcomp.fontsize << std::endl;
         }
         
         auto debugcomp_ptr = registry.try_get<DebugComp>(entity);

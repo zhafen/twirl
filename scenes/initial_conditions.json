@@ -23,9 +23,9 @@
                 "scene_name": "[SceneComp|name:projectiles]"
             },
             "StopWatchComp": {},
-            "PlayerComp": {},
-            "ViewComp": {},
-            "UnresolvedNameComp": {}
+            "PlayerFlag": {},
+            "ViewFlag": {},
+            "UnresolvedNameFlag": {}
         }
     },
     "beacon": {
@@ -60,12 +60,12 @@
             "PairwiseForceComp": {
                 "magnitude": -2.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.000": {
         "components": {
-            "EnemyComp": {},
+            "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
                     64.33630833629394,
@@ -101,7 +101,7 @@
                 "softening": 1.0,
                 "distance_scaling": 1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.000 spring": {
@@ -113,7 +113,7 @@
             "PairwiseForceComp": {
                 "magnitude": -1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.000 collision": {
@@ -123,12 +123,12 @@
                 "target_entity_name": "enemy.000"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.001": {
         "components": {
-            "EnemyComp": {},
+            "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
                     -65.18402518926038,
@@ -164,7 +164,7 @@
                 "softening": 1.0,
                 "distance_scaling": 1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.001 spring": {
@@ -176,7 +176,7 @@
             "PairwiseForceComp": {
                 "magnitude": -1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.001 collision": {
@@ -186,12 +186,12 @@
                 "target_entity_name": "enemy.001"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.002": {
         "components": {
-            "EnemyComp": {},
+            "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
                     38.07942334819094,
@@ -227,7 +227,7 @@
                 "softening": 1.0,
                 "distance_scaling": 1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.002 spring": {
@@ -239,7 +239,7 @@
             "PairwiseForceComp": {
                 "magnitude": -1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.002 collision": {
@@ -249,12 +249,12 @@
                 "target_entity_name": "enemy.002"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.003": {
         "components": {
-            "EnemyComp": {},
+            "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
                     24.43265882244785,
@@ -290,7 +290,7 @@
                 "softening": 1.0,
                 "distance_scaling": 1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.003 spring": {
@@ -302,7 +302,7 @@
             "PairwiseForceComp": {
                 "magnitude": -1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.003 collision": {
@@ -312,12 +312,12 @@
                 "target_entity_name": "enemy.003"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.004": {
         "components": {
-            "EnemyComp": {},
+            "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
                     99.90523981119554,
@@ -353,7 +353,7 @@
                 "softening": 1.0,
                 "distance_scaling": 1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.004 spring": {
@@ -365,7 +365,7 @@
             "PairwiseForceComp": {
                 "magnitude": -1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.004 collision": {
@@ -375,12 +375,12 @@
                 "target_entity_name": "enemy.004"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.005": {
         "components": {
-            "EnemyComp": {},
+            "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
                     86.09752416350125,
@@ -416,7 +416,7 @@
                 "softening": 1.0,
                 "distance_scaling": 1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.005 spring": {
@@ -428,7 +428,7 @@
             "PairwiseForceComp": {
                 "magnitude": -1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.005 collision": {
@@ -438,12 +438,12 @@
                 "target_entity_name": "enemy.005"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.006": {
         "components": {
-            "EnemyComp": {},
+            "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
                     -15.040566485294391,
@@ -479,7 +479,7 @@
                 "softening": 1.0,
                 "distance_scaling": 1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.006 spring": {
@@ -491,7 +491,7 @@
             "PairwiseForceComp": {
                 "magnitude": -1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.006 collision": {
@@ -501,12 +501,12 @@
                 "target_entity_name": "enemy.006"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.007": {
         "components": {
-            "EnemyComp": {},
+            "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
                     5.506425875169697,
@@ -542,7 +542,7 @@
                 "softening": 1.0,
                 "distance_scaling": 1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.007 spring": {
@@ -554,7 +554,7 @@
             "PairwiseForceComp": {
                 "magnitude": -1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.007 collision": {
@@ -564,12 +564,12 @@
                 "target_entity_name": "enemy.007"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.008": {
         "components": {
-            "EnemyComp": {},
+            "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
                     50.16549523544799,
@@ -605,7 +605,7 @@
                 "softening": 1.0,
                 "distance_scaling": 1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.008 spring": {
@@ -617,7 +617,7 @@
             "PairwiseForceComp": {
                 "magnitude": -1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.008 collision": {
@@ -627,12 +627,12 @@
                 "target_entity_name": "enemy.008"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.009": {
         "components": {
-            "EnemyComp": {},
+            "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
                     -45.931292536834256,
@@ -668,7 +668,7 @@
                 "softening": 1.0,
                 "distance_scaling": 1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.009 spring": {
@@ -680,7 +680,7 @@
             "PairwiseForceComp": {
                 "magnitude": -1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy-player.009 collision": {
@@ -690,7 +690,7 @@
                 "target_entity_name": "enemy.009"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.000-enemy.001 collision": {
@@ -700,7 +700,7 @@
                 "target_entity_name": "enemy.001"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.000-enemy.002 collision": {
@@ -710,7 +710,7 @@
                 "target_entity_name": "enemy.002"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.000-enemy.003 collision": {
@@ -720,7 +720,7 @@
                 "target_entity_name": "enemy.003"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.000-enemy.004 collision": {
@@ -730,7 +730,7 @@
                 "target_entity_name": "enemy.004"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.000-enemy.005 collision": {
@@ -740,7 +740,7 @@
                 "target_entity_name": "enemy.005"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.000-enemy.006 collision": {
@@ -750,7 +750,7 @@
                 "target_entity_name": "enemy.006"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.000-enemy.007 collision": {
@@ -760,7 +760,7 @@
                 "target_entity_name": "enemy.007"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.000-enemy.008 collision": {
@@ -770,7 +770,7 @@
                 "target_entity_name": "enemy.008"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.000-enemy.009 collision": {
@@ -780,7 +780,7 @@
                 "target_entity_name": "enemy.009"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.001-enemy.002 collision": {
@@ -790,7 +790,7 @@
                 "target_entity_name": "enemy.002"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.001-enemy.003 collision": {
@@ -800,7 +800,7 @@
                 "target_entity_name": "enemy.003"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.001-enemy.004 collision": {
@@ -810,7 +810,7 @@
                 "target_entity_name": "enemy.004"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.001-enemy.005 collision": {
@@ -820,7 +820,7 @@
                 "target_entity_name": "enemy.005"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.001-enemy.006 collision": {
@@ -830,7 +830,7 @@
                 "target_entity_name": "enemy.006"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.001-enemy.007 collision": {
@@ -840,7 +840,7 @@
                 "target_entity_name": "enemy.007"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.001-enemy.008 collision": {
@@ -850,7 +850,7 @@
                 "target_entity_name": "enemy.008"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.001-enemy.009 collision": {
@@ -860,7 +860,7 @@
                 "target_entity_name": "enemy.009"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.002-enemy.003 collision": {
@@ -870,7 +870,7 @@
                 "target_entity_name": "enemy.003"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.002-enemy.004 collision": {
@@ -880,7 +880,7 @@
                 "target_entity_name": "enemy.004"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.002-enemy.005 collision": {
@@ -890,7 +890,7 @@
                 "target_entity_name": "enemy.005"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.002-enemy.006 collision": {
@@ -900,7 +900,7 @@
                 "target_entity_name": "enemy.006"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.002-enemy.007 collision": {
@@ -910,7 +910,7 @@
                 "target_entity_name": "enemy.007"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.002-enemy.008 collision": {
@@ -920,7 +920,7 @@
                 "target_entity_name": "enemy.008"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.002-enemy.009 collision": {
@@ -930,7 +930,7 @@
                 "target_entity_name": "enemy.009"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.003-enemy.004 collision": {
@@ -940,7 +940,7 @@
                 "target_entity_name": "enemy.004"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.003-enemy.005 collision": {
@@ -950,7 +950,7 @@
                 "target_entity_name": "enemy.005"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.003-enemy.006 collision": {
@@ -960,7 +960,7 @@
                 "target_entity_name": "enemy.006"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.003-enemy.007 collision": {
@@ -970,7 +970,7 @@
                 "target_entity_name": "enemy.007"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.003-enemy.008 collision": {
@@ -980,7 +980,7 @@
                 "target_entity_name": "enemy.008"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.003-enemy.009 collision": {
@@ -990,7 +990,7 @@
                 "target_entity_name": "enemy.009"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.004-enemy.005 collision": {
@@ -1000,7 +1000,7 @@
                 "target_entity_name": "enemy.005"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.004-enemy.006 collision": {
@@ -1010,7 +1010,7 @@
                 "target_entity_name": "enemy.006"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.004-enemy.007 collision": {
@@ -1020,7 +1020,7 @@
                 "target_entity_name": "enemy.007"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.004-enemy.008 collision": {
@@ -1030,7 +1030,7 @@
                 "target_entity_name": "enemy.008"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.004-enemy.009 collision": {
@@ -1040,7 +1040,7 @@
                 "target_entity_name": "enemy.009"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.005-enemy.006 collision": {
@@ -1050,7 +1050,7 @@
                 "target_entity_name": "enemy.006"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.005-enemy.007 collision": {
@@ -1060,7 +1060,7 @@
                 "target_entity_name": "enemy.007"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.005-enemy.008 collision": {
@@ -1070,7 +1070,7 @@
                 "target_entity_name": "enemy.008"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.005-enemy.009 collision": {
@@ -1080,7 +1080,7 @@
                 "target_entity_name": "enemy.009"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.006-enemy.007 collision": {
@@ -1090,7 +1090,7 @@
                 "target_entity_name": "enemy.007"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.006-enemy.008 collision": {
@@ -1100,7 +1100,7 @@
                 "target_entity_name": "enemy.008"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.006-enemy.009 collision": {
@@ -1110,7 +1110,7 @@
                 "target_entity_name": "enemy.009"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.007-enemy.008 collision": {
@@ -1120,7 +1120,7 @@
                 "target_entity_name": "enemy.008"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.007-enemy.009 collision": {
@@ -1130,7 +1130,7 @@
                 "target_entity_name": "enemy.009"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "enemy.008-enemy.009 collision": {
@@ -1140,7 +1140,7 @@
                 "target_entity_name": "enemy.009"
             },
             "CollisionComp": {},
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "bkgrd.000": {

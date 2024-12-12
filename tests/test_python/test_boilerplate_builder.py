@@ -110,8 +110,8 @@ class TestBoilerplateBuilder(unittest.TestCase):
         expected_output = (
             "void emplaceComponent(entt::registry& registry, entt::entity entity,\n"
             "                      const std::string& comp_key, const json& comp_json) {\n"
-            '    if (comp_key == "ViewComp") {\n'
-            "        registry.emplace<ViewComp>(entity);\n"
+            '    if (comp_key == "ViewFlag") {\n'
+            "        registry.emplace<ViewFlag>(entity);\n"
             '    } else if (comp_key == "ValueBarComp") {\n'
             "        auto valuebarcomp = comp_json.template get<ValueBarComp>();\n"
             "        registry.emplace<ValueBarComp>(entity, valuebarcomp);\n"
@@ -122,7 +122,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
         )
         output = self.builder.get_emplacecomponent_str(
             {
-                "ViewComp": [],
+                "ViewFlag": [],
                 "ValueBarComp": ["ValueBarComp"],
             }
         )
@@ -131,11 +131,11 @@ class TestBoilerplateBuilder(unittest.TestCase):
     def test_get_emplacement_str_for_comp(self):
 
         expected_output_empty = (
-            'if (comp_key == "ViewComp") {\n'
-            "    registry.emplace<ViewComp>(entity);\n"
+            'if (comp_key == "ViewFlag") {\n'
+            "    registry.emplace<ViewFlag>(entity);\n"
             "}"
         )
-        output_empty = self.builder.get_emplacement_str_for_comp("ViewComp", True)
+        output_empty = self.builder.get_emplacement_str_for_comp("ViewFlag", True)
         assert expected_output_empty == output_empty
 
         expected_output = (
@@ -150,7 +150,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
     def test_generate_components_header_file(self):
 
         components = {
-            "EnemyComp": {},
+            "EnemyFlag": {},
             "SceneComp": {
                 "scene_fp": ["std::string", True],
                 "emplace_after_loading": ["bool", True, "false"],
@@ -201,7 +201,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
     def test_generate_components_source_file(self):
 
         components = {
-            "EnemyComp": {},
+            "EnemyFlag": {},
             "PhysicsComp": {
                 "mass": ["float", True, "1.0f"],
                 "pos": ["sf::Vector2f", True, "sf::Vector2f(0.0f, 0.0f)", "cfg.L"],

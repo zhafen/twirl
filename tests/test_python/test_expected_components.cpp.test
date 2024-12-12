@@ -12,8 +12,8 @@ namespace comp {
 
 void emplaceComponent(entt::registry& registry, entt::entity entity,
                       const std::string& comp_key, const json& comp_json) {
-    if (comp_key == "EnemyComp") {
-        registry.emplace<EnemyComp>(entity);
+    if (comp_key == "EnemyFlag") {
+        registry.emplace<EnemyFlag>(entity);
     } else if (comp_key == "PhysicsComp") {
         auto physicscomp = comp_json.template get<PhysicsComp>();
         registry.emplace<PhysicsComp>(entity, physicscomp);
@@ -37,8 +37,8 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
     // Get the view based on the component string
     if (comp_key == "EntityName") {
         return getEntityFromSelectionStr<EntityName>(registry, selection_str);
-    } else if (comp_key == "EnemyComp") {
-        return getEntityFromSelectionStr<EnemyComp>(registry, selection_str);
+    } else if (comp_key == "EnemyFlag") {
+        return getEntityFromSelectionStr<EnemyFlag>(registry, selection_str);
     } else if (comp_key == "PhysicsComp") {
         return getEntityFromSelectionStr<PhysicsComp>(registry, selection_str);
     } else if (comp_key == "RenderComp") {

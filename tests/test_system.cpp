@@ -140,7 +140,7 @@ TEST(SystemEntityTest, SpawnDeleteOrder) {
 
     // Try spawning, deleting, and ordering entities
     entity_system.deleteEntities(registry);
-    entity_system.spawnEntities(registry);
+    entity_system.checkSceneTriggers(registry);
     entity_system.orderEntities(registry);
 }
 
@@ -148,7 +148,7 @@ TEST(SystemEntityTest, StopWatchSpawn) {
     entt::registry registry;
     EntitySystem entity_system;
     SceneSystem scene_system;
-    registry.on_update<SceneTriggerComp>().connect<&SceneSystem::onSceneTrigger>(
+    registry.on_update<WatchTriggerFlag>().connect<&SceneSystem::onSceneTrigger>(
         scene_system);
 
     // Ready a scene to spawn
@@ -169,10 +169,10 @@ TEST(SystemEntityTest, StopWatchSpawn) {
     // Spawning entity
     entt::entity spawner_entity = registry.create();
     registry.emplace<EntityName>(spawner_entity, "spawner_entity");
-    auto& scenetrig_c = registry.emplace<SceneTriggerComp>(spawner_entity);
+    auto& scenetrig_c = registry.emplace<WatchTriggerFlag>(spawner_entity);
     scenetrig_c.scene_entity = scene_entity;
     registry.emplace<PhysicsComp>(spawner_entity, 1.0f, sf::Vector2f(10.f, 10.f));
-    auto& swc = registry.emplace<StopWatchComp>(spawner_entity);
+    auto& swc = registry.emplace<WatchComp>(spawner_entity);
     // We test stopwatch updates separately, so we set the trigger as ready to go
     swc.end_reached = true;
 
@@ -184,7 +184,7 @@ TEST(SystemEntityTest, StopWatchSpawn) {
     EXPECT_EQ(entity_map.find("spawned_entity"), entity_map.end());
 
     // Trigger
-    entity_system.spawnEntities(registry);
+    entity_system.checkSceneTriggers(registry);
 
     // Check that the entities were created properly
     entity_map = entity_system.getEntityMap(registry);

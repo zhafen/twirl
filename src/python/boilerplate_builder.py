@@ -40,9 +40,9 @@ class BoilerplateBuilder:
                 # Add the unresolved name component if the component has unresolved names
                 unresolved_comp_included = False
                 if (comp_key in self.comps_using_names) and ~unresolved_comp_included:
-                    print(f"Adding UnresolvedNameComp to '{name}'")
-                    scene_data[name]["components"]["UnresolvedNameComp"] = {}
-                    # Only add the UnresolvedNameComp once
+                    print(f"Adding UnresolvedNameFlag to '{name}'")
+                    scene_data[name]["components"]["UnresolvedNameFlag"] = {}
+                    # Only add the UnresolvedNameFlag once
                     unresolved_comp_included = True
 
         with open(

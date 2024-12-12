@@ -48,7 +48,7 @@ EntityMap& EntitySystem::getEntityMap(entt::registry& registry) {
 // }
 //
 // void EntitySystem::resolveSceneTriggerNames(entt::registry& registry) {
-//     auto rview = registry.view<SceneTriggerComp>();
+//     auto rview = registry.view<WatchTriggerFlag>();
 //     for (auto [entity, scenetrigger_c] : rview.each()) {
 //         scenetrigger_c.scene_entity = resolveEntityName(registry,
 //         scenetrigger_c.scene_name,
@@ -76,30 +76,25 @@ EntityMap& EntitySystem::getEntityMap(entt::registry& registry) {
 //     }
 // }
 
-void EntitySystem::spawnEntities(entt::registry& registry) {
-    auto rview = registry.view<StopWatchComp, SceneTriggerComp>();
-    for (auto [entity, stopwatch_c, scenetrigger_c] : rview.each()) {
+void EntitySystem::checkSceneTriggers(entt::registry& registry) {
+    auto rview = registry.view<WatchTriggerFlag, PairComp>();
+    for (auto [entity, pair_c] : rview.each()) {
         // Check if the end time was reached
-        if (!stopwatch_c.end_reached) {
+        if (!registry.get<WatchComp>(pair_c.source_entity).end_reached) {
             continue;
-        } else {
-            // Reset the stopwatch
-            stopwatch_c.current_time = 0.0f;
-            stopwatch_c.end_reached = false;
         }
 
         // If we got this far then we activate the scene trigger
-        registry.patch<SceneTriggerComp>(entity, [](auto& stc) { stc.n_triggers++; });
+        registry.patch<WatchTriggerFlag>(entity, [](auto& stc) { stc.n_triggers++; });
         // TODO: Is there an advantage to using patch here, rather than just calling
         // emplaceScene directly?
 
-        // Spawning means we need to reorder
         needs_ordering = true;
     }
 }
 
 void EntitySystem::deleteEntities(entt::registry& registry) {
-    auto rview = registry.view<DeleteComp>();
+    auto rview = registry.view<DeleteFlag>();
 
     for (auto entity : rview) {
         registry.destroy(entity);

@@ -33,8 +33,8 @@
                 "scene_name": "[SceneComp|name:triggered_scene]"
             },
             "StopWatchComp": {},
-            "ViewComp": {},
-            "UnresolvedNameComp": {}
+            "ViewFlag": {},
+            "UnresolvedNameFlag": {}
         }
     },
     "beacon": {
@@ -69,7 +69,7 @@
             "PairwiseForceComp": {
                 "magnitude": -1.0
             },
-            "UnresolvedNameComp": {}
+            "UnresolvedNameFlag": {}
         }
     },
     "bkgrd": {

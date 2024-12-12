@@ -41,7 +41,7 @@ void Game::run() {
 
 void Game::initialize() {
     // Hook up the scene trigger listener
-    registry.on_update<SceneTriggerComp>().connect<&SceneSystem::onSceneTrigger>(
+    registry.on_update<WatchTriggerFlag>().connect<&SceneSystem::onSceneTrigger>(
         scene_system);
 
     // Emplace the main scene
@@ -97,7 +97,7 @@ void Game::handleEvents() {
 void Game::update() {
     // Try spawning, deleting, and ordering entities
     entity_system.deleteEntities(registry);
-    entity_system.spawnEntities(registry);
+    entity_system.checkSceneTriggers(registry);
     entity_system.orderEntities(registry);
     entity_system.syncEntities(registry);
 

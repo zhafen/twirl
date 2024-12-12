@@ -43,6 +43,7 @@ class SceneSystem {
     ~SceneSystem() = default;
 
     void loadJsonData(entt::registry& registry);
+    bool checkSceneTriggers(entt::registry& registry);
     void onSceneTrigger(entt::registry& registry, entt::entity entity);
     void emplaceScene(entt::registry& registry, entt::entity scene_entity);
     entt::entity emplaceEntity(entt::registry& registry, const EntityName entity_name,

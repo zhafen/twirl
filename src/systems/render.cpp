@@ -57,12 +57,12 @@ void RenderSystem::renderUI(entt::registry& registry, sf::RenderWindow& window) 
 
 void RenderSystem::setView(entt::registry& registry, sf::RenderWindow& window,
                            sf::View& view) {
-    // Pin the view to the ViewComp entity (the player)
-    auto rview = registry.view<PhysicsComp, ViewComp>();
+    // Pin the view to the ViewFlag entity (the player)
+    auto rview = registry.view<PhysicsComp, ViewFlag>();
     size_t n_vc = 0;
     for (auto [entity, phys_c] : rview.each()) {
         if (n_vc > 1) {
-            std::cerr << "Warning: More than one ViewComp entity found. Using the "
+            std::cerr << "Warning: More than one ViewFlag entity found. Using the "
                          "first one.\n";
             break;
         }

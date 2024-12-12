@@ -8,15 +8,17 @@ using json = nlohmann::ordered_json;
 
 namespace twirl {
 
-struct PlayerComp {};
+struct PlayerFlag {};
 
-struct EnemyComp {};
+struct EnemyFlag {};
 
-struct UnresolvedNameComp {};
+struct UnresolvedNameFlag {};
 
-struct ViewComp {};
+struct ViewFlag {};
 
-struct DeleteComp {};
+struct DeleteFlag {};
+
+struct WatchTriggerFlag {};
 
 }  // namespace twirl
 

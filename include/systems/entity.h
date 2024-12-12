@@ -25,7 +25,6 @@ class EntitySystem {
     // void resolveEntityNames(entt::registry& registry);
     // void resolveSceneTriggerNames(entt::registry& registry);
     // void resolvePairNames(entt::registry& registry);
-    void spawnEntities(entt::registry& registry);
     void deleteEntities(entt::registry& registry);
     void syncEntities(entt::registry& registry);
     void orderEntities(entt::registry& registry);

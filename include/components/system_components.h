@@ -26,14 +26,11 @@ inline void from_json(const json& j, SceneComp& scenecomp) {
     scenecomp.verbose_names = j.value("verbose_names", false);
 }
 
-struct SceneTriggerComp {
-    std::string scene_name;
-    entt::entity scene_entity = entt::null;
+struct TriggerComp {
     int n_triggers = 0;
 };
-inline void from_json(const json& j, SceneTriggerComp& scenetriggercomp) {
-    scenetriggercomp.scene_name = j.at("scene_name").get<std::string>();
-    scenetriggercomp.n_triggers = j.value("n_triggers", 0);
+inline void from_json(const json& j, TriggerComp& triggercomp) {
+    triggercomp.n_triggers = j.value("n_triggers", 0);
 }
 
 struct PairComp {
@@ -146,6 +143,15 @@ inline void from_json(const json& j, ValueBarComp& valuebarcomp) {
     valuebarcomp.pos = j.value("pos", sf::Vector2f(-50.f, -45.f)) * cfg.L;
     valuebarcomp.size = j.value("size", sf::Vector2f(100.f, 1.0f)) * cfg.L;
     valuebarcomp.tracked_entity_name = j.value("tracked_entity_name", "");
+}
+
+struct TextComp {
+    std::string string = "";
+    int fontsize = 24;
+};
+inline void from_json(const json& j, TextComp& textcomp) {
+    textcomp.string = j.value("string", "");
+    textcomp.fontsize = j.value("fontsize", 24);
 }
 
 struct DebugComp {

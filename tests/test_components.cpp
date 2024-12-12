@@ -44,24 +44,24 @@ TEST(ComponentTest, EntityNameStorage) {
     }
 }
 
-TEST(ComponentTest, StopWatchComp) {
+TEST(ComponentTest, WatchComp) {
 
     // Set up a registry and add some components
     entt::registry registry;
 
     // Check that the components were added correctly
     entt::entity entity1 = registry.create();
-    registry.emplace<StopWatchComp>(entity1);
-    EXPECT_FLOAT_EQ(registry.get<StopWatchComp>(entity1).current_time, 0.0f);
-    EXPECT_FLOAT_EQ(registry.get<StopWatchComp>(entity1).end_time, 1.0f);
-    EXPECT_EQ(registry.get<StopWatchComp>(entity1).end_reached, false);
+    registry.emplace<WatchComp>(entity1);
+    EXPECT_FLOAT_EQ(registry.get<WatchComp>(entity1).current_time, 0.0f);
+    EXPECT_FLOAT_EQ(registry.get<WatchComp>(entity1).end_time, 1.0f);
+    EXPECT_EQ(registry.get<WatchComp>(entity1).end_reached, false);
 
     // Add another entity but with different defaults
     entt::entity entity2 = registry.create();
-    registry.emplace<StopWatchComp>(entity2, 1.0f, 2.0f, true);
-    EXPECT_FLOAT_EQ(registry.get<StopWatchComp>(entity2).current_time, 1.0f);
-    EXPECT_FLOAT_EQ(registry.get<StopWatchComp>(entity2).end_time, 2.0f);
-    EXPECT_EQ(registry.get<StopWatchComp>(entity2).end_reached, true);
+    registry.emplace<WatchComp>(entity2, 1.0f, 2.0f, true);
+    EXPECT_FLOAT_EQ(registry.get<WatchComp>(entity2).current_time, 1.0f);
+    EXPECT_FLOAT_EQ(registry.get<WatchComp>(entity2).end_time, 2.0f);
+    EXPECT_EQ(registry.get<WatchComp>(entity2).end_reached, true);
 }
 
 TEST(ComponentTest, StopWatchCompJson) {
@@ -71,10 +71,10 @@ TEST(ComponentTest, StopWatchCompJson) {
     // Load from json with no settings specified
     entt::entity entity1 = registry.create();
     json comp_json1 = R"({})"_json;
-    comp::emplaceComponent(registry, entity1, "StopWatchComp", comp_json1);
-    EXPECT_FLOAT_EQ(registry.get<StopWatchComp>(entity1).current_time, 0.0f);
-    EXPECT_FLOAT_EQ(registry.get<StopWatchComp>(entity1).end_time, 1.0f);
-    EXPECT_EQ(registry.get<StopWatchComp>(entity1).end_reached, false);
+    comp::emplaceComponent(registry, entity1, "WatchComp", comp_json1);
+    EXPECT_FLOAT_EQ(registry.get<WatchComp>(entity1).current_time, 0.0f);
+    EXPECT_FLOAT_EQ(registry.get<WatchComp>(entity1).end_time, 1.0f);
+    EXPECT_EQ(registry.get<WatchComp>(entity1).end_reached, false);
 
     // Load from json with all settings specified
     entt::entity entity2 = registry.create();
@@ -85,10 +85,10 @@ TEST(ComponentTest, StopWatchCompJson) {
         "end_reached": true
     }
     )"_json;
-    comp::emplaceComponent(registry, entity2, "StopWatchComp", comp_json2);
-    EXPECT_FLOAT_EQ(registry.get<StopWatchComp>(entity2).current_time, 1.0f);
-    EXPECT_FLOAT_EQ(registry.get<StopWatchComp>(entity2).end_time, 2.0f);
-    EXPECT_EQ(registry.get<StopWatchComp>(entity2).end_reached, true);
+    comp::emplaceComponent(registry, entity2, "WatchComp", comp_json2);
+    EXPECT_FLOAT_EQ(registry.get<WatchComp>(entity2).current_time, 1.0f);
+    EXPECT_FLOAT_EQ(registry.get<WatchComp>(entity2).end_time, 2.0f);
+    EXPECT_EQ(registry.get<WatchComp>(entity2).end_reached, true);
 }
 
 TEST(ComponentTest, PairCompTest) {
@@ -146,11 +146,11 @@ TEST(ComponentTest, EntityFromCompStr) {
 
     // Create an entity with a component
     entt::entity entity = registry.create();
-    registry.emplace<EnemyComp>(entity);
+    registry.emplace<EnemyFlag>(entity);
     registry.emplace<PhysicsComp>(entity, 10.0f);
 
     // Check that the entity can be retrieved from the component string
-    entt::entity entity_out = comp::getEntityFromStr(registry, "EnemyComp|first");
+    entt::entity entity_out = comp::getEntityFromStr(registry, "EnemyFlag|first");
     EXPECT_EQ(entity, entity_out);
 
     // Check that the entity can be retrieved from the component string

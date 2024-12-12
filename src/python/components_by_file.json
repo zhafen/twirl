@@ -1,10 +1,11 @@
 {
     "tags": {
-        "PlayerComp": {},
-        "EnemyComp": {},
-        "UnresolvedNameComp": {},
-        "ViewComp": {},
-        "DeleteComp": {}
+        "PlayerFlag": {},
+        "EnemyFlag": {},
+        "UnresolvedNameFlag": {},
+        "ViewFlag": {},
+        "DeleteFlag": {},
+        "WatchTriggerFlag": {}
     },
     "system_components": {
         "SceneComp": {
@@ -34,16 +35,7 @@
                 "false"
             ]
         },
-        "SceneTriggerComp": {
-            "scene_name": [
-                "std::string",
-                true
-            ],
-            "scene_entity": [
-                "entt::entity",
-                false,
-                "entt::null"
-            ],
+        "TriggerComp": {
             "n_triggers": [
                 "int",
                 true,
@@ -230,6 +222,18 @@
                 "EntityName",
                 true,
                 "\"\""
+            ]
+        },
+        "TextComp": {
+            "string": [
+                "std::string",
+                true,
+                "\"\""
+            ],
+            "fontsize": [
+                "int",
+                true,
+                "24"
             ]
         },
         "DebugComp": {

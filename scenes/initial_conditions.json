@@ -19,13 +19,8 @@
                     255
                 ]
             },
-            "SceneTriggerComp": {
-                "scene_name": "[SceneComp|name:projectiles]"
-            },
-            "StopWatchComp": {},
             "PlayerFlag": {},
-            "ViewFlag": {},
-            "UnresolvedNameFlag": {}
+            "ViewComp": {}
         }
     },
     "beacon": {
@@ -68,8 +63,8 @@
             "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
-                    64.33630833629394,
-                    -112.60928211748625
+                    12.904193196426462,
+                    -38.945554200544876
                 ],
                 "vel": [
                     0.0,
@@ -131,8 +126,8 @@
             "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
-                    -65.18402518926038,
-                    -64.98362332356652
+                    -69.40030000695474,
+                    -95.18403198268824
                 ],
                 "vel": [
                     0.0,
@@ -194,8 +189,8 @@
             "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
-                    38.07942334819094,
-                    -91.9483824998109
+                    90.77853448672727,
+                    -113.43366476038423
                 ],
                 "vel": [
                     0.0,
@@ -257,8 +252,8 @@
             "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
-                    24.43265882244785,
-                    -70.13986905427097
+                    95.56094773346965,
+                    -28.77047720508014
                 ],
                 "vel": [
                     0.0,
@@ -320,8 +315,8 @@
             "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
-                    99.90523981119554,
-                    -65.20455868168787
+                    17.204350554856646,
+                    -111.53492806134962
                 ],
                 "vel": [
                     0.0,
@@ -383,8 +378,8 @@
             "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
-                    86.09752416350125,
-                    -31.125048829853426
+                    82.07607473462858,
+                    -109.46991758134453
                 ],
                 "vel": [
                     0.0,
@@ -446,8 +441,8 @@
             "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
-                    -15.040566485294391,
-                    -25.915229680673974
+                    88.33504074155846,
+                    -104.54474492918895
                 ],
                 "vel": [
                     0.0,
@@ -509,8 +504,8 @@
             "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
-                    5.506425875169697,
-                    -49.51626005660398
+                    87.12356571723382,
+                    -93.66292839282542
                 ],
                 "vel": [
                     0.0,
@@ -572,8 +567,8 @@
             "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
-                    50.16549523544799,
-                    -44.01475282004371
+                    29.458016557373014,
+                    -78.8699939617503
                 ],
                 "vel": [
                     0.0,
@@ -635,8 +630,8 @@
             "EnemyFlag": {},
             "PhysicsComp": {
                 "pos": [
-                    -45.931292536834256,
-                    -80.71129042561294
+                    -96.37722598625753,
+                    -39.63813829210251
                 ],
                 "vel": [
                     0.0,
@@ -1140,6 +1135,21 @@
                 "target_entity_name": "enemy.009"
             },
             "CollisionComp": {},
+            "UnresolvedNameFlag": {}
+        }
+    },
+    "player_projectile_watch": {
+        "components": {
+            "WatchComp": {}
+        }
+    },
+    "player_projectile_watch_trigger": {
+        "components": {
+            "WatchTriggerFlag": {},
+            "PairComp": {
+                "source_entity_name": "player_projectile_watch",
+                "target_entity_name": "[SceneComp|name:projectiles]"
+            },
             "UnresolvedNameFlag": {}
         }
     },

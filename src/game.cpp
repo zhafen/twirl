@@ -41,7 +41,7 @@ void Game::run() {
 
 void Game::initialize() {
     // Hook up the scene trigger listener
-    registry.on_update<WatchTriggerFlag>().connect<&SceneSystem::onSceneTrigger>(
+    registry.on_update<TriggerComp>().connect<&SceneSystem::onSceneTrigger>(
         scene_system);
 
     // Emplace the main scene

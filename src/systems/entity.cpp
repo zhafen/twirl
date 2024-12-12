@@ -48,7 +48,7 @@ EntityMap& EntitySystem::getEntityMap(entt::registry& registry) {
 // }
 //
 // void EntitySystem::resolveSceneTriggerNames(entt::registry& registry) {
-//     auto rview = registry.view<WatchTriggerComp>();
+//     auto rview = registry.view<WatchTriggerFlag>();
 //     for (auto [entity, scenetrigger_c] : rview.each()) {
 //         scenetrigger_c.scene_entity = resolveEntityName(registry,
 //         scenetrigger_c.scene_name,

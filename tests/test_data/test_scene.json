@@ -29,12 +29,7 @@
                     255
                 ]
             },
-            "SceneTriggerComp": {
-                "scene_name": "[SceneComp|name:triggered_scene]"
-            },
-            "StopWatchComp": {},
-            "ViewFlag": {},
-            "UnresolvedNameFlag": {}
+            "ViewComp": {}
         }
     },
     "beacon": {
@@ -99,6 +94,21 @@
             "SceneComp": {
                 "scene_fp": "../../tests/test_data/triggered_scene.json"
             }
+        }
+    },
+    "watch": {
+        "components": {
+            "WatchComp": {}
+        }
+    },
+    "watch_trigger": {
+        "components": {
+            "WatchTriggerFlag": {},
+            "PairComp": {
+                "source_entity_name": "watch",
+                "target_entity_name": "triggered_scene"
+            },
+            "UnresolvedNameFlag": {}
         }
     }
 }

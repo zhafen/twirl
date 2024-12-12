@@ -47,7 +47,7 @@ class SceneSystem {
     void onSceneTrigger(entt::registry& registry, entt::entity entity);
     void emplaceScene(entt::registry& registry, entt::entity scene_entity);
     entt::entity emplaceEntity(entt::registry& registry, const EntityName entity_name,
-                               const json& entity_json);
+                               const json& entity_components);
     entt::entity resolveEntityName(entt::registry& registry, EntityMap entity_map,
                                    EntityName entity_name);
 

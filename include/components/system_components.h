@@ -51,15 +51,15 @@ inline void from_json(const json& j, SyncPositionComp& syncpositioncomp) {
     syncpositioncomp.once_only = j.value("once_only", false);
 }
 
-struct StopWatchComp {
+struct WatchComp {
     float current_time = 0.0f;
     float end_time = 1.0f * cfg.T;
     bool end_reached = false;
 };
-inline void from_json(const json& j, StopWatchComp& stopwatchcomp) {
-    stopwatchcomp.current_time = j.value("current_time", 0.0f);
-    stopwatchcomp.end_time = j.value("end_time", 1.0f) * cfg.T;
-    stopwatchcomp.end_reached = j.value("end_reached", false);
+inline void from_json(const json& j, WatchComp& watchcomp) {
+    watchcomp.current_time = j.value("current_time", 0.0f);
+    watchcomp.end_time = j.value("end_time", 1.0f) * cfg.T;
+    watchcomp.end_reached = j.value("end_reached", false);
 }
 
 struct PhysicsComp {

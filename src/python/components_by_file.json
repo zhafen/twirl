@@ -71,7 +71,7 @@
                 "false"
             ]
         },
-        "StopWatchComp": {
+        "WatchComp": {
             "current_time": [
                 "float",
                 true,

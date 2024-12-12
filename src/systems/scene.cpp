@@ -43,7 +43,6 @@ bool SceneSystem::checkSceneTriggers(entt::registry& registry) {
 
         // Emplace the scene
         emplaceScene(registry, pair_c.target_entity);
-
         any_scene_triggered = true;
     }
 
@@ -94,11 +93,6 @@ void SceneSystem::emplaceScene(entt::registry& registry,
                 registry, scene_entity_map, pair_c_ptr->target_entity_name);
             pair_c_ptr->source_entity = resolveEntityName(
                 registry, scene_entity_map, pair_c_ptr->source_entity_name);
-        }
-        auto* scenetrigger_c_ptr = registry.try_get<WatchTriggerFlag>(entity);
-        if (scenetrigger_c_ptr != nullptr) {
-            scenetrigger_c_ptr->scene_entity = resolveEntityName(
-                registry, scene_entity_map, scenetrigger_c_ptr->scene_name);
         }
         auto* vb_c_ptr = registry.try_get<ValueBarComp>(entity);
         if (vb_c_ptr != nullptr) {

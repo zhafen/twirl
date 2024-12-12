@@ -36,9 +36,9 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
     } else if (comp_key == "SyncPositionComp") {
         auto syncpositioncomp = comp_json.template get<SyncPositionComp>();
         registry.emplace<SyncPositionComp>(entity, syncpositioncomp);
-    } else if (comp_key == "StopWatchComp") {
-        auto stopwatchcomp = comp_json.template get<StopWatchComp>();
-        registry.emplace<StopWatchComp>(entity, stopwatchcomp);
+    } else if (comp_key == "WatchComp") {
+        auto watchcomp = comp_json.template get<WatchComp>();
+        registry.emplace<WatchComp>(entity, watchcomp);
     } else if (comp_key == "PhysicsComp") {
         auto physicscomp = comp_json.template get<PhysicsComp>();
         registry.emplace<PhysicsComp>(entity, physicscomp);
@@ -104,8 +104,8 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<PairComp>(registry, selection_str);
     } else if (comp_key == "SyncPositionComp") {
         return getEntityFromSelectionStr<SyncPositionComp>(registry, selection_str);
-    } else if (comp_key == "StopWatchComp") {
-        return getEntityFromSelectionStr<StopWatchComp>(registry, selection_str);
+    } else if (comp_key == "WatchComp") {
+        return getEntityFromSelectionStr<WatchComp>(registry, selection_str);
     } else if (comp_key == "PhysicsComp") {
         return getEntityFromSelectionStr<PhysicsComp>(registry, selection_str);
     } else if (comp_key == "DragForceComp") {
@@ -182,10 +182,10 @@ void debugEntities(entt::registry& registry, std::string message) {
             std::cout << "    SyncPositionComp" << std::endl;
         }
         
-        auto stopwatchcomp_ptr = registry.try_get<StopWatchComp>(entity);
-        if (stopwatchcomp_ptr != nullptr) {
-            auto stopwatchcomp = *stopwatchcomp_ptr;
-            std::cout << "    StopWatchComp" << std::endl;
+        auto watchcomp_ptr = registry.try_get<WatchComp>(entity);
+        if (watchcomp_ptr != nullptr) {
+            auto watchcomp = *watchcomp_ptr;
+            std::cout << "    WatchComp" << std::endl;
         }
         
         auto physicscomp_ptr = registry.try_get<PhysicsComp>(entity);

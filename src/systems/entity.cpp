@@ -48,7 +48,7 @@ EntityMap& EntitySystem::getEntityMap(entt::registry& registry) {
 // }
 //
 // void EntitySystem::resolveSceneTriggerNames(entt::registry& registry) {
-//     auto rview = registry.view<WatchTriggerFlag>();
+//     auto rview = registry.view<WatchTriggerComp>();
 //     for (auto [entity, scenetrigger_c] : rview.each()) {
 //         scenetrigger_c.scene_entity = resolveEntityName(registry,
 //         scenetrigger_c.scene_name,
@@ -75,23 +75,6 @@ EntityMap& EntitySystem::getEntityMap(entt::registry& registry) {
 //         }
 //     }
 // }
-
-void EntitySystem::checkSceneTriggers(entt::registry& registry) {
-    auto rview = registry.view<WatchTriggerFlag, PairComp>();
-    for (auto [entity, pair_c] : rview.each()) {
-        // Check if the end time was reached
-        if (!registry.get<WatchComp>(pair_c.source_entity).end_reached) {
-            continue;
-        }
-
-        // If we got this far then we activate the scene trigger
-        registry.patch<WatchTriggerFlag>(entity, [](auto& stc) { stc.n_triggers++; });
-        // TODO: Is there an advantage to using patch here, rather than just calling
-        // emplaceScene directly?
-
-        needs_ordering = true;
-    }
-}
 
 void EntitySystem::deleteEntities(entt::registry& registry) {
     auto rview = registry.view<DeleteFlag>();

@@ -137,18 +137,19 @@ TEST(SystemEntityTest, SpawnDeleteOrder) {
     Game game("../../scenes/main_scene.json");
     auto& registry = game.getRegistry();
     auto& entity_system = game.getEntitySystem();
+    auto& scene_system = game.getSceneSystem();
 
     // Try spawning, deleting, and ordering entities
     entity_system.deleteEntities(registry);
-    entity_system.checkSceneTriggers(registry);
+    scene_system.checkSceneTriggers(registry);
     entity_system.orderEntities(registry);
 }
 
-TEST(SystemEntityTest, StopWatchSpawn) {
+TEST(SystemEntityTest, WatchSpawn) {
     entt::registry registry;
     EntitySystem entity_system;
     SceneSystem scene_system;
-    registry.on_update<WatchTriggerFlag>().connect<&SceneSystem::onSceneTrigger>(
+    registry.on_update<TriggerComp>().connect<&SceneSystem::onSceneTrigger>(
         scene_system);
 
     // Ready a scene to spawn
@@ -166,25 +167,27 @@ TEST(SystemEntityTest, StopWatchSpawn) {
     }
     )"_json;
 
-    // Spawning entity
-    entt::entity spawner_entity = registry.create();
-    registry.emplace<EntityName>(spawner_entity, "spawner_entity");
-    auto& scenetrig_c = registry.emplace<WatchTriggerFlag>(spawner_entity);
-    scenetrig_c.scene_entity = scene_entity;
-    registry.emplace<PhysicsComp>(spawner_entity, 1.0f, sf::Vector2f(10.f, 10.f));
-    auto& swc = registry.emplace<WatchComp>(spawner_entity);
+    // Watch entity
+    entt::entity watch_entity = registry.create();
+    auto& watch_c = registry.emplace<WatchComp>(watch_entity);
     // We test stopwatch updates separately, so we set the trigger as ready to go
-    swc.end_reached = true;
+    watch_c.end_reached = true;
+
+    // Trigger entity
+    entt::entity trigger_entity = registry.create();
+    registry.emplace<WatchTriggerFlag>(trigger_entity);
+    auto& pair_c = registry.emplace<PairComp>(trigger_entity);
+    pair_c.target_entity = scene_entity;
 
     // Ensure that the scene entity is valid
-    EXPECT_TRUE(registry.valid(scenetrig_c.scene_entity));
+    EXPECT_TRUE(registry.valid(pair_c.target_entity));
 
     // Ensure that the spawned entity does not exist yet
     EntityMap entity_map = entity_system.getEntityMap(registry);
     EXPECT_EQ(entity_map.find("spawned_entity"), entity_map.end());
 
     // Trigger
-    entity_system.checkSceneTriggers(registry);
+    scene_system.checkSceneTriggers(registry);
 
     // Check that the entities were created properly
     entity_map = entity_system.getEntityMap(registry);

@@ -37,8 +37,8 @@ TEST(SceneTest, TriggerScene) {
 
     // Trigger the scene
     bool is_valid = registry.all_of<WatchTriggerFlag>(triggering_entity);
-    registry.patch<WatchTriggerFlag>(
-        triggering_entity, [](auto& scenetrigger_c) { scenetrigger_c.n_triggers++; });
+    registry.patch<TriggerComp>(
+        triggering_entity, [](auto& trigger_c) { trigger_c.n_triggers++; });
 
     // Check that the entity was added
     auto rview = registry.view<EnemyFlag>();
@@ -127,12 +127,6 @@ TEST(SceneTest, EmplaceEntityUnresolvedNames) {
     // We start by getting the map
     EntityMap entity_map = entity_system.getEntityMap(registry);
 
-    // Check that WatchTriggerFlag got emplaced correctly
-    entt::entity entity1 = entity_map.at("entity1");
-    auto scenetrigger_c = registry.get<WatchTriggerFlag>(entity1);
-    EXPECT_TRUE(scenetrigger_c.scene_name == "test_scene");
-    EXPECT_TRUE(scenetrigger_c.scene_entity == entt::null);
-
     // Check that PairComp got emplaced correctly
     entt::entity rel_12 = entity_map.at("rel_12");
     auto pair_c = registry.get<PairComp>(rel_12);
@@ -195,10 +189,6 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_EQ(fill_color.b, 128);
             EXPECT_EQ(fill_color.a, 255);
 
-            auto& scenetrigger_c = registry.get<WatchTriggerFlag>(entity);
-            EXPECT_EQ(scenetrigger_c.scene_name, "[SceneComp|name:triggered_scene]");
-            EXPECT_EQ(scenetrigger_c.scene_entity, entity_map.at("triggered_scene"));
-
             auto& swc = registry.get<WatchComp>(entity);
             EXPECT_FLOAT_EQ(swc.current_time, 0.0f);
             EXPECT_FLOAT_EQ(swc.end_time, 1.0f);
@@ -235,6 +225,11 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_FLOAT_EQ(pfc.power, 2.0f);
             EXPECT_FLOAT_EQ(pfc.min_distance, 0.1f * cfg.L);
             EXPECT_FLOAT_EQ(pfc.distance_scaling, 1.0f * cfg.L);
+
+        } else if (name == "watch_trigger") {
+            auto& pair_c = registry.get<PairComp>(entity);
+            EXPECT_EQ(pair_c.target_entity_name, "[SceneComp|name:triggered_scene]");
+            EXPECT_EQ(pair_c.target_entity, entity_map.at("triggered_scene"));
 
         } else if (std::regex_match(name, std::regex("bkgrd.*"))) {
             // Background circle

@@ -95,9 +95,11 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-    // Try spawning, deleting, and ordering entities
+    // Delete and emplace entities
     entity_system.deleteEntities(registry);
-    entity_system.checkSceneTriggers(registry);
+    scene_system.checkSceneTriggers(registry);
+
+    // Order and sync entities
     entity_system.orderEntities(registry);
     entity_system.syncEntities(registry);
 

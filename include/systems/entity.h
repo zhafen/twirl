@@ -28,10 +28,10 @@ class EntitySystem {
     void deleteEntities(entt::registry& registry);
     void syncEntities(entt::registry& registry);
     void orderEntities(entt::registry& registry);
+    bool needs_ordering = true;
 
    private:
     EntityMap entity_map;
-    bool needs_ordering = true;
 };
 
 }  // namespace twirl

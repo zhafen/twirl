@@ -14,31 +14,40 @@ using namespace twirl;
 
 TEST(SceneTest, TriggerScene) {
     // Set up registry and scene system, including the trigger
-    SceneSystem scene_system;
     entt::registry registry;
-    registry.on_update<WatchTriggerFlag>().connect<&SceneSystem::onSceneTrigger>(
+    SceneSystem scene_system;
+    registry.on_update<TriggerComp>().connect<&SceneSystem::onSceneTrigger>(
         scene_system);
 
     // Add a scene to the registry (including some manually-input json data)
-    entt::entity scene = registry.create();
-    registry.emplace<EntityName>(scene, "test_scene");
+    entt::entity scene_entity = registry.create();
+    registry.emplace<EntityName>(scene_entity, "test_scene");
     json json_data = R"(
     {
         "spawned_entity": {"components": {"EnemyFlag": {}}}
     }
     )"_json;
-    SceneComp& scene_c = registry.emplace<SceneComp>(scene);
+    SceneComp& scene_c = registry.emplace<SceneComp>(scene_entity);
     scene_c.json_data = json_data;
 
     // Add the triggering entity
     entt::entity triggering_entity = registry.create();
     registry.emplace<EntityName>(triggering_entity, "triggering_entity");
-    registry.emplace<WatchTriggerFlag>(triggering_entity, "test_scene", scene);
+    registry.emplace<WatchComp>(triggering_entity);
+
+    // Add the trigger entity
+    entt::entity trigger_entity = registry.create();
+    registry.emplace<WatchTriggerFlag>(trigger_entity);
+    registry.emplace<TriggerComp>(trigger_entity);
+    auto& pair_c = registry.emplace<PairComp>(trigger_entity);
+    pair_c.source_entity = triggering_entity;
+    pair_c.source_entity_name = "triggering_entity";
+    pair_c.target_entity = scene_entity;
+    pair_c.target_entity_name = "test_scene";
 
     // Trigger the scene
-    bool is_valid = registry.all_of<WatchTriggerFlag>(triggering_entity);
     registry.patch<TriggerComp>(
-        triggering_entity, [](auto& trigger_c) { trigger_c.n_triggers++; });
+        trigger_entity, [](auto& trigger_c) { trigger_c.n_triggers++; });
 
     // Check that the entity was added
     auto rview = registry.view<EnemyFlag>();

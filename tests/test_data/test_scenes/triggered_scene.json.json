@@ -1,0 +1,29 @@
+{
+    "projectile": {
+        "PhysicsComp": {},
+        "DragForceComp": {},
+        "DurabilityComp": {
+            "durability_loss_per_collision": 1.01
+        },
+        "RenderComp": {
+            "radius": 0.5,
+            "fill_color": [
+                82,
+                106,
+                131,
+                255
+            ],
+            "zorder": -1
+        }
+    },
+    "projectile-player sync": {
+        "PairComp": {
+            "target_entity_name": "projectile",
+            "source_entity_name": "[PlayerFlag|first]"
+        },
+        "SyncPositionComp": {
+            "once_only": true
+        },
+        "UnresolvedNameFlag": {}
+    }
+}

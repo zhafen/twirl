@@ -83,7 +83,7 @@
     },
     "triggered_scene": {
         "SceneComp": {
-            "scene_fp": "../../tests/test_data/triggered_scene.json"
+            "scene_fp": "../../test_data/test_scenes/triggered_scene.json"
         }
     },
     "watch": {

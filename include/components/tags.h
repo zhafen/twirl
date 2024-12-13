@@ -18,6 +18,8 @@ struct ViewFlag {};
 
 struct DeleteFlag {};
 
+struct SuspendedFlag {};
+
 struct WatchTriggerFlag {};
 
 }  // namespace twirl

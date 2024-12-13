@@ -150,7 +150,7 @@ TEST(SceneTest, EmplaceSceneFromJson) {
     // Add a scene to the registry (including some manually-input json data)
     entt::entity scene = registry.create();
     auto& scene_c =
-        registry.emplace<SceneComp>(scene, "../../tests/test_data/test_scene.json");
+        registry.emplace<SceneComp>(scene, "../../tests/test_data/main_test_scene.json");
     registry.emplace<EntityName>(scene, "test_scene");
     scene_system.loadJsonData(registry);
 

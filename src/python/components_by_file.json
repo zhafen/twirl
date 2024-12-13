@@ -5,6 +5,7 @@
         "UnresolvedNameFlag": {},
         "ViewFlag": {},
         "DeleteFlag": {},
+        "SuspendedFlag": {},
         "WatchTriggerFlag": {}
     },
     "system_components": {

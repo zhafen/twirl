@@ -11,19 +11,23 @@
 namespace twirl {
 
 bool InterfaceSystem::isGameSuspended(entt::registry& registry) {
-    // Check for various scenarios
-    bool game_suspended = false;
 
-    // Is the player dead?
-    entt::entity player_entity = registry.view<PlayerFlag>().front();
-    auto durability_c = registry.get<DurabilityComp>(player_entity);
-    game_suspended = game_suspended || (durability_c.durability <= 0);
+    return (!registry.view<SuspendedFlag>().empty());
 
-    // Are all the enemies dead?
-    auto enemy_view = registry.view<EnemyFlag>();
-    game_suspended = game_suspended || enemy_view.empty();
+    // DEBUG
+    // // Is the player dead? (if there is a player)
+    // auto rview = registry.view<PlayerFlag>();
+    // if (!rview.empty()) {
+    //     entt::entity player_entity = rview.front();
+    //     auto durability_c = registry.get<DurabilityComp>(player_entity);
+    //     game_suspended = game_suspended || (durability_c.durability <= 0);
+    // }
 
-    return game_suspended;
+    // // Are all the enemies dead?
+    // auto enemy_view = registry.view<EnemyFlag>();
+    // game_suspended = game_suspended || enemy_view.empty();
+
+    // return game_suspended;
 }
 
 }  // namespace twirl

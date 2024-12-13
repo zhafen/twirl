@@ -22,6 +22,8 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
         registry.emplace<ViewFlag>(entity);
     } else if (comp_key == "DeleteFlag") {
         registry.emplace<DeleteFlag>(entity);
+    } else if (comp_key == "SuspendedFlag") {
+        registry.emplace<SuspendedFlag>(entity);
     } else if (comp_key == "WatchTriggerFlag") {
         registry.emplace<WatchTriggerFlag>(entity);
     } else if (comp_key == "SceneComp") {
@@ -94,6 +96,8 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<ViewFlag>(registry, selection_str);
     } else if (comp_key == "DeleteFlag") {
         return getEntityFromSelectionStr<DeleteFlag>(registry, selection_str);
+    } else if (comp_key == "SuspendedFlag") {
+        return getEntityFromSelectionStr<SuspendedFlag>(registry, selection_str);
     } else if (comp_key == "WatchTriggerFlag") {
         return getEntityFromSelectionStr<WatchTriggerFlag>(registry, selection_str);
     } else if (comp_key == "SceneComp") {
@@ -149,6 +153,7 @@ void debugEntities(entt::registry& registry, std::string message) {
         if (!debug_c.verbose) {
             continue;
         }
+        
         
         
         

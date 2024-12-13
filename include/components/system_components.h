@@ -6,6 +6,12 @@
 #include "shape.h"
 #include <nlohmann/json.hpp>
 #include "config.h"
+#include <nlohmann/json.hpp>
+#include "config.h"
+#include <nlohmann/json.hpp>
+#include "config.h"
+#include <nlohmann/json.hpp>
+#include "config.h"
 
 using json = nlohmann::ordered_json;
 
@@ -144,12 +150,15 @@ inline void from_json(const json& j, ValueBarComp& valuebarcomp) {
 }
 
 struct TextComp {
+    sf::Text text;
     std::string string = "";
-    int fontsize = 24;
+    sf::Vector2f pos = sf::Vector2f(-25.f, 0.f) * cfg.L;
 };
 inline void from_json(const json& j, TextComp& textcomp) {
     textcomp.string = j.value("string", "");
-    textcomp.fontsize = j.value("fontsize", 24);
+    textcomp.pos = j.value("pos", sf::Vector2f(-25.f, 0.f)) * cfg.L;
+    textcomp.text = sf::Text(textcomp.string, cfg.font);
+    textcomp.text.setPosition(textcomp.pos);
 }
 
 struct DebugComp {

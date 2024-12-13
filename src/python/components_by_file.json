@@ -219,18 +219,23 @@
                 "\"\""
             ]
         },
-        "TextComp": {
-            "string": [
-                "std::string",
-                true,
-                "\"\""
-            ],
-            "fontsize": [
-                "int",
-                true,
-                "24"
-            ]
-        },
+        "TextComp": [
+            {
+                "text": "sf::Text",
+                "string": [
+                    "std::string",
+                    true,
+                    "\"\""
+                ],
+                "pos": [
+                    "sf::Vector2f",
+                    true,
+                    "sf::Vector2f(-25.f, 0.f)",
+                    "cfg.L"
+                ]
+            },
+            "textcomp.text = sf::Text(textcomp.string, cfg.font);\ntextcomp.text.setPosition(textcomp.pos);\n"
+        ],
         "DebugComp": {
             "verbose": [
                 "bool",

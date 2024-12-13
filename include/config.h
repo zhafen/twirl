@@ -2,6 +2,7 @@
 #define CONFIG_H
 
 #include <cstdint>
+#include <SFML/Graphics.hpp>
 
 namespace twirl {
 
@@ -19,6 +20,10 @@ struct Config {
     static constexpr uint16_t fps = 144;
     static constexpr float dt = 1.0f / fps;
     static constexpr float dx = V * dt;
+    sf::Font font;
+    Config() {
+        font.loadFromFile("assets/fonts/arial.ttf");
+    }
 };
 
 // Make global

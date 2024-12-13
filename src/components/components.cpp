@@ -232,7 +232,6 @@ void debugEntities(entt::registry& registry, std::string message) {
             auto textcomp = *textcomp_ptr;
             std::cout << "    TextComp" << std::endl;
             std::cout << "      string: " << textcomp.string << std::endl;
-            std::cout << "      fontsize: " << textcomp.fontsize << std::endl;
         }
         
         auto debugcomp_ptr = registry.try_get<DebugComp>(entity);

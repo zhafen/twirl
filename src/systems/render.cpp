@@ -37,7 +37,8 @@ void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
 void RenderSystem::renderUI(entt::registry& registry, sf::RenderWindow& window) {
     window.setView(ui_view);
 
-    // draw frame
+
+    // Draw value bars
     for (auto [entity, vb_c] : registry.view<ValueBarComp>().each()) {
         // Get versions of the size and position that can be modified
         auto vb_c_size = vb_c.size;
@@ -52,6 +53,12 @@ void RenderSystem::renderUI(entt::registry& registry, sf::RenderWindow& window) 
         vb_c.shape.setPosition(vb_c_pos);
 
         window.draw(vb_c.shape);
+    }
+
+    // Draw text
+    for (auto [entity, text_c] : registry.view<TextComp>().each()) {
+
+        window.draw(text_c.text);
     }
 }
 

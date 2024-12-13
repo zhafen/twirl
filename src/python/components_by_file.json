@@ -232,9 +232,14 @@
                     true,
                     "sf::Vector2f(-25.f, 0.f)",
                     "cfg.L"
+                ],
+                "character_size": [
+                    "unsigned int",
+                    true,
+                    "240"
                 ]
             },
-            "textcomp.text = sf::Text(textcomp.string, cfg.font);\ntextcomp.text.setPosition(textcomp.pos);\n"
+            "textcomp.text = sf::Text(textcomp.string, cfg.font);\ntextcomp.text.setPosition(textcomp.pos);\ntextcomp.text.setCharacterSize(textcomp.character_size);\n"
         ],
         "DebugComp": {
             "verbose": [

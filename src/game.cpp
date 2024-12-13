@@ -36,6 +36,10 @@ void Game::run() {
             update();
         }
         render();
+        time_since_start += cfg.dt;
+        if (time_since_start > max_time) {
+            break;
+        }
     }
 }
 

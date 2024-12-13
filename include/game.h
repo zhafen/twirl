@@ -36,6 +36,8 @@ class Game {
    private:
     std::string main_scene_fp;
     bool game_suspended = false;
+    float time_since_start = 0.0f;
+    float max_time = 60000.0f;
 
     // ECS
     entt::registry registry;

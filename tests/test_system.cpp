@@ -144,8 +144,16 @@ TEST(SystemEntityTest, SpawnDeleteOrder) {
     scene_system.checkSceneTriggers(registry);
     entity_system.orderEntities(registry);
 
-    // Adding a failing assert because I need to check for zorder in this test
-    ASSERT_TRUE(false);
+    // Check zorders
+    int zorder = 0;
+    std::unordered_map<std::string, int> zorders;
+    auto rview = registry.view<RenderComp, EntityName>().use<RenderComp>();
+    for (auto [entity, render_c, entity_name] : rview.each()) {
+        zorders[entity_name] = zorder;
+        zorder++;
+    }
+    ASSERT_GE(zorders["player"], zorders["bkgrd.000"]);
+    ASSERT_GE(zorders["enemy.000"], zorders["bkgrd.000"]);
 }
 
 TEST(SystemEntityTest, WatchSpawn) {

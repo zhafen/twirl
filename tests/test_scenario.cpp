@@ -13,6 +13,6 @@ using namespace twirl;
 TEST(ScenarioTest, TestScene) {
 
     // Initialize the game, hidden in the constructor
-    Game game("../../tests/test_data/test_scene.json");
+    Game game("../../tests/test_data/test_scenes/main_test_scene.json");
     game.run();
 }

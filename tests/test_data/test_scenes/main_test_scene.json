@@ -1,5 +1,6 @@
 {
     "player": {
+        "PlayerFlag": {},
         "PhysicsComp": {
             "mass": 1.0,
             "pos": [
@@ -83,7 +84,7 @@
     },
     "triggered_scene": {
         "SceneComp": {
-            "scene_fp": "../../test_data/test_scenes/triggered_scene.json"
+            "scene_fp": "../../tests/test_data/test_scenes/triggered_scene.json"
         }
     },
     "watch": {

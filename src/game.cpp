@@ -96,7 +96,10 @@ void Game::handleEvents() {
 void Game::update() {
     // Delete and emplace entities
     entity_system.deleteEntities(registry);
-    entity_system.needs_ordering = scene_system.checkSceneTriggers(registry);
+    bool scene_emplaced = scene_system.checkSceneTriggers(registry);
+    if (scene_emplaced) {
+        entity_system.needs_ordering = true;
+    }
 
     // Order and sync entities
     entity_system.orderEntities(registry);

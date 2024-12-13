@@ -10,8 +10,11 @@
 
 using namespace twirl;
 
+float MAX_TIME = 10.0f;
+
 TEST(ScenarioTest, TestScene) {
     // Initialize the game, hidden in the constructor
     Game game("../../tests/test_data/test_scenes/main_test_scene.json");
+    game.max_time = MAX_TIME;
     game.run();
 }

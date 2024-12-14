@@ -10,21 +10,17 @@
         "SceneComp": {
             "scene_fp": "../../scenes/user_interface.json",
             "emplace_after_loading": true,
-            "emplace_order": -1
+            "emplace_order": 0
         }
     },
     "projectiles": {
         "SceneComp": {
-            "scene_fp": "../../scenes/projectiles.json",
-            "emplace_after_loading": true,
-            "emplace_order": -1
+            "scene_fp": "../../scenes/projectiles.json"
         }
     },
     "defeat_menu": {
         "SceneComp": {
-            "scene_fp": "../../scenes/defeat_menu.json",
-            "emplace_after_loading": true,
-            "emplace_order": -1
+            "scene_fp": "../../scenes/defeat_menu.json"
         }
     }
 }

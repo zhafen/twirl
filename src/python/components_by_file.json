@@ -8,7 +8,8 @@
         "ViewFlag": {},
         "DeleteFlag": {},
         "SuspendedFlag": {},
-        "WatchTriggerFlag": {}
+        "WatchTriggerFlag": {},
+        "DurabilityTriggerFlag": {}
     },
     "system_components": {
         "SceneComp": {

@@ -1,0 +1,14 @@
+{
+    "defeat_text": {
+        "TextComp": {
+            "string": "Keep going?",
+            "pos": [
+                0.0,
+                -25.0
+            ]
+        }
+    },
+    "suspended_flag": {
+        "SuspendedFlag": {}
+    }
+}

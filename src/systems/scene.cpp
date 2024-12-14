@@ -46,6 +46,18 @@ bool SceneSystem::checkSceneTriggers(entt::registry& registry) {
         any_scene_triggered = true;
     }
 
+    auto rview = registry.view<DurabilityTriggerFlag, PairComp>();
+    for (auto [entity, pair_c] : rview.each()) {
+        // Check if zero durability was reached
+        if (!(registry.get<DurabilityComp>(pair_c.source_entity).durability > 0.f)) {
+            continue;
+        }
+
+        // Emplace the scene
+        emplaceScene(registry, pair_c.target_entity);
+        any_scene_triggered = true;
+    }
+
     return any_scene_triggered;
 }
 

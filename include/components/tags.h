@@ -26,6 +26,8 @@ struct SuspendedFlag {};
 
 struct WatchTriggerFlag {};
 
+struct DurabilityTriggerFlag {};
+
 }  // namespace twirl
 
 #endif  // TAGS_H

@@ -9,12 +9,22 @@
     "user_interface": {
         "SceneComp": {
             "scene_fp": "../../scenes/user_interface.json",
-            "emplace_after_loading": true
+            "emplace_after_loading": true,
+            "emplace_order": -1
         }
     },
     "projectiles": {
         "SceneComp": {
-            "scene_fp": "../../scenes/projectiles.json"
+            "scene_fp": "../../scenes/projectiles.json",
+            "emplace_after_loading": true,
+            "emplace_order": -1
+        }
+    },
+    "defeat_menu": {
+        "SceneComp": {
+            "scene_fp": "../../scenes/defeat_menu.json",
+            "emplace_after_loading": true,
+            "emplace_order": -1
         }
     }
 }

@@ -29,6 +29,9 @@
                 255
             ]
         },
+        "ZOrderComp": {
+            "zorder": 0
+        },
         "ViewFlag": {}
     },
     "beacon": {
@@ -48,8 +51,10 @@
                 255,
                 255,
                 255
-            ],
-            "zorder": 1
+            ]
+        },
+        "ZOrderComp": {
+            "zorder": 0
         }
     },
     "player-beacon force": {
@@ -78,7 +83,9 @@
                 63,
                 63,
                 255
-            ],
+            ]
+        },
+        "ZOrderComp": {
             "zorder": -101
         }
     },

@@ -18,6 +18,10 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
         registry.emplace<EnemyFlag>(entity);
     } else if (comp_key == "UnresolvedNameFlag") {
         registry.emplace<UnresolvedNameFlag>(entity);
+    } else if (comp_key == "RenderFlag") {
+        registry.emplace<RenderFlag>(entity);
+    } else if (comp_key == "UIRenderFlag") {
+        registry.emplace<UIRenderFlag>(entity);
     } else if (comp_key == "ViewFlag") {
         registry.emplace<ViewFlag>(entity);
     } else if (comp_key == "DeleteFlag") {
@@ -66,6 +70,9 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
     } else if (comp_key == "ValueBarComp") {
         auto valuebarcomp = comp_json.template get<ValueBarComp>();
         registry.emplace<ValueBarComp>(entity, valuebarcomp);
+    } else if (comp_key == "ZOrderComp") {
+        auto zordercomp = comp_json.template get<ZOrderComp>();
+        registry.emplace<ZOrderComp>(entity, zordercomp);
     } else if (comp_key == "TextComp") {
         auto textcomp = comp_json.template get<TextComp>();
         registry.emplace<TextComp>(entity, textcomp);
@@ -95,6 +102,10 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<EnemyFlag>(registry, selection_str);
     } else if (comp_key == "UnresolvedNameFlag") {
         return getEntityFromSelectionStr<UnresolvedNameFlag>(registry, selection_str);
+    } else if (comp_key == "RenderFlag") {
+        return getEntityFromSelectionStr<RenderFlag>(registry, selection_str);
+    } else if (comp_key == "UIRenderFlag") {
+        return getEntityFromSelectionStr<UIRenderFlag>(registry, selection_str);
     } else if (comp_key == "ViewFlag") {
         return getEntityFromSelectionStr<ViewFlag>(registry, selection_str);
     } else if (comp_key == "DeleteFlag") {
@@ -131,6 +142,8 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<RectangleComp>(registry, selection_str);
     } else if (comp_key == "ValueBarComp") {
         return getEntityFromSelectionStr<ValueBarComp>(registry, selection_str);
+    } else if (comp_key == "ZOrderComp") {
+        return getEntityFromSelectionStr<ZOrderComp>(registry, selection_str);
     } else if (comp_key == "TextComp") {
         return getEntityFromSelectionStr<TextComp>(registry, selection_str);
     } else if (comp_key == "DebugComp") {
@@ -158,6 +171,8 @@ void debugEntities(entt::registry& registry, std::string message) {
         if (!debug_c.verbose) {
             continue;
         }
+        
+        
         
         
         
@@ -228,7 +243,6 @@ void debugEntities(entt::registry& registry, std::string message) {
         if (circlecomp_ptr != nullptr) {
             auto circlecomp = *circlecomp_ptr;
             std::cout << "    CircleComp" << std::endl;
-            std::cout << "      zorder: " << circlecomp.zorder << std::endl;
         }
         
         auto rectanglecomp_ptr = registry.try_get<RectangleComp>(entity);
@@ -241,6 +255,13 @@ void debugEntities(entt::registry& registry, std::string message) {
         if (valuebarcomp_ptr != nullptr) {
             auto valuebarcomp = *valuebarcomp_ptr;
             std::cout << "    ValueBarComp" << std::endl;
+        }
+        
+        auto zordercomp_ptr = registry.try_get<ZOrderComp>(entity);
+        if (zordercomp_ptr != nullptr) {
+            auto zordercomp = *zordercomp_ptr;
+            std::cout << "    ZOrderComp" << std::endl;
+            std::cout << "      zorder: " << zordercomp.zorder << std::endl;
         }
         
         auto textcomp_ptr = registry.try_get<TextComp>(entity);

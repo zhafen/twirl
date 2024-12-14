@@ -24,10 +24,10 @@ class RenderSystem {
     template <typename CompType>
     void renderShapeComp(entt::registry& registry, sf::RenderWindow& window) {
         // The .use ensures we use the order of render components
-        auto rview = registry.view<CompType, PhysicsComp>();
+        auto rview = registry.view<ZOrderComp, CompType, PhysicsComp>();
 
         // draw frame
-        for (auto [entity, shape_c, phys_c] : rview.each()) {
+        for (auto [entity, zorder_c, shape_c, phys_c] : rview.each()) {
             if (std::isnan(phys_c.pos.x) || std::isnan(phys_c.pos.y)) {
                 std::cerr << "Warning: Entity " << static_cast<int>(entity)
                           << " has NaN position.\n";

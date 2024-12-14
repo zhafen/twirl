@@ -14,6 +14,10 @@ struct EnemyFlag {};
 
 struct UnresolvedNameFlag {};
 
+struct RenderFlag {};
+
+struct UIRenderFlag {};
+
 struct ViewFlag {};
 
 struct DeleteFlag {};

@@ -3,6 +3,8 @@
         "PlayerFlag": {},
         "EnemyFlag": {},
         "UnresolvedNameFlag": {},
+        "RenderFlag": {},
+        "UIRenderFlag": {},
         "ViewFlag": {},
         "DeleteFlag": {},
         "SuspendedFlag": {},
@@ -187,11 +189,6 @@
         "CircleComp": [
             {
                 "shape": "CenteredCircleShape",
-                "zorder": [
-                    "int",
-                    true,
-                    "0"
-                ],
                 "radius": [
                     "float",
                     true,
@@ -274,6 +271,13 @@
                 "EntityName",
                 true,
                 "\"\""
+            ]
+        },
+        "ZOrderComp": {
+            "zorder": [
+                "int",
+                true,
+                "0"
             ]
         },
         "TextComp": [

@@ -12,8 +12,10 @@
                 106,
                 131,
                 255
-            ],
-            "zorder": -1
+            ]
+        },
+        "ZOrderComp": {
+            "zorder": -101
         }
     },
     "projectile-player sync": {

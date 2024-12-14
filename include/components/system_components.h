@@ -116,14 +116,12 @@ struct MouseButtonReleasedComp {};
 
 struct CircleComp {
     CenteredCircleShape shape;
-    int zorder = 0;
     float radius = 1.0f * cfg.L;
     float outline_thickness = 0.0f * cfg.L;
     sf::Color fill_color = sf::Color::White;
     sf::Color outline_color = sf::Color::Black;
 };
 inline void from_json(const json& j, CircleComp& circlecomp) {
-    circlecomp.zorder = j.value("zorder", 0);
     circlecomp.radius = j.value("radius", 1.0f) * cfg.L;
     circlecomp.outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;
     circlecomp.fill_color = j.value("fill_color", sf::Color::White);
@@ -166,6 +164,13 @@ inline void from_json(const json& j, ValueBarComp& valuebarcomp) {
     valuebarcomp.pos = j.value("pos", sf::Vector2f(-50.f, -45.f)) * cfg.L;
     valuebarcomp.size = j.value("size", sf::Vector2f(100.f, 1.0f)) * cfg.L;
     valuebarcomp.tracked_entity_name = j.value("tracked_entity_name", "");
+}
+
+struct ZOrderComp {
+    int zorder = 0;
+};
+inline void from_json(const json& j, ZOrderComp& zordercomp) {
+    zordercomp.zorder = j.value("zorder", 0);
 }
 
 struct TextComp {

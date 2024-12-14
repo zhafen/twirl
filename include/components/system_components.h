@@ -6,6 +6,10 @@
 #include "shape.h"
 #include <nlohmann/json.hpp>
 #include "config.h"
+#include <nlohmann/json.hpp>
+#include "config.h"
+#include <nlohmann/json.hpp>
+#include "config.h"
 
 using json = nlohmann::ordered_json;
 
@@ -168,15 +172,22 @@ struct TextComp {
     CenteredText text;
     std::string string = "[placeholder text]";
     sf::Vector2f pos = sf::Vector2f(0.f, -25.f) * cfg.L;
+    sf::Vector2f origin = sf::Vector2f(0.5f, 0.5f);
     unsigned int character_size = 24;
 };
 inline void from_json(const json& j, TextComp& textcomp) {
     textcomp.string = j.value("string", "[placeholder text]");
     textcomp.pos = j.value("pos", sf::Vector2f(0.f, -25.f)) * cfg.L;
+    textcomp.origin = j.value("origin", sf::Vector2f(0.5f, 0.5f));
     textcomp.character_size = j.value("character_size", 24);
     textcomp.text.setString(textcomp.string);
     textcomp.text.setPosition(textcomp.pos);
     textcomp.text.setCharacterSize(textcomp.character_size);
+    // Origin is set relative to the dimensions of the text
+    sf::FloatRect text_rect = textcomp.text.getLocalBounds();
+    textcomp.text.setOrigin(
+        text_rect.left + text_rect.width * textcomp.origin.x,
+        text_rect.top + text_rect.height * textcomp.origin.y);
 }
 
 struct DebugComp {

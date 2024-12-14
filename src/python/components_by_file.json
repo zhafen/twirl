@@ -268,13 +268,18 @@
                     "sf::Vector2f(0.f, -25.f)",
                     "cfg.L"
                 ],
+                "origin": [
+                    "sf::Vector2f",
+                    true,
+                    "sf::Vector2f(0.5f, 0.5f)"
+                ],
                 "character_size": [
                     "unsigned int",
                     true,
                     "24"
                 ]
             },
-            "textcomp.text.setString(textcomp.string);\ntextcomp.text.setPosition(textcomp.pos);\ntextcomp.text.setCharacterSize(textcomp.character_size);\n"
+            "textcomp.text.setString(textcomp.string);\ntextcomp.text.setPosition(textcomp.pos);\ntextcomp.text.setCharacterSize(textcomp.character_size);\n// Origin is set relative to the dimensions of the text\nsf::FloatRect text_rect = textcomp.text.getLocalBounds();\ntextcomp.text.setOrigin(\n    text_rect.left + text_rect.width * textcomp.origin.x,\n    text_rect.top + text_rect.height * textcomp.origin.y);\n"
         ],
         "DebugComp": {
             "verbose": [

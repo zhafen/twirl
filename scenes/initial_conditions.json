@@ -9,6 +9,7 @@
             "delete_at_zero": false,
             "durability_regen_rate": 0.1
         },
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
             "fill_color": [
@@ -27,6 +28,7 @@
     "beacon": {
         "PhysicsComp": {},
         "MouseButtonReleasedComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 0.5,
             "outline_thickness": 0.1,
@@ -61,8 +63,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -65.25443456470464,
-                -53.438945942199894
+                23.644828668449108,
+                -105.85723635912748
             ],
             "vel": [
                 0.0,
@@ -71,6 +73,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
             "fill_color": [
@@ -119,8 +122,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                17.575810720991484,
-                -84.52197739008878
+                -18.011626657112203,
+                -101.47582589420468
             ],
             "vel": [
                 0.0,
@@ -129,6 +132,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
             "fill_color": [
@@ -177,8 +181,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -28.949235770378024,
-                -33.436533377690154
+                -63.551142597736444,
+                -91.697606549732
             ],
             "vel": [
                 0.0,
@@ -187,6 +191,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
             "fill_color": [
@@ -235,8 +240,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                71.5242013929354,
-                -30.194870259872445
+                92.17352002432784,
+                -100.07472351434161
             ],
             "vel": [
                 0.0,
@@ -245,6 +250,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
             "fill_color": [
@@ -293,8 +299,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -66.95832037822098,
-                -106.36481335479807
+                -16.590284190966955,
+                -67.560063626535
             ],
             "vel": [
                 0.0,
@@ -303,6 +309,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
             "fill_color": [
@@ -351,8 +358,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                44.14422982250926,
-                -117.82853518099492
+                75.28627016763448,
+                -90.3204325049381
             ],
             "vel": [
                 0.0,
@@ -361,6 +368,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
             "fill_color": [
@@ -409,8 +417,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                8.226622437473921,
-                -80.97773464334398
+                45.479033960492785,
+                -107.92411549192403
             ],
             "vel": [
                 0.0,
@@ -419,6 +427,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
             "fill_color": [
@@ -467,8 +476,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -20.147938417478343,
-                -70.2171281331826
+                62.56030673010511,
+                -110.63880864760768
             ],
             "vel": [
                 0.0,
@@ -477,6 +486,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
             "fill_color": [
@@ -525,8 +535,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                53.16319723293992,
-                -24.204572497645472
+                68.59453695395857,
+                -66.85000275892489
             ],
             "vel": [
                 0.0,
@@ -535,6 +545,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
             "fill_color": [
@@ -583,8 +594,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -61.14020913701965,
-                -35.71039647749721
+                -14.342768058979402,
+                -107.57196922897108
             ],
             "vel": [
                 0.0,
@@ -593,6 +604,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
             "fill_color": [
@@ -1010,6 +1022,7 @@
     },
     "bkgrd.000": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 0.0,
             "outline_thickness": 0.2,
@@ -1032,6 +1045,7 @@
     },
     "bkgrd.001": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 10.0,
             "outline_thickness": 0.2,
@@ -1054,6 +1068,7 @@
     },
     "bkgrd.002": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 20.0,
             "outline_thickness": 0.2,
@@ -1076,6 +1091,7 @@
     },
     "bkgrd.003": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 30.0,
             "outline_thickness": 0.2,
@@ -1098,6 +1114,7 @@
     },
     "bkgrd.004": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 40.0,
             "outline_thickness": 0.2,
@@ -1120,6 +1137,7 @@
     },
     "bkgrd.005": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 50.0,
             "outline_thickness": 0.2,
@@ -1142,6 +1160,7 @@
     },
     "bkgrd.006": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 60.0,
             "outline_thickness": 0.2,
@@ -1164,6 +1183,7 @@
     },
     "bkgrd.007": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 70.0,
             "outline_thickness": 0.2,
@@ -1186,6 +1206,7 @@
     },
     "bkgrd.008": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 80.0,
             "outline_thickness": 0.2,
@@ -1208,6 +1229,7 @@
     },
     "bkgrd.009": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 90.0,
             "outline_thickness": 0.2,
@@ -1230,6 +1252,7 @@
     },
     "bkgrd.010": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 100.0,
             "outline_thickness": 0.2,
@@ -1252,6 +1275,7 @@
     },
     "bkgrd.011": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 110.0,
             "outline_thickness": 0.2,
@@ -1274,6 +1298,7 @@
     },
     "bkgrd.012": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 120.0,
             "outline_thickness": 0.2,
@@ -1296,6 +1321,7 @@
     },
     "bkgrd.013": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 130.0,
             "outline_thickness": 0.2,
@@ -1318,6 +1344,7 @@
     },
     "bkgrd.014": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 140.0,
             "outline_thickness": 0.2,
@@ -1340,6 +1367,7 @@
     },
     "bkgrd.015": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 150.0,
             "outline_thickness": 0.2,
@@ -1362,6 +1390,7 @@
     },
     "bkgrd.016": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 160.0,
             "outline_thickness": 0.2,
@@ -1384,6 +1413,7 @@
     },
     "bkgrd.017": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 170.0,
             "outline_thickness": 0.2,
@@ -1406,6 +1436,7 @@
     },
     "bkgrd.018": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 180.0,
             "outline_thickness": 0.2,
@@ -1428,6 +1459,7 @@
     },
     "bkgrd.019": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 190.0,
             "outline_thickness": 0.2,
@@ -1450,6 +1482,7 @@
     },
     "bkgrd.020": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 200.0,
             "outline_thickness": 0.2,
@@ -1472,6 +1505,7 @@
     },
     "bkgrd.021": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 210.0,
             "outline_thickness": 0.2,
@@ -1494,6 +1528,7 @@
     },
     "bkgrd.022": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 220.0,
             "outline_thickness": 0.2,
@@ -1516,6 +1551,7 @@
     },
     "bkgrd.023": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 230.0,
             "outline_thickness": 0.2,
@@ -1538,6 +1574,7 @@
     },
     "bkgrd.024": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 240.0,
             "outline_thickness": 0.2,
@@ -1560,6 +1597,7 @@
     },
     "bkgrd.025": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 250.0,
             "outline_thickness": 0.2,
@@ -1582,6 +1620,7 @@
     },
     "bkgrd.026": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 260.0,
             "outline_thickness": 0.2,
@@ -1604,6 +1643,7 @@
     },
     "bkgrd.027": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 270.0,
             "outline_thickness": 0.2,
@@ -1626,6 +1666,7 @@
     },
     "bkgrd.028": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 280.0,
             "outline_thickness": 0.2,
@@ -1648,6 +1689,7 @@
     },
     "bkgrd.029": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 290.0,
             "outline_thickness": 0.2,
@@ -1670,6 +1712,7 @@
     },
     "bkgrd.030": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 300.0,
             "outline_thickness": 0.2,
@@ -1692,6 +1735,7 @@
     },
     "bkgrd.031": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 310.0,
             "outline_thickness": 0.2,
@@ -1714,6 +1758,7 @@
     },
     "bkgrd.032": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 320.0,
             "outline_thickness": 0.2,
@@ -1736,6 +1781,7 @@
     },
     "bkgrd.033": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 330.0,
             "outline_thickness": 0.2,
@@ -1758,6 +1804,7 @@
     },
     "bkgrd.034": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 340.0,
             "outline_thickness": 0.2,
@@ -1780,6 +1827,7 @@
     },
     "bkgrd.035": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 350.0,
             "outline_thickness": 0.2,
@@ -1802,6 +1850,7 @@
     },
     "bkgrd.036": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 360.0,
             "outline_thickness": 0.2,
@@ -1824,6 +1873,7 @@
     },
     "bkgrd.037": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 370.0,
             "outline_thickness": 0.2,
@@ -1846,6 +1896,7 @@
     },
     "bkgrd.038": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 380.0,
             "outline_thickness": 0.2,
@@ -1868,6 +1919,7 @@
     },
     "bkgrd.039": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 390.0,
             "outline_thickness": 0.2,
@@ -1890,6 +1942,7 @@
     },
     "bkgrd.040": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 400.0,
             "outline_thickness": 0.2,
@@ -1912,6 +1965,7 @@
     },
     "bkgrd.041": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 410.0,
             "outline_thickness": 0.2,
@@ -1934,6 +1988,7 @@
     },
     "bkgrd.042": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 420.0,
             "outline_thickness": 0.2,
@@ -1956,6 +2011,7 @@
     },
     "bkgrd.043": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 430.0,
             "outline_thickness": 0.2,
@@ -1978,6 +2034,7 @@
     },
     "bkgrd.044": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 440.0,
             "outline_thickness": 0.2,
@@ -2000,6 +2057,7 @@
     },
     "bkgrd.045": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 450.0,
             "outline_thickness": 0.2,
@@ -2022,6 +2080,7 @@
     },
     "bkgrd.046": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 460.0,
             "outline_thickness": 0.2,
@@ -2044,6 +2103,7 @@
     },
     "bkgrd.047": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 470.0,
             "outline_thickness": 0.2,
@@ -2066,6 +2126,7 @@
     },
     "bkgrd.048": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 480.0,
             "outline_thickness": 0.2,
@@ -2088,6 +2149,7 @@
     },
     "bkgrd.049": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 490.0,
             "outline_thickness": 0.2,
@@ -2110,6 +2172,7 @@
     },
     "bkgrd.050": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 500.0,
             "outline_thickness": 0.2,
@@ -2132,6 +2195,7 @@
     },
     "bkgrd.051": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 510.0,
             "outline_thickness": 0.2,
@@ -2154,6 +2218,7 @@
     },
     "bkgrd.052": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 520.0,
             "outline_thickness": 0.2,
@@ -2176,6 +2241,7 @@
     },
     "bkgrd.053": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 530.0,
             "outline_thickness": 0.2,
@@ -2198,6 +2264,7 @@
     },
     "bkgrd.054": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 540.0,
             "outline_thickness": 0.2,
@@ -2220,6 +2287,7 @@
     },
     "bkgrd.055": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 550.0,
             "outline_thickness": 0.2,
@@ -2242,6 +2310,7 @@
     },
     "bkgrd.056": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 560.0,
             "outline_thickness": 0.2,
@@ -2264,6 +2333,7 @@
     },
     "bkgrd.057": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 570.0,
             "outline_thickness": 0.2,
@@ -2286,6 +2356,7 @@
     },
     "bkgrd.058": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 580.0,
             "outline_thickness": 0.2,
@@ -2308,6 +2379,7 @@
     },
     "bkgrd.059": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 590.0,
             "outline_thickness": 0.2,
@@ -2330,6 +2402,7 @@
     },
     "bkgrd.060": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 600.0,
             "outline_thickness": 0.2,
@@ -2352,6 +2425,7 @@
     },
     "bkgrd.061": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 610.0,
             "outline_thickness": 0.2,
@@ -2374,6 +2448,7 @@
     },
     "bkgrd.062": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 620.0,
             "outline_thickness": 0.2,
@@ -2396,6 +2471,7 @@
     },
     "bkgrd.063": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 630.0,
             "outline_thickness": 0.2,
@@ -2418,6 +2494,7 @@
     },
     "bkgrd.064": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 640.0,
             "outline_thickness": 0.2,
@@ -2440,6 +2517,7 @@
     },
     "bkgrd.065": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 650.0,
             "outline_thickness": 0.2,
@@ -2462,6 +2540,7 @@
     },
     "bkgrd.066": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 660.0,
             "outline_thickness": 0.2,
@@ -2484,6 +2563,7 @@
     },
     "bkgrd.067": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 670.0,
             "outline_thickness": 0.2,
@@ -2506,6 +2586,7 @@
     },
     "bkgrd.068": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 680.0,
             "outline_thickness": 0.2,
@@ -2528,6 +2609,7 @@
     },
     "bkgrd.069": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 690.0,
             "outline_thickness": 0.2,
@@ -2550,6 +2632,7 @@
     },
     "bkgrd.070": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 700.0,
             "outline_thickness": 0.2,
@@ -2572,6 +2655,7 @@
     },
     "bkgrd.071": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 710.0,
             "outline_thickness": 0.2,
@@ -2594,6 +2678,7 @@
     },
     "bkgrd.072": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 720.0,
             "outline_thickness": 0.2,
@@ -2616,6 +2701,7 @@
     },
     "bkgrd.073": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 730.0,
             "outline_thickness": 0.2,
@@ -2638,6 +2724,7 @@
     },
     "bkgrd.074": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 740.0,
             "outline_thickness": 0.2,
@@ -2660,6 +2747,7 @@
     },
     "bkgrd.075": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 750.0,
             "outline_thickness": 0.2,
@@ -2682,6 +2770,7 @@
     },
     "bkgrd.076": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 760.0,
             "outline_thickness": 0.2,
@@ -2704,6 +2793,7 @@
     },
     "bkgrd.077": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 770.0,
             "outline_thickness": 0.2,
@@ -2726,6 +2816,7 @@
     },
     "bkgrd.078": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 780.0,
             "outline_thickness": 0.2,
@@ -2748,6 +2839,7 @@
     },
     "bkgrd.079": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 790.0,
             "outline_thickness": 0.2,
@@ -2770,6 +2862,7 @@
     },
     "bkgrd.080": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 800.0,
             "outline_thickness": 0.2,
@@ -2792,6 +2885,7 @@
     },
     "bkgrd.081": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 810.0,
             "outline_thickness": 0.2,
@@ -2814,6 +2908,7 @@
     },
     "bkgrd.082": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 820.0,
             "outline_thickness": 0.2,
@@ -2836,6 +2931,7 @@
     },
     "bkgrd.083": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 830.0,
             "outline_thickness": 0.2,
@@ -2858,6 +2954,7 @@
     },
     "bkgrd.084": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 840.0,
             "outline_thickness": 0.2,
@@ -2880,6 +2977,7 @@
     },
     "bkgrd.085": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 850.0,
             "outline_thickness": 0.2,
@@ -2902,6 +3000,7 @@
     },
     "bkgrd.086": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 860.0,
             "outline_thickness": 0.2,
@@ -2924,6 +3023,7 @@
     },
     "bkgrd.087": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 870.0,
             "outline_thickness": 0.2,
@@ -2946,6 +3046,7 @@
     },
     "bkgrd.088": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 880.0,
             "outline_thickness": 0.2,
@@ -2968,6 +3069,7 @@
     },
     "bkgrd.089": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 890.0,
             "outline_thickness": 0.2,
@@ -2990,6 +3092,7 @@
     },
     "bkgrd.090": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 900.0,
             "outline_thickness": 0.2,
@@ -3012,6 +3115,7 @@
     },
     "bkgrd.091": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 910.0,
             "outline_thickness": 0.2,
@@ -3034,6 +3138,7 @@
     },
     "bkgrd.092": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 920.0,
             "outline_thickness": 0.2,
@@ -3056,6 +3161,7 @@
     },
     "bkgrd.093": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 930.0,
             "outline_thickness": 0.2,
@@ -3078,6 +3184,7 @@
     },
     "bkgrd.094": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 940.0,
             "outline_thickness": 0.2,
@@ -3100,6 +3207,7 @@
     },
     "bkgrd.095": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 950.0,
             "outline_thickness": 0.2,
@@ -3122,6 +3230,7 @@
     },
     "bkgrd.096": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 960.0,
             "outline_thickness": 0.2,
@@ -3144,6 +3253,7 @@
     },
     "bkgrd.097": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 970.0,
             "outline_thickness": 0.2,
@@ -3166,6 +3276,7 @@
     },
     "bkgrd.098": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 980.0,
             "outline_thickness": 0.2,
@@ -3188,6 +3299,7 @@
     },
     "bkgrd.099": {
         "PhysicsComp": {},
+        "RenderFlag": {},
         "CircleComp": {
             "radius": 990.0,
             "outline_thickness": 0.2,

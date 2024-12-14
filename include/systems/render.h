@@ -21,10 +21,10 @@ class RenderSystem {
     void renderUI(entt::registry& registry, sf::RenderWindow& window);
     void setView(entt::registry& regsitry, sf::RenderWindow& window, sf::View& view);
 
-    template <typename CompType>
+    template <typename CompType, typename FlagType>
     void renderShapeComp(entt::registry& registry, sf::RenderWindow& window) {
         // The .use ensures we use the order of render components
-        auto rview = registry.view<ZOrderComp, CompType, PhysicsComp>();
+        auto rview = registry.view<ZOrderComp, FlagType, CompType, PhysicsComp>();
 
         // draw frame
         for (auto [entity, zorder_c, shape_c, phys_c] : rview.each()) {

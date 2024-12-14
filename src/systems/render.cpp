@@ -18,7 +18,7 @@ RenderSystem::RenderSystem(sf::View& view, sf::View& ui_view)
 void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     window.clear(sf::Color::Black);
 
-    renderShapeComp<CircleComp>(registry, window);
+    renderShapeComp<CircleComp, RenderFlag>(registry, window);
 }
 
 void RenderSystem::renderUI(entt::registry& registry, sf::RenderWindow& window) {

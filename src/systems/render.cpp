@@ -55,7 +55,6 @@ void RenderSystem::renderUI(entt::registry& registry, sf::RenderWindow& window) 
 
     // Draw text
     for (auto [entity, text_c] : registry.view<TextComp>().each()) {
-
         window.draw(text_c.text);
     }
 }

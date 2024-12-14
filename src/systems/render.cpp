@@ -18,20 +18,7 @@ RenderSystem::RenderSystem(sf::View& view, sf::View& ui_view)
 void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     window.clear(sf::Color::Black);
 
-    // The .use ensures we use the order of render components
-    auto rview = registry.view<CircleComp, PhysicsComp>().use<CircleComp>();
-
-    // draw frame
-    for (auto [entity, rend_c, phys_c] : rview.each()) {
-        if (std::isnan(phys_c.pos.x) || std::isnan(phys_c.pos.y)) {
-            std::cerr << "Warning: Entity " << static_cast<int>(entity)
-                      << " has NaN position.\n";
-            continue;
-        }
-
-        rend_c.shape.setPosition(phys_c.pos);
-        window.draw(rend_c.shape);
-    }
+    renderShapeComp<CircleComp>(registry, window);
 }
 
 void RenderSystem::renderUI(entt::registry& registry, sf::RenderWindow& window) {

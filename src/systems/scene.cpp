@@ -13,7 +13,6 @@ using json = nlohmann::ordered_json;
 namespace twirl {
 
 void SceneSystem::loadJsonData(entt::registry& registry) {
-    
     for (auto [entity, scene_c] : registry.view<SceneComp>().each()) {
         // Parse the file
         std::ifstream file(scene_c.scene_fp);
@@ -34,29 +33,12 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
 bool SceneSystem::checkSceneTriggers(entt::registry& registry) {
     bool any_scene_triggered = false;
 
-    auto rview = registry.view<WatchTriggerFlag, PairComp>();
-    for (auto [entity, pair_c] : rview.each()) {
-        // Check if the end time was reached
-        if (!registry.get<WatchComp>(pair_c.source_entity).end_reached) {
-            continue;
-        }
-
-        // Emplace the scene
-        emplaceScene(registry, pair_c.target_entity);
-        any_scene_triggered = true;
-    }
-
-    auto rview = registry.view<DurabilityTriggerFlag, PairComp>();
-    for (auto [entity, pair_c] : rview.each()) {
-        // Check if zero durability was reached
-        if (!(registry.get<DurabilityComp>(pair_c.source_entity).durability > 0.f)) {
-            continue;
-        }
-
-        // Emplace the scene
-        emplaceScene(registry, pair_c.target_entity);
-        any_scene_triggered = true;
-    }
+    any_scene_triggered =
+        any_scene_triggered |
+        checkSceneTriggersForFlag<WatchTriggerFlag>(
+            registry, [](entt::registry& registry, entt::entity entity) -> bool {
+                return registry.get<WatchComp>(entity).end_reached;
+            });
 
     return any_scene_triggered;
 }
@@ -103,7 +85,8 @@ void SceneSystem::emplaceScene(entt::registry& registry,
         if (vb_c_ptr != nullptr) {
             entt::entity tracked_entity = resolveEntityName(
                 registry, scene_entity_map, vb_c_ptr->tracked_entity_name);
-            vb_c_ptr->tracked_value = &registry.get<DurabilityComp>(tracked_entity).durability;
+            vb_c_ptr->tracked_value =
+                &registry.get<DurabilityComp>(tracked_entity).durability;
         }
         registry.remove<UnresolvedNameFlag>(entity);
     }
@@ -133,7 +116,7 @@ entt::entity SceneSystem::resolveEntityName(entt::registry& registry,
     entt::entity entity;
     if (entity_name.front() == '[' && entity_name.back() == ']') {
         std::string input_str = entity_name.substr(1, entity_name.size() - 2);
-        entity =  comp::getEntityFromStr(registry, input_str);
+        entity = comp::getEntityFromStr(registry, input_str);
     } else {
         entity = entity_map[entity_name];
     }

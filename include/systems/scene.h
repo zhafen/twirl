@@ -52,6 +52,29 @@ class SceneSystem {
                                    EntityName entity_name);
 
     json json_data;
+
+   private:
+    // This function checks check_func for all entities with a given flag
+    // to see if those triggers should be triggered
+    template <typename TriggerFlag, typename Func>
+    bool checkSceneTriggersForFlag(entt::registry& registry, Func check_func) {
+        // Set up loop
+        bool any_scene_triggered = false;
+        auto rview = registry.view<TriggerFlag, PairComp>();
+        for (auto [entity, pair_c] : rview.each()) {
+            // Check if the scene was triggered
+            bool triggered = check_func(registry, pair_c.source_entity);
+            if (!triggered) {
+                continue;
+            }
+
+            // Emplace the scene
+            emplaceScene(registry, pair_c.target_entity);
+            any_scene_triggered = true;
+        }
+
+        return any_scene_triggered;
+    }
 };
 
 }  // namespace twirl

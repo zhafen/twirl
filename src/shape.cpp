@@ -11,11 +11,13 @@ CenteredCircleShape::CenteredCircleShape(float radius) : sf::CircleShape(radius)
     setOrigin(radius, radius);  // This changes the origin to the center of the circle
 }
 
+// NOTE: For some reason, for the origin to be set correctly it must be set once here
+// and once after construction....
 CenteredText::CenteredText() : sf::Text() {
     // center text
-    sf::FloatRect textRect = getLocalBounds();
-    setOrigin(textRect.left + textRect.width / 2.0f,
-              textRect.top + textRect.height / 2.0f);
+    sf::FloatRect text_rect = getLocalBounds();
+    setOrigin(text_rect.left + text_rect.width / 2.0f,
+              text_rect.top + text_rect.height / 2.0f);
     setFont(cfg.font);
 }
 

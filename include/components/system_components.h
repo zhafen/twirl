@@ -10,6 +10,10 @@
 #include "config.h"
 #include <nlohmann/json.hpp>
 #include "config.h"
+#include <nlohmann/json.hpp>
+#include "config.h"
+#include <nlohmann/json.hpp>
+#include "config.h"
 
 using json = nlohmann::ordered_json;
 
@@ -119,7 +123,7 @@ struct CollisionComp {};
 struct MouseButtonReleasedComp {};
 
 struct RenderComp {
-    TwirlCircleShape shape;
+    CenteredCircleShape shape;
     int zorder = 0;
 };
 inline void from_json(const json& j, RenderComp& rendercomp) {
@@ -128,7 +132,7 @@ inline void from_json(const json& j, RenderComp& rendercomp) {
     auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;
     auto fill_color = j.value("fill_color", sf::Color::White);
     auto outline_color = j.value("outline_color", sf::Color::Black);
-    rendercomp.shape = TwirlCircleShape(radius);
+    rendercomp.shape = CenteredCircleShape(radius);
     rendercomp.shape.setOutlineThickness(outline_thickness);
     rendercomp.shape.setFillColor(fill_color);
     rendercomp.shape.setOutlineColor(outline_color);
@@ -148,16 +152,15 @@ inline void from_json(const json& j, ValueBarComp& valuebarcomp) {
 }
 
 struct TextComp {
-    sf::Text text;
-    std::string string = "Hello world";
-    sf::Vector2f pos = sf::Vector2f(-25.f, 0.f) * cfg.L;
+    CenteredText text;
+    std::string string = "[placeholder text]";
+    sf::Vector2f pos = sf::Vector2f(0.f, -25.f) * cfg.L;
     unsigned int character_size = 24;
 };
 inline void from_json(const json& j, TextComp& textcomp) {
-    textcomp.string = j.value("string", "");
-    textcomp.pos = j.value("pos", sf::Vector2f(-25.f, 0.f)) * cfg.L;
+    textcomp.string = j.value("string", "[placeholder text]");
+    textcomp.pos = j.value("pos", sf::Vector2f(0.f, -25.f)) * cfg.L;
     textcomp.character_size = j.value("character_size", 24);
-    textcomp.text.setFont(cfg.font);
     textcomp.text.setString(textcomp.string);
     textcomp.text.setPosition(textcomp.pos);
     textcomp.text.setCharacterSize(textcomp.character_size);

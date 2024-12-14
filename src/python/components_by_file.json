@@ -186,14 +186,14 @@
         "MouseButtonReleasedComp": {},
         "RenderComp": [
             {
-                "shape": "TwirlCircleShape",
+                "shape": "CenteredCircleShape",
                 "zorder": [
                     "int",
                     true,
                     "0"
                 ]
             },
-            "auto radius = j.value(\"radius\", 1.0f) * cfg.L;\nauto outline_thickness = j.value(\"outline_thickness\", 0.0f) * cfg.L;\nauto fill_color = j.value(\"fill_color\", sf::Color::White);\nauto outline_color = j.value(\"outline_color\", sf::Color::Black);\nrendercomp.shape = TwirlCircleShape(radius);\nrendercomp.shape.setOutlineThickness(outline_thickness);\nrendercomp.shape.setFillColor(fill_color);\nrendercomp.shape.setOutlineColor(outline_color);\n"
+            "auto radius = j.value(\"radius\", 1.0f) * cfg.L;\nauto outline_thickness = j.value(\"outline_thickness\", 0.0f) * cfg.L;\nauto fill_color = j.value(\"fill_color\", sf::Color::White);\nauto outline_color = j.value(\"outline_color\", sf::Color::Black);\nrendercomp.shape = CenteredCircleShape(radius);\nrendercomp.shape.setOutlineThickness(outline_thickness);\nrendercomp.shape.setFillColor(fill_color);\nrendercomp.shape.setOutlineColor(outline_color);\n"
         ],
         "ValueBarComp": {
             "shape": "sf::RectangleShape",
@@ -222,16 +222,16 @@
         },
         "TextComp": [
             {
-                "text": "sf::Text",
+                "text": "CenteredText",
                 "string": [
                     "std::string",
                     true,
-                    "\"\""
+                    "\"[placeholder text]\""
                 ],
                 "pos": [
                     "sf::Vector2f",
                     true,
-                    "sf::Vector2f(-25.f, 0.f)",
+                    "sf::Vector2f(0.f, -25.f)",
                     "cfg.L"
                 ],
                 "character_size": [
@@ -240,7 +240,7 @@
                     "24"
                 ]
             },
-            "textcomp.text.setFont(cfg.font);\ntextcomp.text.setString(textcomp.string);\ntextcomp.text.setPosition(textcomp.pos);\ntextcomp.text.setCharacterSize(textcomp.character_size);\n"
+            "textcomp.text.setString(textcomp.string);\ntextcomp.text.setPosition(textcomp.pos);\ntextcomp.text.setCharacterSize(textcomp.character_size);\n"
         ],
         "DebugComp": {
             "verbose": [

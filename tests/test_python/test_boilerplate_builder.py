@@ -70,7 +70,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
 
         expected_output = (
             "struct RenderComp {\n"
-            "    TwirlCircleShape shape;\n"
+            "    CenteredCircleShape shape;\n"
             "    int zorder = 0;\n"
             "};\n"
             "inline void from_json(const json& j, RenderComp& rendercomp) {\n"
@@ -79,7 +79,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
             '    auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
             '    auto fill_color = j.value("fill_color", sf::Color::White);\n'
             '    auto outline_color = j.value("outline_color", sf::Color::Black);\n'
-            "    rendercomp.shape = TwirlCircleShape(radius);\n"
+            "    rendercomp.shape = CenteredCircleShape(radius);\n"
             "    rendercomp.shape.setOutlineThickness(outline_thickness);\n"
             "    rendercomp.shape.setFillColor(fill_color);\n"
             "    rendercomp.shape.setOutlineColor(outline_color);\n"
@@ -89,7 +89,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
         output = self.builder.get_struct_def(
             "RenderComp",
             {
-                "shape": "TwirlCircleShape",
+                "shape": "CenteredCircleShape",
                 "zorder": ["int", True, "0"],
             },
             manual_json_code=(
@@ -97,7 +97,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
                 'auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
                 'auto fill_color = j.value("fill_color", sf::Color::White);\n'
                 'auto outline_color = j.value("outline_color", sf::Color::Black);\n'
-                "rendercomp.shape = TwirlCircleShape(radius);\n"
+                "rendercomp.shape = CenteredCircleShape(radius);\n"
                 "rendercomp.shape.setOutlineThickness(outline_thickness);\n"
                 "rendercomp.shape.setFillColor(fill_color);\n"
                 "rendercomp.shape.setOutlineColor(outline_color);\n"
@@ -166,7 +166,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
             },
             "RenderComp": [
                 {
-                    "shape": "TwirlCircleShape",
+                    "shape": "CenteredCircleShape",
                     "zorder": ["int", True, "0"],
                 },
                 (
@@ -174,7 +174,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
                     'auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
                     'auto fill_color = j.value("fill_color", sf::Color::White);\n'
                     'auto outline_color = j.value("outline_color", sf::Color::Black);\n'
-                    "rendercomp.shape = TwirlCircleShape(radius);\n"
+                    "rendercomp.shape = CenteredCircleShape(radius);\n"
                     "rendercomp.shape.setOutlineThickness(outline_thickness);\n"
                     "rendercomp.shape.setFillColor(fill_color);\n"
                     "rendercomp.shape.setOutlineColor(outline_color);\n"
@@ -210,7 +210,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
             },
             "RenderComp": [
                 {
-                    "shape": "TwirlCircleShape",
+                    "shape": "CenteredCircleShape",
                     "zorder": ["int", True, "0"],
                 },
                 (
@@ -218,7 +218,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
                     'auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
                     'auto fill_color = j.value("fill_color", sf::Color::White);\n'
                     'auto outline_color = j.value("outline_color", sf::Color::Black);\n'
-                    "rendercomp.shape = TwirlCircleShape(radius);\n"
+                    "rendercomp.shape = CenteredCircleShape(radius);\n"
                     "rendercomp.shape.setOutlineThickness(outline_thickness);\n"
                     "rendercomp.shape.setFillColor(fill_color);\n"
                     "rendercomp.shape.setOutlineColor(outline_color);\n"

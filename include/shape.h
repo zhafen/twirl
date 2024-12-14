@@ -5,10 +5,16 @@
 
 namespace twirl {
 
-class TwirlCircleShape : public sf::CircleShape {
+class CenteredCircleShape : public sf::CircleShape {
    public:
     // Constructor that sets a different default origin
-    TwirlCircleShape(float radius = 50.f);
+    CenteredCircleShape(float radius = 50.f);
+};
+
+class CenteredText : public sf::Text {
+   public:
+    // Constructor that sets a different default origin
+    CenteredText();
 };
 
 } // namespace twirl

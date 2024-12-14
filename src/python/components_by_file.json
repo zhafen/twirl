@@ -237,10 +237,10 @@
                 "character_size": [
                     "unsigned int",
                     true,
-                    "240"
+                    "24"
                 ]
             },
-            "textcomp.text = sf::Text(textcomp.string, cfg.font);\ntextcomp.text.setPosition(textcomp.pos);\ntextcomp.text.setCharacterSize(textcomp.character_size);\n"
+            "textcomp.text.setFont(cfg.font);\ntextcomp.text.setString(textcomp.string);\ntextcomp.text.setPosition(textcomp.pos);\ntextcomp.text.setCharacterSize(textcomp.character_size);\n"
         ],
         "DebugComp": {
             "verbose": [

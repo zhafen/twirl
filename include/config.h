@@ -22,7 +22,7 @@ struct Config {
     static constexpr float dx = V * dt;
     sf::Font font;
     Config() {
-        font.loadFromFile("assets/fonts/arial.ttf");
+        font.loadFromFile("../../assets/arial.ttf");
     }
 };
 

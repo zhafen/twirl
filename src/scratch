@@ -2,7 +2,7 @@
 
     // Add a durability bar
     auto bar = registry.create();
-    // Have to pass in a shape to the component or it crashes, unlike with RenderComp
+    // Have to pass in a shape to the component or it crashes, unlike with CircleComp
     // Not sure why
     auto& uic_bar = registry.emplace<ValueBarComp>(bar, sf::RectangleShape());
     uic_bar.shape.setFillColor(sf::Color::White);

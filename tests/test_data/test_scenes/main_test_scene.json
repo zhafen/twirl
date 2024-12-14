@@ -20,7 +20,7 @@
         "DurabilityComp": {
             "delete_at_zero": false
         },
-        "RenderComp": {
+        "CircleComp": {
             "radius": 1.0,
             "fill_color": [
                 255,
@@ -34,7 +34,7 @@
     "beacon": {
         "PhysicsComp": {},
         "MouseButtonReleasedComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 0.5,
             "outline_thickness": 0.1,
             "fill_color": [
@@ -64,7 +64,7 @@
     },
     "bkgrd": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 10.0,
             "outline_thickness": 0.2,
             "fill_color": [

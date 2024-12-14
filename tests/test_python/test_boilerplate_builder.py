@@ -69,25 +69,25 @@ class TestBoilerplateBuilder(unittest.TestCase):
     def test_get_struct_w_custom_from_json(self):
 
         expected_output = (
-            "struct RenderComp {\n"
+            "struct CircleComp {\n"
             "    CenteredCircleShape shape;\n"
             "    int zorder = 0;\n"
             "};\n"
-            "inline void from_json(const json& j, RenderComp& rendercomp) {\n"
-            '    rendercomp.zorder = j.value("zorder", 0);\n'
+            "inline void from_json(const json& j, CircleComp& CircleComp) {\n"
+            '    CircleComp.zorder = j.value("zorder", 0);\n'
             '    auto radius = j.value("radius", 1.0f) * cfg.L;\n'
             '    auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
             '    auto fill_color = j.value("fill_color", sf::Color::White);\n'
             '    auto outline_color = j.value("outline_color", sf::Color::Black);\n'
-            "    rendercomp.shape = CenteredCircleShape(radius);\n"
-            "    rendercomp.shape.setOutlineThickness(outline_thickness);\n"
-            "    rendercomp.shape.setFillColor(fill_color);\n"
-            "    rendercomp.shape.setOutlineColor(outline_color);\n"
+            "    CircleComp.shape = CenteredCircleShape(radius);\n"
+            "    CircleComp.shape.setOutlineThickness(outline_thickness);\n"
+            "    CircleComp.shape.setFillColor(fill_color);\n"
+            "    CircleComp.shape.setOutlineColor(outline_color);\n"
             "}\n"
         )
 
         output = self.builder.get_struct_def(
-            "RenderComp",
+            "CircleComp",
             {
                 "shape": "CenteredCircleShape",
                 "zorder": ["int", True, "0"],
@@ -97,10 +97,10 @@ class TestBoilerplateBuilder(unittest.TestCase):
                 'auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
                 'auto fill_color = j.value("fill_color", sf::Color::White);\n'
                 'auto outline_color = j.value("outline_color", sf::Color::Black);\n'
-                "rendercomp.shape = CenteredCircleShape(radius);\n"
-                "rendercomp.shape.setOutlineThickness(outline_thickness);\n"
-                "rendercomp.shape.setFillColor(fill_color);\n"
-                "rendercomp.shape.setOutlineColor(outline_color);\n"
+                "CircleComp.shape = CenteredCircleShape(radius);\n"
+                "CircleComp.shape.setOutlineThickness(outline_thickness);\n"
+                "CircleComp.shape.setFillColor(fill_color);\n"
+                "CircleComp.shape.setOutlineColor(outline_color);\n"
             ),
         )
 
@@ -164,7 +164,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
                 "force": ["sf::Vector2f", False, "sf::Vector2f(0.0f, 0.0f)", "cfg.A"],
                 "collided": ["bool", False, "false"],
             },
-            "RenderComp": [
+            "CircleComp": [
                 {
                     "shape": "CenteredCircleShape",
                     "zorder": ["int", True, "0"],
@@ -174,10 +174,10 @@ class TestBoilerplateBuilder(unittest.TestCase):
                     'auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
                     'auto fill_color = j.value("fill_color", sf::Color::White);\n'
                     'auto outline_color = j.value("outline_color", sf::Color::Black);\n'
-                    "rendercomp.shape = CenteredCircleShape(radius);\n"
-                    "rendercomp.shape.setOutlineThickness(outline_thickness);\n"
-                    "rendercomp.shape.setFillColor(fill_color);\n"
-                    "rendercomp.shape.setOutlineColor(outline_color);\n"
+                    "CircleComp.shape = CenteredCircleShape(radius);\n"
+                    "CircleComp.shape.setOutlineThickness(outline_thickness);\n"
+                    "CircleComp.shape.setFillColor(fill_color);\n"
+                    "CircleComp.shape.setOutlineColor(outline_color);\n"
                 ),
             ],
         }
@@ -208,7 +208,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
                 "force": ["sf::Vector2f", False, "sf::Vector2f(0.0f, 0.0f)", "cfg.A"],
                 "collided": ["bool", False, "false"],
             },
-            "RenderComp": [
+            "CircleComp": [
                 {
                     "shape": "CenteredCircleShape",
                     "zorder": ["int", True, "0"],
@@ -218,10 +218,10 @@ class TestBoilerplateBuilder(unittest.TestCase):
                     'auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
                     'auto fill_color = j.value("fill_color", sf::Color::White);\n'
                     'auto outline_color = j.value("outline_color", sf::Color::Black);\n'
-                    "rendercomp.shape = CenteredCircleShape(radius);\n"
-                    "rendercomp.shape.setOutlineThickness(outline_thickness);\n"
-                    "rendercomp.shape.setFillColor(fill_color);\n"
-                    "rendercomp.shape.setOutlineColor(outline_color);\n"
+                    "CircleComp.shape = CenteredCircleShape(radius);\n"
+                    "CircleComp.shape.setOutlineThickness(outline_thickness);\n"
+                    "CircleComp.shape.setFillColor(fill_color);\n"
+                    "CircleComp.shape.setOutlineColor(outline_color);\n"
                 ),
             ],
         }

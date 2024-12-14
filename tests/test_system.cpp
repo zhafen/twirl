@@ -147,7 +147,7 @@ TEST(SystemEntityTest, SpawnDeleteOrder) {
     // Check zorders
     int zorder = 0;
     std::unordered_map<std::string, int> zorders;
-    auto rview = registry.view<RenderComp, EntityName>().use<RenderComp>();
+    auto rview = registry.view<CircleComp, EntityName>().use<CircleComp>();
     for (auto [entity, render_c, entity_name] : rview.each()) {
         zorders[entity_name] = zorder;
         zorder++;
@@ -171,7 +171,7 @@ TEST(SystemEntityTest, WatchSpawn) {
     {
         "spawned_entity": {
             "PhysicsComp": {},
-            "RenderComp": {}
+            "CircleComp": {}
         }
     }
     )"_json;

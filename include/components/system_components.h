@@ -114,20 +114,24 @@ struct CollisionComp {};
 
 struct MouseButtonReleasedComp {};
 
-struct RenderComp {
+struct CircleComp {
     CenteredCircleShape shape;
     int zorder = 0;
+    float radius = 1.0f * cfg.L;
+    float outline_thickness = 0.0f * cfg.L;
+    sf::Color fill_color = sf::Color::White;
+    sf::Color outline_color = sf::Color::Black;
 };
-inline void from_json(const json& j, RenderComp& rendercomp) {
-    rendercomp.zorder = j.value("zorder", 0);
-    auto radius = j.value("radius", 1.0f) * cfg.L;
-    auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;
-    auto fill_color = j.value("fill_color", sf::Color::White);
-    auto outline_color = j.value("outline_color", sf::Color::Black);
-    rendercomp.shape = CenteredCircleShape(radius);
-    rendercomp.shape.setOutlineThickness(outline_thickness);
-    rendercomp.shape.setFillColor(fill_color);
-    rendercomp.shape.setOutlineColor(outline_color);
+inline void from_json(const json& j, CircleComp& circlecomp) {
+    circlecomp.zorder = j.value("zorder", 0);
+    circlecomp.radius = j.value("radius", 1.0f) * cfg.L;
+    circlecomp.outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;
+    circlecomp.fill_color = j.value("fill_color", sf::Color::White);
+    circlecomp.outline_color = j.value("outline_color", sf::Color::Black);
+    circlecomp.shape = CenteredCircleShape(circlecomp.radius);
+    circlecomp.shape.setOutlineThickness(circlecomp.outline_thickness);
+    circlecomp.shape.setFillColor(circlecomp.fill_color);
+    circlecomp.shape.setOutlineColor(circlecomp.outline_color);
 }
 
 struct RectangleComp {

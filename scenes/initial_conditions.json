@@ -9,7 +9,7 @@
             "delete_at_zero": false,
             "durability_regen_rate": 0.1
         },
-        "RenderComp": {
+        "CircleComp": {
             "radius": 1.0,
             "fill_color": [
                 175,
@@ -24,7 +24,7 @@
     "beacon": {
         "PhysicsComp": {},
         "MouseButtonReleasedComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 0.5,
             "outline_thickness": 0.1,
             "fill_color": [
@@ -66,7 +66,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 1.0,
             "fill_color": [
                 115,
@@ -121,7 +121,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 1.0,
             "fill_color": [
                 115,
@@ -176,7 +176,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 1.0,
             "fill_color": [
                 115,
@@ -231,7 +231,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 1.0,
             "fill_color": [
                 115,
@@ -286,7 +286,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 1.0,
             "fill_color": [
                 115,
@@ -341,7 +341,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 1.0,
             "fill_color": [
                 115,
@@ -396,7 +396,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 1.0,
             "fill_color": [
                 115,
@@ -451,7 +451,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 1.0,
             "fill_color": [
                 115,
@@ -506,7 +506,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 1.0,
             "fill_color": [
                 115,
@@ -561,7 +561,7 @@
         },
         "DragForceComp": {},
         "DurabilityComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 1.0,
             "fill_color": [
                 115,
@@ -975,7 +975,7 @@
     },
     "bkgrd.000": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 0.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -995,7 +995,7 @@
     },
     "bkgrd.001": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 10.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1015,7 +1015,7 @@
     },
     "bkgrd.002": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 20.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1035,7 +1035,7 @@
     },
     "bkgrd.003": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 30.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1055,7 +1055,7 @@
     },
     "bkgrd.004": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 40.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1075,7 +1075,7 @@
     },
     "bkgrd.005": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 50.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1095,7 +1095,7 @@
     },
     "bkgrd.006": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 60.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1115,7 +1115,7 @@
     },
     "bkgrd.007": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 70.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1135,7 +1135,7 @@
     },
     "bkgrd.008": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 80.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1155,7 +1155,7 @@
     },
     "bkgrd.009": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 90.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1175,7 +1175,7 @@
     },
     "bkgrd.010": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 100.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1195,7 +1195,7 @@
     },
     "bkgrd.011": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 110.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1215,7 +1215,7 @@
     },
     "bkgrd.012": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 120.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1235,7 +1235,7 @@
     },
     "bkgrd.013": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 130.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1255,7 +1255,7 @@
     },
     "bkgrd.014": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 140.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1275,7 +1275,7 @@
     },
     "bkgrd.015": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 150.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1295,7 +1295,7 @@
     },
     "bkgrd.016": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 160.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1315,7 +1315,7 @@
     },
     "bkgrd.017": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 170.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1335,7 +1335,7 @@
     },
     "bkgrd.018": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 180.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1355,7 +1355,7 @@
     },
     "bkgrd.019": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 190.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1375,7 +1375,7 @@
     },
     "bkgrd.020": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 200.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1395,7 +1395,7 @@
     },
     "bkgrd.021": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 210.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1415,7 +1415,7 @@
     },
     "bkgrd.022": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 220.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1435,7 +1435,7 @@
     },
     "bkgrd.023": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 230.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1455,7 +1455,7 @@
     },
     "bkgrd.024": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 240.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1475,7 +1475,7 @@
     },
     "bkgrd.025": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 250.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1495,7 +1495,7 @@
     },
     "bkgrd.026": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 260.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1515,7 +1515,7 @@
     },
     "bkgrd.027": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 270.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1535,7 +1535,7 @@
     },
     "bkgrd.028": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 280.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1555,7 +1555,7 @@
     },
     "bkgrd.029": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 290.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1575,7 +1575,7 @@
     },
     "bkgrd.030": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 300.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1595,7 +1595,7 @@
     },
     "bkgrd.031": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 310.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1615,7 +1615,7 @@
     },
     "bkgrd.032": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 320.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1635,7 +1635,7 @@
     },
     "bkgrd.033": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 330.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1655,7 +1655,7 @@
     },
     "bkgrd.034": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 340.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1675,7 +1675,7 @@
     },
     "bkgrd.035": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 350.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1695,7 +1695,7 @@
     },
     "bkgrd.036": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 360.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1715,7 +1715,7 @@
     },
     "bkgrd.037": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 370.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1735,7 +1735,7 @@
     },
     "bkgrd.038": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 380.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1755,7 +1755,7 @@
     },
     "bkgrd.039": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 390.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1775,7 +1775,7 @@
     },
     "bkgrd.040": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 400.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1795,7 +1795,7 @@
     },
     "bkgrd.041": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 410.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1815,7 +1815,7 @@
     },
     "bkgrd.042": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 420.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1835,7 +1835,7 @@
     },
     "bkgrd.043": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 430.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1855,7 +1855,7 @@
     },
     "bkgrd.044": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 440.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1875,7 +1875,7 @@
     },
     "bkgrd.045": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 450.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1895,7 +1895,7 @@
     },
     "bkgrd.046": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 460.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1915,7 +1915,7 @@
     },
     "bkgrd.047": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 470.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1935,7 +1935,7 @@
     },
     "bkgrd.048": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 480.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1955,7 +1955,7 @@
     },
     "bkgrd.049": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 490.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1975,7 +1975,7 @@
     },
     "bkgrd.050": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 500.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -1995,7 +1995,7 @@
     },
     "bkgrd.051": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 510.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2015,7 +2015,7 @@
     },
     "bkgrd.052": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 520.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2035,7 +2035,7 @@
     },
     "bkgrd.053": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 530.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2055,7 +2055,7 @@
     },
     "bkgrd.054": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 540.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2075,7 +2075,7 @@
     },
     "bkgrd.055": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 550.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2095,7 +2095,7 @@
     },
     "bkgrd.056": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 560.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2115,7 +2115,7 @@
     },
     "bkgrd.057": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 570.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2135,7 +2135,7 @@
     },
     "bkgrd.058": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 580.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2155,7 +2155,7 @@
     },
     "bkgrd.059": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 590.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2175,7 +2175,7 @@
     },
     "bkgrd.060": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 600.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2195,7 +2195,7 @@
     },
     "bkgrd.061": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 610.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2215,7 +2215,7 @@
     },
     "bkgrd.062": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 620.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2235,7 +2235,7 @@
     },
     "bkgrd.063": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 630.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2255,7 +2255,7 @@
     },
     "bkgrd.064": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 640.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2275,7 +2275,7 @@
     },
     "bkgrd.065": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 650.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2295,7 +2295,7 @@
     },
     "bkgrd.066": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 660.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2315,7 +2315,7 @@
     },
     "bkgrd.067": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 670.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2335,7 +2335,7 @@
     },
     "bkgrd.068": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 680.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2355,7 +2355,7 @@
     },
     "bkgrd.069": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 690.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2375,7 +2375,7 @@
     },
     "bkgrd.070": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 700.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2395,7 +2395,7 @@
     },
     "bkgrd.071": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 710.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2415,7 +2415,7 @@
     },
     "bkgrd.072": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 720.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2435,7 +2435,7 @@
     },
     "bkgrd.073": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 730.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2455,7 +2455,7 @@
     },
     "bkgrd.074": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 740.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2475,7 +2475,7 @@
     },
     "bkgrd.075": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 750.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2495,7 +2495,7 @@
     },
     "bkgrd.076": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 760.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2515,7 +2515,7 @@
     },
     "bkgrd.077": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 770.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2535,7 +2535,7 @@
     },
     "bkgrd.078": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 780.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2555,7 +2555,7 @@
     },
     "bkgrd.079": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 790.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2575,7 +2575,7 @@
     },
     "bkgrd.080": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 800.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2595,7 +2595,7 @@
     },
     "bkgrd.081": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 810.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2615,7 +2615,7 @@
     },
     "bkgrd.082": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 820.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2635,7 +2635,7 @@
     },
     "bkgrd.083": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 830.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2655,7 +2655,7 @@
     },
     "bkgrd.084": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 840.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2675,7 +2675,7 @@
     },
     "bkgrd.085": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 850.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2695,7 +2695,7 @@
     },
     "bkgrd.086": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 860.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2715,7 +2715,7 @@
     },
     "bkgrd.087": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 870.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2735,7 +2735,7 @@
     },
     "bkgrd.088": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 880.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2755,7 +2755,7 @@
     },
     "bkgrd.089": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 890.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2775,7 +2775,7 @@
     },
     "bkgrd.090": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 900.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2795,7 +2795,7 @@
     },
     "bkgrd.091": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 910.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2815,7 +2815,7 @@
     },
     "bkgrd.092": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 920.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2835,7 +2835,7 @@
     },
     "bkgrd.093": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 930.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2855,7 +2855,7 @@
     },
     "bkgrd.094": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 940.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2875,7 +2875,7 @@
     },
     "bkgrd.095": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 950.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2895,7 +2895,7 @@
     },
     "bkgrd.096": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 960.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2915,7 +2915,7 @@
     },
     "bkgrd.097": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 970.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2935,7 +2935,7 @@
     },
     "bkgrd.098": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 980.0,
             "outline_thickness": 0.2,
             "fill_color": [
@@ -2955,7 +2955,7 @@
     },
     "bkgrd.099": {
         "PhysicsComp": {},
-        "RenderComp": {
+        "CircleComp": {
             "radius": 990.0,
             "outline_thickness": 0.2,
             "fill_color": [

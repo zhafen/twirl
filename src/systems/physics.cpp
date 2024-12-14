@@ -128,12 +128,12 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
         // Get first entity
         auto& entity1 = pair_c.target_entity;
         auto& phys_c1 = registry.get<PhysicsComp>(entity1);
-        auto& rend_c1 = registry.get<RenderComp>(entity1);
+        auto& rend_c1 = registry.get<CircleComp>(entity1);
 
         // Get second entity
         auto& entity2 = pair_c.source_entity;
         auto& phys_c2 = registry.get<PhysicsComp>(entity2);
-        auto& rend_c2 = registry.get<RenderComp>(entity2);
+        auto& rend_c2 = registry.get<CircleComp>(entity2);
 
         // Check for collision, assuming circular shapes for all objects that collide
         auto r_12 = phys_c2.pos - phys_c1.pos;
@@ -164,7 +164,7 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
 }
 
 void PhysicsSystem::updateDurability(entt::registry& registry) {
-    auto rview = registry.view<DurabilityComp, RenderComp, PhysicsComp>();
+    auto rview = registry.view<DurabilityComp, CircleComp, PhysicsComp>();
     for (auto [entity, dur_c, rend_c, phys_c] : rview.each()) {
         // Regenerate durability
         dur_c.durability += dur_c.durability_regen_rate * cfg.dt;

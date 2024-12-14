@@ -57,9 +57,9 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
         registry.emplace<CollisionComp>(entity);
     } else if (comp_key == "MouseButtonReleasedComp") {
         registry.emplace<MouseButtonReleasedComp>(entity);
-    } else if (comp_key == "RenderComp") {
-        auto rendercomp = comp_json.template get<RenderComp>();
-        registry.emplace<RenderComp>(entity, rendercomp);
+    } else if (comp_key == "CircleComp") {
+        auto circlecomp = comp_json.template get<CircleComp>();
+        registry.emplace<CircleComp>(entity, circlecomp);
     } else if (comp_key == "RectangleComp") {
         auto rectanglecomp = comp_json.template get<RectangleComp>();
         registry.emplace<RectangleComp>(entity, rectanglecomp);
@@ -125,8 +125,8 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<CollisionComp>(registry, selection_str);
     } else if (comp_key == "MouseButtonReleasedComp") {
         return getEntityFromSelectionStr<MouseButtonReleasedComp>(registry, selection_str);
-    } else if (comp_key == "RenderComp") {
-        return getEntityFromSelectionStr<RenderComp>(registry, selection_str);
+    } else if (comp_key == "CircleComp") {
+        return getEntityFromSelectionStr<CircleComp>(registry, selection_str);
     } else if (comp_key == "RectangleComp") {
         return getEntityFromSelectionStr<RectangleComp>(registry, selection_str);
     } else if (comp_key == "ValueBarComp") {
@@ -224,11 +224,11 @@ void debugEntities(entt::registry& registry, std::string message) {
         
         
         
-        auto rendercomp_ptr = registry.try_get<RenderComp>(entity);
-        if (rendercomp_ptr != nullptr) {
-            auto rendercomp = *rendercomp_ptr;
-            std::cout << "    RenderComp" << std::endl;
-            std::cout << "      zorder: " << rendercomp.zorder << std::endl;
+        auto circlecomp_ptr = registry.try_get<CircleComp>(entity);
+        if (circlecomp_ptr != nullptr) {
+            auto circlecomp = *circlecomp_ptr;
+            std::cout << "    CircleComp" << std::endl;
+            std::cout << "      zorder: " << circlecomp.zorder << std::endl;
         }
         
         auto rectanglecomp_ptr = registry.try_get<RectangleComp>(entity);

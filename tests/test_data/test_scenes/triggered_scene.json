@@ -5,7 +5,7 @@
         "DurabilityComp": {
             "durability_loss_per_collision": 1.01
         },
-        "RenderComp": {
+        "CircleComp": {
             "radius": 0.5,
             "fill_color": [
                 82,

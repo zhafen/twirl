@@ -185,7 +185,7 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_FLOAT_EQ(dc.durability_regen_rate, 0.0f);
             EXPECT_EQ(dc.delete_at_zero, false);
 
-            auto& rc = registry.get<RenderComp>(entity);
+            auto& rc = registry.get<CircleComp>(entity);
             EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L);
             auto fill_color = rc.shape.getFillColor();
             EXPECT_EQ(fill_color.r, 255);
@@ -202,7 +202,7 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_FLOAT_EQ(pc.force.x, 0.0f);
             EXPECT_FLOAT_EQ(pc.force.y, 0.0f);
 
-            auto& rc = registry.get<RenderComp>(entity);
+            auto& rc = registry.get<CircleComp>(entity);
             EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L / 2.f);
             EXPECT_FLOAT_EQ(rc.shape.getOutlineThickness(), cfg.L / 10.f);
             auto outline_color = rc.shape.getOutlineColor();
@@ -232,7 +232,7 @@ TEST(SceneTest, EmplaceSceneFromJson) {
 
         } else if (std::regex_match(name, std::regex("bkgrd.*"))) {
             // Background circle
-            auto& rc = registry.get<RenderComp>(entity);
+            auto& rc = registry.get<CircleComp>(entity);
 
             auto fill_color = rc.shape.getFillColor();
             EXPECT_EQ(fill_color.r, 127);

@@ -90,7 +90,7 @@ void EntitySystem::orderEntities(entt::registry& registry) {
         return;
     }
 
-    registry.sort<RenderComp>(
+    registry.sort<CircleComp>(
         [](const auto lhs, const auto rhs) { return lhs.zorder < rhs.zorder; });
 
     // Mark that the entities are ordered

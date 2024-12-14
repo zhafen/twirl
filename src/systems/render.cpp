@@ -19,7 +19,7 @@ void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     window.clear(sf::Color::Black);
 
     // The .use ensures we use the order of render components
-    auto rview = registry.view<RenderComp, PhysicsComp>().use<RenderComp>();
+    auto rview = registry.view<CircleComp, PhysicsComp>().use<CircleComp>();
 
     // draw frame
     for (auto [entity, rend_c, phys_c] : rview.each()) {

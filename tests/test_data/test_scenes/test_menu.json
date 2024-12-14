@@ -5,6 +5,15 @@
         }
     },
     "y-axis": {
-        "RectangleComp": {}
+        "RectangleComp": {
+            "pos": [
+                -0.25,
+                -50.0
+            ],
+            "size": [
+                0.5,
+                100.0
+            ]
+        }
     }
 }

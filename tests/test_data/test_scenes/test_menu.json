@@ -1,7 +1,10 @@
 {
-    "Banner": {
+    "banner": {
         "TextComp": {
             "string": "Test Menu"
         }
+    },
+    "y-axis": {
+        "RectangleComp": {}
     }
 }

@@ -57,6 +57,15 @@ TEST(ScenarioTest, TestMenuScene) {
 
     // Initialize the game, hidden in the constructor
     Game game("../../tests/test_data/test_scenes/test_menu.json");
+
+    // DEBUG
+    // center text
+    auto& registry = game.getRegistry();
+    auto& text_c = registry.get<TextComp>(registry.view<TextComp>().front());
+    sf::FloatRect textRect = text_c.text.getLocalBounds();
+    text_c.text.setOrigin(textRect.left + textRect.width / 2.0f,
+              textRect.top + textRect.height / 2.0f);
+
     game.max_time = 5.0f;
     game.run();
 }

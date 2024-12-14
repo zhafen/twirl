@@ -195,6 +195,40 @@
             },
             "auto radius = j.value(\"radius\", 1.0f) * cfg.L;\nauto outline_thickness = j.value(\"outline_thickness\", 0.0f) * cfg.L;\nauto fill_color = j.value(\"fill_color\", sf::Color::White);\nauto outline_color = j.value(\"outline_color\", sf::Color::Black);\nrendercomp.shape = CenteredCircleShape(radius);\nrendercomp.shape.setOutlineThickness(outline_thickness);\nrendercomp.shape.setFillColor(fill_color);\nrendercomp.shape.setOutlineColor(outline_color);\n"
         ],
+        "RectangleComp": [
+            {
+                "shape": "sf::RectangleShape",
+                "size": [
+                    "sf::Vector2f",
+                    true,
+                    "sf::Vector2f(1.0f, 1.0f)",
+                    "cfg.L"
+                ],
+                "pos": [
+                    "sf::Vector2f",
+                    true,
+                    "sf::Vector2f(0.0f, 0.0f)",
+                    "cfg.L"
+                ],
+                "outline_thickness": [
+                    "float",
+                    true,
+                    "0.0f",
+                    "cfg.L"
+                ],
+                "fill_color": [
+                    "sf::Color",
+                    true,
+                    "sf::Color::White"
+                ],
+                "outline_color": [
+                    "sf::Color",
+                    true,
+                    "sf::Color::Black"
+                ]
+            },
+            "rectanglecomp.shape.setSize(rectanglecomp.size);\nrectanglecomp.shape.setPosition(rectanglecomp.pos);\nrectanglecomp.shape.setOutlineThickness(rectanglecomp.outline_thickness);\nrectanglecomp.shape.setFillColor(rectanglecomp.fill_color);\nrectanglecomp.shape.setOutlineColor(rectanglecomp.outline_color);\n"
+        ],
         "ValueBarComp": {
             "shape": "sf::RectangleShape",
             "pos": [

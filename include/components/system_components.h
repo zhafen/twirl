@@ -6,14 +6,6 @@
 #include "shape.h"
 #include <nlohmann/json.hpp>
 #include "config.h"
-#include <nlohmann/json.hpp>
-#include "config.h"
-#include <nlohmann/json.hpp>
-#include "config.h"
-#include <nlohmann/json.hpp>
-#include "config.h"
-#include <nlohmann/json.hpp>
-#include "config.h"
 
 using json = nlohmann::ordered_json;
 
@@ -136,6 +128,27 @@ inline void from_json(const json& j, RenderComp& rendercomp) {
     rendercomp.shape.setOutlineThickness(outline_thickness);
     rendercomp.shape.setFillColor(fill_color);
     rendercomp.shape.setOutlineColor(outline_color);
+}
+
+struct RectangleComp {
+    sf::RectangleShape shape;
+    sf::Vector2f size = sf::Vector2f(1.0f, 1.0f) * cfg.L;
+    sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f) * cfg.L;
+    float outline_thickness = 0.0f * cfg.L;
+    sf::Color fill_color = sf::Color::White;
+    sf::Color outline_color = sf::Color::Black;
+};
+inline void from_json(const json& j, RectangleComp& rectanglecomp) {
+    rectanglecomp.size = j.value("size", sf::Vector2f(1.0f, 1.0f)) * cfg.L;
+    rectanglecomp.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f)) * cfg.L;
+    rectanglecomp.outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;
+    rectanglecomp.fill_color = j.value("fill_color", sf::Color::White);
+    rectanglecomp.outline_color = j.value("outline_color", sf::Color::Black);
+    rectanglecomp.shape.setSize(rectanglecomp.size);
+    rectanglecomp.shape.setPosition(rectanglecomp.pos);
+    rectanglecomp.shape.setOutlineThickness(rectanglecomp.outline_thickness);
+    rectanglecomp.shape.setFillColor(rectanglecomp.fill_color);
+    rectanglecomp.shape.setOutlineColor(rectanglecomp.outline_color);
 }
 
 struct ValueBarComp {

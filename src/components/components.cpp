@@ -60,6 +60,9 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
     } else if (comp_key == "RenderComp") {
         auto rendercomp = comp_json.template get<RenderComp>();
         registry.emplace<RenderComp>(entity, rendercomp);
+    } else if (comp_key == "RectangleComp") {
+        auto rectanglecomp = comp_json.template get<RectangleComp>();
+        registry.emplace<RectangleComp>(entity, rectanglecomp);
     } else if (comp_key == "ValueBarComp") {
         auto valuebarcomp = comp_json.template get<ValueBarComp>();
         registry.emplace<ValueBarComp>(entity, valuebarcomp);
@@ -124,6 +127,8 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<MouseButtonReleasedComp>(registry, selection_str);
     } else if (comp_key == "RenderComp") {
         return getEntityFromSelectionStr<RenderComp>(registry, selection_str);
+    } else if (comp_key == "RectangleComp") {
+        return getEntityFromSelectionStr<RectangleComp>(registry, selection_str);
     } else if (comp_key == "ValueBarComp") {
         return getEntityFromSelectionStr<ValueBarComp>(registry, selection_str);
     } else if (comp_key == "TextComp") {
@@ -224,6 +229,12 @@ void debugEntities(entt::registry& registry, std::string message) {
             auto rendercomp = *rendercomp_ptr;
             std::cout << "    RenderComp" << std::endl;
             std::cout << "      zorder: " << rendercomp.zorder << std::endl;
+        }
+        
+        auto rectanglecomp_ptr = registry.try_get<RectangleComp>(entity);
+        if (rectanglecomp_ptr != nullptr) {
+            auto rectanglecomp = *rectanglecomp_ptr;
+            std::cout << "    RectangleComp" << std::endl;
         }
         
         auto valuebarcomp_ptr = registry.try_get<ValueBarComp>(entity);

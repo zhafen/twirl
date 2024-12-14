@@ -33,11 +33,20 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
 bool SceneSystem::checkSceneTriggers(entt::registry& registry) {
     bool any_scene_triggered = false;
 
+    // Triggers caused by a timer running out
     any_scene_triggered =
         any_scene_triggered |
         checkSceneTriggersForFlag<WatchTriggerFlag>(
             registry, [](entt::registry& registry, entt::entity entity) -> bool {
                 return registry.get<WatchComp>(entity).end_reached;
+            });
+
+    // Triggers caused by durability reaching 0
+    any_scene_triggered =
+        any_scene_triggered |
+        checkSceneTriggersForFlag<DurabilityTriggerFlag>(
+            registry, [](entt::registry& registry, entt::entity entity) -> bool {
+                return registry.get<DurabilityComp>(entity).durability <= 0;
             });
 
     return any_scene_triggered;

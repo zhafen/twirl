@@ -46,8 +46,8 @@ TEST(SceneTest, TriggerScene) {
     pair_c.target_entity_name = "test_scene";
 
     // Trigger the scene
-    registry.patch<TriggerComp>(
-        trigger_entity, [](auto& trigger_c) { trigger_c.n_triggers++; });
+    registry.patch<TriggerComp>(trigger_entity,
+                                [](auto& trigger_c) { trigger_c.n_triggers++; });
 
     // Check that the entity was added
     auto rview = registry.view<EnemyFlag>();
@@ -96,8 +96,8 @@ TEST(SceneTest, ResolveEntityNameFromSelectionStr) {
         scene_system.resolveEntityName(registry, entity_map, "[DebugComp|first]");
     EXPECT_EQ(resolved_entity, entity1);
 
-    resolved_entity =
-        scene_system.resolveEntityName(registry, entity_map, "[EntityName|name:entity2]");
+    resolved_entity = scene_system.resolveEntityName(registry, entity_map,
+                                                     "[EntityName|name:entity2]");
     EXPECT_EQ(resolved_entity, entity2);
 }
 
@@ -149,8 +149,8 @@ TEST(SceneTest, EmplaceSceneFromJson) {
 
     // Add a scene to the registry (including some manually-input json data)
     entt::entity scene = registry.create();
-    auto& scene_c =
-        registry.emplace<SceneComp>(scene, "../../tests/test_data/main_test_scene.json");
+    auto& scene_c = registry.emplace<SceneComp>(
+        scene, "../../tests/test_data/test_scenes/main_test_scene.json");
     registry.emplace<EntityName>(scene, "test_scene");
     scene_system.loadJsonData(registry);
 

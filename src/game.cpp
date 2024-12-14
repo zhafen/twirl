@@ -127,6 +127,7 @@ void Game::update() {
 
 void Game::render() {
     // Render
+    render_system.prepareRender(registry, window);
     render_system.render(registry, window);
     render_system.renderUI(registry, window);
     render_system.setView(registry, window, view);

@@ -17,24 +17,31 @@ namespace twirl {
 class RenderSystem {
    public:
     RenderSystem(sf::View& view, sf::View& ui_view);
+    void prepareRender(entt::registry& registry, sf::RenderWindow& window);
     void render(entt::registry& registry, sf::RenderWindow& window);
     void renderUI(entt::registry& registry, sf::RenderWindow& window);
     void setView(entt::registry& regsitry, sf::RenderWindow& window, sf::View& view);
 
-    template <typename CompType, typename FlagType>
-    void renderShapeComp(entt::registry& registry, sf::RenderWindow& window) {
-        // The .use ensures we use the order of render components
-        auto rview = registry.view<ZOrderComp, FlagType, CompType, PhysicsComp>();
+    template <typename CompType>
+    void syncRenderAndPhysics(entt::registry& registry) {
+        auto rview = registry.view<CompType, PhysicsComp>();
 
-        // draw frame
-        for (auto [entity, zorder_c, shape_c, phys_c] : rview.each()) {
+        for (auto [entity, comp, phys_c] : rview.each()) {
             if (std::isnan(phys_c.pos.x) || std::isnan(phys_c.pos.y)) {
                 std::cerr << "Warning: Entity " << static_cast<int>(entity)
                           << " has NaN position.\n";
                 continue;
             }
+            comp.shape.setPosition(phys_c.pos);
+        }
+    }
 
-            shape_c.shape.setPosition(phys_c.pos);
+    template <typename CompType, typename FlagType>
+    void renderShapeComp(entt::registry& registry, sf::RenderWindow& window) {
+        auto rview = registry.view<ZOrderComp, FlagType, CompType>();
+
+        // draw frame
+        for (auto [entity, zorder_c, shape_c] : rview.each()) {
             window.draw(shape_c.shape);
         }
     }

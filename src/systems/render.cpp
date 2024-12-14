@@ -15,14 +15,26 @@ namespace twirl {
 RenderSystem::RenderSystem(sf::View& view, sf::View& ui_view)
     : view(view), ui_view(ui_view) {}
 
-void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
-    window.clear(sf::Color::Black);
+void RenderSystem::prepareRender(entt::registry& registry, sf::RenderWindow& window) {
 
+    // This ensures that the render components are in the correct position
+    // when they align with a physics component
+    syncRenderAndPhysics<CircleComp>(registry);
+    syncRenderAndPhysics<RectangleComp>(registry);
+
+    window.clear(sf::Color::Black);
+}
+
+void RenderSystem::render(entt::registry& registry, sf::RenderWindow& window) {
     renderShapeComp<CircleComp, RenderFlag>(registry, window);
+    renderShapeComp<RectangleComp, RenderFlag>(registry, window);
 }
 
 void RenderSystem::renderUI(entt::registry& registry, sf::RenderWindow& window) {
     window.setView(ui_view);
+
+    renderShapeComp<CircleComp, UIRenderFlag>(registry, window);
+    renderShapeComp<RectangleComp, UIRenderFlag>(registry, window);
 
     // Draw value bars
     for (auto [entity, vb_c] : registry.view<ValueBarComp>().each()) {
@@ -39,11 +51,6 @@ void RenderSystem::renderUI(entt::registry& registry, sf::RenderWindow& window) 
         vb_c.shape.setPosition(vb_c_pos);
 
         window.draw(vb_c.shape);
-    }
-
-    // Draw rectangles
-    for (auto [entity, rect_c] : registry.view<RectangleComp>().each()) {
-        window.draw(rect_c.shape);
     }
 
     // Draw text

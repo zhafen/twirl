@@ -5,6 +5,7 @@
         }
     },
     "y-axis": {
+        "RenderFlag": {},
         "RectangleComp": {
             "pos": [
                 -0.25,
@@ -20,6 +21,9 @@
                 255,
                 127
             ]
+        },
+        "ZOrderComp": {
+            "zorder": 0
         }
     }
 }

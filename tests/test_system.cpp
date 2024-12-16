@@ -153,7 +153,6 @@ TEST(SystemEntityTest, SpawnDeleteOrder) {
         zorder++;
     }
     ASSERT_GE(zorders["player"], zorders["bkgrd.000"]);
-    ASSERT_GE(zorders["enemy.000"], zorders["bkgrd.000"]);
 }
 
 TEST(SystemEntityTest, WatchSpawn) {

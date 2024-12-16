@@ -1,9 +1,25 @@
 {
-    "initial_conditions": {
+    "player": {
         "SceneComp": {
-            "scene_fp": "../../scenes/initial_conditions.json",
+            "scene_fp": "../../scenes/player.json",
             "emplace_after_loading": true,
             "emplace_order": -1
+        }
+    },
+    "enemies": {
+        "SceneComp": {
+            "scene_fp": "../../scenes/enemies.json"
+        }
+    },
+    "background": {
+        "SceneComp": {
+            "scene_fp": "../../scenes/background.json",
+            "emplace_after_loading": true
+        }
+    },
+    "projectiles": {
+        "SceneComp": {
+            "scene_fp": "../../scenes/projectiles.json"
         }
     },
     "user_interface": {
@@ -11,11 +27,6 @@
             "scene_fp": "../../scenes/user_interface.json",
             "emplace_after_loading": true,
             "emplace_order": 0
-        }
-    },
-    "projectiles": {
-        "SceneComp": {
-            "scene_fp": "../../scenes/projectiles.json"
         }
     },
     "defeat_menu": {

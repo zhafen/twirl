@@ -1,0 +1,81 @@
+{
+    "player": {
+        "PhysicsComp": {},
+        "DragForceComp": {
+            "drag_coefficient": 0.05,
+            "drag_power": 2.5
+        },
+        "DurabilityComp": {
+            "delete_at_zero": false,
+            "durability_regen_rate": 0.1
+        },
+        "RenderFlag": {},
+        "CircleComp": {
+            "radius": 1.0,
+            "fill_color": [
+                175,
+                100,
+                88,
+                255
+            ]
+        },
+        "ZOrderComp": {
+            "zorder": 0
+        },
+        "PlayerFlag": {},
+        "ViewFlag": {}
+    },
+    "player_durability_trigger": {
+        "DurabilityTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "player",
+            "target_entity_name": "[SceneComp|name:defeat_menu]"
+        },
+        "UnresolvedNameFlag": {}
+    },
+    "beacon": {
+        "PhysicsComp": {},
+        "MouseButtonReleasedComp": {},
+        "RenderFlag": {},
+        "CircleComp": {
+            "radius": 0.5,
+            "outline_thickness": 0.1,
+            "fill_color": [
+                0,
+                0,
+                0,
+                255
+            ],
+            "outline_color": [
+                255,
+                255,
+                255,
+                255
+            ]
+        },
+        "ZOrderComp": {
+            "zorder": 1
+        }
+    },
+    "player-beacon force": {
+        "PairComp": {
+            "target_entity_name": "player",
+            "source_entity_name": "beacon"
+        },
+        "PairwiseForceComp": {
+            "magnitude": -2.0
+        },
+        "UnresolvedNameFlag": {}
+    },
+    "player_projectile_watch": {
+        "WatchComp": {}
+    },
+    "player_projectile_watch_trigger": {
+        "WatchTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "player_projectile_watch",
+            "target_entity_name": "[SceneComp|name:projectiles]"
+        },
+        "UnresolvedNameFlag": {}
+    }
+}

@@ -73,16 +73,16 @@ class TestBoilerplateBuilder(unittest.TestCase):
             "    CenteredCircleShape shape;\n"
             "    int zorder = 0;\n"
             "};\n"
-            "inline void from_json(const json& j, CircleComp& CircleComp) {\n"
-            '    CircleComp.zorder = j.value("zorder", 0);\n'
+            "inline void from_json(const json& j, CircleComp& circlecomp) {\n"
+            '    circlecomp.zorder = j.value("zorder", 0);\n'
             '    auto radius = j.value("radius", 1.0f) * cfg.L;\n'
             '    auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
             '    auto fill_color = j.value("fill_color", sf::Color::White);\n'
             '    auto outline_color = j.value("outline_color", sf::Color::Black);\n'
-            "    CircleComp.shape = CenteredCircleShape(radius);\n"
-            "    CircleComp.shape.setOutlineThickness(outline_thickness);\n"
-            "    CircleComp.shape.setFillColor(fill_color);\n"
-            "    CircleComp.shape.setOutlineColor(outline_color);\n"
+            "    circlecomp.shape = CenteredCircleShape(radius);\n"
+            "    circlecomp.shape.setOutlineThickness(outline_thickness);\n"
+            "    circlecomp.shape.setFillColor(fill_color);\n"
+            "    circlecomp.shape.setOutlineColor(outline_color);\n"
             "}\n"
         )
 
@@ -97,10 +97,10 @@ class TestBoilerplateBuilder(unittest.TestCase):
                 'auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
                 'auto fill_color = j.value("fill_color", sf::Color::White);\n'
                 'auto outline_color = j.value("outline_color", sf::Color::Black);\n'
-                "CircleComp.shape = CenteredCircleShape(radius);\n"
-                "CircleComp.shape.setOutlineThickness(outline_thickness);\n"
-                "CircleComp.shape.setFillColor(fill_color);\n"
-                "CircleComp.shape.setOutlineColor(outline_color);\n"
+                "circlecomp.shape = CenteredCircleShape(radius);\n"
+                "circlecomp.shape.setOutlineThickness(outline_thickness);\n"
+                "circlecomp.shape.setFillColor(fill_color);\n"
+                "circlecomp.shape.setOutlineColor(outline_color);\n"
             ),
         )
 
@@ -174,10 +174,10 @@ class TestBoilerplateBuilder(unittest.TestCase):
                     'auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
                     'auto fill_color = j.value("fill_color", sf::Color::White);\n'
                     'auto outline_color = j.value("outline_color", sf::Color::Black);\n'
-                    "CircleComp.shape = CenteredCircleShape(radius);\n"
-                    "CircleComp.shape.setOutlineThickness(outline_thickness);\n"
-                    "CircleComp.shape.setFillColor(fill_color);\n"
-                    "CircleComp.shape.setOutlineColor(outline_color);\n"
+                    "circlecomp.shape = CenteredCircleShape(radius);\n"
+                    "circlecomp.shape.setOutlineThickness(outline_thickness);\n"
+                    "circlecomp.shape.setFillColor(fill_color);\n"
+                    "circlecomp.shape.setOutlineColor(outline_color);\n"
                 ),
             ],
         }
@@ -218,10 +218,10 @@ class TestBoilerplateBuilder(unittest.TestCase):
                     'auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;\n'
                     'auto fill_color = j.value("fill_color", sf::Color::White);\n'
                     'auto outline_color = j.value("outline_color", sf::Color::Black);\n'
-                    "CircleComp.shape = CenteredCircleShape(radius);\n"
-                    "CircleComp.shape.setOutlineThickness(outline_thickness);\n"
-                    "CircleComp.shape.setFillColor(fill_color);\n"
-                    "CircleComp.shape.setOutlineColor(outline_color);\n"
+                    "circlecomp.shape = CenteredCircleShape(radius);\n"
+                    "circlecomp.shape.setOutlineThickness(outline_thickness);\n"
+                    "circlecomp.shape.setFillColor(fill_color);\n"
+                    "circlecomp.shape.setOutlineColor(outline_color);\n"
                 ),
             ],
         }

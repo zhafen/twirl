@@ -40,16 +40,16 @@ struct CircleComp {
     CenteredCircleShape shape;
     int zorder = 0;
 };
-inline void from_json(const json& j, CircleComp& CircleComp) {
-    CircleComp.zorder = j.value("zorder", 0);
+inline void from_json(const json& j, CircleComp& circlecomp) {
+    circlecomp.zorder = j.value("zorder", 0);
     auto radius = j.value("radius", 1.0f) * cfg.L;
     auto outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;
     auto fill_color = j.value("fill_color", sf::Color::White);
     auto outline_color = j.value("outline_color", sf::Color::Black);
-    CircleComp.shape = CenteredCircleShape(radius);
-    CircleComp.shape.setOutlineThickness(outline_thickness);
-    CircleComp.shape.setFillColor(fill_color);
-    CircleComp.shape.setOutlineColor(outline_color);
+    circlecomp.shape = CenteredCircleShape(radius);
+    circlecomp.shape.setOutlineThickness(outline_thickness);
+    circlecomp.shape.setFillColor(fill_color);
+    circlecomp.shape.setOutlineColor(outline_color);
 }
 
 }  // namespace twirl

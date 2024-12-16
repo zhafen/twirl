@@ -18,8 +18,8 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
         auto physicscomp = comp_json.template get<PhysicsComp>();
         registry.emplace<PhysicsComp>(entity, physicscomp);
     } else if (comp_key == "CircleComp") {
-        auto CircleComp = comp_json.template get<CircleComp>();
-        registry.emplace<CircleComp>(entity, CircleComp);
+        auto circlecomp = comp_json.template get<CircleComp>();
+        registry.emplace<CircleComp>(entity, circlecomp);
     } else {
         throw std::runtime_error("Unknown component type: " + comp_key);
     }
@@ -73,11 +73,11 @@ void debugEntities(entt::registry& registry, std::string message) {
             std::cout << "    PhysicsComp" << std::endl;
         }
         
-        auto CircleComp_ptr = registry.try_get<CircleComp>(entity);
-        if (CircleComp_ptr != nullptr) {
-            auto CircleComp = *CircleComp_ptr;
+        auto circlecomp_ptr = registry.try_get<CircleComp>(entity);
+        if (circlecomp_ptr != nullptr) {
+            auto circlecomp = *circlecomp_ptr;
             std::cout << "    CircleComp" << std::endl;
-            std::cout << "      zorder: " << CircleComp.zorder << std::endl;
+            std::cout << "      zorder: " << circlecomp.zorder << std::endl;
         }
     }
 }

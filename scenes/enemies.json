@@ -3,8 +3,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                95.09179677422031,
-                -89.87018426728378
+                94.78303746807484,
+                -48.15480461258646
             ],
             "vel": [
                 0.0,
@@ -12,7 +12,9 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "max_durability": 100.0
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
@@ -62,8 +64,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -54.51479069405718,
-                -50.0665856066358
+                -70.54313362495691,
+                -70.88837714261663
             ],
             "vel": [
                 0.0,
@@ -71,7 +73,9 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "max_durability": 100.0
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
@@ -121,8 +125,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -24.293196161300102,
-                -33.94402823943916
+                84.66060971777969,
+                -70.3625246009636
             ],
             "vel": [
                 0.0,
@@ -130,7 +134,9 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "max_durability": 100.0
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
@@ -180,8 +186,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                58.80551956983021,
-                -38.86765432245795
+                -71.6345240765351,
+                -95.57103575147768
             ],
             "vel": [
                 0.0,
@@ -189,7 +195,9 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "max_durability": 100.0
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
@@ -239,8 +247,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                74.15160126982946,
-                -107.06352475598311
+                32.39237588441745,
+                -65.32435237259466
             ],
             "vel": [
                 0.0,
@@ -248,7 +256,9 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "max_durability": 100.0
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
@@ -298,8 +308,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -21.699737585511087,
-                -67.68035319803573
+                -2.8503117996036877,
+                -26.353163556277508
             ],
             "vel": [
                 0.0,
@@ -307,7 +317,9 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "max_durability": 100.0
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
@@ -357,8 +369,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                18.886404915014538,
-                -34.359422453848225
+                -77.76115459494697,
+                -72.37536405256839
             ],
             "vel": [
                 0.0,
@@ -366,7 +378,9 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "max_durability": 100.0
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
@@ -416,8 +430,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                53.46757308276554,
-                -52.618059153630355
+                -18.75912040208658,
+                -90.8533934370682
             ],
             "vel": [
                 0.0,
@@ -425,7 +439,9 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "max_durability": 100.0
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
@@ -475,8 +491,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                93.83719403528264,
-                -72.54592782308687
+                38.320789497044416,
+                -56.01195798419561
             ],
             "vel": [
                 0.0,
@@ -484,7 +500,9 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "max_durability": 100.0
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,
@@ -534,8 +552,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -57.96376604923981,
-                -58.03311213377184
+                -95.68441653925481,
+                -119.154496787208
             ],
             "vel": [
                 0.0,
@@ -543,7 +561,9 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "max_durability": 100.0
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0,

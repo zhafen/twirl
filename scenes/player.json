@@ -6,6 +6,7 @@
             "drag_power": 2.5
         },
         "DurabilityComp": {
+            "max_durability": 100.0,
             "delete_at_zero": false,
             "durability_regen_rate": 0.1
         },

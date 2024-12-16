@@ -3,13 +3,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 0.0,
-            "outline_thickness": 0.2,
+            "radius": 1000,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -26,13 +26,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 10.0,
-            "outline_thickness": 0.2,
+            "radius": 500,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -49,13 +49,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 20.0,
-            "outline_thickness": 0.2,
+            "radius": 333,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -72,13 +72,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 30.0,
-            "outline_thickness": 0.2,
+            "radius": 250,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -95,13 +95,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 40.0,
-            "outline_thickness": 0.2,
+            "radius": 200,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -118,13 +118,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 50.0,
-            "outline_thickness": 0.2,
+            "radius": 166,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -141,13 +141,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 60.0,
-            "outline_thickness": 0.2,
+            "radius": 142,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -164,13 +164,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 70.0,
-            "outline_thickness": 0.2,
+            "radius": 125,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -187,13 +187,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 80.0,
-            "outline_thickness": 0.2,
+            "radius": 111,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -210,13 +210,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 90.0,
-            "outline_thickness": 0.2,
+            "radius": 100,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -233,13 +233,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 100.0,
-            "outline_thickness": 0.2,
+            "radius": 90,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -256,13 +256,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 110.0,
-            "outline_thickness": 0.2,
+            "radius": 83,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -279,13 +279,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 120.0,
-            "outline_thickness": 0.2,
+            "radius": 76,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -302,13 +302,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 130.0,
-            "outline_thickness": 0.2,
+            "radius": 71,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -325,13 +325,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 140.0,
-            "outline_thickness": 0.2,
+            "radius": 66,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -348,13 +348,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 150.0,
-            "outline_thickness": 0.2,
+            "radius": 62,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -371,13 +371,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 160.0,
-            "outline_thickness": 0.2,
+            "radius": 58,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -394,13 +394,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 170.0,
-            "outline_thickness": 0.2,
+            "radius": 55,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -417,13 +417,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 180.0,
-            "outline_thickness": 0.2,
+            "radius": 52,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -440,13 +440,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 190.0,
-            "outline_thickness": 0.2,
+            "radius": 50,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -463,13 +463,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 200.0,
-            "outline_thickness": 0.2,
+            "radius": 47,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -486,13 +486,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 210.0,
-            "outline_thickness": 0.2,
+            "radius": 45,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -509,13 +509,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 220.0,
-            "outline_thickness": 0.2,
+            "radius": 43,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -532,13 +532,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 230.0,
-            "outline_thickness": 0.2,
+            "radius": 41,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -555,13 +555,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 240.0,
-            "outline_thickness": 0.2,
+            "radius": 40,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -578,13 +578,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 250.0,
-            "outline_thickness": 0.2,
+            "radius": 38,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -601,13 +601,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 260.0,
-            "outline_thickness": 0.2,
+            "radius": 37,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -624,13 +624,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 270.0,
-            "outline_thickness": 0.2,
+            "radius": 35,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -647,13 +647,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 280.0,
-            "outline_thickness": 0.2,
+            "radius": 34,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -670,13 +670,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 290.0,
-            "outline_thickness": 0.2,
+            "radius": 33,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -693,13 +693,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 300.0,
-            "outline_thickness": 0.2,
+            "radius": 32,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -716,13 +716,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 310.0,
-            "outline_thickness": 0.2,
+            "radius": 31,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -739,13 +739,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 320.0,
-            "outline_thickness": 0.2,
+            "radius": 30,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -762,13 +762,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 330.0,
-            "outline_thickness": 0.2,
+            "radius": 29,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -785,13 +785,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 340.0,
-            "outline_thickness": 0.2,
+            "radius": 28,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -808,13 +808,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 350.0,
-            "outline_thickness": 0.2,
+            "radius": 27,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -831,13 +831,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 360.0,
-            "outline_thickness": 0.2,
+            "radius": 27,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -854,13 +854,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 370.0,
-            "outline_thickness": 0.2,
+            "radius": 26,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -877,13 +877,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 380.0,
-            "outline_thickness": 0.2,
+            "radius": 25,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -900,13 +900,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 390.0,
-            "outline_thickness": 0.2,
+            "radius": 25,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -923,13 +923,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 400.0,
-            "outline_thickness": 0.2,
+            "radius": 24,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -946,13 +946,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 410.0,
-            "outline_thickness": 0.2,
+            "radius": 23,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -969,13 +969,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 420.0,
-            "outline_thickness": 0.2,
+            "radius": 23,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -992,13 +992,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 430.0,
-            "outline_thickness": 0.2,
+            "radius": 22,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1015,13 +1015,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 440.0,
-            "outline_thickness": 0.2,
+            "radius": 22,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1038,13 +1038,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 450.0,
-            "outline_thickness": 0.2,
+            "radius": 21,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1061,13 +1061,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 460.0,
-            "outline_thickness": 0.2,
+            "radius": 21,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1084,13 +1084,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 470.0,
-            "outline_thickness": 0.2,
+            "radius": 20,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1107,13 +1107,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 480.0,
-            "outline_thickness": 0.2,
+            "radius": 20,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1130,13 +1130,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 490.0,
-            "outline_thickness": 0.2,
+            "radius": 20,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1153,13 +1153,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 500.0,
-            "outline_thickness": 0.2,
+            "radius": 19,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1176,13 +1176,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 510.0,
-            "outline_thickness": 0.2,
+            "radius": 19,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1199,13 +1199,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 520.0,
-            "outline_thickness": 0.2,
+            "radius": 18,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1222,13 +1222,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 530.0,
-            "outline_thickness": 0.2,
+            "radius": 18,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1245,13 +1245,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 540.0,
-            "outline_thickness": 0.2,
+            "radius": 18,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1268,13 +1268,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 550.0,
-            "outline_thickness": 0.2,
+            "radius": 17,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1291,13 +1291,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 560.0,
-            "outline_thickness": 0.2,
+            "radius": 17,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1314,13 +1314,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 570.0,
-            "outline_thickness": 0.2,
+            "radius": 17,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1337,13 +1337,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 580.0,
-            "outline_thickness": 0.2,
+            "radius": 16,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1360,13 +1360,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 590.0,
-            "outline_thickness": 0.2,
+            "radius": 16,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1383,13 +1383,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 600.0,
-            "outline_thickness": 0.2,
+            "radius": 16,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1406,13 +1406,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 610.0,
-            "outline_thickness": 0.2,
+            "radius": 16,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1429,13 +1429,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 620.0,
-            "outline_thickness": 0.2,
+            "radius": 15,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1452,13 +1452,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 630.0,
-            "outline_thickness": 0.2,
+            "radius": 15,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1475,13 +1475,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 640.0,
-            "outline_thickness": 0.2,
+            "radius": 15,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1498,13 +1498,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 650.0,
-            "outline_thickness": 0.2,
+            "radius": 15,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1521,13 +1521,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 660.0,
-            "outline_thickness": 0.2,
+            "radius": 14,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1544,13 +1544,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 670.0,
-            "outline_thickness": 0.2,
+            "radius": 14,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1567,13 +1567,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 680.0,
-            "outline_thickness": 0.2,
+            "radius": 14,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1590,13 +1590,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 690.0,
-            "outline_thickness": 0.2,
+            "radius": 14,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1613,13 +1613,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 700.0,
-            "outline_thickness": 0.2,
+            "radius": 14,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1636,13 +1636,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 710.0,
-            "outline_thickness": 0.2,
+            "radius": 13,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1659,13 +1659,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 720.0,
-            "outline_thickness": 0.2,
+            "radius": 13,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1682,13 +1682,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 730.0,
-            "outline_thickness": 0.2,
+            "radius": 13,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1705,13 +1705,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 740.0,
-            "outline_thickness": 0.2,
+            "radius": 13,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1728,13 +1728,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 750.0,
-            "outline_thickness": 0.2,
+            "radius": 13,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1751,13 +1751,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 760.0,
-            "outline_thickness": 0.2,
+            "radius": 12,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1774,13 +1774,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 770.0,
-            "outline_thickness": 0.2,
+            "radius": 12,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1797,13 +1797,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 780.0,
-            "outline_thickness": 0.2,
+            "radius": 12,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1820,13 +1820,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 790.0,
-            "outline_thickness": 0.2,
+            "radius": 12,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1843,13 +1843,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 800.0,
-            "outline_thickness": 0.2,
+            "radius": 12,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1866,13 +1866,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 810.0,
-            "outline_thickness": 0.2,
+            "radius": 12,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1889,13 +1889,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 820.0,
-            "outline_thickness": 0.2,
+            "radius": 12,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1912,13 +1912,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 830.0,
-            "outline_thickness": 0.2,
+            "radius": 11,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1935,13 +1935,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 840.0,
-            "outline_thickness": 0.2,
+            "radius": 11,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1958,13 +1958,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 850.0,
-            "outline_thickness": 0.2,
+            "radius": 11,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -1981,13 +1981,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 860.0,
-            "outline_thickness": 0.2,
+            "radius": 11,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2004,13 +2004,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 870.0,
-            "outline_thickness": 0.2,
+            "radius": 11,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2027,13 +2027,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 880.0,
-            "outline_thickness": 0.2,
+            "radius": 11,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2050,13 +2050,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 890.0,
-            "outline_thickness": 0.2,
+            "radius": 11,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2073,13 +2073,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 900.0,
-            "outline_thickness": 0.2,
+            "radius": 10,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2096,13 +2096,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 910.0,
-            "outline_thickness": 0.2,
+            "radius": 10,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2119,13 +2119,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 920.0,
-            "outline_thickness": 0.2,
+            "radius": 10,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2142,13 +2142,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 930.0,
-            "outline_thickness": 0.2,
+            "radius": 10,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2165,13 +2165,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 940.0,
-            "outline_thickness": 0.2,
+            "radius": 10,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2188,13 +2188,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 950.0,
-            "outline_thickness": 0.2,
+            "radius": 10,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2211,13 +2211,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 960.0,
-            "outline_thickness": 0.2,
+            "radius": 10,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2234,13 +2234,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 970.0,
-            "outline_thickness": 0.2,
+            "radius": 10,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2257,13 +2257,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 980.0,
-            "outline_thickness": 0.2,
+            "radius": 10,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2280,13 +2280,13 @@
         "PhysicsComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 990.0,
-            "outline_thickness": 0.2,
+            "radius": 10,
+            "outline_thickness": 0.0,
             "fill_color": [
-                127,
-                127,
-                127,
-                255
+                98,
+                83,
+                119,
+                2
             ],
             "outline_color": [
                 63,
@@ -2299,7 +2299,6 @@
             "zorder": -199
         }
     },
-    "enemy_spanwer": {},
     "enemy_spawn_trigger": {
         "EnemyAbsenceTriggerFlag": {},
         "PairComp": {

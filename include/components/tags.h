@@ -28,6 +28,8 @@ struct WatchTriggerFlag {};
 
 struct DurabilityTriggerFlag {};
 
+struct EnemyAbsenceTriggerFlag {};
+
 }  // namespace twirl
 
 #endif  // TAGS_H

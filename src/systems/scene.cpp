@@ -49,6 +49,14 @@ bool SceneSystem::checkSceneTriggers(entt::registry& registry) {
                 return registry.get<DurabilityComp>(entity).durability <= 0;
             });
 
+    // Triggers caused by no enemies existing
+    any_scene_triggered =
+        any_scene_triggered |
+        checkSceneTriggersForFlag<EnemyAbsenceTriggerFlag>(
+            registry, [](entt::registry& registry, entt::entity entity) -> bool {
+                return registry.view<EnemyFlag>().empty();
+            });
+
     return any_scene_triggered;
 }
 

@@ -9,7 +9,8 @@
         "DeleteFlag": {},
         "SuspendedFlag": {},
         "WatchTriggerFlag": {},
-        "DurabilityTriggerFlag": {}
+        "DurabilityTriggerFlag": {},
+        "EnemyAbsenceTriggerFlag": {}
     },
     "system_components": {
         "SceneComp": {

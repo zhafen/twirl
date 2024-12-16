@@ -138,37 +138,39 @@
                 "2.0f"
             ]
         },
-        "DurabilityComp": {
-            "durability": [
-                "float",
-                true,
-                "1.0f",
-                "cfg.U"
-            ],
-            "max_durability": [
-                "float",
-                true,
-                "1.0f",
-                "cfg.U"
-            ],
-            "durability_frac": "float",
-            "energy_to_durability": [
-                "float",
-                true,
-                "1.0f"
-            ],
-            "durability_regen_rate": [
-                "float",
-                true,
-                "0.0f",
-                "cfg.U / cfg.T"
-            ],
-            "delete_at_zero": [
-                "float",
-                true,
-                "true"
-            ]
-        },
+        "DurabilityComp": [
+            {
+                "durability": "float",
+                "durability_frac": [
+                    "float",
+                    true,
+                    "1.0f"
+                ],
+                "max_durability": [
+                    "float",
+                    true,
+                    "1.0f",
+                    "cfg.U"
+                ],
+                "energy_to_durability": [
+                    "float",
+                    true,
+                    "1.0f"
+                ],
+                "durability_regen_rate": [
+                    "float",
+                    true,
+                    "0.0f",
+                    "cfg.U / cfg.T"
+                ],
+                "delete_at_zero": [
+                    "float",
+                    true,
+                    "true"
+                ]
+            },
+            "durabilitycomp.durability = durabilitycomp.durability_frac * durabilitycomp.max_durability;\n"
+        ],
         "PairwiseForceComp": {
             "magnitude": [
                 "float",
@@ -204,7 +206,7 @@
             "fraction_energy_converted": [
                 "float",
                 true,
-                "0.5f"
+                "0.1f"
             ]
         },
         "MouseButtonReleasedComp": {},

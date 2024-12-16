@@ -171,7 +171,6 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
 void PhysicsSystem::updateDurability(entt::registry& registry) {
     auto rview = registry.view<DurabilityComp, CircleComp, PhysicsComp>();
     for (auto [entity, dur_c, rend_c, phys_c] : rview.each()) {
-
         // Regenerate durability
         dur_c.durability += dur_c.durability_regen_rate * cfg.dt;
 

@@ -65,12 +65,14 @@ struct PhysicsComp {
     sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f) * cfg.L;
     sf::Vector2f vel = sf::Vector2f(0.0f, 0.0f) * cfg.V;
     sf::Vector2f force = sf::Vector2f(0.0f, 0.0f) * cfg.A;
+    float internal_energy = 0.0f * cfg.U;
     bool collided = false;
 };
 inline void from_json(const json& j, PhysicsComp& physicscomp) {
     physicscomp.mass = j.value("mass", 1.0f);
     physicscomp.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f)) * cfg.L;
     physicscomp.vel = j.value("vel", sf::Vector2f(0.0f, 0.0f)) * cfg.V;
+    physicscomp.internal_energy = j.value("internal_energy", 0.0f) * cfg.U;
 }
 
 struct DragForceComp {
@@ -84,13 +86,13 @@ inline void from_json(const json& j, DragForceComp& dragforcecomp) {
 
 struct DurabilityComp {
     float durability = 1.0f;
-    float durability_loss_per_collision = 0.34f;
+    float energy_to_durability = 1.0f;
     float durability_regen_rate = 0.0f * 1.0f / cfg.T;
     float delete_at_zero = true;
 };
 inline void from_json(const json& j, DurabilityComp& durabilitycomp) {
     durabilitycomp.durability = j.value("durability", 1.0f);
-    durabilitycomp.durability_loss_per_collision = j.value("durability_loss_per_collision", 0.34f);
+    durabilitycomp.energy_to_durability = j.value("energy_to_durability", 1.0f);
     durabilitycomp.durability_regen_rate = j.value("durability_regen_rate", 0.0f) * 1.0f / cfg.T;
     durabilitycomp.delete_at_zero = j.value("delete_at_zero", true);
 }
@@ -110,7 +112,12 @@ inline void from_json(const json& j, PairwiseForceComp& pairwiseforcecomp) {
     pairwiseforcecomp.distance_scaling = j.value("distance_scaling", 1.0f) * cfg.L;
 }
 
-struct CollisionComp {};
+struct CollisionComp {
+    float fraction_energy_converted = 0.5f;
+};
+inline void from_json(const json& j, CollisionComp& collisioncomp) {
+    collisioncomp.fraction_energy_converted = j.value("fraction_energy_converted", 0.5f);
+}
 
 struct MouseButtonReleasedComp {};
 

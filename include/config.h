@@ -17,6 +17,7 @@ struct Config {
     static constexpr float T = 1.0f;
     static constexpr float V = 0.1 * L / T;
     static constexpr float A = V / T;
+    static constexpr float U = A * L;
     static constexpr uint16_t fps = 144;
     static constexpr float dt = 1.0f / fps;
     static constexpr float dx = V * dt;

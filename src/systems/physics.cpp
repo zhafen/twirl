@@ -57,8 +57,8 @@ void PhysicsSystem::calculatePairwiseForces(entt::registry& registry) {
         if (registry.try_get<DebugComp>(rel_id) != nullptr) {
             std::cout << "DEBUG: Pairwise force between entities "
                       << static_cast<int>(pair_c.target_entity) << " and "
-                      << static_cast<int>(pair_c.source_entity) << " is "
-                      << force.x << ", " << force.y << std::endl;
+                      << static_cast<int>(pair_c.source_entity) << " is " << force.x
+                      << ", " << force.y << std::endl;
         }
     }
 }
@@ -117,7 +117,8 @@ void PhysicsSystem::updateStopWatches(entt::registry& registry) {
  * are more-thorough constraints based on contact angles.
  */
 void PhysicsSystem::resolveCollisions(entt::registry& registry) {
-    for (auto [rel_id, pair_c] : registry.view<PairComp, CollisionComp>().each()) {
+    for (auto [rel_id, pair_c, collision_c] :
+         registry.view<PairComp, CollisionComp>().each()) {
         // Check if the entities still exist
         if (!registry.valid(pair_c.target_entity) ||
             !registry.valid(pair_c.source_entity)) {
@@ -143,10 +144,12 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
         }
 
         // Calculate the momentum in the COM frame
-        auto T = 0.5f * (phys_c1.mass * (phys_c1.vel.x * phys_c1.vel.x +
+        auto E = 0.5f * (phys_c1.mass * (phys_c1.vel.x * phys_c1.vel.x +
                                          phys_c1.vel.y * phys_c1.vel.y) +
                          phys_c2.mass * (phys_c2.vel.x * phys_c2.vel.x +
                                          phys_c2.vel.y * phys_c2.vel.y));
+        auto U = collision_c.fraction_energy_converted * E;
+        auto T = (1. - collision_c.fraction_energy_converted) * E;
         auto pcom_mag = sqrtf(2.0f * T * phys_c1.mass * phys_c2.mass /
                               (phys_c1.mass + phys_c2.mass));
         auto p1com = -pcom_mag * r_12 / r_12_mag;
@@ -160,6 +163,8 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
         // Indicate collision
         phys_c1.collided = true;
         phys_c2.collided = true;
+        phys_c1.internal_energy += 0.5 * U;
+        phys_c2.internal_energy += 0.5 * U;
     }
 }
 
@@ -171,7 +176,7 @@ void PhysicsSystem::updateDurability(entt::registry& registry) {
 
         // Apply durability loss from collision
         if (phys_c.collided) {
-            dur_c.durability -= dur_c.durability_loss_per_collision;
+            dur_c.durability -= phys_c.internal_energy * dur_c.energy_to_durability;
             phys_c.collided = false;
         }
 

@@ -62,7 +62,8 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
         auto pairwiseforcecomp = comp_json.template get<PairwiseForceComp>();
         registry.emplace<PairwiseForceComp>(entity, pairwiseforcecomp);
     } else if (comp_key == "CollisionComp") {
-        registry.emplace<CollisionComp>(entity);
+        auto collisioncomp = comp_json.template get<CollisionComp>();
+        registry.emplace<CollisionComp>(entity, collisioncomp);
     } else if (comp_key == "MouseButtonReleasedComp") {
         registry.emplace<MouseButtonReleasedComp>(entity);
     } else if (comp_key == "CircleComp") {
@@ -247,6 +248,11 @@ void debugEntities(entt::registry& registry, std::string message) {
             std::cout << "    PairwiseForceComp" << std::endl;
         }
         
+        auto collisioncomp_ptr = registry.try_get<CollisionComp>(entity);
+        if (collisioncomp_ptr != nullptr) {
+            auto collisioncomp = *collisioncomp_ptr;
+            std::cout << "    CollisionComp" << std::endl;
+        }
         
         
         auto circlecomp_ptr = registry.try_get<CircleComp>(entity);

@@ -181,7 +181,6 @@ TEST(SceneTest, EmplaceSceneFromJson) {
 
             auto& dc = registry.get<DurabilityComp>(entity);
             EXPECT_FLOAT_EQ(dc.durability, 1.0f);
-            EXPECT_FLOAT_EQ(dc.durability_loss_per_collision, 0.34f);
             EXPECT_FLOAT_EQ(dc.durability_regen_rate, 0.0f);
             EXPECT_EQ(dc.delete_at_zero, false);
 

@@ -5,7 +5,7 @@
         }
     },
     "y-axis": {
-        "RenderFlag": {},
+        "UIRenderFlag": {},
         "RectangleComp": {
             "pos": [
                 -0.25,

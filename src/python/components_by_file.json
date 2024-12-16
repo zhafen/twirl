@@ -113,6 +113,12 @@
                 "sf::Vector2f(0.0f, 0.0f)",
                 "cfg.A"
             ],
+            "internal_energy": [
+                "float",
+                true,
+                "0.0f",
+                "cfg.U"
+            ],
             "collided": [
                 "bool",
                 false,
@@ -138,10 +144,10 @@
                 true,
                 "1.0f"
             ],
-            "durability_loss_per_collision": [
+            "energy_to_durability": [
                 "float",
                 true,
-                "0.34f"
+                "1.0f"
             ],
             "durability_regen_rate": [
                 "float",
@@ -186,7 +192,13 @@
                 "cfg.L"
             ]
         },
-        "CollisionComp": {},
+        "CollisionComp": {
+            "fraction_energy_converted": [
+                "float",
+                true,
+                "0.5f"
+            ]
+        },
         "MouseButtonReleasedComp": {},
         "CircleComp": [
             {

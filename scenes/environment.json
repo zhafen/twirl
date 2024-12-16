@@ -2298,5 +2298,14 @@
         "ZOrderComp": {
             "zorder": -199
         }
+    },
+    "enemy_spanwer": {},
+    "enemy_spawn_trigger": {
+        "EnemyAbsenceTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "enemy_spawner",
+            "target_entity_name": "[SceneComp|name:enemies]"
+        },
+        "UnresolvedNameFlag": {}
     }
 }

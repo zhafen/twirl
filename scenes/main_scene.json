@@ -11,9 +11,9 @@
             "scene_fp": "../../scenes/enemies.json"
         }
     },
-    "background": {
+    "environment": {
         "SceneComp": {
-            "scene_fp": "../../scenes/background.json",
+            "scene_fp": "../../scenes/environment.json",
             "emplace_after_loading": true
         }
     },

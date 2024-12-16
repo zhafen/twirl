@@ -85,15 +85,18 @@ inline void from_json(const json& j, DragForceComp& dragforcecomp) {
 }
 
 struct DurabilityComp {
-    float durability = 1.0f;
+    float durability = 1.0f * cfg.U;
+    float max_durability = 1.0f * cfg.U;
+    float durability_frac;
     float energy_to_durability = 1.0f;
-    float durability_regen_rate = 0.0f * 1.0f / cfg.T;
+    float durability_regen_rate = 0.0f * cfg.U / cfg.T;
     float delete_at_zero = true;
 };
 inline void from_json(const json& j, DurabilityComp& durabilitycomp) {
-    durabilitycomp.durability = j.value("durability", 1.0f);
+    durabilitycomp.durability = j.value("durability", 1.0f) * cfg.U;
+    durabilitycomp.max_durability = j.value("max_durability", 1.0f) * cfg.U;
     durabilitycomp.energy_to_durability = j.value("energy_to_durability", 1.0f);
-    durabilitycomp.durability_regen_rate = j.value("durability_regen_rate", 0.0f) * 1.0f / cfg.T;
+    durabilitycomp.durability_regen_rate = j.value("durability_regen_rate", 0.0f) * cfg.U / cfg.T;
     durabilitycomp.delete_at_zero = j.value("delete_at_zero", true);
 }
 

@@ -103,7 +103,7 @@ void SceneSystem::emplaceScene(entt::registry& registry,
             entt::entity tracked_entity = resolveEntityName(
                 registry, scene_entity_map, vb_c_ptr->tracked_entity_name);
             vb_c_ptr->tracked_value =
-                &registry.get<DurabilityComp>(tracked_entity).durability;
+                &registry.get<DurabilityComp>(tracked_entity).durability_frac;
         }
         registry.remove<UnresolvedNameFlag>(entity);
     }

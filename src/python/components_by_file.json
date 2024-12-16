@@ -142,8 +142,16 @@
             "durability": [
                 "float",
                 true,
-                "1.0f"
+                "1.0f",
+                "cfg.U"
             ],
+            "max_durability": [
+                "float",
+                true,
+                "1.0f",
+                "cfg.U"
+            ],
+            "durability_frac": "float",
             "energy_to_durability": [
                 "float",
                 true,
@@ -153,7 +161,7 @@
                 "float",
                 true,
                 "0.0f",
-                "1.0f / cfg.T"
+                "cfg.U / cfg.T"
             ],
             "delete_at_zero": [
                 "float",

@@ -171,6 +171,7 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
 void PhysicsSystem::updateDurability(entt::registry& registry) {
     auto rview = registry.view<DurabilityComp, CircleComp, PhysicsComp>();
     for (auto [entity, dur_c, rend_c, phys_c] : rview.each()) {
+
         // Regenerate durability
         dur_c.durability += dur_c.durability_regen_rate * cfg.dt;
 
@@ -181,8 +182,9 @@ void PhysicsSystem::updateDurability(entt::registry& registry) {
         }
 
         // Cap durability at 1.0
-        if (dur_c.durability > 1.0f) {
-            dur_c.durability = 1.0f;
+        dur_c.durability_frac = dur_c.durability / dur_c.max_durability;
+        if (dur_c.durability_frac > 1.0f) {
+            dur_c.durability = dur_c.max_durability;
             rend_c.shape.setFillColor(sf::Color::White);
         } else if (dur_c.durability < 0.0f) {
             // When out of durability, set to 0 and change color

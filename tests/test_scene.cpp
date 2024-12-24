@@ -180,7 +180,7 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_FLOAT_EQ(dfc.drag_power, 2.5f);
 
             auto& dc = registry.get<DurabilityComp>(entity);
-            EXPECT_FLOAT_EQ(dc.durability, 1.0f);
+            EXPECT_FLOAT_EQ(dc.durability, cfg.E);
             EXPECT_FLOAT_EQ(dc.durability_regen_rate, 0.0f);
             EXPECT_EQ(dc.delete_at_zero, false);
 

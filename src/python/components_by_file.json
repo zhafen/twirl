@@ -117,7 +117,7 @@
                 "float",
                 true,
                 "0.0f",
-                "cfg.U"
+                "cfg.E"
             ],
             "collided": [
                 "bool",
@@ -150,7 +150,7 @@
                     "float",
                     true,
                     "1.0f",
-                    "cfg.U"
+                    "cfg.E"
                 ],
                 "energy_to_durability": [
                     "float",
@@ -161,7 +161,7 @@
                     "float",
                     true,
                     "0.0f",
-                    "cfg.U / cfg.T"
+                    "cfg.E / cfg.T"
                 ],
                 "delete_at_zero": [
                     "float",

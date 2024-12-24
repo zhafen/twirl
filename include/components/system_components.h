@@ -65,14 +65,14 @@ struct PhysicsComp {
     sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f) * cfg.L;
     sf::Vector2f vel = sf::Vector2f(0.0f, 0.0f) * cfg.V;
     sf::Vector2f force = sf::Vector2f(0.0f, 0.0f) * cfg.A;
-    float internal_energy = 0.0f * cfg.U;
+    float internal_energy = 0.0f * cfg.E;
     bool collided = false;
 };
 inline void from_json(const json& j, PhysicsComp& physicscomp) {
     physicscomp.mass = j.value("mass", 1.0f);
     physicscomp.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f)) * cfg.L;
     physicscomp.vel = j.value("vel", sf::Vector2f(0.0f, 0.0f)) * cfg.V;
-    physicscomp.internal_energy = j.value("internal_energy", 0.0f) * cfg.U;
+    physicscomp.internal_energy = j.value("internal_energy", 0.0f) * cfg.E;
 }
 
 struct DragForceComp {
@@ -87,16 +87,16 @@ inline void from_json(const json& j, DragForceComp& dragforcecomp) {
 struct DurabilityComp {
     float durability;
     float durability_frac = 1.0f;
-    float max_durability = 1.0f * cfg.U;
+    float max_durability = 1.0f * cfg.E;
     float energy_to_durability = 1.0f;
-    float durability_regen_rate = 0.0f * cfg.U / cfg.T;
+    float durability_regen_rate = 0.0f * cfg.E / cfg.T;
     float delete_at_zero = true;
 };
 inline void from_json(const json& j, DurabilityComp& durabilitycomp) {
     durabilitycomp.durability_frac = j.value("durability_frac", 1.0f);
-    durabilitycomp.max_durability = j.value("max_durability", 1.0f) * cfg.U;
+    durabilitycomp.max_durability = j.value("max_durability", 1.0f) * cfg.E;
     durabilitycomp.energy_to_durability = j.value("energy_to_durability", 1.0f);
-    durabilitycomp.durability_regen_rate = j.value("durability_regen_rate", 0.0f) * cfg.U / cfg.T;
+    durabilitycomp.durability_regen_rate = j.value("durability_regen_rate", 0.0f) * cfg.E / cfg.T;
     durabilitycomp.delete_at_zero = j.value("delete_at_zero", true);
     durabilitycomp.durability = durabilitycomp.durability_frac * durabilitycomp.max_durability;
 }

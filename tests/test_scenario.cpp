@@ -33,6 +33,14 @@ void standardValidityChecks(entt::registry& registry) {
     ASSERT_EQ(n_nan, 0);
 }
 
+TEST(ScenarioTest, TestMain) {
+    // Initialize the game, hidden in the constructor
+    Game game("../../scenes/main_scene.json");
+    game.max_time = MAX_TIME;
+    game.run();
+    standardValidityChecks(game.getRegistry());
+}
+
 TEST(ScenarioTest, TestScene) {
     // Initialize the game, hidden in the constructor
     Game game("../../tests/test_data/test_scenes/main_test_scene.json");

@@ -385,12 +385,13 @@ class BoilerplateBuilder:
 
     def get_debugentities_str(self, components: dict) -> str:
 
-        debug_strs = [
-            "\n" +
-            self.get_debugentity_str_for_comp(comp_name, comp_members)
-            for comp_name, comp_members in components.items()
-        ]
-        body_str = "".join(debug_strs)
+        # Get the debug strings
+        debug_strs = []
+        for comp_name, comp_members in components.items():
+            debug_str = self.get_debugentity_str_for_comp(comp_name, comp_members)
+            if debug_str != "":
+                debug_strs.append(debug_str)
+        body_str = "\n".join(debug_strs)
 
         # Indent the body string
         body_str = body_str.replace("\n", "\n        ")[:-4]
@@ -413,8 +414,9 @@ class BoilerplateBuilder:
             "        // Skip the rest if not verbose\n"
             "        if (!debug_c.verbose) {\n"
             "            continue;\n"
-            "        }" +
-            body_str + "}\n"
+            "        }\n" +
+            "        \n" +
+            "        " + body_str + "}\n"
             "}"
         )
 

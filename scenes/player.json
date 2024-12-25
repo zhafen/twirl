@@ -24,7 +24,8 @@
             "zorder": 0
         },
         "PlayerFlag": {},
-        "ViewFlag": {}
+        "ViewFlag": {},
+        "DebugComp": {}
     },
     "player_durability_trigger": {
         "DurabilityTriggerFlag": {},

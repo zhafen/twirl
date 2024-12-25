@@ -106,14 +106,14 @@ struct PairwiseForceComp {
     float softening = 0.0f * cfg.L;
     float power = 2.0f;
     float min_distance = 0.1f * cfg.L;
-    float distance_scaling = 1.0f * cfg.L;
+    float distance_scaling = 1.0f * cfg.H;
 };
 inline void from_json(const json& j, PairwiseForceComp& pairwiseforcecomp) {
     pairwiseforcecomp.magnitude = j.value("magnitude", -1.0f) * cfg.A;
     pairwiseforcecomp.softening = j.value("softening", 0.0f) * cfg.L;
     pairwiseforcecomp.power = j.value("power", 2.0f);
     pairwiseforcecomp.min_distance = j.value("min_distance", 0.1f) * cfg.L;
-    pairwiseforcecomp.distance_scaling = j.value("distance_scaling", 1.0f) * cfg.L;
+    pairwiseforcecomp.distance_scaling = j.value("distance_scaling", 1.0f) * cfg.H;
 }
 
 struct CollisionComp {

@@ -199,7 +199,7 @@
                 "float",
                 true,
                 "1.0f",
-                "cfg.L"
+                "cfg.H"
             ]
         },
         "CollisionComp": {

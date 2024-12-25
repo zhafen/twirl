@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <cstdint>
+#include <iostream>
 
 namespace twirl {
 
@@ -42,7 +43,22 @@ struct Config {
     // Remaining config constants.
     static constexpr float dx = V * dt;
     sf::Font font;
-    Config() { font.loadFromFile("../../assets/arial.ttf"); }
+    Config() {
+        font.loadFromFile("../../assets/arial.ttf"); 
+        std::cout << "window_size_x: " << window_size_x << std::endl;
+        std::cout << "window_size_y: " << window_size_y << std::endl;
+        std::cout << "fps: " << fps << std::endl;
+        std::cout << "M: " << M << std::endl;
+        std::cout << "L: " << L << std::endl;
+        std::cout << "T: " << T << std::endl;
+        std::cout << "dt: " << dt << std::endl;
+        std::cout << "H: " << H << std::endl;
+        std::cout << "V: " << V << std::endl;
+        std::cout << "P: " << P << std::endl;
+        std::cout << "A: " << A << std::endl;
+        std::cout << "E: " << E << std::endl;
+        std::cout << "dx: " << dx << std::endl;
+}
 };
 
 // Make global

@@ -436,7 +436,7 @@ class BoilerplateBuilder:
             if member_args[0] in ["std::string", "int"]:
                 body_str += f'    std::cout << "      {member_name}: " << {instance_str}.{member_name} << std::endl;\n'
             elif member_args[0] == "sf::Vector2f":
-                body_str += f'    std::cout << "      {member_name}: " << ({instance_str}.{member_name}.x, {instance_str}.{member_name}.y) << std::endl;\n'
+                body_str += f'    std::cout << "      {member_name}: (" << {instance_str}.{member_name}.x << ", " << {instance_str}.{member_name}.y << ")" << std::endl;\n'
 
         return (
             f"auto {instance_str}_ptr = registry.try_get<{comp_name}>(entity);\n"

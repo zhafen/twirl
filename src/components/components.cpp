@@ -181,16 +181,6 @@ void debugEntities(entt::registry& registry, std::string message) {
             continue;
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         auto scenecomp_ptr = registry.try_get<SceneComp>(entity);
         if (scenecomp_ptr != nullptr) {
             auto scenecomp = *scenecomp_ptr;
@@ -228,6 +218,9 @@ void debugEntities(entt::registry& registry, std::string message) {
         if (physicscomp_ptr != nullptr) {
             auto physicscomp = *physicscomp_ptr;
             std::cout << "    PhysicsComp" << std::endl;
+            std::cout << "      pos: (" << physicscomp.pos.x << ", " << physicscomp.pos.y << ")" << std::endl;
+            std::cout << "      vel: (" << physicscomp.vel.x << ", " << physicscomp.vel.y << ")" << std::endl;
+            std::cout << "      force: (" << physicscomp.force.x << ", " << physicscomp.force.y << ")" << std::endl;
         }
         
         auto dragforcecomp_ptr = registry.try_get<DragForceComp>(entity);
@@ -254,7 +247,6 @@ void debugEntities(entt::registry& registry, std::string message) {
             std::cout << "    CollisionComp" << std::endl;
         }
         
-        
         auto circlecomp_ptr = registry.try_get<CircleComp>(entity);
         if (circlecomp_ptr != nullptr) {
             auto circlecomp = *circlecomp_ptr;
@@ -265,12 +257,16 @@ void debugEntities(entt::registry& registry, std::string message) {
         if (rectanglecomp_ptr != nullptr) {
             auto rectanglecomp = *rectanglecomp_ptr;
             std::cout << "    RectangleComp" << std::endl;
+            std::cout << "      size: (" << rectanglecomp.size.x << ", " << rectanglecomp.size.y << ")" << std::endl;
+            std::cout << "      pos: (" << rectanglecomp.pos.x << ", " << rectanglecomp.pos.y << ")" << std::endl;
         }
         
         auto valuebarcomp_ptr = registry.try_get<ValueBarComp>(entity);
         if (valuebarcomp_ptr != nullptr) {
             auto valuebarcomp = *valuebarcomp_ptr;
             std::cout << "    ValueBarComp" << std::endl;
+            std::cout << "      pos: (" << valuebarcomp.pos.x << ", " << valuebarcomp.pos.y << ")" << std::endl;
+            std::cout << "      size: (" << valuebarcomp.size.x << ", " << valuebarcomp.size.y << ")" << std::endl;
         }
         
         auto zordercomp_ptr = registry.try_get<ZOrderComp>(entity);
@@ -285,6 +281,8 @@ void debugEntities(entt::registry& registry, std::string message) {
             auto textcomp = *textcomp_ptr;
             std::cout << "    TextComp" << std::endl;
             std::cout << "      string: " << textcomp.string << std::endl;
+            std::cout << "      pos: (" << textcomp.pos.x << ", " << textcomp.pos.y << ")" << std::endl;
+            std::cout << "      origin: (" << textcomp.origin.x << ", " << textcomp.origin.y << ")" << std::endl;
         }
         
         auto debugcomp_ptr = registry.try_get<DebugComp>(entity);

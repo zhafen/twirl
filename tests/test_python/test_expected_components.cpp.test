@@ -71,9 +71,9 @@ void debugEntities(entt::registry& registry, std::string message) {
         if (physicscomp_ptr != nullptr) {
             auto physicscomp = *physicscomp_ptr;
             std::cout << "    PhysicsComp" << std::endl;
-            std::cout << "      pos: " << (physicscomp.pos.x, physicscomp.pos.y) << std::endl;
-            std::cout << "      vel: " << (physicscomp.vel.x, physicscomp.vel.y) << std::endl;
-            std::cout << "      force: " << (physicscomp.force.x, physicscomp.force.y) << std::endl;
+            std::cout << "      pos: (" << physicscomp.pos.x << ", " << physicscomp.pos.y << ")" << std::endl;
+            std::cout << "      vel: (" << physicscomp.vel.x << ", " << physicscomp.vel.y << ")" << std::endl;
+            std::cout << "      force: (" << physicscomp.force.x << ", " << physicscomp.force.y << ")" << std::endl;
         }
         
         auto circlecomp_ptr = registry.try_get<CircleComp>(entity);

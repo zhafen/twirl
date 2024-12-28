@@ -2,7 +2,7 @@
     "m1": {
         "PhysicsComp": {
             "pos": [
-                -0.5,
+                -0.25,
                 0.0
             ],
             "vel": [
@@ -12,13 +12,20 @@
         },
         "DurabilityComp": {},
         "RenderFlag": {},
-        "CircleComp": {},
+        "CircleComp": {
+            "fill_color": [
+                133,
+                92,
+                117,
+                255
+            ]
+        },
         "ZOrderComp": {}
     },
     "m2": {
         "PhysicsComp": {
             "pos": [
-                0.5,
+                0.25,
                 0.0
             ],
             "vel": [
@@ -28,7 +35,14 @@
         },
         "DurabilityComp": {},
         "RenderFlag": {},
-        "CircleComp": {},
+        "CircleComp": {
+            "fill_color": [
+                217,
+                175,
+                107,
+                255
+            ]
+        },
         "ZOrderComp": {}
     },
     "m1-m2-collision": {

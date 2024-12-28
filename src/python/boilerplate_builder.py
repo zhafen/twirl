@@ -30,15 +30,18 @@ class BoilerplateBuilder:
                 # Validate all input options exist
                 for option_key in comp_json.keys():
                     try:
+                        valid_comps_for_key = valid_components[comp_key].keys()
                         assert (
-                            option_key in valid_components[comp_key].keys()
-                        ), f"Option '{option_key}' not found in {comp_key}"
+                            option_key in valid_comps_for_key
+                        ), f"Option '{option_key}' not found in {valid_comps_for_key}"
                     # List format occurs when manual code is used.
                     except AttributeError:
                         # Check both the typical arguments and the manual code
-                        assert (option_key in valid_components[comp_key][0].keys()) or (
-                            f'"{option_key}"' in valid_components[comp_key][1]
-                        ), f"Option '{option_key}' not found in {comp_key}"
+                        valid_comps_for_key = valid_components[comp_key][0].keys()
+                        manual_code = valid_components[comp_key][1]
+                        assert (option_key in valid_comps_for_key) or (
+                            f'"{option_key}"' in manual_code
+                        ), f"Option '{option_key}' not found in {valid_comps_for_key}"
 
             # Some components always require associated components.
             # This code ensures those associated components are included

@@ -10,7 +10,7 @@
 
 using namespace twirl;
 
-float MAX_TIME = 1.5f;
+float MAX_TIME = 1.0f;
 
 void standardValidityChecks(entt::registry& registry) {
     comp::debugEntities(registry, "Debugging inside standardValidityChecks");
@@ -49,8 +49,7 @@ TEST(ScenarioTest, TestScene) {
 
 TEST(ScenarioTest, TestCollision) {
     Game game("../../tests/test_data/test_scenes/test_collision.json");
-    // game.max_time = MAX_TIME;
-    game.max_time = 500.f;
+    game.max_time = MAX_TIME;
     game.run();
     standardValidityChecks(game.getRegistry());
 }

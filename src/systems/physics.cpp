@@ -148,8 +148,7 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
                                          phys_c1.vel.y * phys_c1.vel.y) +
                          phys_c2.mass * (phys_c2.vel.x * phys_c2.vel.x +
                                          phys_c2.vel.y * phys_c2.vel.y));
-        auto U = collision_c.fraction_energy_converted * E;
-        auto T = (1. - collision_c.fraction_energy_converted) * E;
+        auto T = (1. - collision_c.fraction_energy_lost) * E;
         auto pcom_mag = sqrtf(2.0f * T * phys_c1.mass * phys_c2.mass /
                               (phys_c1.mass + phys_c2.mass));
         auto p1com = -pcom_mag * r_12 / r_12_mag;
@@ -161,6 +160,7 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
         phys_c2.vel = vcom - p1com / phys_c2.mass;
 
         // Update durability
+        auto U = collision_c.fraction_energy_converted * E;
         DurabilityComp* dur_c1 = registry.try_get<DurabilityComp>(entity1);
         if (dur_c1 != nullptr) {
             dur_c1->durability -= U * dur_c1->energy_to_durability;

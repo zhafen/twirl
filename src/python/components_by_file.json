@@ -144,7 +144,7 @@
                 "energy_to_durability": [
                     "float",
                     true,
-                    "10.0f"
+                    "1.0f"
                 ],
                 "durability_regen_rate": [
                     "float",
@@ -192,10 +192,15 @@
             ]
         },
         "CollisionComp": {
+            "fraction_energy_lost": [
+                "float",
+                true,
+                "0.0f"
+            ],
             "fraction_energy_converted": [
                 "float",
                 true,
-                "0.1f"
+                "1.0f"
             ]
         },
         "MouseButtonReleasedComp": {},

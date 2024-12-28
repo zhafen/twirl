@@ -1,8 +1,8 @@
 {
-    "m1": {
+    "entity1": {
         "PhysicsComp": {
             "pos": [
-                -0.25,
+                -0.5,
                 0.0
             ],
             "vel": [
@@ -10,7 +10,9 @@
                 0.0
             ]
         },
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "durability": 2.0
+        },
         "RenderFlag": {},
         "CircleComp": {
             "fill_color": [
@@ -22,10 +24,10 @@
         },
         "ZOrderComp": {}
     },
-    "m2": {
+    "entity2": {
         "PhysicsComp": {
             "pos": [
-                0.25,
+                0.5,
                 0.0
             ],
             "vel": [
@@ -45,7 +47,7 @@
         },
         "ZOrderComp": {}
     },
-    "m1-m2-collision": {
+    "collision12": {
         "CollisionComp": {}
     }
 }

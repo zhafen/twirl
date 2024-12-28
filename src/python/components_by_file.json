@@ -155,7 +155,7 @@
                 "energy_to_durability": [
                     "float",
                     true,
-                    "1.0f"
+                    "10.0f"
                 ],
                 "durability_regen_rate": [
                     "float",

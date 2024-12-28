@@ -160,11 +160,19 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
         phys_c1.vel = vcom + p1com / phys_c1.mass;
         phys_c2.vel = vcom - p1com / phys_c2.mass;
 
-        // Indicate collision
-        phys_c1.collided = true;
-        phys_c2.collided = true;
+        // Update internal energy
         phys_c1.internal_energy += 0.5 * U;
         phys_c2.internal_energy += 0.5 * U;
+
+        // Update durability
+        DurabilityComp* dur_c1 = registry.try_get<DurabilityComp>(entity1);
+        if (dur_c1 != nullptr) {
+            dur_c1->durability -= U * dur_c1->energy_to_durability;
+        }
+        DurabilityComp* dur_c2 = registry.try_get<DurabilityComp>(entity2);
+        if (dur_c2 != nullptr) {
+            dur_c2->durability -= U * dur_c2->energy_to_durability;
+        }
     }
 }
 
@@ -173,12 +181,6 @@ void PhysicsSystem::updateDurability(entt::registry& registry) {
     for (auto [entity, dur_c, rend_c, phys_c] : rview.each()) {
         // Regenerate durability
         dur_c.durability += dur_c.durability_regen_rate * cfg.dt;
-
-        // Apply durability loss from collision
-        if (phys_c.collided) {
-            dur_c.durability -= phys_c.internal_energy * dur_c.energy_to_durability;
-            phys_c.collided = false;
-        }
 
         // Cap durability at 1.0
         dur_c.durability_frac = dur_c.durability / dur_c.max_durability;

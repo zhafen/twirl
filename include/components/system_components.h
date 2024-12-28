@@ -88,14 +88,14 @@ struct DurabilityComp {
     float durability;
     float durability_frac = 1.0f;
     float max_durability = 1.0f * cfg.E;
-    float energy_to_durability = 1.0f;
+    float energy_to_durability = 10.0f;
     float durability_regen_rate = 0.0f * cfg.E / cfg.T;
     float delete_at_zero = true;
 };
 inline void from_json(const json& j, DurabilityComp& durabilitycomp) {
     durabilitycomp.durability_frac = j.value("durability_frac", 1.0f);
     durabilitycomp.max_durability = j.value("max_durability", 1.0f) * cfg.E;
-    durabilitycomp.energy_to_durability = j.value("energy_to_durability", 1.0f);
+    durabilitycomp.energy_to_durability = j.value("energy_to_durability", 10.0f);
     durabilitycomp.durability_regen_rate = j.value("durability_regen_rate", 0.0f) * cfg.E / cfg.T;
     durabilitycomp.delete_at_zero = j.value("delete_at_zero", true);
     durabilitycomp.durability = durabilitycomp.durability_frac * durabilitycomp.max_durability;

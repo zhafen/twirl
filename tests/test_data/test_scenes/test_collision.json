@@ -11,7 +11,7 @@
             ]
         },
         "DurabilityComp": {
-            "durability": 2.0
+            "max_durability": 2.0
         },
         "RenderFlag": {},
         "CircleComp": {
@@ -36,7 +36,7 @@
             ]
         },
         "DurabilityComp": {
-            "durability": 0.9
+            "max_durability": 1.0
         },
         "RenderFlag": {},
         "CircleComp": {

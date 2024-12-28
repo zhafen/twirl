@@ -112,17 +112,6 @@
                 false,
                 "sf::Vector2f(0.0f, 0.0f)",
                 "cfg.A"
-            ],
-            "internal_energy": [
-                "float",
-                true,
-                "0.0f",
-                "cfg.E"
-            ],
-            "collided": [
-                "bool",
-                false,
-                "false"
             ]
         },
         "DragForceComp": {

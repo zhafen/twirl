@@ -65,14 +65,11 @@ struct PhysicsComp {
     sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f) * cfg.H;
     sf::Vector2f vel = sf::Vector2f(0.0f, 0.0f) * cfg.V;
     sf::Vector2f force = sf::Vector2f(0.0f, 0.0f) * cfg.A;
-    float internal_energy = 0.0f * cfg.E;
-    bool collided = false;
 };
 inline void from_json(const json& j, PhysicsComp& physicscomp) {
     physicscomp.mass = j.value("mass", 1.0f);
     physicscomp.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f)) * cfg.H;
     physicscomp.vel = j.value("vel", sf::Vector2f(0.0f, 0.0f)) * cfg.V;
-    physicscomp.internal_energy = j.value("internal_energy", 0.0f) * cfg.E;
 }
 
 struct DragForceComp {

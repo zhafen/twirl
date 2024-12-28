@@ -160,10 +160,6 @@ void PhysicsSystem::resolveCollisions(entt::registry& registry) {
         phys_c1.vel = vcom + p1com / phys_c1.mass;
         phys_c2.vel = vcom - p1com / phys_c2.mass;
 
-        // Update internal energy
-        phys_c1.internal_energy += 0.5 * U;
-        phys_c2.internal_energy += 0.5 * U;
-
         // Update durability
         DurabilityComp* dur_c1 = registry.try_get<DurabilityComp>(entity1);
         if (dur_c1 != nullptr) {

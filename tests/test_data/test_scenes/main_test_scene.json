@@ -10,8 +10,7 @@
             "vel": [
                 1.0,
                 1.0
-            ],
-            "collided": true
+            ]
         },
         "DragForceComp": {
             "drag_coefficient": 0.05,

@@ -35,7 +35,9 @@
                 0.0
             ]
         },
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "durability": 0.9
+        },
         "RenderFlag": {},
         "CircleComp": {
             "fill_color": [
@@ -45,9 +47,15 @@
                 255
             ]
         },
+        "DebugComp": {},
         "ZOrderComp": {}
     },
     "collision12": {
-        "CollisionComp": {}
+        "PairComp": {
+            "source_entity_name": "entity1",
+            "target_entity_name": "entity2"
+        },
+        "CollisionComp": {},
+        "UnresolvedNameFlag": {}
     }
 }

@@ -49,13 +49,13 @@ TEST(ScenarioTest, TestScene) {
 TEST(ScenarioTest, TestCollision) {
     Game game("../../tests/test_data/test_scenes/test_collision.json");
     game.max_time = MAX_TIME;
-    game.run();
     entt::registry& registry = game.getRegistry();
-    standardValidityChecks(registry);
     entt::entity entity1 =
         comp::getEntityFromStr(registry, "PhysicsComp|name:entity1");
     entt::entity entity2 =
         comp::getEntityFromStr(registry, "PhysicsComp|name:entity2");
+    game.run();
+    standardValidityChecks(registry);
     ASSERT_TRUE(registry.valid(entity1));
     ASSERT_FALSE(registry.valid(entity2));
 }

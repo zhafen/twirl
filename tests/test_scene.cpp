@@ -168,8 +168,8 @@ TEST(SceneTest, EmplaceSceneFromJson) {
         if (name == "player") {
             auto& pc = registry.get<PhysicsComp>(entity);
             EXPECT_FLOAT_EQ(pc.mass, 1.0f);
-            EXPECT_FLOAT_EQ(pc.pos.x, 1.0f * cfg.L);
-            EXPECT_FLOAT_EQ(pc.pos.y, 1.0f * cfg.L);
+            EXPECT_FLOAT_EQ(pc.pos.x, 0.5f * cfg.H);
+            EXPECT_FLOAT_EQ(pc.pos.y, 0.5f * cfg.H);
             EXPECT_FLOAT_EQ(pc.vel.x, 2.0f * cfg.V);
             EXPECT_FLOAT_EQ(pc.vel.y, 2.0f * cfg.V);
             EXPECT_FLOAT_EQ(pc.force.x, 0.0f);

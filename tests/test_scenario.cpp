@@ -34,7 +34,6 @@ void standardValidityChecks(entt::registry& registry) {
 }
 
 TEST(ScenarioTest, TestMain) {
-    // Initialize the game, hidden in the constructor
     Game game("../../scenes/main_scene.json");
     game.max_time = MAX_TIME;
     game.run();
@@ -42,16 +41,21 @@ TEST(ScenarioTest, TestMain) {
 }
 
 TEST(ScenarioTest, TestScene) {
-    // Initialize the game, hidden in the constructor
     Game game("../../tests/test_data/test_scenes/main_test_scene.json");
     game.max_time = MAX_TIME;
     game.run();
     standardValidityChecks(game.getRegistry());
 }
 
-TEST(ScenarioTest, TestMenuScene) {
+TEST(ScenarioTest, TestCollision) {
+    Game game("../../tests/test_data/test_scenes/test_collision.json");
+    // game.max_time = MAX_TIME;
+    game.max_time = 500.f;
+    game.run();
+    standardValidityChecks(game.getRegistry());
+}
 
-    // Initialize the game, hidden in the constructor
+TEST(ScenarioTest, TestMenuScene) {
     Game game("../../tests/test_data/test_scenes/test_menu.json");
     game.max_time = MAX_TIME;
     game.run();

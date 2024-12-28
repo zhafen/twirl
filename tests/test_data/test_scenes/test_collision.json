@@ -1,0 +1,40 @@
+{
+    "m1": {
+        "PhysicsComp": {
+            "pos": [
+                -0.5,
+                0.0
+            ],
+            "vel": [
+                1.0,
+                0.0
+            ]
+        },
+        "DurabilityComp": {},
+        "RenderFlag": {},
+        "ZOrderComp": {
+            "zorder": 0
+        }
+    },
+    "m2": {
+        "PhysicsComp": {
+            "pos": [
+                0.5,
+                0.0
+            ],
+            "vel": [
+                -1.0,
+                0.0
+            ]
+        },
+        "DurabilityComp": {},
+        "RenderFlag": {},
+        "ZOrderComp": {
+            "zorder": 0
+        },
+        "DebugComp": {}
+    },
+    "m1-m2-collision": {
+        "CollisionComp": {}
+    }
+}

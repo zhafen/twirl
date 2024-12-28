@@ -99,7 +99,7 @@
                 "sf::Vector2f",
                 true,
                 "sf::Vector2f(0.0f, 0.0f)",
-                "cfg.L"
+                "cfg.H"
             ],
             "vel": [
                 "sf::Vector2f",

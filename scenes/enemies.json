@@ -3,8 +3,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -67.76878370213564,
-                -38.4503952402611
+                0.17018508542627497,
+                -0.7558842182309575
             ],
             "vel": [
                 0.0,
@@ -28,19 +28,6 @@
         "ZOrderComp": {
             "zorder": 1
         }
-    },
-    "enemy-player.000 inverse square": {
-        "PairComp": {
-            "source_entity_name": "[PlayerFlag|first]",
-            "target_entity_name": "enemy.000"
-        },
-        "PairwiseForceComp": {
-            "magnitude": -1.0,
-            "power": -2.0,
-            "softening": 1.0,
-            "distance_scaling": 1.0
-        },
-        "UnresolvedNameFlag": {}
     },
     "enemy-player.000 spring": {
         "PairComp": {
@@ -57,15 +44,17 @@
             "source_entity_name": "[PlayerFlag|first]",
             "target_entity_name": "enemy.000"
         },
-        "CollisionComp": {},
+        "CollisionComp": {
+            "fraction_energy_converted": 0.0
+        },
         "UnresolvedNameFlag": {}
     },
     "enemy.001": {
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                92.37670226794711,
-                -45.75165117644477
+                0.5636325852270208,
+                -0.35592435344423645
             ],
             "vel": [
                 0.0,
@@ -89,19 +78,6 @@
         "ZOrderComp": {
             "zorder": 1
         }
-    },
-    "enemy-player.001 inverse square": {
-        "PairComp": {
-            "source_entity_name": "[PlayerFlag|first]",
-            "target_entity_name": "enemy.001"
-        },
-        "PairwiseForceComp": {
-            "magnitude": -1.0,
-            "power": -2.0,
-            "softening": 1.0,
-            "distance_scaling": 1.0
-        },
-        "UnresolvedNameFlag": {}
     },
     "enemy-player.001 spring": {
         "PairComp": {
@@ -118,15 +94,17 @@
             "source_entity_name": "[PlayerFlag|first]",
             "target_entity_name": "enemy.001"
         },
-        "CollisionComp": {},
+        "CollisionComp": {
+            "fraction_energy_converted": 0.0
+        },
         "UnresolvedNameFlag": {}
     },
     "enemy.002": {
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                29.42323462668449,
-                -28.32965909124013
+                -0.7492153244649138,
+                -0.4097239906906529
             ],
             "vel": [
                 0.0,
@@ -150,19 +128,6 @@
         "ZOrderComp": {
             "zorder": 1
         }
-    },
-    "enemy-player.002 inverse square": {
-        "PairComp": {
-            "source_entity_name": "[PlayerFlag|first]",
-            "target_entity_name": "enemy.002"
-        },
-        "PairwiseForceComp": {
-            "magnitude": -1.0,
-            "power": -2.0,
-            "softening": 1.0,
-            "distance_scaling": 1.0
-        },
-        "UnresolvedNameFlag": {}
     },
     "enemy-player.002 spring": {
         "PairComp": {
@@ -179,15 +144,17 @@
             "source_entity_name": "[PlayerFlag|first]",
             "target_entity_name": "enemy.002"
         },
-        "CollisionComp": {},
+        "CollisionComp": {
+            "fraction_energy_converted": 0.0
+        },
         "UnresolvedNameFlag": {}
     },
     "enemy.003": {
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                63.64589543403136,
-                -75.24264249043023
+                -0.828825496881388,
+                -0.5093741757915801
             ],
             "vel": [
                 0.0,
@@ -211,19 +178,6 @@
         "ZOrderComp": {
             "zorder": 1
         }
-    },
-    "enemy-player.003 inverse square": {
-        "PairComp": {
-            "source_entity_name": "[PlayerFlag|first]",
-            "target_entity_name": "enemy.003"
-        },
-        "PairwiseForceComp": {
-            "magnitude": -1.0,
-            "power": -2.0,
-            "softening": 1.0,
-            "distance_scaling": 1.0
-        },
-        "UnresolvedNameFlag": {}
     },
     "enemy-player.003 spring": {
         "PairComp": {
@@ -240,15 +194,17 @@
             "source_entity_name": "[PlayerFlag|first]",
             "target_entity_name": "enemy.003"
         },
-        "CollisionComp": {},
+        "CollisionComp": {
+            "fraction_energy_converted": 0.0
+        },
         "UnresolvedNameFlag": {}
     },
     "enemy.004": {
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -80.82353536981623,
-                -96.61735317611122
+                0.6981443311437932,
+                -0.6962173817288118
             ],
             "vel": [
                 0.0,
@@ -272,19 +228,6 @@
         "ZOrderComp": {
             "zorder": 1
         }
-    },
-    "enemy-player.004 inverse square": {
-        "PairComp": {
-            "source_entity_name": "[PlayerFlag|first]",
-            "target_entity_name": "enemy.004"
-        },
-        "PairwiseForceComp": {
-            "magnitude": -1.0,
-            "power": -2.0,
-            "softening": 1.0,
-            "distance_scaling": 1.0
-        },
-        "UnresolvedNameFlag": {}
     },
     "enemy-player.004 spring": {
         "PairComp": {
@@ -301,15 +244,17 @@
             "source_entity_name": "[PlayerFlag|first]",
             "target_entity_name": "enemy.004"
         },
-        "CollisionComp": {},
+        "CollisionComp": {
+            "fraction_energy_converted": 0.0
+        },
         "UnresolvedNameFlag": {}
     },
     "enemy.005": {
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -65.12799488324426,
-                -88.96872018840887
+                -0.5574105734682206,
+                -0.520583921080051
             ],
             "vel": [
                 0.0,
@@ -333,19 +278,6 @@
         "ZOrderComp": {
             "zorder": 1
         }
-    },
-    "enemy-player.005 inverse square": {
-        "PairComp": {
-            "source_entity_name": "[PlayerFlag|first]",
-            "target_entity_name": "enemy.005"
-        },
-        "PairwiseForceComp": {
-            "magnitude": -1.0,
-            "power": -2.0,
-            "softening": 1.0,
-            "distance_scaling": 1.0
-        },
-        "UnresolvedNameFlag": {}
     },
     "enemy-player.005 spring": {
         "PairComp": {
@@ -362,15 +294,17 @@
             "source_entity_name": "[PlayerFlag|first]",
             "target_entity_name": "enemy.005"
         },
-        "CollisionComp": {},
+        "CollisionComp": {
+            "fraction_energy_converted": 0.0
+        },
         "UnresolvedNameFlag": {}
     },
     "enemy.006": {
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                74.19159898127819,
-                -48.45769057705756
+                -0.8796204695356238,
+                -0.6837865789688479
             ],
             "vel": [
                 0.0,
@@ -394,19 +328,6 @@
         "ZOrderComp": {
             "zorder": 1
         }
-    },
-    "enemy-player.006 inverse square": {
-        "PairComp": {
-            "source_entity_name": "[PlayerFlag|first]",
-            "target_entity_name": "enemy.006"
-        },
-        "PairwiseForceComp": {
-            "magnitude": -1.0,
-            "power": -2.0,
-            "softening": 1.0,
-            "distance_scaling": 1.0
-        },
-        "UnresolvedNameFlag": {}
     },
     "enemy-player.006 spring": {
         "PairComp": {
@@ -423,15 +344,17 @@
             "source_entity_name": "[PlayerFlag|first]",
             "target_entity_name": "enemy.006"
         },
-        "CollisionComp": {},
+        "CollisionComp": {
+            "fraction_energy_converted": 0.0
+        },
         "UnresolvedNameFlag": {}
     },
     "enemy.007": {
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                64.62614907899078,
-                -77.66639472782234
+                -0.207329526397517,
+                -0.6612531567361447
             ],
             "vel": [
                 0.0,
@@ -455,19 +378,6 @@
         "ZOrderComp": {
             "zorder": 1
         }
-    },
-    "enemy-player.007 inverse square": {
-        "PairComp": {
-            "source_entity_name": "[PlayerFlag|first]",
-            "target_entity_name": "enemy.007"
-        },
-        "PairwiseForceComp": {
-            "magnitude": -1.0,
-            "power": -2.0,
-            "softening": 1.0,
-            "distance_scaling": 1.0
-        },
-        "UnresolvedNameFlag": {}
     },
     "enemy-player.007 spring": {
         "PairComp": {
@@ -484,15 +394,17 @@
             "source_entity_name": "[PlayerFlag|first]",
             "target_entity_name": "enemy.007"
         },
-        "CollisionComp": {},
+        "CollisionComp": {
+            "fraction_energy_converted": 0.0
+        },
         "UnresolvedNameFlag": {}
     },
     "enemy.008": {
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -38.32235127455297,
-                -108.00033627701676
+                -0.9648182458566084,
+                -0.6621758080155349
             ],
             "vel": [
                 0.0,
@@ -516,19 +428,6 @@
         "ZOrderComp": {
             "zorder": 1
         }
-    },
-    "enemy-player.008 inverse square": {
-        "PairComp": {
-            "source_entity_name": "[PlayerFlag|first]",
-            "target_entity_name": "enemy.008"
-        },
-        "PairwiseForceComp": {
-            "magnitude": -1.0,
-            "power": -2.0,
-            "softening": 1.0,
-            "distance_scaling": 1.0
-        },
-        "UnresolvedNameFlag": {}
     },
     "enemy-player.008 spring": {
         "PairComp": {
@@ -545,15 +444,17 @@
             "source_entity_name": "[PlayerFlag|first]",
             "target_entity_name": "enemy.008"
         },
-        "CollisionComp": {},
+        "CollisionComp": {
+            "fraction_energy_converted": 0.0
+        },
         "UnresolvedNameFlag": {}
     },
     "enemy.009": {
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -11.729611015653461,
-                -60.055533004197095
+                -0.868611430865313,
+                -1.0195489058396854
             ],
             "vel": [
                 0.0,
@@ -578,19 +479,6 @@
             "zorder": 1
         }
     },
-    "enemy-player.009 inverse square": {
-        "PairComp": {
-            "source_entity_name": "[PlayerFlag|first]",
-            "target_entity_name": "enemy.009"
-        },
-        "PairwiseForceComp": {
-            "magnitude": -1.0,
-            "power": -2.0,
-            "softening": 1.0,
-            "distance_scaling": 1.0
-        },
-        "UnresolvedNameFlag": {}
-    },
     "enemy-player.009 spring": {
         "PairComp": {
             "source_entity_name": "[PlayerFlag|first]",
@@ -606,7 +494,9 @@
             "source_entity_name": "[PlayerFlag|first]",
             "target_entity_name": "enemy.009"
         },
-        "CollisionComp": {},
+        "CollisionComp": {
+            "fraction_energy_converted": 0.0
+        },
         "UnresolvedNameFlag": {}
     },
     "enemy.000-enemy.001 collision": {

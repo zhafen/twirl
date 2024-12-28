@@ -12,9 +12,8 @@
         },
         "DurabilityComp": {},
         "RenderFlag": {},
-        "ZOrderComp": {
-            "zorder": 0
-        }
+        "CircleComp": {},
+        "ZOrderComp": {}
     },
     "m2": {
         "PhysicsComp": {
@@ -29,10 +28,8 @@
         },
         "DurabilityComp": {},
         "RenderFlag": {},
-        "ZOrderComp": {
-            "zorder": 0
-        },
-        "DebugComp": {}
+        "CircleComp": {},
+        "ZOrderComp": {}
     },
     "m1-m2-collision": {
         "CollisionComp": {}

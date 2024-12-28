@@ -40,18 +40,16 @@ class BoilerplateBuilder:
                             f'"{option_key}"' in valid_components[comp_key][1]
                         ), f"Option '{option_key}' not found in {comp_key}"
 
-                # Some components always require associated components.
-                # This code ensures those associated components are included
-                included_comps = {}
-                for required_comp, comps in self.required_components.items():
-                    comp_included = included_comps.setdefault(
-                        required_comp, False
-                    )
-                    if comp_included:
-                        continue
-                    if (comp_key in comps):
-                        scene_data[name][required_comp] = {}
-                        included_comps[required_comp] = True
+            # Some components always require associated components.
+            # This code ensures those associated components are included
+            for req_comp, comps_with_req in self.required_components.items():
+                comps = list(entity_components.keys())
+                # If the required component is already included, don't overwrite it.
+                if req_comp in comps:
+                    continue
+                # Add the required components as needed
+                if any(comp in comps_with_req for comp in comps):
+                    scene_data[name][req_comp] = {}
 
         with open(
             f"{scene_dir_from_nb_dir}/{scene_key}.json", "w", encoding="utf-8"

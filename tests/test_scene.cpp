@@ -222,7 +222,7 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_FLOAT_EQ(pfc.softening, 0.0f);
             EXPECT_FLOAT_EQ(pfc.power, 2.0f);
             EXPECT_FLOAT_EQ(pfc.min_distance, 0.1f * cfg.L);
-            EXPECT_FLOAT_EQ(pfc.distance_scaling, 1.0f * cfg.L);
+            EXPECT_FLOAT_EQ(pfc.distance_scaling, 1.0f * cfg.H);
 
         } else if (name == "watch_trigger") {
             auto& pair_c = registry.get<PairComp>(entity);

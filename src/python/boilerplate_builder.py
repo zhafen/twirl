@@ -9,9 +9,12 @@ class BoilerplateBuilder:
 
     def __init__(
         self,
-        comps_using_names=["PairComp", "SceneTriggerComp", "ValueBarComp"],
+        required_components={
+            "UnresolvedNameFlag": ["PairComp", "SceneTriggerComp", "ValueBarComp"],
+            "ZOrderComp": ["RenderFlag"],
+        },
     ):
-        self.comps_using_names = comps_using_names
+        self.required_components = required_components
 
     def save_scene_to_json(
         self,
@@ -37,13 +40,18 @@ class BoilerplateBuilder:
                             f'"{option_key}"' in valid_components[comp_key][1]
                         ), f"Option '{option_key}' not found in {comp_key}"
 
-                # Add the unresolved name component if the component has unresolved names
-                unresolved_comp_included = False
-                if (comp_key in self.comps_using_names) and ~unresolved_comp_included:
-                    print(f"Adding UnresolvedNameFlag to '{name}'")
-                    scene_data[name]["UnresolvedNameFlag"] = {}
-                    # Only add the UnresolvedNameFlag once
-                    unresolved_comp_included = True
+                # Some components always require associated components.
+                # This code ensures those associated components are included
+                included_comps = {}
+                for required_comp, comps in self.required_components.items():
+                    comp_included = included_comps.setdefault(
+                        required_comp, False
+                    )
+                    if comp_included:
+                        continue
+                    if (comp_key in comps):
+                        scene_data[name][required_comp] = {}
+                        included_comps[required_comp] = True
 
         with open(
             f"{scene_dir_from_nb_dir}/{scene_key}.json", "w", encoding="utf-8"
@@ -357,9 +365,7 @@ class BoilerplateBuilder:
             "    // Get the view based on the component string\n"
             '    if (comp_key == "EntityName") {\n'
             "        return getEntityFromSelectionStr<EntityName>(registry, selection_str);\n"
-            "    } else "
-            + body_str
-            + " else {\n"
+            "    } else " + body_str + " else {\n"
             '        throw std::runtime_error("Unknown component type: " + comp_key);\n'
             "    }\n"
             "}"
@@ -414,9 +420,7 @@ class BoilerplateBuilder:
             "        // Skip the rest if not verbose\n"
             "        if (!debug_c.verbose) {\n"
             "            continue;\n"
-            "        }\n" +
-            "        \n" +
-            "        " + body_str + "}\n"
+            "        }\n" + "        \n" + "        " + body_str + "}\n"
             "}"
         )
 

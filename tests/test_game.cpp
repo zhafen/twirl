@@ -43,6 +43,14 @@ TEST(GameTest, HandleEvents) {
     window.close();
 }
 
+TEST(GameTest, ResetGameState) {
+    // Initialize the game
+    Game game("../../scenes/main_scene.json");
+
+    // Run the handle events function once
+    game.resetGameState();
+}
+
 TEST(GameTest, Update) {
     // Initialize the game
     Game game("../../scenes/main_scene.json");

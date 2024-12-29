@@ -10,7 +10,7 @@
 
 using namespace twirl;
 
-float MAX_TIME = 1.0f;
+float MAX_TIME = 1.1f;
 
 void standardValidityChecks(entt::registry& registry) {
     comp::debugEntities(registry, "Debugging inside standardValidityChecks");

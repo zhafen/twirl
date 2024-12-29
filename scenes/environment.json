@@ -2299,6 +2299,7 @@
             "zorder": -199
         }
     },
+    "enemy_spawner": {},
     "enemy_spawn_trigger": {
         "EnemyAbsenceTriggerFlag": {},
         "PairComp": {

@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="26.0.1">
+  <diagram name="Page-1" id="0783ab3e-0a74-02c8-0abd-f7b4e66b4bec">
+    <mxGraphModel dx="1005" dy="635" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-1" value="circle cows" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn0.iconfinder.com/data/icons/game-asset-1/24/controller_game-128.png" vertex="1" parent="1">
+          <mxGeometry x="240" y="80" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-2" value="main" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/hawcons/32/699169-icon-91-document-file-cpp-128.png" vertex="1" parent="1">
+          <mxGeometry x="240" y="480" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-3" value="SFML" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/ionicons-fill-vol-1/512/library-128.png" vertex="1" parent="1">
+          <mxGeometry x="80" y="280" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-4" value="entt" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/ionicons-fill-vol-1/512/library-128.png" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-7" value="boilerplate_builder.py" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/ionicons-fill-vol-2/512/logo-python-128.png" vertex="1" parent="1">
+          <mxGeometry x="520" y="480" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-8" value="game" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/hawcons/32/699169-icon-91-document-file-cpp-128.png" vertex="1" parent="1">
+          <mxGeometry x="320" y="480" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-9" value="build_scenes.ipynb" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.notebook;" vertex="1" parent="1">
+          <mxGeometry x="479.99999999999994" y="240" width="34.87" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-11" value="twirl engine" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.emr_engine;" vertex="1" parent="1">
+          <mxGeometry x="200" y="410" width="52.88" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-13" value="components" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.folder;" vertex="1" parent="1">
+          <mxGeometry x="320" y="560" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-14" value="systems" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.folder;" vertex="1" parent="1">
+          <mxGeometry x="240" y="560" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-15" value="config" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/hawcons/32/699169-icon-91-document-file-cpp-128.png" vertex="1" parent="1">
+          <mxGeometry x="400" y="480" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-16" value="shape" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/hawcons/32/699169-icon-91-document-file-cpp-128.png" vertex="1" parent="1">
+          <mxGeometry x="400" y="560" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-17" value="build_test_scenes.ipynb" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.notebook;" vertex="1" parent="1">
+          <mxGeometry x="522.56" y="560" width="34.87" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_g7k0GoSCWPw00fQWQFu-18" value="tests" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.folder;" vertex="1" parent="1">
+          <mxGeometry x="160" y="560" width="40" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

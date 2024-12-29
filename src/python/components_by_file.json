@@ -125,7 +125,7 @@
             "terminal_velocity": [
                 "float",
                 true,
-                "10.0f",
+                "3.0f",
                 "cfg.V"
             ],
             "power": [

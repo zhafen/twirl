@@ -74,12 +74,12 @@ inline void from_json(const json& j, PhysicsComp& physicscomp) {
 
 struct DragForceComp {
     float magnitude = 1.0f * cfg.F;
-    float terminal_velocity = 10.0f * cfg.V;
+    float terminal_velocity = 3.0f * cfg.V;
     float power = 2.0f;
 };
 inline void from_json(const json& j, DragForceComp& dragforcecomp) {
     dragforcecomp.magnitude = j.value("magnitude", 1.0f) * cfg.F;
-    dragforcecomp.terminal_velocity = j.value("terminal_velocity", 10.0f) * cfg.V;
+    dragforcecomp.terminal_velocity = j.value("terminal_velocity", 3.0f) * cfg.V;
     dragforcecomp.power = j.value("power", 2.0f);
 }
 

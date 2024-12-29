@@ -8,7 +8,7 @@
         "DurabilityComp": {
             "max_durability": 1.0,
             "delete_at_zero": false,
-            "durability_regen_rate": 0.1
+            "durability_regen_rate": 0.0
         },
         "RenderFlag": {},
         "CircleComp": {

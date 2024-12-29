@@ -186,7 +186,9 @@ void debugEntities(entt::registry& registry, std::string message) {
             auto scenecomp = *scenecomp_ptr;
             std::cout << "    SceneComp" << std::endl;
             std::cout << "      scene_fp: " << scenecomp.scene_fp << std::endl;
+            std::cout << "      emplace_after_loading: " << scenecomp.emplace_after_loading << std::endl;
             std::cout << "      emplace_order: " << scenecomp.emplace_order << std::endl;
+            std::cout << "      n_emplaced: " << scenecomp.n_emplaced << std::endl;
         }
         
         auto triggercomp_ptr = registry.try_get<TriggerComp>(entity);
@@ -200,24 +202,31 @@ void debugEntities(entt::registry& registry, std::string message) {
         if (paircomp_ptr != nullptr) {
             auto paircomp = *paircomp_ptr;
             std::cout << "    PairComp" << std::endl;
+            std::cout << "      target_entity: " << static_cast<int>(paircomp.target_entity) << std::endl;
+            std::cout << "      source_entity: " << static_cast<int>(paircomp.source_entity) << std::endl;
         }
         
         auto syncpositioncomp_ptr = registry.try_get<SyncPositionComp>(entity);
         if (syncpositioncomp_ptr != nullptr) {
             auto syncpositioncomp = *syncpositioncomp_ptr;
             std::cout << "    SyncPositionComp" << std::endl;
+            std::cout << "      once_only: " << syncpositioncomp.once_only << std::endl;
         }
         
         auto watchcomp_ptr = registry.try_get<WatchComp>(entity);
         if (watchcomp_ptr != nullptr) {
             auto watchcomp = *watchcomp_ptr;
             std::cout << "    WatchComp" << std::endl;
+            std::cout << "      current_time: " << watchcomp.current_time << std::endl;
+            std::cout << "      end_time: " << watchcomp.end_time << std::endl;
+            std::cout << "      end_reached: " << watchcomp.end_reached << std::endl;
         }
         
         auto physicscomp_ptr = registry.try_get<PhysicsComp>(entity);
         if (physicscomp_ptr != nullptr) {
             auto physicscomp = *physicscomp_ptr;
             std::cout << "    PhysicsComp" << std::endl;
+            std::cout << "      mass: " << physicscomp.mass << std::endl;
             std::cout << "      pos: (" << physicscomp.pos.x << ", " << physicscomp.pos.y << ")" << std::endl;
             std::cout << "      vel: (" << physicscomp.vel.x << ", " << physicscomp.vel.y << ")" << std::endl;
             std::cout << "      force: (" << physicscomp.force.x << ", " << physicscomp.force.y << ")" << std::endl;
@@ -227,30 +236,47 @@ void debugEntities(entt::registry& registry, std::string message) {
         if (dragforcecomp_ptr != nullptr) {
             auto dragforcecomp = *dragforcecomp_ptr;
             std::cout << "    DragForceComp" << std::endl;
+            std::cout << "      drag_coefficient: " << dragforcecomp.drag_coefficient << std::endl;
+            std::cout << "      drag_power: " << dragforcecomp.drag_power << std::endl;
         }
         
         auto durabilitycomp_ptr = registry.try_get<DurabilityComp>(entity);
         if (durabilitycomp_ptr != nullptr) {
             auto durabilitycomp = *durabilitycomp_ptr;
             std::cout << "    DurabilityComp" << std::endl;
+            std::cout << "      durability: " << durabilitycomp.durability << std::endl;
+            std::cout << "      durability_frac: " << durabilitycomp.durability_frac << std::endl;
+            std::cout << "      max_durability: " << durabilitycomp.max_durability << std::endl;
+            std::cout << "      energy_to_durability: " << durabilitycomp.energy_to_durability << std::endl;
+            std::cout << "      durability_regen_rate: " << durabilitycomp.durability_regen_rate << std::endl;
+            std::cout << "      delete_at_zero: " << durabilitycomp.delete_at_zero << std::endl;
         }
         
         auto pairwiseforcecomp_ptr = registry.try_get<PairwiseForceComp>(entity);
         if (pairwiseforcecomp_ptr != nullptr) {
             auto pairwiseforcecomp = *pairwiseforcecomp_ptr;
             std::cout << "    PairwiseForceComp" << std::endl;
+            std::cout << "      magnitude: " << pairwiseforcecomp.magnitude << std::endl;
+            std::cout << "      softening: " << pairwiseforcecomp.softening << std::endl;
+            std::cout << "      power: " << pairwiseforcecomp.power << std::endl;
+            std::cout << "      min_distance: " << pairwiseforcecomp.min_distance << std::endl;
+            std::cout << "      distance_scaling: " << pairwiseforcecomp.distance_scaling << std::endl;
         }
         
         auto collisioncomp_ptr = registry.try_get<CollisionComp>(entity);
         if (collisioncomp_ptr != nullptr) {
             auto collisioncomp = *collisioncomp_ptr;
             std::cout << "    CollisionComp" << std::endl;
+            std::cout << "      fraction_energy_lost: " << collisioncomp.fraction_energy_lost << std::endl;
+            std::cout << "      fraction_energy_converted: " << collisioncomp.fraction_energy_converted << std::endl;
         }
         
         auto circlecomp_ptr = registry.try_get<CircleComp>(entity);
         if (circlecomp_ptr != nullptr) {
             auto circlecomp = *circlecomp_ptr;
             std::cout << "    CircleComp" << std::endl;
+            std::cout << "      radius: " << circlecomp.radius << std::endl;
+            std::cout << "      outline_thickness: " << circlecomp.outline_thickness << std::endl;
         }
         
         auto rectanglecomp_ptr = registry.try_get<RectangleComp>(entity);
@@ -259,6 +285,7 @@ void debugEntities(entt::registry& registry, std::string message) {
             std::cout << "    RectangleComp" << std::endl;
             std::cout << "      size: (" << rectanglecomp.size.x << ", " << rectanglecomp.size.y << ")" << std::endl;
             std::cout << "      pos: (" << rectanglecomp.pos.x << ", " << rectanglecomp.pos.y << ")" << std::endl;
+            std::cout << "      outline_thickness: " << rectanglecomp.outline_thickness << std::endl;
         }
         
         auto valuebarcomp_ptr = registry.try_get<ValueBarComp>(entity);
@@ -289,6 +316,7 @@ void debugEntities(entt::registry& registry, std::string message) {
         if (debugcomp_ptr != nullptr) {
             auto debugcomp = *debugcomp_ptr;
             std::cout << "    DebugComp" << std::endl;
+            std::cout << "      verbose: " << debugcomp.verbose << std::endl;
         }
     }
 }

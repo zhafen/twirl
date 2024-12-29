@@ -438,8 +438,10 @@ class BoilerplateBuilder:
         for member_name, member_args in comp_members.items():
             if isinstance(member_args, str):
                 member_args = [member_args]
-            if member_args[0] in ["std::string", "int"]:
+            if member_args[0] in ["std::string", "int", "size_t", "float", "bool"]:
                 body_str += f'    std::cout << "      {member_name}: " << {instance_str}.{member_name} << std::endl;\n'
+            if member_args[0] in ["entt::entity"]:
+                body_str += f'    std::cout << "      {member_name}: " << static_cast<int>({instance_str}.{member_name}) << std::endl;\n'
             elif member_args[0] == "sf::Vector2f":
                 body_str += f'    std::cout << "      {member_name}: (" << {instance_str}.{member_name}.x << ", " << {instance_str}.{member_name}.y << ")" << std::endl;\n'
 

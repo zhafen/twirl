@@ -122,7 +122,7 @@ void Game::update() {
     physics_system.updateDurability(registry);
 
     // Debug when such components exist
-    comp::debugEntities(registry, "\nDEBUG: End of update");
+    comp::debugEntities(registry, "\nDebug: End of update");
 }
 
 void Game::render() {
@@ -133,7 +133,7 @@ void Game::render() {
     render_system.setView(registry, window, view);
 
     // Debug when such components exist
-    comp::debugEntities(registry, "\nDEBUG: End of render");
+    comp::debugEntities(registry, "\nDebug: End of render");
 
     window.display();
 }

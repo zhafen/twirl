@@ -35,15 +35,19 @@ void standardValidityChecks(entt::registry& registry) {
 TEST(ScenarioTest, TestMain) {
     Game game("../../scenes/main_scene.json");
     game.max_time = MAX_TIME;
-    game.run();
-    standardValidityChecks(game.getRegistry());
+    EXPECT_NO_THROW({
+        game.run();
+        standardValidityChecks(game.getRegistry());
+    });
 }
 
 TEST(ScenarioTest, TestScene) {
     Game game("../../tests/test_data/test_scenes/main_test_scene.json");
     game.max_time = MAX_TIME;
-    game.run();
-    standardValidityChecks(game.getRegistry());
+    EXPECT_NO_THROW({
+        game.run();
+        standardValidityChecks(game.getRegistry());
+    });
 }
 
 TEST(ScenarioTest, TestCollision) {
@@ -54,8 +58,10 @@ TEST(ScenarioTest, TestCollision) {
         comp::getEntityFromStr(registry, "PhysicsComp|name:entity1");
     entt::entity entity2 =
         comp::getEntityFromStr(registry, "PhysicsComp|name:entity2");
-    game.run();
-    standardValidityChecks(registry);
+    EXPECT_NO_THROW({
+        game.run();
+        standardValidityChecks(registry);
+    });
     ASSERT_TRUE(registry.valid(entity1));
     ASSERT_FALSE(registry.valid(entity2));
 }
@@ -63,5 +69,7 @@ TEST(ScenarioTest, TestCollision) {
 TEST(ScenarioTest, TestMenuScene) {
     Game game("../../tests/test_data/test_scenes/test_menu.json");
     game.max_time = MAX_TIME;
-    game.run();
+    EXPECT_NO_THROW({
+        game.run();
+    });
 }

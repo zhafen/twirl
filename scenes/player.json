@@ -1,12 +1,9 @@
 {
     "player": {
         "PhysicsComp": {},
-        "DragForceComp": {
-            "drag_coefficient": 0.05,
-            "drag_power": 2.5
-        },
+        "DragForceComp": {},
         "DurabilityComp": {
-            "max_durability": 1.0,
+            "max_durability": 5.0,
             "delete_at_zero": false,
             "durability_regen_rate": 0.0
         },

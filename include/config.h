@@ -36,6 +36,8 @@ struct Config {
     // number of seconds to get up to speed V, so a measure of reactivity.
     static constexpr float P = 1.0f * T;
     static constexpr float A = V / P;
+    // Force is just typical mass * acceleration
+    static constexpr float F = M * A;
     // Energy is used in a few ways. We use KE to define the standard energy,
     // but there is also an energy that can be defined as work done, which is more
     // acceleration-based.

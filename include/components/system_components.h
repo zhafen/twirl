@@ -61,24 +61,26 @@ inline void from_json(const json& j, WatchComp& watchcomp) {
 }
 
 struct PhysicsComp {
-    float mass = 1.0f;
+    float mass = 1.0f * cfg.M;
     sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f) * cfg.H;
     sf::Vector2f vel = sf::Vector2f(0.0f, 0.0f) * cfg.V;
-    sf::Vector2f force = sf::Vector2f(0.0f, 0.0f) * cfg.A;
+    sf::Vector2f force = sf::Vector2f(0.0f, 0.0f) * cfg.F;
 };
 inline void from_json(const json& j, PhysicsComp& physicscomp) {
-    physicscomp.mass = j.value("mass", 1.0f);
+    physicscomp.mass = j.value("mass", 1.0f) * cfg.M;
     physicscomp.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f)) * cfg.H;
     physicscomp.vel = j.value("vel", sf::Vector2f(0.0f, 0.0f)) * cfg.V;
 }
 
 struct DragForceComp {
-    float drag_coefficient = 0.01f * cfg.A;
-    float drag_power = 2.0f;
+    float magnitude = 1.0f * cfg.F;
+    float terminal_velocity = 10.0f * cfg.V;
+    float power = 2.0f;
 };
 inline void from_json(const json& j, DragForceComp& dragforcecomp) {
-    dragforcecomp.drag_coefficient = j.value("drag_coefficient", 0.01f) * cfg.A;
-    dragforcecomp.drag_power = j.value("drag_power", 2.0f);
+    dragforcecomp.magnitude = j.value("magnitude", 1.0f) * cfg.F;
+    dragforcecomp.terminal_velocity = j.value("terminal_velocity", 10.0f) * cfg.V;
+    dragforcecomp.power = j.value("power", 2.0f);
 }
 
 struct DurabilityComp {
@@ -99,14 +101,14 @@ inline void from_json(const json& j, DurabilityComp& durabilitycomp) {
 }
 
 struct PairwiseForceComp {
-    float magnitude = -1.0f * cfg.A;
+    float magnitude = -1.0f * cfg.F / cfg.M / cfg.M;
     float softening = 0.0f * cfg.L;
     float power = 2.0f;
     float min_distance = 0.1f * cfg.L;
     float distance_scaling = 1.0f * cfg.H;
 };
 inline void from_json(const json& j, PairwiseForceComp& pairwiseforcecomp) {
-    pairwiseforcecomp.magnitude = j.value("magnitude", -1.0f) * cfg.A;
+    pairwiseforcecomp.magnitude = j.value("magnitude", -1.0f) * cfg.F / cfg.M / cfg.M;
     pairwiseforcecomp.softening = j.value("softening", 0.0f) * cfg.L;
     pairwiseforcecomp.power = j.value("power", 2.0f);
     pairwiseforcecomp.min_distance = j.value("min_distance", 0.1f) * cfg.L;

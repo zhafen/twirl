@@ -93,7 +93,8 @@
             "mass": [
                 "float",
                 true,
-                "1.0f"
+                "1.0f",
+                "cfg.M"
             ],
             "pos": [
                 "sf::Vector2f",
@@ -111,17 +112,23 @@
                 "sf::Vector2f",
                 false,
                 "sf::Vector2f(0.0f, 0.0f)",
-                "cfg.A"
+                "cfg.F"
             ]
         },
         "DragForceComp": {
-            "drag_coefficient": [
+            "magnitude": [
                 "float",
                 true,
-                "0.01f",
-                "cfg.A"
+                "1.0f",
+                "cfg.F"
             ],
-            "drag_power": [
+            "terminal_velocity": [
+                "float",
+                true,
+                "10.0f",
+                "cfg.V"
+            ],
+            "power": [
                 "float",
                 true,
                 "2.0f"
@@ -165,7 +172,7 @@
                 "float",
                 true,
                 "-1.0f",
-                "cfg.A"
+                "cfg.F / cfg.M / cfg.M"
             ],
             "softening": [
                 "float",

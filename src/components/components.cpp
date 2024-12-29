@@ -236,8 +236,9 @@ void debugEntities(entt::registry& registry, std::string message) {
         if (dragforcecomp_ptr != nullptr) {
             auto dragforcecomp = *dragforcecomp_ptr;
             std::cout << "    DragForceComp" << std::endl;
-            std::cout << "      drag_coefficient: " << dragforcecomp.drag_coefficient << std::endl;
-            std::cout << "      drag_power: " << dragforcecomp.drag_power << std::endl;
+            std::cout << "      magnitude: " << dragforcecomp.magnitude << std::endl;
+            std::cout << "      terminal_velocity: " << dragforcecomp.terminal_velocity << std::endl;
+            std::cout << "      power: " << dragforcecomp.power << std::endl;
         }
         
         auto durabilitycomp_ptr = registry.try_get<DurabilityComp>(entity);

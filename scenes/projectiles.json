@@ -2,7 +2,9 @@
     "projectile": {
         "PhysicsComp": {},
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "max_durability": 1.0
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 0.5,

@@ -12,14 +12,18 @@
 
 namespace twirl {
 
+// Drag force is a force of the form - F_typical * (v / v_max)^power
+// v_max is roughly the maximum velocity of the entity given a force F_typical.
+// The magnitude is F_typical.
 void PhysicsSystem::calculateForces(entt::registry& registry) {
     auto rview = registry.view<PhysicsComp, DragForceComp>();
     for (auto [entity, phys_c, dragforce_c] : rview.each()) {
         float vel_mag =
             sqrtf(phys_c.vel.x * phys_c.vel.x + phys_c.vel.y * phys_c.vel.y);
         sf::Vector2f vel_scaling =
-            (phys_c.vel / cfg.V) * powf(vel_mag / cfg.V, dragforce_c.drag_power - 1.0f);
-        phys_c.force -= cfg.A * dragforce_c.drag_coefficient * vel_scaling;
+            (phys_c.vel / dragforce_c.terminal_velocity) *
+            powf(vel_mag / dragforce_c.terminal_velocity, dragforce_c.power - 1.0f);
+        phys_c.force -= dragforce_c.magnitude * vel_scaling;
     }
 }
 

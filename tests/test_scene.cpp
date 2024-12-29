@@ -176,8 +176,8 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             EXPECT_FLOAT_EQ(pc.force.y, 0.0f);
 
             auto& dfc = registry.get<DragForceComp>(entity);
-            EXPECT_FLOAT_EQ(dfc.drag_coefficient, 0.05f * cfg.A);
-            EXPECT_FLOAT_EQ(dfc.drag_power, 2.5f);
+            EXPECT_FLOAT_EQ(dfc.magnitude, cfg.F);
+            EXPECT_FLOAT_EQ(dfc.power, 2.5f);
 
             auto& dc = registry.get<DurabilityComp>(entity);
             EXPECT_FLOAT_EQ(dc.durability, cfg.E);

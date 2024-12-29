@@ -5,7 +5,7 @@
         "DurabilityComp": {
             "max_durability": 5.0,
             "delete_at_zero": false,
-            "durability_regen_rate": 0.0
+            "durability_regen_rate": 1.0
         },
         "RenderFlag": {},
         "CircleComp": {
@@ -21,8 +21,7 @@
             "zorder": 0
         },
         "PlayerFlag": {},
-        "ViewFlag": {},
-        "DebugComp": {}
+        "ViewFlag": {}
     },
     "player_durability_trigger": {
         "DurabilityTriggerFlag": {},

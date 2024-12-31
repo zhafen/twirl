@@ -37,6 +37,9 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
     } else if (comp_key == "SceneComp") {
         auto scenecomp = comp_json.template get<SceneComp>();
         registry.emplace_or_replace<SceneComp>(entity, scenecomp);
+    } else if (comp_key == "StateComp") {
+        auto statecomp = comp_json.template get<StateComp>();
+        registry.emplace_or_replace<StateComp>(entity, statecomp);
     } else if (comp_key == "TriggerComp") {
         auto triggercomp = comp_json.template get<TriggerComp>();
         registry.emplace_or_replace<TriggerComp>(entity, triggercomp);
@@ -125,6 +128,8 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<EnemyAbsenceTriggerFlag>(registry, selection_str);
     } else if (comp_key == "SceneComp") {
         return getEntityFromSelectionStr<SceneComp>(registry, selection_str);
+    } else if (comp_key == "StateComp") {
+        return getEntityFromSelectionStr<StateComp>(registry, selection_str);
     } else if (comp_key == "TriggerComp") {
         return getEntityFromSelectionStr<TriggerComp>(registry, selection_str);
     } else if (comp_key == "PairComp") {
@@ -189,6 +194,12 @@ void debugEntities(entt::registry& registry, std::string message) {
             std::cout << "      emplace_after_loading: " << scenecomp.emplace_after_loading << std::endl;
             std::cout << "      emplace_order: " << scenecomp.emplace_order << std::endl;
             std::cout << "      n_emplaced: " << scenecomp.n_emplaced << std::endl;
+        }
+        
+        auto statecomp_ptr = registry.try_get<StateComp>(entity);
+        if (statecomp_ptr != nullptr) {
+            auto statecomp = *statecomp_ptr;
+            std::cout << "    StateComp" << std::endl;
         }
         
         auto triggercomp_ptr = registry.try_get<TriggerComp>(entity);

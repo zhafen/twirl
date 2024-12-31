@@ -70,9 +70,19 @@ class SceneSystem {
                 continue;
             }
 
-            // Emplace the scene
-            emplaceScene(registry, pair_c.target_entity);
-            any_scene_triggered = true;
+            // If a StateComp is not present, emplace the whole scene.
+            // Otherwise just emplace the state.
+            auto* state_c_ptr = registry.try_get<StateComp>(pair_c.source_entity);
+            if (state_c_ptr == nullptr) {
+                // Emplace the scene
+                emplaceScene(registry, pair_c.target_entity);
+                any_scene_triggered = true;
+            } else {
+                // Emplace the state
+                auto scene_c = registry.get<SceneComp>(pair_c.target_entity);
+                json state_json = scene_c.json_data[state_c_ptr->state_entity_name];
+                emplaceState(registry, pair_c.target_entity, state_json);
+            }
         }
 
         return any_scene_triggered;

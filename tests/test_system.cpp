@@ -218,17 +218,15 @@ TEST(SystemEntityTest, WatchStateChange) {
     scene_c.json_data = R"(
     {
         "state_emplaced": {
-            "PhysicsComp": {"pos": [-1.0, -1.0]},
+            "PhysicsComp": {"pos": [-1.0, -1.0]}
         },
         "state_not_emplaced": {
-            "PhysicsComp": {"vel": [1.0, 1.0]},
-        },
+            "PhysicsComp": {"vel": [1.0, 1.0]}
+        }
     }
     )"_json;
 
     // The entity that triggers the scene, and which is modified
-    // Currently we require that the triggering entity is also the entity that is
-    // modified, but that could be changed.
     entt::entity existing_entity = registry.create();
     auto& watch_c = registry.emplace<WatchComp>(existing_entity);
     registry.emplace<PhysicsComp>(existing_entity, cfg.M, sf::Vector2f(cfg.H, cfg.H));
@@ -241,6 +239,7 @@ TEST(SystemEntityTest, WatchStateChange) {
     auto& pair_c = registry.emplace<PairComp>(trigger_entity);
     pair_c.source_entity = existing_entity;
     pair_c.target_entity = scene_entity;
+    registry.emplace<StateComp>(trigger_entity, "state_emplaced");
 
     // Ensure that the scene entity is valid
     EXPECT_TRUE(registry.valid(pair_c.target_entity));

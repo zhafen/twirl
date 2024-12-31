@@ -30,38 +30,61 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
     }
 }
 
-bool SceneSystem::checkSceneTriggers(entt::registry& registry) {
-    bool any_scene_triggered = false;
+/**
+ * @brief Checks for scene and state triggers based on various conditions.
+ *
+ * This function checks for different types of triggers within the registry.
+ * It evaluates triggers caused by e.g. timers running out, durability reaching zero,
+ * and the absence of enemies. If any of these conditions are met, the corresponding
+ * triggers are activated.
+ * 
+ * A trigger is its own entity. It always has a flag indicating what type of
+ * trigger it is, and a PairComp indicating the entity to evaluate the trigger
+ * condition for (aka the source) and the scene entity containing the data to emplace.
+ * If the trigger entity also has a StateComp, then instead of emplacing the entire
+ * scene, only the state indicated by the StateComp is emplaced, and that modifies
+ * the source entity.
+ * 
+ * Note: It's possible that we don't want to modify the triggering entity, but instead
+ * another entity. If we want to do that, we'll need to modify StateComp to include
+ * a "modified_entity_name" field, and then modify the emplaceState function to
+ * check for the value of that field.
+ *
+ * @param registry The registry containing the entities and components.
+ * @return True if any trigger is activated, otherwise false.
+ */
+bool SceneSystem::checkTriggers(entt::registry& registry) {
+    bool any_triggered = false;
 
     // Triggers caused by a timer running out
-    any_scene_triggered =
-        any_scene_triggered |
-        checkSceneTriggersForFlag<WatchTriggerFlag>(
+    any_triggered =
+        any_triggered |
+        checkTriggersForFlag<WatchTriggerFlag>(
             registry, [](entt::registry& registry, entt::entity entity) -> bool {
                 return registry.get<WatchComp>(entity).end_reached;
             });
 
     // Triggers caused by durability reaching 0
-    any_scene_triggered =
-        any_scene_triggered |
-        checkSceneTriggersForFlag<DurabilityTriggerFlag>(
+    any_triggered =
+        any_triggered |
+        checkTriggersForFlag<DurabilityTriggerFlag>(
             registry, [](entt::registry& registry, entt::entity entity) -> bool {
                 return registry.get<DurabilityComp>(entity).durability <= 0;
             });
 
     // Triggers caused by no enemies existing
-    any_scene_triggered =
-        any_scene_triggered |
-        checkSceneTriggersForFlag<EnemyAbsenceTriggerFlag>(
+    any_triggered =
+        any_triggered |
+        checkTriggersForFlag<EnemyAbsenceTriggerFlag>(
             registry, [](entt::registry& registry, entt::entity entity) -> bool {
                 return registry.view<EnemyFlag>().empty();
             });
 
-    return any_scene_triggered;
+    return any_triggered;
 }
 
 // This function can get called by patching the TriggerComp.
-// In many (most?) cases it's easier to use checkSceneTriggers once per frame.
+// In many (most?) cases it's easier to use checkTriggers once per frame.
 void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) {
     auto& pair_c = registry.get<PairComp>(entity);
     emplaceScene(registry, pair_c.target_entity);
@@ -119,11 +142,18 @@ entt::entity SceneSystem::emplaceEntity(entt::registry& registry,
     auto entity = registry.create();
     registry.emplace<EntityName>(entity, entity_name);
 
-    for (const auto& [comp_key, comp_json] : entity_components.items()) {
-        comp::emplaceComponent(registry, entity, comp_key, comp_json);
-    }
+    // Emplace the state
+    emplaceState(registry, entity, entity_components);
 
     return entity;
+}
+
+void SceneSystem::emplaceState(entt::registry& registry,
+                                        entt::entity entity,
+                                        const json& state_components) {
+    for (const auto& [comp_key, comp_json] : state_components.items()) {
+        comp::emplaceComponent(registry, entity, comp_key, comp_json);
+    }
 }
 
 entt::entity SceneSystem::resolveEntityName(entt::registry& registry,

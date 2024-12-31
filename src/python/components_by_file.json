@@ -35,6 +35,13 @@
                 0
             ]
         },
+        "StateComp": {
+            "state_entity_name": [
+                "EntityName",
+                true,
+                "\"\""
+            ]
+        },
         "TriggerComp": {
             "n_triggers": [
                 "int",

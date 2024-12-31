@@ -54,6 +54,40 @@ TEST(SceneTest, TriggerScene) {
     EXPECT_FALSE(rview.empty());
 }
 
+TEST(SceneTest, EmplaceState) {
+
+    // Set up registry and scene system
+    entt::registry registry;
+    SceneSystem scene_system;
+
+    // Add the existing entity
+    entt::entity existing_entity = registry.create();
+    registry.emplace<PhysicsComp>(existing_entity, cfg.M, sf::Vector2f(cfg.H, cfg.H));
+
+    // Check that the entity was set up right
+    auto& phys_c = registry.get<PhysicsComp>(existing_entity);
+    ASSERT_EQ(phys_c.pos.x, cfg.H);
+    ASSERT_EQ(phys_c.pos.y, cfg.H);
+
+    // Create the state we want to emplace
+    // TODO: Currently states are stored in json, just as scenes are.
+    // When we start saving and loading data this will need to be revised.
+    // We'll probably want to separate the json parsing and the state emplacement
+    json state_json = R"(
+    {
+        "PhysicsComp": {"pos": [-1.0, -1.0]}
+    }
+    )"_json;
+
+    // Emplace the state
+    scene_system.emplaceState(registry, existing_entity, state_json);
+
+    // Check that the state was applied
+    phys_c = registry.get<PhysicsComp>(existing_entity);
+    ASSERT_EQ(phys_c.pos.x, -cfg.H);
+    ASSERT_EQ(phys_c.pos.y, -cfg.H);
+}
+
 TEST(SceneTest, ResolveEntityName) {
     // Set up registry and scene system
     entt::registry registry;

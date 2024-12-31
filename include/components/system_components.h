@@ -24,6 +24,13 @@ inline void from_json(const json& j, SceneComp& scenecomp) {
     scenecomp.emplace_order = j.value("emplace_order", 0);
 }
 
+struct StateComp {
+    EntityName state_entity_name = "";
+};
+inline void from_json(const json& j, StateComp& statecomp) {
+    statecomp.state_entity_name = j.value("state_entity_name", "");
+}
+
 struct TriggerComp {
     int n_triggers = 0;
 };

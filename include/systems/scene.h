@@ -43,9 +43,11 @@ class SceneSystem {
     ~SceneSystem() = default;
 
     void loadJsonData(entt::registry& registry);
-    bool checkSceneTriggers(entt::registry& registry);
+    bool checkTriggers(entt::registry& registry);
     void onSceneTrigger(entt::registry& registry, entt::entity entity);
     void emplaceScene(entt::registry& registry, entt::entity scene_entity);
+    void emplaceState(entt::registry& registry, entt::entity entity,
+                      const json& state_components);
     entt::entity emplaceEntity(entt::registry& registry, const EntityName entity_name,
                                const json& entity_components);
     entt::entity resolveEntityName(entt::registry& registry, EntityMap entity_map,
@@ -57,7 +59,7 @@ class SceneSystem {
     // This function checks check_func for all entities with a given flag
     // to see if those triggers should be triggered
     template <typename TriggerFlag, typename Func>
-    bool checkSceneTriggersForFlag(entt::registry& registry, Func check_func) {
+    bool checkTriggersForFlag(entt::registry& registry, Func check_func) {
         // Set up loop
         bool any_scene_triggered = false;
         auto rview = registry.view<TriggerFlag, PairComp>();
@@ -68,9 +70,19 @@ class SceneSystem {
                 continue;
             }
 
-            // Emplace the scene
-            emplaceScene(registry, pair_c.target_entity);
-            any_scene_triggered = true;
+            // If a StateComp is not present, emplace the whole scene.
+            // Otherwise just emplace the state.
+            auto* state_c_ptr = registry.try_get<StateComp>(entity);
+            if (state_c_ptr == nullptr) {
+                // Emplace the scene
+                emplaceScene(registry, pair_c.target_entity);
+                any_scene_triggered = true;
+            } else {
+                // Emplace the state
+                auto scene_c = registry.get<SceneComp>(pair_c.target_entity);
+                json state_json = scene_c.json_data[state_c_ptr->state_entity_name];
+                emplaceState(registry, pair_c.source_entity, state_json);
+            }
         }
 
         return any_scene_triggered;

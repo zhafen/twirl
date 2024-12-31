@@ -13,13 +13,13 @@ namespace comp {
 void emplaceComponent(entt::registry& registry, entt::entity entity,
                       const std::string& comp_key, const json& comp_json) {
     if (comp_key == "EnemyFlag") {
-        registry.emplace<EnemyFlag>(entity);
+        registry.emplace_or_replace<EnemyFlag>(entity);
     } else if (comp_key == "PhysicsComp") {
         auto physicscomp = comp_json.template get<PhysicsComp>();
-        registry.emplace<PhysicsComp>(entity, physicscomp);
+        registry.emplace_or_replace<PhysicsComp>(entity, physicscomp);
     } else if (comp_key == "CircleComp") {
         auto circlecomp = comp_json.template get<CircleComp>();
-        registry.emplace<CircleComp>(entity, circlecomp);
+        registry.emplace_or_replace<CircleComp>(entity, circlecomp);
     } else {
         throw std::runtime_error("Unknown component type: " + comp_key);
     }

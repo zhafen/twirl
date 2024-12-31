@@ -141,7 +141,7 @@ TEST(SystemEntityTest, SpawnDeleteOrder) {
 
     // Try spawning, deleting, and ordering entities
     entity_system.deleteEntities(registry);
-    scene_system.checkSceneTriggers(registry);
+    scene_system.checkTriggers(registry);
     entity_system.orderEntities(registry);
 
     // Check zorders
@@ -159,8 +159,6 @@ TEST(SystemEntityTest, WatchSpawn) {
     entt::registry registry;
     EntitySystem entity_system;
     SceneSystem scene_system;
-    registry.on_update<TriggerComp>().connect<&SceneSystem::onSceneTrigger>(
-        scene_system);
 
     // Ready a scene to spawn
     entt::entity scene_entity = registry.create();
@@ -196,7 +194,7 @@ TEST(SystemEntityTest, WatchSpawn) {
     EXPECT_EQ(entity_map.find("spawned_entity"), entity_map.end());
 
     // Trigger
-    scene_system.checkSceneTriggers(registry);
+    scene_system.checkTriggers(registry);
 
     // Check that the entities were created properly
     entity_map = entity_system.getEntityMap(registry);
@@ -206,6 +204,62 @@ TEST(SystemEntityTest, WatchSpawn) {
     EXPECT_TRUE(registry.valid(spawned_entity));
     auto& pc = registry.get<PhysicsComp>(spawned_entity);
     EXPECT_FLOAT_EQ(pc.mass, 1.0f);
+}
+
+TEST(SystemEntityTest, WatchStateChange) {
+    entt::registry registry;
+    EntitySystem entity_system;
+    SceneSystem scene_system;
+
+    // Ready a scene to emplace states from
+    entt::entity scene_entity = registry.create();
+    registry.emplace<EntityName>(scene_entity, "test_scene");
+    auto& scene_c = registry.emplace<SceneComp>(scene_entity);
+    scene_c.json_data = R"(
+    {
+        "state_emplaced": {
+            "PhysicsComp": {"pos": [-1.0, -1.0]}
+        },
+        "state_not_emplaced": {
+            "PhysicsComp": {"vel": [1.0, 1.0]}
+        }
+    }
+    )"_json;
+
+    // The entity that triggers the scene, and which is modified
+    entt::entity existing_entity = registry.create();
+    auto& watch_c = registry.emplace<WatchComp>(existing_entity);
+    registry.emplace<PhysicsComp>(existing_entity, cfg.M, sf::Vector2f(cfg.H, cfg.H));
+    // We test stopwatch updates separately, so we set the trigger as ready to go
+    watch_c.end_reached = true;
+
+    // Trigger entity
+    entt::entity trigger_entity = registry.create();
+    registry.emplace<WatchTriggerFlag>(trigger_entity);
+    auto& pair_c = registry.emplace<PairComp>(trigger_entity);
+    pair_c.source_entity = existing_entity;
+    pair_c.target_entity = scene_entity;
+    registry.emplace<StateComp>(trigger_entity, "state_emplaced");
+
+    // Ensure that the scene entity is valid
+    EXPECT_TRUE(registry.valid(pair_c.target_entity));
+
+    // Check that the triggering entity was set up right
+    auto& phys_c = registry.get<PhysicsComp>(existing_entity);
+    ASSERT_EQ(phys_c.pos.x, cfg.H);
+    ASSERT_EQ(phys_c.pos.y, cfg.H);
+    ASSERT_EQ(phys_c.vel.x, 0.0f);
+    ASSERT_EQ(phys_c.vel.y, 0.0f);
+
+    // Trigger
+    scene_system.checkTriggers(registry);
+
+    // Check that the existing entity was modified correctly
+    phys_c = registry.get<PhysicsComp>(existing_entity);
+    ASSERT_EQ(phys_c.pos.x, -cfg.H);
+    ASSERT_EQ(phys_c.pos.y, -cfg.H);
+    ASSERT_EQ(phys_c.vel.x, 0.0f);
+    ASSERT_EQ(phys_c.vel.y, 0.0f);
 }
 
 TEST(SystemEntityTest, SyncPosition) {

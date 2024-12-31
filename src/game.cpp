@@ -55,11 +55,6 @@ void Game::initialize() {
     scene_system.loadJsonData(registry);
     scene_system.emplaceScene(registry, scene_entity);
 
-    // Get the entity map at the start
-    // The entity map is a mapping of entity names to entity IDs
-    // It's used when loading scenes from json
-    entity_system.getEntityMap(registry);
-
     // Load other scenes.
     // We sort by emplace order first.
     registry.sort<SceneComp>([](const auto lhs, const auto rhs) {
@@ -100,7 +95,7 @@ void Game::handleEvents() {
 void Game::update() {
     // Delete and emplace entities
     entity_system.deleteEntities(registry);
-    bool scene_emplaced = scene_system.checkSceneTriggers(registry);
+    bool scene_emplaced = scene_system.checkTriggers(registry);
     if (scene_emplaced) {
         entity_system.needs_ordering = true;
     }

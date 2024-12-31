@@ -111,10 +111,10 @@ class TestBoilerplateBuilder(unittest.TestCase):
             "void emplaceComponent(entt::registry& registry, entt::entity entity,\n"
             "                      const std::string& comp_key, const json& comp_json) {\n"
             '    if (comp_key == "ViewFlag") {\n'
-            "        registry.emplace<ViewFlag>(entity);\n"
+            "        registry.emplace_or_replace<ViewFlag>(entity);\n"
             '    } else if (comp_key == "ValueBarComp") {\n'
             "        auto valuebarcomp = comp_json.template get<ValueBarComp>();\n"
-            "        registry.emplace<ValueBarComp>(entity, valuebarcomp);\n"
+            "        registry.emplace_or_replace<ValueBarComp>(entity, valuebarcomp);\n"
             "    } else {\n"
             '        throw std::runtime_error("Unknown component type: " + comp_key);\n'
             "    }\n"
@@ -132,7 +132,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
 
         expected_output_empty = (
             'if (comp_key == "ViewFlag") {\n'
-            "    registry.emplace<ViewFlag>(entity);\n"
+            "    registry.emplace_or_replace<ViewFlag>(entity);\n"
             "}"
         )
         output_empty = self.builder.get_emplacement_str_for_comp("ViewFlag", True)
@@ -141,7 +141,7 @@ class TestBoilerplateBuilder(unittest.TestCase):
         expected_output = (
             'if (comp_key == "ValueBarComp") {\n'
             "    auto valuebarcomp = comp_json.template get<ValueBarComp>();\n"
-            "    registry.emplace<ValueBarComp>(entity, valuebarcomp);\n"
+            "    registry.emplace_or_replace<ValueBarComp>(entity, valuebarcomp);\n"
             "}"
         )
         output = self.builder.get_emplacement_str_for_comp("ValueBarComp")

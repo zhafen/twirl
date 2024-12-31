@@ -13,77 +13,80 @@ namespace comp {
 void emplaceComponent(entt::registry& registry, entt::entity entity,
                       const std::string& comp_key, const json& comp_json) {
     if (comp_key == "PlayerFlag") {
-        registry.emplace<PlayerFlag>(entity);
+        registry.emplace_or_replace<PlayerFlag>(entity);
     } else if (comp_key == "EnemyFlag") {
-        registry.emplace<EnemyFlag>(entity);
+        registry.emplace_or_replace<EnemyFlag>(entity);
     } else if (comp_key == "UnresolvedNameFlag") {
-        registry.emplace<UnresolvedNameFlag>(entity);
+        registry.emplace_or_replace<UnresolvedNameFlag>(entity);
     } else if (comp_key == "RenderFlag") {
-        registry.emplace<RenderFlag>(entity);
+        registry.emplace_or_replace<RenderFlag>(entity);
     } else if (comp_key == "UIRenderFlag") {
-        registry.emplace<UIRenderFlag>(entity);
+        registry.emplace_or_replace<UIRenderFlag>(entity);
     } else if (comp_key == "ViewFlag") {
-        registry.emplace<ViewFlag>(entity);
+        registry.emplace_or_replace<ViewFlag>(entity);
     } else if (comp_key == "DeleteFlag") {
-        registry.emplace<DeleteFlag>(entity);
+        registry.emplace_or_replace<DeleteFlag>(entity);
     } else if (comp_key == "SuspendedFlag") {
-        registry.emplace<SuspendedFlag>(entity);
+        registry.emplace_or_replace<SuspendedFlag>(entity);
     } else if (comp_key == "WatchTriggerFlag") {
-        registry.emplace<WatchTriggerFlag>(entity);
+        registry.emplace_or_replace<WatchTriggerFlag>(entity);
     } else if (comp_key == "DurabilityTriggerFlag") {
-        registry.emplace<DurabilityTriggerFlag>(entity);
+        registry.emplace_or_replace<DurabilityTriggerFlag>(entity);
     } else if (comp_key == "EnemyAbsenceTriggerFlag") {
-        registry.emplace<EnemyAbsenceTriggerFlag>(entity);
+        registry.emplace_or_replace<EnemyAbsenceTriggerFlag>(entity);
     } else if (comp_key == "SceneComp") {
         auto scenecomp = comp_json.template get<SceneComp>();
-        registry.emplace<SceneComp>(entity, scenecomp);
+        registry.emplace_or_replace<SceneComp>(entity, scenecomp);
+    } else if (comp_key == "StateComp") {
+        auto statecomp = comp_json.template get<StateComp>();
+        registry.emplace_or_replace<StateComp>(entity, statecomp);
     } else if (comp_key == "TriggerComp") {
         auto triggercomp = comp_json.template get<TriggerComp>();
-        registry.emplace<TriggerComp>(entity, triggercomp);
+        registry.emplace_or_replace<TriggerComp>(entity, triggercomp);
     } else if (comp_key == "PairComp") {
         auto paircomp = comp_json.template get<PairComp>();
-        registry.emplace<PairComp>(entity, paircomp);
+        registry.emplace_or_replace<PairComp>(entity, paircomp);
     } else if (comp_key == "SyncPositionComp") {
         auto syncpositioncomp = comp_json.template get<SyncPositionComp>();
-        registry.emplace<SyncPositionComp>(entity, syncpositioncomp);
+        registry.emplace_or_replace<SyncPositionComp>(entity, syncpositioncomp);
     } else if (comp_key == "WatchComp") {
         auto watchcomp = comp_json.template get<WatchComp>();
-        registry.emplace<WatchComp>(entity, watchcomp);
+        registry.emplace_or_replace<WatchComp>(entity, watchcomp);
     } else if (comp_key == "PhysicsComp") {
         auto physicscomp = comp_json.template get<PhysicsComp>();
-        registry.emplace<PhysicsComp>(entity, physicscomp);
+        registry.emplace_or_replace<PhysicsComp>(entity, physicscomp);
     } else if (comp_key == "DragForceComp") {
         auto dragforcecomp = comp_json.template get<DragForceComp>();
-        registry.emplace<DragForceComp>(entity, dragforcecomp);
+        registry.emplace_or_replace<DragForceComp>(entity, dragforcecomp);
     } else if (comp_key == "DurabilityComp") {
         auto durabilitycomp = comp_json.template get<DurabilityComp>();
-        registry.emplace<DurabilityComp>(entity, durabilitycomp);
+        registry.emplace_or_replace<DurabilityComp>(entity, durabilitycomp);
     } else if (comp_key == "PairwiseForceComp") {
         auto pairwiseforcecomp = comp_json.template get<PairwiseForceComp>();
-        registry.emplace<PairwiseForceComp>(entity, pairwiseforcecomp);
+        registry.emplace_or_replace<PairwiseForceComp>(entity, pairwiseforcecomp);
     } else if (comp_key == "CollisionComp") {
         auto collisioncomp = comp_json.template get<CollisionComp>();
-        registry.emplace<CollisionComp>(entity, collisioncomp);
+        registry.emplace_or_replace<CollisionComp>(entity, collisioncomp);
     } else if (comp_key == "MouseButtonReleasedComp") {
-        registry.emplace<MouseButtonReleasedComp>(entity);
+        registry.emplace_or_replace<MouseButtonReleasedComp>(entity);
     } else if (comp_key == "CircleComp") {
         auto circlecomp = comp_json.template get<CircleComp>();
-        registry.emplace<CircleComp>(entity, circlecomp);
+        registry.emplace_or_replace<CircleComp>(entity, circlecomp);
     } else if (comp_key == "RectangleComp") {
         auto rectanglecomp = comp_json.template get<RectangleComp>();
-        registry.emplace<RectangleComp>(entity, rectanglecomp);
+        registry.emplace_or_replace<RectangleComp>(entity, rectanglecomp);
     } else if (comp_key == "ValueBarComp") {
         auto valuebarcomp = comp_json.template get<ValueBarComp>();
-        registry.emplace<ValueBarComp>(entity, valuebarcomp);
+        registry.emplace_or_replace<ValueBarComp>(entity, valuebarcomp);
     } else if (comp_key == "ZOrderComp") {
         auto zordercomp = comp_json.template get<ZOrderComp>();
-        registry.emplace<ZOrderComp>(entity, zordercomp);
+        registry.emplace_or_replace<ZOrderComp>(entity, zordercomp);
     } else if (comp_key == "TextComp") {
         auto textcomp = comp_json.template get<TextComp>();
-        registry.emplace<TextComp>(entity, textcomp);
+        registry.emplace_or_replace<TextComp>(entity, textcomp);
     } else if (comp_key == "DebugComp") {
         auto debugcomp = comp_json.template get<DebugComp>();
-        registry.emplace<DebugComp>(entity, debugcomp);
+        registry.emplace_or_replace<DebugComp>(entity, debugcomp);
     } else {
         throw std::runtime_error("Unknown component type: " + comp_key);
     }
@@ -125,6 +128,8 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<EnemyAbsenceTriggerFlag>(registry, selection_str);
     } else if (comp_key == "SceneComp") {
         return getEntityFromSelectionStr<SceneComp>(registry, selection_str);
+    } else if (comp_key == "StateComp") {
+        return getEntityFromSelectionStr<StateComp>(registry, selection_str);
     } else if (comp_key == "TriggerComp") {
         return getEntityFromSelectionStr<TriggerComp>(registry, selection_str);
     } else if (comp_key == "PairComp") {
@@ -189,6 +194,12 @@ void debugEntities(entt::registry& registry, std::string message) {
             std::cout << "      emplace_after_loading: " << scenecomp.emplace_after_loading << std::endl;
             std::cout << "      emplace_order: " << scenecomp.emplace_order << std::endl;
             std::cout << "      n_emplaced: " << scenecomp.n_emplaced << std::endl;
+        }
+        
+        auto statecomp_ptr = registry.try_get<StateComp>(entity);
+        if (statecomp_ptr != nullptr) {
+            auto statecomp = *statecomp_ptr;
+            std::cout << "    StateComp" << std::endl;
         }
         
         auto triggercomp_ptr = registry.try_get<TriggerComp>(entity);

@@ -159,8 +159,6 @@ TEST(SystemEntityTest, WatchSpawn) {
     entt::registry registry;
     EntitySystem entity_system;
     SceneSystem scene_system;
-    registry.on_update<TriggerComp>().connect<&SceneSystem::onSceneTrigger>(
-        scene_system);
 
     // Ready a scene to spawn
     entt::entity scene_entity = registry.create();

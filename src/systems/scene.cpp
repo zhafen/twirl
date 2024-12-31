@@ -119,9 +119,8 @@ entt::entity SceneSystem::emplaceEntity(entt::registry& registry,
     auto entity = registry.create();
     registry.emplace<EntityName>(entity, entity_name);
 
-    for (const auto& [comp_key, comp_json] : entity_components.items()) {
-        comp::emplaceComponent(registry, entity, comp_key, comp_json);
-    }
+    // Emplace the state
+    emplaceState(registry, entity, entity_components);
 
     return entity;
 }
@@ -129,10 +128,10 @@ entt::entity SceneSystem::emplaceEntity(entt::registry& registry,
 void SceneSystem::emplaceState(entt::registry& registry,
                                         entt::entity entity,
                                         const json& state_components) {
+    for (const auto& [comp_key, comp_json] : state_components.items()) {
+        comp::emplaceComponent(registry, entity, comp_key, comp_json);
+    }
 }
-
-
-
 
 entt::entity SceneSystem::resolveEntityName(entt::registry& registry,
                                             EntityMap entity_map,

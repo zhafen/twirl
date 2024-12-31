@@ -262,12 +262,12 @@ TEST(SceneTest, EmplaceState) {
 
     // Add the existing entity
     entt::entity existing_entity = registry.create();
-    registry.emplace<PhysicsComp>(existing_entity, 1.0f, sf::Vector2f(1.0f, 1.0f));
+    registry.emplace<PhysicsComp>(existing_entity, cfg.M, sf::Vector2f(cfg.H, cfg.H));
 
     // Check that the entity was set up right
     auto& phys_c = registry.get<PhysicsComp>(existing_entity);
-    ASSERT_EQ(phys_c.pos.x, 1.0f);
-    ASSERT_EQ(phys_c.pos.y, 1.0f);
+    ASSERT_EQ(phys_c.pos.x, cfg.H);
+    ASSERT_EQ(phys_c.pos.y, cfg.H);
 
     // Create the state we want to emplace
     // TODO: Currently states are stored in json, just as scenes are.
@@ -284,6 +284,6 @@ TEST(SceneTest, EmplaceState) {
 
     // Check that the state was applied
     phys_c = registry.get<PhysicsComp>(existing_entity);
-    ASSERT_EQ(phys_c.pos.x, -1.0f);
-    ASSERT_EQ(phys_c.pos.y, -1.0f);
+    ASSERT_EQ(phys_c.pos.x, -cfg.H);
+    ASSERT_EQ(phys_c.pos.y, -cfg.H);
 }

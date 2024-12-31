@@ -141,7 +141,7 @@ TEST(SystemEntityTest, SpawnDeleteOrder) {
 
     // Try spawning, deleting, and ordering entities
     entity_system.deleteEntities(registry);
-    scene_system.checkSceneTriggers(registry);
+    scene_system.checkTriggers(registry);
     entity_system.orderEntities(registry);
 
     // Check zorders
@@ -194,7 +194,7 @@ TEST(SystemEntityTest, WatchSpawn) {
     EXPECT_EQ(entity_map.find("spawned_entity"), entity_map.end());
 
     // Trigger
-    scene_system.checkSceneTriggers(registry);
+    scene_system.checkTriggers(registry);
 
     // Check that the entities were created properly
     entity_map = entity_system.getEntityMap(registry);
@@ -252,7 +252,7 @@ TEST(SystemEntityTest, WatchStateChange) {
     ASSERT_EQ(phys_c.vel.y, 0.0f);
 
     // Trigger
-    scene_system.checkSceneTriggers(registry);
+    scene_system.checkTriggers(registry);
 
     // Check that the existing entity was modified correctly
     phys_c = registry.get<PhysicsComp>(existing_entity);

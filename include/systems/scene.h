@@ -43,7 +43,7 @@ class SceneSystem {
     ~SceneSystem() = default;
 
     void loadJsonData(entt::registry& registry);
-    bool checkSceneTriggers(entt::registry& registry);
+    bool checkTriggers(entt::registry& registry);
     void onSceneTrigger(entt::registry& registry, entt::entity entity);
     void emplaceScene(entt::registry& registry, entt::entity scene_entity);
     void emplaceState(entt::registry& registry, entt::entity entity,
@@ -59,7 +59,7 @@ class SceneSystem {
     // This function checks check_func for all entities with a given flag
     // to see if those triggers should be triggered
     template <typename TriggerFlag, typename Func>
-    bool checkSceneTriggersForFlag(entt::registry& registry, Func check_func) {
+    bool checkTriggersForFlag(entt::registry& registry, Func check_func) {
         // Set up loop
         bool any_scene_triggered = false;
         auto rview = registry.view<TriggerFlag, PairComp>();

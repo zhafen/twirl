@@ -53,38 +53,38 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
  * @param registry The registry containing the entities and components.
  * @return True if any trigger is activated, otherwise false.
  */
-bool SceneSystem::checkSceneTriggers(entt::registry& registry) {
-    bool any_scene_triggered = false;
+bool SceneSystem::checkTriggers(entt::registry& registry) {
+    bool any_triggered = false;
 
     // Triggers caused by a timer running out
-    any_scene_triggered =
-        any_scene_triggered |
-        checkSceneTriggersForFlag<WatchTriggerFlag>(
+    any_triggered =
+        any_triggered |
+        checkTriggersForFlag<WatchTriggerFlag>(
             registry, [](entt::registry& registry, entt::entity entity) -> bool {
                 return registry.get<WatchComp>(entity).end_reached;
             });
 
     // Triggers caused by durability reaching 0
-    any_scene_triggered =
-        any_scene_triggered |
-        checkSceneTriggersForFlag<DurabilityTriggerFlag>(
+    any_triggered =
+        any_triggered |
+        checkTriggersForFlag<DurabilityTriggerFlag>(
             registry, [](entt::registry& registry, entt::entity entity) -> bool {
                 return registry.get<DurabilityComp>(entity).durability <= 0;
             });
 
     // Triggers caused by no enemies existing
-    any_scene_triggered =
-        any_scene_triggered |
-        checkSceneTriggersForFlag<EnemyAbsenceTriggerFlag>(
+    any_triggered =
+        any_triggered |
+        checkTriggersForFlag<EnemyAbsenceTriggerFlag>(
             registry, [](entt::registry& registry, entt::entity entity) -> bool {
                 return registry.view<EnemyFlag>().empty();
             });
 
-    return any_scene_triggered;
+    return any_triggered;
 }
 
 // This function can get called by patching the TriggerComp.
-// In many (most?) cases it's easier to use checkSceneTriggers once per frame.
+// In many (most?) cases it's easier to use checkTriggers once per frame.
 void SceneSystem::onSceneTrigger(entt::registry& registry, entt::entity entity) {
     auto& pair_c = registry.get<PairComp>(entity);
     emplaceScene(registry, pair_c.target_entity);

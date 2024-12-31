@@ -126,6 +126,14 @@ entt::entity SceneSystem::emplaceEntity(entt::registry& registry,
     return entity;
 }
 
+void SceneSystem::emplaceState(entt::registry& registry,
+                                        entt::entity entity,
+                                        const json& state_components) {
+}
+
+
+
+
 entt::entity SceneSystem::resolveEntityName(entt::registry& registry,
                                             EntityMap entity_map,
                                             EntityName entity_name) {

@@ -46,6 +46,8 @@ class SceneSystem {
     bool checkSceneTriggers(entt::registry& registry);
     void onSceneTrigger(entt::registry& registry, entt::entity entity);
     void emplaceScene(entt::registry& registry, entt::entity scene_entity);
+    void emplaceState(entt::registry& registry, entt::entity entity,
+                      const json& state_components);
     entt::entity emplaceEntity(entt::registry& registry, const EntityName entity_name,
                                const json& entity_components);
     entt::entity resolveEntityName(entt::registry& registry, EntityMap entity_map,

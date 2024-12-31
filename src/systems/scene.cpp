@@ -30,6 +30,29 @@ void SceneSystem::loadJsonData(entt::registry& registry) {
     }
 }
 
+/**
+ * @brief Checks for scene and state triggers based on various conditions.
+ *
+ * This function checks for different types of triggers within the registry.
+ * It evaluates triggers caused by e.g. timers running out, durability reaching zero,
+ * and the absence of enemies. If any of these conditions are met, the corresponding
+ * triggers are activated.
+ * 
+ * A trigger is its own entity. It always has a flag indicating what type of
+ * trigger it is, and a PairComp indicating the entity to evaluate the trigger
+ * condition for (aka the source) and the scene entity containing the data to emplace.
+ * If the trigger entity also has a StateComp, then instead of emplacing the entire
+ * scene, only the state indicated by the StateComp is emplaced, and that modifies
+ * the source entity.
+ * 
+ * Note: It's possible that we don't want to modify the triggering entity, but instead
+ * another entity. If we want to do that, we'll need to modify StateComp to include
+ * a "modified_entity_name" field, and then modify the emplaceState function to
+ * check for the value of that field.
+ *
+ * @param registry The registry containing the entities and components.
+ * @return True if any trigger is activated, otherwise false.
+ */
 bool SceneSystem::checkSceneTriggers(entt::registry& registry) {
     bool any_scene_triggered = false;
 

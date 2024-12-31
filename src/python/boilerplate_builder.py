@@ -319,14 +319,14 @@ class BoilerplateBuilder:
         if is_empty:
             return (
                 f'if (comp_key == "{name}") {{\n'
-                f"    registry.emplace<{name}>(entity);\n"
+                f"    registry.emplace_or_replace<{name}>(entity);\n"
                 "}"
             )
 
         return (
             f'if (comp_key == "{name}") {{\n'
             f"    auto {name.lower()} = comp_json.template get<{name}>();\n"
-            f"    registry.emplace<{name}>(entity, {name.lower()});\n"
+            f"    registry.emplace_or_replace<{name}>(entity, {name.lower()});\n"
             "}"
         )
 

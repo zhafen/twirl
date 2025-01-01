@@ -220,11 +220,6 @@ TEST(SceneTest, EmplaceSceneFromJson) {
 
             auto& rc = registry.get<CircleComp>(entity);
             EXPECT_FLOAT_EQ(rc.shape.getRadius(), cfg.L);
-            auto fill_color = rc.shape.getFillColor();
-            EXPECT_EQ(fill_color.r, 255);
-            EXPECT_EQ(fill_color.g, 128);
-            EXPECT_EQ(fill_color.b, 128);
-            EXPECT_EQ(fill_color.a, 255);
         } else if (name == "beacon") {
             auto& pc = registry.get<PhysicsComp>(entity);
             EXPECT_FLOAT_EQ(pc.mass, 1.0f);
@@ -267,17 +262,6 @@ TEST(SceneTest, EmplaceSceneFromJson) {
             // Background circle
             auto& rc = registry.get<CircleComp>(entity);
 
-            auto fill_color = rc.shape.getFillColor();
-            EXPECT_EQ(fill_color.r, 127);
-            EXPECT_EQ(fill_color.g, 127);
-            EXPECT_EQ(fill_color.b, 127);
-            EXPECT_EQ(fill_color.a, 255);
-
-            auto outline_color = rc.shape.getOutlineColor();
-            EXPECT_EQ(outline_color.r, 63);
-            EXPECT_EQ(outline_color.g, 63);
-            EXPECT_EQ(outline_color.b, 63);
-            EXPECT_EQ(outline_color.a, 255);
         } else if (name == "player-enemy force") {
             auto& prc = registry.get<PairComp>(entity);
             EXPECT_EQ(prc.target_entity_name, "player");

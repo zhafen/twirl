@@ -133,22 +133,25 @@ inline void from_json(const json& j, CollisionComp& collisioncomp) {
 
 struct MouseButtonReleasedComp {};
 
+struct ColorComp {
+    sf::Color fill_color = sf::Color::White;
+    sf::Color outline_color = sf::Color::Black;
+};
+inline void from_json(const json& j, ColorComp& colorcomp) {
+    colorcomp.fill_color = j.value("fill_color", sf::Color::White);
+    colorcomp.outline_color = j.value("outline_color", sf::Color::Black);
+}
+
 struct CircleComp {
     CenteredCircleShape shape;
     float radius = 1.0f * cfg.L;
     float outline_thickness = 0.0f * cfg.L;
-    sf::Color fill_color = sf::Color::White;
-    sf::Color outline_color = sf::Color::Black;
 };
 inline void from_json(const json& j, CircleComp& circlecomp) {
     circlecomp.radius = j.value("radius", 1.0f) * cfg.L;
     circlecomp.outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;
-    circlecomp.fill_color = j.value("fill_color", sf::Color::White);
-    circlecomp.outline_color = j.value("outline_color", sf::Color::Black);
     circlecomp.shape = CenteredCircleShape(circlecomp.radius);
     circlecomp.shape.setOutlineThickness(circlecomp.outline_thickness);
-    circlecomp.shape.setFillColor(circlecomp.fill_color);
-    circlecomp.shape.setOutlineColor(circlecomp.outline_color);
 }
 
 struct RectangleComp {
@@ -156,20 +159,14 @@ struct RectangleComp {
     sf::Vector2f size = sf::Vector2f(1.0f, 1.0f) * cfg.L;
     sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f) * cfg.L;
     float outline_thickness = 0.0f * cfg.L;
-    sf::Color fill_color = sf::Color::White;
-    sf::Color outline_color = sf::Color::Black;
 };
 inline void from_json(const json& j, RectangleComp& rectanglecomp) {
     rectanglecomp.size = j.value("size", sf::Vector2f(1.0f, 1.0f)) * cfg.L;
     rectanglecomp.pos = j.value("pos", sf::Vector2f(0.0f, 0.0f)) * cfg.L;
     rectanglecomp.outline_thickness = j.value("outline_thickness", 0.0f) * cfg.L;
-    rectanglecomp.fill_color = j.value("fill_color", sf::Color::White);
-    rectanglecomp.outline_color = j.value("outline_color", sf::Color::Black);
     rectanglecomp.shape.setSize(rectanglecomp.size);
     rectanglecomp.shape.setPosition(rectanglecomp.pos);
     rectanglecomp.shape.setOutlineThickness(rectanglecomp.outline_thickness);
-    rectanglecomp.shape.setFillColor(rectanglecomp.fill_color);
-    rectanglecomp.shape.setOutlineColor(rectanglecomp.outline_color);
 }
 
 struct ValueBarComp {

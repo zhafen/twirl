@@ -9,7 +9,9 @@
         },
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 1.0,
+            "radius": 1.0
+        },
+        "ColorComp": {
             "fill_color": [
                 175,
                 100,
@@ -37,7 +39,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 0.5,
-            "outline_thickness": 0.1,
+            "outline_thickness": 0.1
+        },
+        "ColorComp": {
             "fill_color": [
                 0,
                 0,

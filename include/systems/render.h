@@ -38,10 +38,12 @@ class RenderSystem {
 
     template <typename CompType, typename FlagType>
     void renderShapeComp(entt::registry& registry, sf::RenderWindow& window) {
-        auto rview = registry.view<ZOrderComp, FlagType, CompType>();
+        auto rview = registry.view<ZOrderComp, FlagType, CompType, ColorComp>();
 
         // draw frame
-        for (auto [entity, zorder_c, shape_c] : rview.each()) {
+        for (auto [entity, zorder_c, shape_c, color_c] : rview.each()) {
+            shape_c.shape.setFillColor(color_c.fill_color);
+            shape_c.shape.setOutlineColor(color_c.outline_color);
             window.draw(shape_c.shape);
         }
     }

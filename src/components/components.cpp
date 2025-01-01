@@ -69,6 +69,9 @@ void emplaceComponent(entt::registry& registry, entt::entity entity,
         registry.emplace_or_replace<CollisionComp>(entity, collisioncomp);
     } else if (comp_key == "MouseButtonReleasedComp") {
         registry.emplace_or_replace<MouseButtonReleasedComp>(entity);
+    } else if (comp_key == "ColorComp") {
+        auto colorcomp = comp_json.template get<ColorComp>();
+        registry.emplace_or_replace<ColorComp>(entity, colorcomp);
     } else if (comp_key == "CircleComp") {
         auto circlecomp = comp_json.template get<CircleComp>();
         registry.emplace_or_replace<CircleComp>(entity, circlecomp);
@@ -150,6 +153,8 @@ entt::entity getEntityFromStr(entt::registry& registry, const std::string& input
         return getEntityFromSelectionStr<CollisionComp>(registry, selection_str);
     } else if (comp_key == "MouseButtonReleasedComp") {
         return getEntityFromSelectionStr<MouseButtonReleasedComp>(registry, selection_str);
+    } else if (comp_key == "ColorComp") {
+        return getEntityFromSelectionStr<ColorComp>(registry, selection_str);
     } else if (comp_key == "CircleComp") {
         return getEntityFromSelectionStr<CircleComp>(registry, selection_str);
     } else if (comp_key == "RectangleComp") {
@@ -281,6 +286,12 @@ void debugEntities(entt::registry& registry, std::string message) {
             std::cout << "    CollisionComp" << std::endl;
             std::cout << "      fraction_energy_lost: " << collisioncomp.fraction_energy_lost << std::endl;
             std::cout << "      fraction_energy_converted: " << collisioncomp.fraction_energy_converted << std::endl;
+        }
+        
+        auto colorcomp_ptr = registry.try_get<ColorComp>(entity);
+        if (colorcomp_ptr != nullptr) {
+            auto colorcomp = *colorcomp_ptr;
+            std::cout << "    ColorComp" << std::endl;
         }
         
         auto circlecomp_ptr = registry.try_get<CircleComp>(entity);

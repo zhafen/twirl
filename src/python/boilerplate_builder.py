@@ -11,7 +11,8 @@ class BoilerplateBuilder:
         self,
         required_components={
             "UnresolvedNameFlag": ["PairComp", "SceneTriggerComp", "ValueBarComp"],
-            "ZOrderComp": ["RenderFlag"],
+            "ZOrderComp": ["RenderFlag",],
+            "ColorComp": ["CircleComp", "RectangleComp"],
         },
     ):
         self.required_components = required_components

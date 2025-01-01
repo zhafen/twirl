@@ -5,7 +5,9 @@
         "DurabilityComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 0.5,
+            "radius": 0.5
+        },
+        "ColorComp": {
             "fill_color": [
                 82,
                 106,

@@ -4,7 +4,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1000,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -27,7 +29,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 500,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -50,7 +54,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 333,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -73,7 +79,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 250,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -96,7 +104,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 200,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -119,7 +129,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 166,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -142,7 +154,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 142,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -165,7 +179,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 125,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -188,7 +204,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 111,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -211,7 +229,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 100,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -234,7 +254,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 90,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -257,7 +279,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 83,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -280,7 +304,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 76,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -303,7 +329,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 71,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -326,7 +354,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 66,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -349,7 +379,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 62,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -372,7 +404,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 58,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -395,7 +429,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 55,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -418,7 +454,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 52,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -441,7 +479,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 50,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -464,7 +504,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 47,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -487,7 +529,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 45,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -510,7 +554,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 43,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -533,7 +579,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 41,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -556,7 +604,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 40,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -579,7 +629,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 38,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -602,7 +654,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 37,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -625,7 +679,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 35,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -648,7 +704,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 34,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -671,7 +729,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 33,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -694,7 +754,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 32,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -717,7 +779,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 31,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -740,7 +804,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 30,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -763,7 +829,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 29,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -786,7 +854,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 28,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -809,7 +879,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 27,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -832,7 +904,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 27,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -855,7 +929,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 26,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -878,7 +954,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 25,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -901,7 +979,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 25,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -924,7 +1004,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 24,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -947,7 +1029,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 23,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -970,7 +1054,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 23,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -993,7 +1079,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 22,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1016,7 +1104,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 22,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1039,7 +1129,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 21,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1062,7 +1154,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 21,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1085,7 +1179,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 20,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1108,7 +1204,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 20,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1131,7 +1229,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 20,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1154,7 +1254,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 19,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1177,7 +1279,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 19,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1200,7 +1304,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 18,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1223,7 +1329,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 18,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1246,7 +1354,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 18,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1269,7 +1379,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 17,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1292,7 +1404,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 17,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1315,7 +1429,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 17,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1338,7 +1454,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 16,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1361,7 +1479,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 16,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1384,7 +1504,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 16,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1407,7 +1529,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 16,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1430,7 +1554,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 15,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1453,7 +1579,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 15,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1476,7 +1604,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 15,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1499,7 +1629,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 15,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1522,7 +1654,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 14,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1545,7 +1679,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 14,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1568,7 +1704,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 14,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1591,7 +1729,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 14,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1614,7 +1754,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 14,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1637,7 +1779,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 13,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1660,7 +1804,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 13,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1683,7 +1829,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 13,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1706,7 +1854,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 13,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1729,7 +1879,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 13,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1752,7 +1904,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 12,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1775,7 +1929,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 12,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1798,7 +1954,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 12,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1821,7 +1979,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 12,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1844,7 +2004,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 12,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1867,7 +2029,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 12,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1890,7 +2054,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 12,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1913,7 +2079,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 11,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1936,7 +2104,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 11,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1959,7 +2129,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 11,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -1982,7 +2154,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 11,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -2005,7 +2179,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 11,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -2028,7 +2204,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 11,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -2051,7 +2229,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 11,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -2074,7 +2254,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 10,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -2097,7 +2279,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 10,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -2120,7 +2304,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 10,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -2143,7 +2329,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 10,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -2166,7 +2354,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 10,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -2189,7 +2379,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 10,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -2212,7 +2404,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 10,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -2235,7 +2429,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 10,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -2258,7 +2454,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 10,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,
@@ -2281,7 +2479,9 @@
         "RenderFlag": {},
         "CircleComp": {
             "radius": 10,
-            "outline_thickness": 0.0,
+            "outline_thickness": 0.0
+        },
+        "ColorComp": {
             "fill_color": [
                 98,
                 83,

@@ -3,8 +3,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -0.3793775810078861,
-                -0.33437185110351975
+                -0.9210394957306249,
+                -0.44779263470178066
             ],
             "vel": [
                 0.0,
@@ -15,7 +15,9 @@
         "DurabilityComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 1.0,
+            "radius": 1.0
+        },
+        "ColorComp": {
             "fill_color": [
                 115,
                 111,
@@ -62,8 +64,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -0.3032583822394215,
-                -0.8044251447361632
+                0.4740817308630374,
+                -0.21473279732356465
             ],
             "vel": [
                 0.0,
@@ -74,7 +76,9 @@
         "DurabilityComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 1.0,
+            "radius": 1.0
+        },
+        "ColorComp": {
             "fill_color": [
                 115,
                 111,
@@ -121,8 +125,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                0.20278743746101013,
-                -0.2244848691455109
+                0.23338811991543396,
+                -0.3453104603567273
             ],
             "vel": [
                 0.0,
@@ -133,7 +137,9 @@
         "DurabilityComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 1.0,
+            "radius": 1.0
+        },
+        "ColorComp": {
             "fill_color": [
                 115,
                 111,
@@ -180,8 +186,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                0.7751491856615405,
-                -0.65634975902436
+                -0.6222189061809591,
+                -0.47770139951732893
             ],
             "vel": [
                 0.0,
@@ -192,7 +198,9 @@
         "DurabilityComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 1.0,
+            "radius": 1.0
+        },
+        "ColorComp": {
             "fill_color": [
                 115,
                 111,
@@ -239,8 +247,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                0.07096386731979742,
-                -0.44100102356376747
+                -0.416748284596997,
+                -0.8991069664729012
             ],
             "vel": [
                 0.0,
@@ -251,7 +259,9 @@
         "DurabilityComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 1.0,
+            "radius": 1.0
+        },
+        "ColorComp": {
             "fill_color": [
                 115,
                 111,
@@ -298,8 +308,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                0.02397955025407339,
-                -0.9730715147701207
+                0.42689798155719383,
+                -0.5737998755212694
             ],
             "vel": [
                 0.0,
@@ -310,7 +320,9 @@
         "DurabilityComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 1.0,
+            "radius": 1.0
+        },
+        "ColorComp": {
             "fill_color": [
                 115,
                 111,
@@ -357,8 +369,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -0.09163644362223922,
-                -0.9031202461387718
+                -0.4633396916252024,
+                -1.0260256929420215
             ],
             "vel": [
                 0.0,
@@ -369,7 +381,9 @@
         "DurabilityComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 1.0,
+            "radius": 1.0
+        },
+        "ColorComp": {
             "fill_color": [
                 115,
                 111,
@@ -416,8 +430,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -0.7999213638811533,
-                -0.8978046663228786
+                -0.994169141461843,
+                -1.059848626699287
             ],
             "vel": [
                 0.0,
@@ -428,7 +442,9 @@
         "DurabilityComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 1.0,
+            "radius": 1.0
+        },
+        "ColorComp": {
             "fill_color": [
                 115,
                 111,
@@ -475,8 +491,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -0.8897180802222002,
-                -0.9695938799348572
+                -0.6179941271026574,
+                -0.8045211352593051
             ],
             "vel": [
                 0.0,
@@ -487,7 +503,9 @@
         "DurabilityComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 1.0,
+            "radius": 1.0
+        },
+        "ColorComp": {
             "fill_color": [
                 115,
                 111,
@@ -534,8 +552,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                0.7624765813634944,
-                -0.22014711446551616
+                0.4736934530950585,
+                -0.9166970462084262
             ],
             "vel": [
                 0.0,
@@ -546,7 +564,9 @@
         "DurabilityComp": {},
         "RenderFlag": {},
         "CircleComp": {
-            "radius": 1.0,
+            "radius": 1.0
+        },
+        "ColorComp": {
             "fill_color": [
                 115,
                 111,

@@ -184,8 +184,6 @@ void PhysicsSystem::updateDurability(entt::registry& registry) {
             dur_c.durability = 0.0f;
             if (dur_c.delete_at_zero) {
                 registry.emplace<DeleteFlag>(entity);
-            } else {
-                rend_c.shape.setFillColor(sf::Color(63, 63, 63));
             }
         }
     }

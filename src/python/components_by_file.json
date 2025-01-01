@@ -218,6 +218,18 @@
             ]
         },
         "MouseButtonReleasedComp": {},
+        "ColorComp": {
+            "fill_color": [
+                "sf::Color",
+                true,
+                "sf::Color::White"
+            ],
+            "outline_color": [
+                "sf::Color",
+                true,
+                "sf::Color::Black"
+            ]
+        },
         "CircleComp": [
             {
                 "shape": "CenteredCircleShape",
@@ -232,19 +244,9 @@
                     true,
                     "0.0f",
                     "cfg.L"
-                ],
-                "fill_color": [
-                    "sf::Color",
-                    true,
-                    "sf::Color::White"
-                ],
-                "outline_color": [
-                    "sf::Color",
-                    true,
-                    "sf::Color::Black"
                 ]
             },
-            "circlecomp.shape = CenteredCircleShape(circlecomp.radius);\ncirclecomp.shape.setOutlineThickness(circlecomp.outline_thickness);\ncirclecomp.shape.setFillColor(circlecomp.fill_color);\ncirclecomp.shape.setOutlineColor(circlecomp.outline_color);\n"
+            "circlecomp.shape = CenteredCircleShape(circlecomp.radius);\ncirclecomp.shape.setOutlineThickness(circlecomp.outline_thickness);\n"
         ],
         "RectangleComp": [
             {
@@ -266,19 +268,9 @@
                     true,
                     "0.0f",
                     "cfg.L"
-                ],
-                "fill_color": [
-                    "sf::Color",
-                    true,
-                    "sf::Color::White"
-                ],
-                "outline_color": [
-                    "sf::Color",
-                    true,
-                    "sf::Color::Black"
                 ]
             },
-            "rectanglecomp.shape.setSize(rectanglecomp.size);\nrectanglecomp.shape.setPosition(rectanglecomp.pos);\nrectanglecomp.shape.setOutlineThickness(rectanglecomp.outline_thickness);\nrectanglecomp.shape.setFillColor(rectanglecomp.fill_color);\nrectanglecomp.shape.setOutlineColor(rectanglecomp.outline_color);\n"
+            "rectanglecomp.shape.setSize(rectanglecomp.size);\nrectanglecomp.shape.setPosition(rectanglecomp.pos);\nrectanglecomp.shape.setOutlineThickness(rectanglecomp.outline_thickness);\n"
         ],
         "ValueBarComp": {
             "shape": "sf::RectangleShape",

@@ -3,8 +3,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -0.9210394957306249,
-                -0.44779263470178066
+                -0.6341534645387632,
+                -0.8183298457505526
             ],
             "vel": [
                 0.0,
@@ -12,22 +12,35 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "delete_at_zero": false
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0
         },
         "ColorComp": {
             "fill_color": [
-                115,
-                111,
-                76,
+                175,
+                100,
+                88,
                 255
             ]
         },
         "ZOrderComp": {
             "zorder": 1
         }
+    },
+    "enemy.000 defeat": {
+        "DurabilityTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "enemy.000",
+            "target_entity_name": "[SceneComp|name:enemy_states]"
+        },
+        "StateComp": {
+            "state_entity_name": "defeated_enemy"
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.000 inverse square": {
         "PairComp": {
@@ -64,8 +77,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                0.4740817308630374,
-                -0.21473279732356465
+                0.08623862572902352,
+                -0.4077512590892318
             ],
             "vel": [
                 0.0,
@@ -73,22 +86,35 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "delete_at_zero": false
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0
         },
         "ColorComp": {
             "fill_color": [
-                115,
-                111,
-                76,
+                175,
+                100,
+                88,
                 255
             ]
         },
         "ZOrderComp": {
             "zorder": 1
         }
+    },
+    "enemy.001 defeat": {
+        "DurabilityTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "enemy.001",
+            "target_entity_name": "[SceneComp|name:enemy_states]"
+        },
+        "StateComp": {
+            "state_entity_name": "defeated_enemy"
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.001 inverse square": {
         "PairComp": {
@@ -125,8 +151,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                0.23338811991543396,
-                -0.3453104603567273
+                -0.4773923407313312,
+                -0.9942249142725483
             ],
             "vel": [
                 0.0,
@@ -134,22 +160,35 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "delete_at_zero": false
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0
         },
         "ColorComp": {
             "fill_color": [
-                115,
-                111,
-                76,
+                175,
+                100,
+                88,
                 255
             ]
         },
         "ZOrderComp": {
             "zorder": 1
         }
+    },
+    "enemy.002 defeat": {
+        "DurabilityTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "enemy.002",
+            "target_entity_name": "[SceneComp|name:enemy_states]"
+        },
+        "StateComp": {
+            "state_entity_name": "defeated_enemy"
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.002 inverse square": {
         "PairComp": {
@@ -186,8 +225,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -0.6222189061809591,
-                -0.47770139951732893
+                -0.45720292981706345,
+                -0.9750050055498436
             ],
             "vel": [
                 0.0,
@@ -195,22 +234,35 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "delete_at_zero": false
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0
         },
         "ColorComp": {
             "fill_color": [
-                115,
-                111,
-                76,
+                175,
+                100,
+                88,
                 255
             ]
         },
         "ZOrderComp": {
             "zorder": 1
         }
+    },
+    "enemy.003 defeat": {
+        "DurabilityTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "enemy.003",
+            "target_entity_name": "[SceneComp|name:enemy_states]"
+        },
+        "StateComp": {
+            "state_entity_name": "defeated_enemy"
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.003 inverse square": {
         "PairComp": {
@@ -247,8 +299,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -0.416748284596997,
-                -0.8991069664729012
+                0.9862624908050353,
+                -0.9628322154625586
             ],
             "vel": [
                 0.0,
@@ -256,22 +308,35 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "delete_at_zero": false
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0
         },
         "ColorComp": {
             "fill_color": [
-                115,
-                111,
-                76,
+                175,
+                100,
+                88,
                 255
             ]
         },
         "ZOrderComp": {
             "zorder": 1
         }
+    },
+    "enemy.004 defeat": {
+        "DurabilityTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "enemy.004",
+            "target_entity_name": "[SceneComp|name:enemy_states]"
+        },
+        "StateComp": {
+            "state_entity_name": "defeated_enemy"
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.004 inverse square": {
         "PairComp": {
@@ -308,8 +373,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                0.42689798155719383,
-                -0.5737998755212694
+                -0.7051402460252278,
+                -0.8639004128390728
             ],
             "vel": [
                 0.0,
@@ -317,22 +382,35 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "delete_at_zero": false
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0
         },
         "ColorComp": {
             "fill_color": [
-                115,
-                111,
-                76,
+                175,
+                100,
+                88,
                 255
             ]
         },
         "ZOrderComp": {
             "zorder": 1
         }
+    },
+    "enemy.005 defeat": {
+        "DurabilityTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "enemy.005",
+            "target_entity_name": "[SceneComp|name:enemy_states]"
+        },
+        "StateComp": {
+            "state_entity_name": "defeated_enemy"
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.005 inverse square": {
         "PairComp": {
@@ -369,8 +447,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -0.4633396916252024,
-                -1.0260256929420215
+                0.9055380330262752,
+                -0.9093803841632142
             ],
             "vel": [
                 0.0,
@@ -378,22 +456,35 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "delete_at_zero": false
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0
         },
         "ColorComp": {
             "fill_color": [
-                115,
-                111,
-                76,
+                175,
+                100,
+                88,
                 255
             ]
         },
         "ZOrderComp": {
             "zorder": 1
         }
+    },
+    "enemy.006 defeat": {
+        "DurabilityTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "enemy.006",
+            "target_entity_name": "[SceneComp|name:enemy_states]"
+        },
+        "StateComp": {
+            "state_entity_name": "defeated_enemy"
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.006 inverse square": {
         "PairComp": {
@@ -430,8 +521,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -0.994169141461843,
-                -1.059848626699287
+                -0.8183942649710048,
+                -0.6985190446455984
             ],
             "vel": [
                 0.0,
@@ -439,22 +530,35 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "delete_at_zero": false
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0
         },
         "ColorComp": {
             "fill_color": [
-                115,
-                111,
-                76,
+                175,
+                100,
+                88,
                 255
             ]
         },
         "ZOrderComp": {
             "zorder": 1
         }
+    },
+    "enemy.007 defeat": {
+        "DurabilityTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "enemy.007",
+            "target_entity_name": "[SceneComp|name:enemy_states]"
+        },
+        "StateComp": {
+            "state_entity_name": "defeated_enemy"
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.007 inverse square": {
         "PairComp": {
@@ -491,8 +595,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                -0.6179941271026574,
-                -0.8045211352593051
+                0.24431770599518776,
+                -0.6671242060910487
             ],
             "vel": [
                 0.0,
@@ -500,22 +604,35 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "delete_at_zero": false
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0
         },
         "ColorComp": {
             "fill_color": [
-                115,
-                111,
-                76,
+                175,
+                100,
+                88,
                 255
             ]
         },
         "ZOrderComp": {
             "zorder": 1
         }
+    },
+    "enemy.008 defeat": {
+        "DurabilityTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "enemy.008",
+            "target_entity_name": "[SceneComp|name:enemy_states]"
+        },
+        "StateComp": {
+            "state_entity_name": "defeated_enemy"
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.008 inverse square": {
         "PairComp": {
@@ -552,8 +669,8 @@
         "EnemyFlag": {},
         "PhysicsComp": {
             "pos": [
-                0.4736934530950585,
-                -0.9166970462084262
+                -0.35467033079357346,
+                -0.5619200443850197
             ],
             "vel": [
                 0.0,
@@ -561,22 +678,35 @@
             ]
         },
         "DragForceComp": {},
-        "DurabilityComp": {},
+        "DurabilityComp": {
+            "delete_at_zero": false
+        },
         "RenderFlag": {},
         "CircleComp": {
             "radius": 1.0
         },
         "ColorComp": {
             "fill_color": [
-                115,
-                111,
-                76,
+                175,
+                100,
+                88,
                 255
             ]
         },
         "ZOrderComp": {
             "zorder": 1
         }
+    },
+    "enemy.009 defeat": {
+        "DurabilityTriggerFlag": {},
+        "PairComp": {
+            "source_entity_name": "enemy.009",
+            "target_entity_name": "[SceneComp|name:enemy_states]"
+        },
+        "StateComp": {
+            "state_entity_name": "defeated_enemy"
+        },
+        "UnresolvedNameFlag": {}
     },
     "enemy-player.009 inverse square": {
         "PairComp": {
